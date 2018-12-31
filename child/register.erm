@@ -11,7 +11,7 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>0</x>
+	<x>220</x>
 	<y>0</y>
 	<default_color>
 		<r>128</r>
@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>register.sql</output_path>
+				<output_path>register1.sql</output_path>
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -62,8 +62,8 @@
 					<drop_tablespace>true</drop_tablespace>
 					<drop_trigger>true</drop_trigger>
 					<drop_view>true</drop_view>
-					<inline_column_comment>true</inline_column_comment>
-					<inline_table_comment>true</inline_table_comment>
+					<inline_column_comment>false</inline_column_comment>
+					<inline_table_comment>false</inline_table_comment>
 					<comment_value_description>true</comment_value_description>
 					<comment_value_logical_name>false</comment_value_logical_name>
 					<comment_value_logical_name_description>false</comment_value_logical_name_description>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-12-28 15:02:35</creation_date>
-			<updated_date>2018-12-31 14:35:01</updated_date>
+			<updated_date>2018-12-31 14:46:55</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>

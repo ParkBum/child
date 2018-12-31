@@ -34,8 +34,12 @@ CREATE TABLE comment
 	cnum int(11) NOT NULL,
 	bnum int(11) NOT NULL,
 	mnum int(11) NOT NULL,
+<<<<<<< HEAD
 	comment varchar(200) COMMENT '
 ',
+=======
+	comment varchar(200),
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 	comdate datetime,
 	PRIMARY KEY (cnum)
 );
