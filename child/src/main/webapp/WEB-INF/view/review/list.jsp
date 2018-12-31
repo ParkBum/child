@@ -24,7 +24,6 @@
 </head>
 <body>
 	<table border="1" style="border-collapse:collapse; width:100%;">
-	
 		<tr>
 			<td colspan="5" align="center">
 				<form action="list.shop" method="post" name="searchform" onsubmit="return list(1)">
