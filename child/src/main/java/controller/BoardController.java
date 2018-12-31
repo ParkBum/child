@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BoardController {
 
 	@RequestMapping(value = "board/list")
-	public ModelAndView list(Integer btype) {
+	public ModelAndView list(Integer btype, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
