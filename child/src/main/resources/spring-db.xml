@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context.xsd">
+	   <!-- dataSource : db 컨넥션 객체 의미 --> 
+	   <!-- ConnectionPool(컨넥션 풀) 사용하기
+	   		컨넥션 풀 : 미리 db와 연결된 객체(Connection 객체)를 저장하고 있는 공간. -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+			<value>org.mariadb.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mariadb://localhost:3306/bigdb</value>
+		</property>
+		<property name="user">
+			<value>scott</value>
+		</property>
+		<property name="password">
+			<value>tiger</value>
+		</property>
+		<property name="maxPoolSize"><value>20</value></property><!-- 최대 Connection객체의 갯수. 20개는 넘어가지마 -->
+		<property name="minPoolSize"><value>3</value></property><!-- 최소 Connection객체의 갯수 -->
+		<property name="initialPoolSize"><value>5</value></property><!-- 초기 Connection객체 갯수. 5개 만들어 -->
+		<property name="acquireIncrement"><value>5</value></property><!-- 증가 Connection객체 갯수. 5개 다 사용중이야?!그럼 5개 더 만들어 -->
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+</beans>	 
+
+
+
+
+
+
+
+
