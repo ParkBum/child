@@ -7,25 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>후기게시판 목록</title>
 <script type="text/javascript">
-	function filterlist(pageNum) {
-		var filterType = document.filterform.searchType.value;
-		if(filterType == null || filterType.length == 0) {
-			document.filterform.searchContent.value = "";
-			document.filterform.pageNum.value = "1";
-			location.href = "list.child?btype=1,pageNum=" + pageNum;
-		} else {
-			document.searchform.pageNum.value = pageNum;
-			document.searchform.submit();
-			return true;
-		}
-		return false;
-	}
-	function searchlist(pageNum) {
+	function searchList(pageNum) {
 		var searchType = document.searchform.searchType.value;
 		if(searchType == null || searchType.length == 0) {
 			document.searchform.searchContent.value = "";
 			document.searchform.pageNum.value = "1";
-			location.href = "list.child?btype=1,pageNum=" + pageNum;
+			location.href = "list.child?btype=2,pageNum=" + pageNum;
 		} else {
 			document.searchform.pageNum.value = pageNum;
 			document.searchform.submit();
@@ -38,25 +25,8 @@
 <body>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr>
-			<td colspan="2" align="left">
-				<form action="list.child" method="post" name="filterform" onsubmit="return filterlist(1)">
-					<input type="hidden" name="pageNum" value="1">
-					<select name="filterType" id="filterType">
-						<option value="">머리말 분류</option>
-						<option value="parenting">육아꿀팁</option>
-						<option value="kidscafe">시설추천</option>
-					</select>&nbsp;
-					<script type="text/javascript">
-						if('${param.filterType}' != '') {
-							document.getElementById("filterType").value = '${param.filterType}';
-						}
-					</script>
-					<input type="text" name="searchContent" value="${param.searchContent}">
-					<input type="submit" value="검색">
-				</form>
-			</td>
-			<td colspan="3" align="right">
-				<form action="list.child" method="post" name="searchform" onsubmit="return list(1)">
+			<td colspan="5" align="right">
+				<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="searchType" id="searchType">
 						<option value="">선택하세요</option>
