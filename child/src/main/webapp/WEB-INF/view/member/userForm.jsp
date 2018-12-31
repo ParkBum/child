@@ -24,7 +24,7 @@
 			<font color="red"><form:errors path="email"/></font></td>
 		</tr>
 		<tr height="40px">
-			<td>닉네임</td>
+			<td>비밀번호</td>
 			<td><form:password path="password"/>
 			<font color="red"><form:errors path="password"/></font></td>
 		</tr>
