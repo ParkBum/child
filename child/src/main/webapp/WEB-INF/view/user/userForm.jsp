@@ -19,9 +19,9 @@
 	</spring:hasBindErrors>
 	<table>
 		<tr height="40px">
-			<td>아이디</td>
-			<td><form:input path="userId"/>
-			<font color="red"><form:errors path="userId"/></font></td>
+			<td>이메일</td>
+			<td><form:input path="email"/>
+			<font color="red"><form:errors path="email"/></font></td>
 		</tr>
 		<tr height="40px">
 			<td>비밀번호</td>
@@ -29,35 +29,16 @@
 			<font color="red"><form:errors path="password"/></font></td>
 		</tr>
 		<tr height="40px">
-			<td>이름</td>
-			<td><form:input path="userName"/>
-			<font color="red"><form:errors path="userName"/></font></td>
+			<td>닉네임</td>
+			<td><form:input path="nickname"/>
+			<font color="red"><form:errors path="nickname"/></font></td>
 		</tr>
 		<tr height="40px">
 			<td>전화번호</td>
 			<td><form:input path="phoneNo"/>
 			<font color="red"><form:errors path="phoneNo"/></font></td>
 		</tr>
-		<tr height="40px">
-			<td>우편번호</td>
-			<td><form:input path="postcode"/>
-			<font color="red"><form:errors path="postcode"/></font></td>
-		</tr>
-		<tr height="40px">
-			<td>주소</td>
-			<td><form:input path="address"/>
-			<font color="red"><form:errors path="address"/></font></td>
-		</tr>
-		<tr height="40px">
-			<td>이메일</td>
-			<td><form:input path="email"/>
-			<font color="red"><form:errors path="email"/></font></td>
-		</tr>
-		<tr height="40px">
-			<td>생일</td>
-			<td><form:input path="birthDay"/>
-			<font color="red"><form:errors path="birthDay"/></font></td>
-		</tr>
+		
 		<tr height="40px">
 		<td colspan="2" align="center">
 		<input type="submit" value="등록">
