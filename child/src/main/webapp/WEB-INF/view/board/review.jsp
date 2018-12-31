@@ -12,7 +12,7 @@
 		if(searchType == null || searchType.length == 0) {
 			document.searchform.searchContent.value = "";
 			document.searchform.pageNum.value = "1";
-			location.href = "list.child?btype=2,pageNum=" + pageNum;
+			location.href = "list.child?bType=2,pageNum=" + pageNum;
 		} else {
 			document.searchform.pageNum.value = pageNum;
 			document.searchform.submit();

@@ -12,7 +12,7 @@
 		if(filterType == null || filterType.length == 0) {
 			document.filterform.searchContent.value = "";
 			document.filterform.pageNum.value = "1";
-			location.href = "list.child?btype=1,pageNum=" + pageNum;
+			location.href = "list.child?bType=1,pageNum=" + pageNum;
 		} else {
 			document.searchform.pageNum.value = pageNum;
 			document.searchform.submit();
@@ -25,7 +25,7 @@
 		if(searchType == null || searchType.length == 0) {
 			document.searchform.searchContent.value = "";
 			document.searchform.pageNum.value = "1";
-			location.href = "list.child?btype=1,pageNum=" + pageNum;
+			location.href = "list.child?bType=1,pageNum=" + pageNum;
 		} else {
 			document.searchform.pageNum.value = pageNum;
 			document.searchform.submit();
