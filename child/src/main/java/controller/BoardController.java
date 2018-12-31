@@ -45,5 +45,6 @@ public class BoardController {
 		mav.addObject("boardlist", boardlist);
 		mav.addObject("boardcnt", boardcnt);
 		return mav;
+		
 	}
 }
