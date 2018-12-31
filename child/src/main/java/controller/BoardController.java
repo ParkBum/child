@@ -12,5 +12,4 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
-
 }
