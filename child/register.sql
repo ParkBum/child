@@ -4,7 +4,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS board;
-DROP TABLE IF EXISTS member;
+DROP TABLE IF EXISTS user;
 
 
 
@@ -34,18 +34,14 @@ CREATE TABLE comment
 	cnum int(11) NOT NULL,
 	bnum int(11) NOT NULL,
 	mnum int(11) NOT NULL,
-<<<<<<< HEAD
 	comment varchar(200) COMMENT '
 ',
-=======
-	comment varchar(200),
->>>>>>> branch 'master' of https://github.com/ParkBum/child
 	comdate datetime,
 	PRIMARY KEY (cnum)
 );
 
 
-CREATE TABLE member
+CREATE TABLE user
 (
 	mnum int(11) NOT NULL,
 	email varchar(100) NOT NULL,
@@ -68,7 +64,7 @@ ALTER TABLE comment
 
 ALTER TABLE board
 	ADD FOREIGN KEY (mnum)
-	REFERENCES member (mnum)
+	REFERENCES user (mnum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -76,7 +72,7 @@ ALTER TABLE board
 
 ALTER TABLE comment
 	ADD FOREIGN KEY (mnum)
-	REFERENCES member (mnum)
+	REFERENCES user (mnum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
