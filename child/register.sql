@@ -34,10 +34,7 @@ CREATE TABLE comment
 	cnum int(11) NOT NULL,
 	bnum int(11) NOT NULL,
 	mnum int(11) NOT NULL,
-	-- 
-	-- 
-	comment varchar(200) COMMENT '
-',
+	comment varchar(200),
 	comdate datetime,
 	PRIMARY KEY (cnum)
 );
