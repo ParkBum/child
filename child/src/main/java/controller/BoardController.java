@@ -28,6 +28,8 @@ public class BoardController {
 			case 2 : mav.setViewName("board/review"); break;	// 후기
 			case 3 : mav.setViewName("board/market"); break;	// 중고거래
 				default : break;
+				
+				
 		}
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
