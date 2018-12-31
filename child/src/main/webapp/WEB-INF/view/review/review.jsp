@@ -7,12 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>후기게시판 목록</title>
 <script type="text/javascript">
-	function list(pageNum) {
+	function filterlist(pageNum) {
+		var filterType = document.searchform.searchType.value;
+		if(searchType == null || searchType.length == 0) {
+			document.searchform.searchContent.value = "";
+			document.searchform.pageNum.value = "1";
+			location.href = "list.child?pageNum=" + pageNum;
+		} else {
+			document.searchform.pageNum.value = pageNum;
+			document.searchform.submit();
+			return true;
+		}
+		return false;
+	}
+	function searchlist(pageNum) {
 		var searchType = document.searchform.searchType.value;
 		if(searchType == null || searchType.length == 0) {
 			document.searchform.searchContent.value = "";
 			document.searchform.pageNum.value = "1";
-			location.href = "list.shop?pageNum=" + pageNum;
+			location.href = "list.child?pageNum=" + pageNum;
 		} else {
 			document.searchform.pageNum.value = pageNum;
 			document.searchform.submit();
@@ -25,8 +38,25 @@
 <body>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr>
-			<td colspan="5" align="center">
-				<form action="list.shop" method="post" name="searchform" onsubmit="return list(1)">
+			<td colspan="2" align="left">
+				<form action="list.child" method="post" name="filterform" onsubmit="return filterlist(1)">
+					<input type="hidden" name="pageNum" value="1">
+					<select name="filterType" id="filterType">
+						<option value="">머리말 분류</option>
+						<option value="parenting">육아꿀팁</option>
+						<option value="kidscafe">시설추천</option>
+					</select>&nbsp;
+					<script type="text/javascript">
+						if('${param.filterType}' != '') {
+							document.getElementById("filterType").value = '${param.filterType}';
+						}
+					</script>
+					<input type="text" name="searchContent" value="${param.searchContent}">
+					<input type="submit" value="검색">
+				</form>
+			</td>
+			<td colspan="3" align="right">
+				<form action="list.child" method="post" name="searchform" onsubmit="return list(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="searchType" id="searchType">
 						<option value="">선택하세요</option>
@@ -71,7 +101,7 @@
 			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
 			<c:if test="${board.reflevel > 0}">└</c:if>
 			<c:if test="${!empty board.fileurl}"><a href="../file/${board.fileurl}">@</a></c:if>
-				<a href="detail.shop?num=${board.num}">${board.subject}</a></td>
+				<a href="detail.child?num=${board.num}">${board.subject}</a></td>
 			<td align="left">${board.name}</td>
 			<td align="center">${board.regdate}</td>
 			<td align="right">${board.readcnt}</td>
@@ -98,7 +128,7 @@
 		</tr>
 		</c:if>
 		<tr>
-			<td colspan="5" align="right"><a href="write.shop">글쓰기</a>
+			<td colspan="5" align="right"><a href="write.child">글쓰기</a>
 		</td>
 	</table>
 </body>
