@@ -1,19 +1,19 @@
-## src/java/messages.txt => src/java/messages.properties º¯°æ
-error.input.user=ÀÔ·ÂÁ¤º¸¿¡ ¹®Á¦°¡ ÀÖ½À´Ï´Ù.
-error.required.userId=À¯ÀúID¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.required.password=ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.login.user=·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-error.login.id=¾ÆÀÌµğ¸¦ È®ÀÎÇÏ¼¼¿ä.
-error.login.password=ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä.
+## src/java/messages.txt => src/java/messages.properties 
+error.input.user=ì…ë ¥ì •ë³´ì— ë¬¸ì œê°€ ìˆìŠµë‹ˆë‹¤.
+error.required.userId=ìœ ì €IDë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.required.password=íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.login.user=ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.
+error.login.id=ì•„ì´ë””ë¥¼ í™•ì¸í•˜ì„¸ìš”.
+error.login.password=ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”.
 
-error.required.userName=ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.required.postcode=¿ìÆí¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.required.address=ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.required.phoneNo=ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.required.email=E-MAILÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-user.userId.default=·Î±×ÀÎ ½Ã ÇÊ¿äÇÕ´Ï´Ù.
-user.userName.default=¹è¼Û ½Ã ÇÊ¿äÇÕ´Ï´Ù.
-typeMismatch.birthDay=»ı³â¿ùÀÏÀº YYYY-MM-DD Çü½ÄÀ¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä
-error.duplicate.user=Áßº¹µÈ ¾ÆÀÌµğÀÔ´Ï´Ù
-error.board.password=ºñ¹Ğ¹øÈ£°¡ Æ²¸²´Ï´Ù
+error.required.userName=ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.required.postcode=ìš°í¸ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.required.address=ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.required.phoneNo=ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.required.email=E-MAILì„ ì…ë ¥í•´ ì£¼ì„¸ìš”
+user.userId.default=ë¡œê·¸ì¸ ì‹œ í•„ìš”í•©ë‹ˆë‹¤.
+user.userName.default=ë°°ì†¡ ì‹œ í•„ìš”í•©ë‹ˆë‹¤.
+typeMismatch.birthDay=ìƒë…„ì›”ì¼ì€ YYYY-MM-DD í˜•ì‹ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”
+error.duplicate.user=ì¤‘ë³µëœ ì•„ì´ë””ì…ë‹ˆë‹¤
+error.board.password=ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦¼ë‹ˆë‹¤
  
