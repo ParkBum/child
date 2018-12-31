@@ -11,5 +11,6 @@ public class BoardController {
 	public ModelAndView list(Integer btype, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		return mav;
+		
 	}
 }
