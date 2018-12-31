@@ -36,11 +36,28 @@
 </script>
 </head>
 <body>
+	<h4>거래게시판</h4>
 	<table border="1" style="border-collapse: collapse; width: 100%">
 		<tr>
+			<td colspan="2" align="left"> <%-- 말머리 설정 --%>
+				<form action="list.child" method="post" name="filterform" onsubmit="return filterlist(1)">
+					<input type="hidden" name="pageNum" value="1">
+					<select name="filterType" id="filterType">
+						<option value="">머리말 분류</option>
+						<option value="buy">삽니다</option>
+						<option value="sell">팝니다</option>
+					</select>&nbsp;
+					<script type="text/javascript">
+						if('${param.filterType}' != '') {
+							document.getElementById("filterType").value = '${param.filterType}';
+						}
+					</script>
+					<input type="text" name="searchContent" value="${param.searchContent}">
+					<input type="submit" value="검색">
+				</form>
+			</td>
 			<td colspan="5" align="center">
-			<%--검색form --%>
-				<form action="list.shop" method="post" name="searchform"
+				<form action="list.child" method="post" name="searchform"
 					onsubmit="return list(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="searchType" id="searchType">
@@ -56,8 +73,7 @@
 					</script>
 					<input type="text" name="searchContent" value="${param.searchContent}"> 
 					<input type="submit" value="검색">
-				</form><%--파라미터는 pageNum,searchType,serachContent 들어감 --%>
-				
+				</form>
 			</td>
 		</tr>
 			<%--조회할 게시글이 있는 경우 --%>
