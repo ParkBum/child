@@ -9,7 +9,7 @@
 <style type="text/css">
 div,form {
 border-radius :5px;
-margin:0 auto;
+margin:50% 50%;
 background-color: #f2f2f2;
 }
 form {

@@ -29,7 +29,7 @@ public class UserController {
 
 	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm() {
-		ModelAndView mav = new ModelAndView("user/login");
+		ModelAndView mav = new ModelAndView();
 		mav.addObject(new User());
 		return mav;
 	}
