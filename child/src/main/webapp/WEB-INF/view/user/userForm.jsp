@@ -7,10 +7,12 @@
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
 <style type="text/css">
-div {
+.joinFomr {
+display : inline;
 border-radius :5px;
 margin:0 auto;
 background-color: #f2f2f2;
+text-align:center;
 }
 form {
 
@@ -37,7 +39,7 @@ input[type=submit] :hover {
 </head>
 <body>
 <h2>사용자 등록</h2>
-<div>
+<div class="joinForm">
 <form:form modelAttribute="user" method="post" action="userEntry.child">
 	<spring:hasBindErrors name="user">
 		<font color="red">

@@ -23,12 +23,13 @@ input[type=text], input[type=password] {
 input[type=submit],input[type=button] {
 	background-color: #4CAF50;
 	color : white;
+	width:100%;
 	padding : 10px;
 	maring : 8px 0;
 	border-radius: 4px;
 	cursor : pointer;
 }
-input[type=submit] :hover {
+input[type=submit]:hover,input[type=button]:hover {
 	background-color: #45a049;
 }
 </style>
@@ -56,7 +57,8 @@ input[type=submit] :hover {
 				</font></td>
 			</tr>
 			<tr height="40px">
-				<td colspan="2" align="center"><input type="submit" value="로그인"></td>
+				<td colspan="2" align="center"><input type="submit" value="로그인"></td></tr>
+			<tr height="40px">
 				<td colspan="2" align="center"><input type="button" value="회원가입" onclick="location.href='userEntry.child'"></td>
 			</tr>
 		</table>
