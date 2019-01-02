@@ -32,5 +32,5 @@ public class ChildService {
 
 	public int maxnum() {
 		return userdao.maxNum();
-	}
+	} 
 }
