@@ -53,23 +53,17 @@
 
 .t {
 }
-table,tr,td {
-	width: 100%;
-	border: solid 1px silver;
-	border-collapse: collapse;
+option {
+	font-size: large;
 }
 </style>
 </head>
 <body>
 	<div id="SearchAndMap">
 		<div id="search">
-			<div style="display: inline-block; margin : 0 auto; vertical-align: middle;">
-			<table >
-				<tr>
-					<td colspan="3">구를 선택해주세요</td>
-				</tr>
-				<tr>
-					<td colspan="3"><select name="">
+			<div style="display: inline-block; margin :8% auto; vertical-align: middle; width : 80%;">
+					<p>구를 선택해주세요</p>
+					<select name="">
 							<option>강남구</option>
 							<option>강동구</option>
 							<option>강북구</option>
@@ -95,35 +89,25 @@ table,tr,td {
 							<option>종로구</option>
 							<option>중구</option>
 							<option>중랑구</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td colspan="3">어린이집 유형</td>
-				</tr>
-				<tr>
-					<td colspan="3"><select name="">
+					</select>
+					<p>어린이집 유형</p>
+
+					<select name="">
 							<option>가정</option>
 							<option>국공립</option>
 							<option>민간</option>
 							<option>법인/단체 등</option>
 							<option>사회복지법인</option>
 							<option>협동</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td colspan="3">통원 버스 유무</td>
-				</tr>
-				<tr>
-					<td colspan="3"><select name="">
+					</select>
+					<p>통원 버스 유무</p>
+					<select name="">
 							<option>운영</option>
 							<option>미운영</option>
-					</select></td>
-				</tr>
-				<tr>
-				<td colspan="2"><input type="text" name="" placeholder="검색할 단어를 입력해주세요">
-				</td>
-				<td align="center"><input type="button" value="검색" onsubmit=""></td>
-			</table>
+					</select>
+					<hr>
+				<input type="text" name="" placeholder="검색할 단어를 입력해주세요">
+				<input type="button" value="검색" onsubmit="">
 			</div>
 
 		</div>
@@ -155,26 +139,7 @@ table,tr,td {
 				}
 			});
 
-			//setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-			map.setOptions("mapTypeControl", true); //지도 유형 컨트롤의 표시 여부
 
-			// min/max 줌 레벨
-			$("#min-max-zoom").on("click", function(e) {
-				e.preventDefault();
-				if (map.getOptions("minZoom") === 10) {
-					map.setOptions({
-						minZoom : 1,
-						maxZoom : 14
-					});
-					$(this).val(this.name + ': 1 ~ 14');
-				} else {
-					map.setOptions({
-						minZoom : 10,
-						maxZoom : 12
-					});
-					$(this).val(this.name + ': 10 ~ 12');
-				}
-			});
 			//지도 컨트롤
 			$("#interaction, #tile-transition, #controls").addClass(
 					"control-on");

@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 html {
-	background-image: url("../decorator/field.jpg");
+	/* background-image: url("../decorator/field.jpg"); */
 	background-position : center;
 	background-size: cover;
 }
@@ -49,7 +49,9 @@ body {
 .top a:hover {
 	z-index : 100;
 	vertical-align: middle;
-	background-color: #ddd;
+	border-radius : 20px;
+	color : white;
+	background-color:black;
 	padding: 13px;
 }
 /* main */
@@ -61,8 +63,8 @@ body {
 /*하단 footer */
 .footer {
 	z-index : 100;
-	background-color: #ddd;
-	color: black;
+	background-color: #006633 ;
+	color: white;
 	text-align: center;
 	padding: 10px;
 }
@@ -71,14 +73,13 @@ body {
 <body>
 	<div class="top">
 		<%-- <c:if test="${empty sessionScope.login}"> --%>
-		<a href="${path}/main/main.child" style="float: left"><img
-			src="../decorator/house.png" width="25px" height="25px"></a>
-		<p style="float: left">000 님 환영합니다.</p>
-		<a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a> <a
-			href="${path}/user/userForm.child" style="float: right">회원가입</a> <a
-			href="${path}/board/list.child?bType=1" style="float: right">자유
-			게시판</a> <a href="${path}/board/list.child?bType=2" style="float: right">후기
-			게시판</a>
+		<a href="${path}/main/main.child" style="float: left">
+		<img src="../decorator/house.png" width="25px" height="25px"></a>
+		<p style="float: left; margin-left:20px;">000 님 환영합니다.</p>
+		<a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a>
+		<a href="${path}/user/userForm.child" style="float: right">회원가입</a>
+		<a	href="${path}/board/list.child?bType=1" style="float: right">자유 게시판</a>
+		<a href="${path}/board/list.child?bType=2" style="float: right">후기 게시판</a>
 		<%-- 	</c:if>
  --%>
 	</div>
@@ -87,7 +88,7 @@ body {
 	</div>
 	<hr>
 	<div class="footer">
-		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
+		<p class="foottext" >서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
 			대륭테크노타운3차)</p>
 	</div>
 </body>

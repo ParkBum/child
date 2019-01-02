@@ -11,11 +11,12 @@
 .chart {
 	width: 100%;
 	height: 400px;
-	background-color: olive;
+	border : solid 1px black;
 }
 
 .chart p {
 	text-align: center;
+	font-family: sans-serif;
 }
 
 .menu {
