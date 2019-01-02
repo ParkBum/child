@@ -7,9 +7,9 @@
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
 <style type="text/css">
-div,form {
+div {
 border-radius :5px;
-margin:50% 50%;
+margin:0 auto;
 background-color: #f2f2f2;
 }
 form {
