@@ -6,9 +6,20 @@
 <head>
 <meta charset="EUC-KR">
 <title>로그인</title>
+<style type="text/css">
+div {
+border-radius :5px;
+margin:0 auto;
+background-color: #f2f2f2;
+}
+form {
+
+}
+</style>
 </head>
 <body>
-<form:form modelAttribute="user" method="post" action="login.shop">
+<div>
+<form:form modelAttribute="user" method="post" action="login.child">
 		<spring:hasBindErrors name="user">
 			<font color="red"> <c:forEach items="${errors.globalErrors}"var="error">
 					<spring:message code="${error.code}" />
@@ -31,9 +42,10 @@
 			<tr height="40px">
 				<td colspan="2" align="center"><input type="submit" value="로그인">
 					<input type="button" value="회원가입"
-					onclick="location.href='userEntry.shop'"></td>
+					onclick="location.href='userEntry.child'"></td>
 			</tr>
 		</table>
 	</form:form>
+</div>
 </body>
 </html>

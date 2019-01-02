@@ -6,9 +6,38 @@
 <head>
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
+<style type="text/css">
+div,form {
+border-radius :5px;
+margin:0 auto;
+background-color: #f2f2f2;
+}
+form {
+
+}
+
+input[type=text], input[type=password] {
+	padding : 10px;
+	maring : 8px 0;
+	border-radius: 4px;
+}
+
+input[type=submit],input[type=reset] {
+	background-color: #4CAF50;
+	color : white;
+	padding : 10px;
+	maring : 8px 0;
+	border-radius: 4px;
+	cursor : pointer;
+}
+input[type=submit] :hover {
+	background-color: #45a049;
+}
+</style>
 </head>
 <body>
 <h2>사용자 등록</h2>
+<div>
 <form:form modelAttribute="user" method="post" action="userEntry.child">
 	<spring:hasBindErrors name="user">
 		<font color="red">
@@ -45,9 +74,10 @@
 		</tr>
 		<tr height="40px">
 		<td colspan="2" align="center">
-		<input type="submit" value="등록">
-		<input type="reset" value="초기화">
+		<input type="submit" value="가입">
+		<input type="reset" value="재작성">
 		</td></tr></table>
 </form:form>
+</div>
 </body>
 </html>

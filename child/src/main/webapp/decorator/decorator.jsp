@@ -44,13 +44,13 @@ body {
 }
 /* main */
 .main {
-background-color: blue;
+background-color: white;
 padding : 10px;
-height :900px;
+height :800px;
 }
 /*го╢э footer */
 .footer {
-	background-color: white;
+	background-color: green;
 	color : black;
 	text-align: center;
 	padding: 10px;
