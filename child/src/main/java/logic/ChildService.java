@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dao.UserDao;
+
 @Service
 public class ChildService {
+
 	@Autowired
-	User user;
+	private UserDao userdao;
 
 	public int boardCount(Integer bType, String filterType, String searchType, String searchContent) {
 		return 0;
@@ -17,5 +20,13 @@ public class ChildService {
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
 			Integer pageNum, int limit) {
 		return null;
+	}
+	
+
+	public void userCreate(User user) {
+		user.setPassword(user.getPassword());
+		user.setEmail(user.getEmail());
+		user.setNickname(user.getNickname());
+		userdao.createuser(user);
 	}
 }

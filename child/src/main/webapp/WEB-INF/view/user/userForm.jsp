@@ -34,12 +34,6 @@
 			<font color="red"><form:errors path="nickname"/></font></td>
 		</tr>
 		<tr height="40px">
-			<td>전화번호</td>
-			<td><form:input path="phoneNo"/>
-			<font color="red"><form:errors path="phoneNo"/></font></td>
-		</tr>
-		
-		<tr height="40px">
 		<td colspan="2" align="center">
 		<input type="submit" value="등록">
 		<input type="reset" value="초기화">

@@ -11,7 +11,7 @@
 <decorator:head/>
 </head>
 <body>
-<table border="1" style="border-collapse: collapse; width:95%;">
+<%-- <table border="1" style="border-collapse: collapse; width:95%;">
 	<tr>
 		<td colspan="3" align="right">
 			<c:if test="${empty sessionScope.loginUser}">
@@ -38,7 +38,7 @@
 		<td colspan="3" align="center">
 		구디아카데미 Since 2016
 		</td>
-	</tr>
-</table>
+	</tr> 
+</table>--%>
 </body>
 </html>

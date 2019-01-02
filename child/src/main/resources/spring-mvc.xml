@@ -26,14 +26,14 @@
 		 URL 요청정보와 Controller를 이름으로 매핑하도록 설정-->
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"></bean>
 
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>messages</value>
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass">
@@ -63,8 +63,8 @@
 			</property>		
 	</bean>	 
 	
-	<bean id="echoHandler" class="websocket.EchoHandler"/>
+<!-- 	<bean id="echoHandler" class="websocket.EchoHandler"/>
 		<websocket:handlers>
 			<websocket:mapping handler="echoHandler" path="/chatting.shop"/>
-		</websocket:handlers>
+		</websocket:handlers> -->
 </beans>	
