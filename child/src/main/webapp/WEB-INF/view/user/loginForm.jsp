@@ -10,12 +10,11 @@
 <body>
 <form:form modelAttribute="user" method="post" action="login.shop">
 		<spring:hasBindErrors name="user">
-			<font color="red"> <c:forEach items="${errors.globalErrors}"
-					var="error">
+			<font color="red"> <c:forEach items="${errors.globalErrors}"var="error">
 					<spring:message code="${error.code}" />
 				</c:forEach>
 			</font>
-		</spring:hasBindErrors>
+		</spring:hasBindErrors>	
 		<h2>·Î±×ÀÎ</h2>
 		<table>
 			<tr height="40px">
