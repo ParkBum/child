@@ -27,9 +27,10 @@ public class ChildService {
 	
 
 	public void userCreate(User user) {
-		user.setPassword(user.getPassword());
-		user.setEmail(user.getEmail());
-		user.setNickname(user.getNickname());
 		userdao.createuser(user);
+	}
+	
+	public int maxnum() {
+		return userdao.maxNum();
 	}
 }

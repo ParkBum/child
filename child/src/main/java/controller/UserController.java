@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -38,7 +41,7 @@ public class UserController {
 
 	@RequestMapping("user/userForm")
 	public ModelAndView userForm() {
-		ModelAndView mav = new ModelAndView("user/userFrom");
+		ModelAndView mav = new ModelAndView("user/userForm");
 		mav.addObject(new User());
 		return mav;
 	}
@@ -51,6 +54,8 @@ public class UserController {
 			return mav;
 		}
 		try {
+			int mnum = service.maxnum();
+			user.setMnum(mnum);
 			service.userCreate(user);
 			mav.setViewName("user/login");
 			mav.addObject("user", user);
