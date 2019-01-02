@@ -13,9 +13,15 @@
 </head>
 <body>
 <div class="top">
+	<a href="#">Link</a>
+	<a href="#">Link</a>
+	<a href="#">Link</a>
 </div>
 <div class="main">
 <decorator:body /> 
+</div>
+<div class="footer">
+	<p>Footer</p>
 </div>
 </body>
 </html>
