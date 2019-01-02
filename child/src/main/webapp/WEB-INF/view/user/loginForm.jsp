@@ -56,9 +56,8 @@ input[type=submit] :hover {
 				</font></td>
 			</tr>
 			<tr height="40px">
-				<td colspan="2" align="center"><input type="submit" value="로그인">
-					<input type="button" value="회원가입"
-					onclick="location.href='userEntry.child'"></td>
+				<td colspan="2" align="center"><input type="submit" value="로그인"></td>
+				<td colspan="2" align="center"><input type="button" value="회원가입" onclick="location.href='userEntry.child'"></td>
 			</tr>
 		</table>
 	</form:form>
