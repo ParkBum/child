@@ -38,7 +38,7 @@ public class UserController {
 
 	@RequestMapping("user/userForm")
 	public ModelAndView userForm() {
-		ModelAndView mav = new ModelAndView("user/userFrom");
+		ModelAndView mav = new ModelAndView("user/userForm");
 		mav.addObject(new User());
 		return mav;
 	}
