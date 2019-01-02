@@ -22,14 +22,13 @@ public class ChildService {
 
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
 			Integer pageNum, int limit) {
-		return null;
+		return boarddao.getList(bType, filterType, searchType, searchContent, pageNum, limit);
 	}
-	
 
 	public void userCreate(User user) {
 		userdao.createuser(user);
 	}
-	
+
 	public int maxnum() {
 		return userdao.maxNum();
 	}

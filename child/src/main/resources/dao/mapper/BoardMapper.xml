@@ -1,6 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.mapper.BoardMapper">
-	
+	<select id="list" resultType="Board" parameterType="map">
+		select * from board
+		<if test="num != null">
+			where num = #{num}
+		</if>
+		<if test="bType != null">
+			where btype = #{bType}
+			<if test="filterType != null">
+				 and head = #{filterType} 
+			</if>
+			<if test="searchType != null and searchContent!=null">
+				 and ${searchType} like '%${searchContent}%'
+			</if>
+		</if>
+		<if test="startrow != null and limit != null">
+			limit #{startrow},#{limit}
+		</if>
+	</select>
+	<select id="count" resultType="Integer" parameterType="map">
+		select count(*) from board
+		<if test="bType != null">
+			where btype = #{bType}
+			<if test="filterType != null">
+				 and head = #{filterType} 
+			</if>
+			<if test="searchType != null and searchContent!=null">
+				 and ${searchType} like '%${searchContent}%'
+			</if>
+		</if>
+	</select>
 </mapper>
