@@ -7,18 +7,17 @@
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
 <style type="text/css">
-.joinFomr {
-display : inline;
+.joinForm {
+display : block;
 border-radius :5px;
 margin:0 auto;
 background-color: #f2f2f2;
-text-align:center;
-}
-form {
 
 }
+
 
 input[type=text], input[type=password] {
+	text-align:center;
 	padding : 10px;
 	maring : 8px 0;
 	border-radius: 4px;
