@@ -59,11 +59,13 @@ height :900px;
 </head>
 <body>
 	<div class="top">
-	<c:if test="${empty sessionScope.login}">
+	<%-- <c:if test="${empty sessionScope.login}"> --%>
 		<a href="${path}/user/loginForm.child">로그인</a>
 		<a href="${path}/user/userForm.child">회원가입</a>
-	</c:if>
-	</div>
+		<a href="${path}/board/list.child?bType=1">자유 게시판</a>
+		<a href="${path}/board/list.child?bType=2">후기 게시판</a>
+<%-- 	</c:if>
+ --%>	</div>
 	<div class="main">
 		<decorator:body />
 	</div>
