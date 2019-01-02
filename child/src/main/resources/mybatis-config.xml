@@ -8,8 +8,8 @@
 		<typeAlias type="logic.Comment" alias="Comment"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="dao/mapper/User.xml" />
-		<mapper resource="dao/mapper/Board.xml" />
-		<mapper resource="dao/mapper/Comment.xml" />
+		<mapper resource="dao/mapper/UserMapper.xml" />
+		<mapper resource="dao/mapper/BoardMapper.xml" />
+		<mapper resource="dao/mapper/CommentMapper.xml" />
 	</mappers>
 </configuration>	
