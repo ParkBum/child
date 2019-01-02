@@ -60,6 +60,8 @@ height :800px;
 <body>
 	<div class="top">
 	<%-- <c:if test="${empty sessionScope.login}"> --%>
+		<a href="${path}/main/main.child" style="float:left">home</a>
+
 		<a href="${path}/user/loginForm.child">로그인</a>
 		<a href="${path}/user/userForm.child">회원가입</a>
 		<a href="${path}/board/list.child?bType=1">자유 게시판</a>

@@ -16,12 +16,25 @@
   .chart p {
 	text-align: center;
  }
+ .card {
+ float: right;
+ }
 </style>
 </head>
 <body>
 <div class="chart">
  <p>chart À§Ä¡</p>
 </div>
+<div class="menu">
+<div class="card">
 
+</div>
+<div class="card">
+
+</div>
+<div class="card">
+
+</div>
+</div>
 </body>
 </html>
