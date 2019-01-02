@@ -48,8 +48,8 @@ input[type=submit] :hover {
 	</spring:hasBindErrors>
 	<table>
 		<tr height="40px">
-			<td>이메일</td>
-			<td><form:input path="email"/>
+<!-- 			<td>이메일</td> -->
+			<td><form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)"/>
 			<font color="red"><form:errors path="email"/></font></td>
 		</tr>
 		<%-- <tr height="40px">
@@ -63,13 +63,13 @@ input[type=submit] :hover {
 			<font color="red"><form:errors path="password"/></font></td>
 		</tr> --%>
 		<tr height="40px">
-			<td>비밀번호</td>
-			<td><form:password path="password"/>
+<!-- 			<td>비밀번호</td> -->
+			<td><form:password path="password" placeholder="비밀번호를 입력하세요"/>
 			<font color="red"><form:errors path="password"/></font></td>
 		</tr>
 		<tr height="40px">
-			<td>닉네임</td>
-			<td><form:input path="nickname"/>
+<!-- 			<td>닉네임</td> -->
+			<td><form:input path="nickname" placeholder="닉네임을 입력하세요"/>
 			<font color="red"><form:errors path="nickname"/></font></td>
 		</tr>
 		<tr height="40px">
