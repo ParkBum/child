@@ -36,9 +36,14 @@
 </script>
 </head>
 <body>
+	<h4>거래게시판</h4>
 	<table border="1" style="border-collapse: collapse; width: 100%">
 		<tr>
+<<<<<<< HEAD
+			<td colspan="2" align="left"> <%-- 말머리 설정 --%>
+=======
 			<td colspan="2" align="left">
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 				<form action="list.child" method="post" name="filterform" onsubmit="return filterlist(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="filterType" id="filterType">
@@ -56,7 +61,10 @@
 				</form>
 			</td>
 			<td colspan="5" align="center">
+<<<<<<< HEAD
+=======
 			<%--검색form --%>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 				<form action="list.child" method="post" name="searchform"
 					onsubmit="return list(1)">
 					<input type="hidden" name="pageNum" value="1">
@@ -73,8 +81,7 @@
 					</script>
 					<input type="text" name="searchContent" value="${param.searchContent}"> 
 					<input type="submit" value="검색">
-				</form><%--파라미터는 pageNum,searchType,serachContent 들어감 --%>
-				
+				</form>
 			</td>
 		</tr>
 			<%--조회할 게시글이 있는 경우 --%>

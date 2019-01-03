@@ -28,6 +28,7 @@ public class UserController {
 		return mav;
 	}
 
+
 	@RequestMapping(value = "user/loginForm", method = RequestMethod.GET)
 	public ModelAndView loginForm() {
 		ModelAndView mav = new ModelAndView("user/loginForm");
