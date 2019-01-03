@@ -62,9 +62,8 @@
 		</tr>
 		
 		<c:if test="${listcount > 0}">
-		<tr align="center" valign="middle">
-			<td colspan="4">자유 게시판</td>
-			<td>글개수:${listcount}</td>
+		<tr align="right" valign="middle">
+			<td colspan="5">글개수:${listcount}</td>
 		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
 			<th width="8%" height="26">번호</th>
