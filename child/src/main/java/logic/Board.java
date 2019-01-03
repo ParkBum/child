@@ -41,12 +41,12 @@ public class Board {
 		this.nickname = nickname;
 	}
 
-	public int getBtype() {
-		return btype;
+	public int getbType() {
+		return bType;
 	}
 
-	public void setBtype(int btype) {
-		this.btype = btype;
+	public void setbType(int bType) {
+		this.bType = bType;
 	}
 
 	public int getHead() {
