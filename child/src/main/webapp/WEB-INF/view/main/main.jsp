@@ -6,7 +6,12 @@
 <head>
 <meta charset="EUC-KR">
 <title>main</title>
-<script type="text/javascript"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
+<script type="text/javascript">
+
+</script>
 <style type="text/css">
 .chart {
 	width: 100%;
@@ -51,7 +56,7 @@
 </head>
 <body>
 	<div class="chart">
-		<p>chart 위치</p>
+		 <canvas id="chart-area" width="100%" height="200px"></canvas>
 	</div>
 	<div class="menus">
 		<div class="card">

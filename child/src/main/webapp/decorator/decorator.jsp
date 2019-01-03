@@ -13,9 +13,12 @@
 <decorator:head />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js">
+</script>
 <style type="text/css">
 html {
-	/* background-image: url("../decorator/field.jpg"); */
+	background-image: url("../decorator/field.jpg");
 	background-position : center;
 	background-size: cover;
 }
@@ -118,9 +121,11 @@ $(function(){
 	<c:if test="${!empty sessionScope.loginUser}">
 	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<c:if test="${sessionScope.loginUser.email=='admin'}">
-	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
+	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자 페이지</a> </li>
 	</c:if>
-	<li class="right"><a href="${path}/admin/list.child" style="float: right">내 정보</a> </li>
+		<c:if test="${sessionScope.loginUser.email!='admin'}">
+	<li class="right"><a href="${path}/admin/list.child" style="float: right">마이 페이지</a> </li>
+	</c:if>
 	<li class="right"><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
 	<li class="right"><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
 	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
@@ -136,10 +141,9 @@ $(function(){
 	<div class="main">
 		<decorator:body />
 	</div>
-	<hr>
+	<hr style="color:black;">
 	<div class="footer">
-		<p class="foottext" >서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
-			대륭테크노타운3차)</p>
+		<p class="foottext" >서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
 </body>
 </html>
