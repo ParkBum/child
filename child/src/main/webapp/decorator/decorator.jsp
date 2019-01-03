@@ -96,17 +96,29 @@ body {
   top: 100%;
   width: 180px;
 }
-.zeta-menu ul li { float: none; }
-.zeta-menu ul li:hover { background: #ddd; } 
-.zeta-menu ul li:hover a { color: black; }
-.zeta-menu ul a { color: black; }
-.zeta-menu ul ul { left: 100%; top: 0; }
-.zeta-menu ul ul li {float:left; margin-right:10px;}
+.top ul li { float: none; }
+.top ul li:hover { background: #ddd; } 
+.top ul li:hover a { color: black; }
+.top ul a { color: black; }
+.top ul ul { left: 100%; top: 0; }
+.top ul ul li {float:left; margin-right:10px;}
 </style>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+$(function(){
+	  $(".zeta-menu li").hover(function(){
+	    $('ul:first',this).show();
+	  }, function(){
+	    $('ul:first',this).hide();
+	  });
+	  $(".zeta-menu>li:has(ul)>a").each( function() {
+	    $(this).html( $(this).html()+' &or;' );
+	  });
+	  $(".zeta-menu ul li:has(ul)")
+	    .find("a:first")
+	    .append("<p style='float:right;margin:-3px'>&#9656;</p>");
+	});
 </script>
 </head>
 <body>
