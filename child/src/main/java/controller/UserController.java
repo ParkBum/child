@@ -68,6 +68,14 @@ public class UserController {
 		mav.setViewName("redirect:../main/main.child");
 		return mav;
 	}
+	
+	@RequestMapping("user/logout")
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("redirect:../main/main.child"); 
+		return mav;
+	}
 
 	@RequestMapping("user/userForm")
 	public ModelAndView userForm() {
