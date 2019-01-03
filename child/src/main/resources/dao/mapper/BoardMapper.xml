@@ -9,7 +9,7 @@
 		</if>
 		<if test="bType != null">
 			where btype = #{bType}
-			<if test="filterType != null and filterType != 0">
+			<if test="filterType != null">
 				 and head = #{filterType} 
 			</if>
 			<if test="searchType != null and searchContent!=null">
