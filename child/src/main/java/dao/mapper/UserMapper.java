@@ -13,5 +13,8 @@ public interface UserMapper {
 	@Select("select ifnull(max(mnum),0) from user")
 	int maxNum();
 
+	@Select("select nickname from user where mnum = #{num}")
+	String nickName(int mnum);
+
 
 }

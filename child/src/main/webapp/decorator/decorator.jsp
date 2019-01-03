@@ -12,6 +12,7 @@
 <title><decorator:title /></title>
 <decorator:head />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
 html {
 	/* background-image: url("../decorator/field.jpg"); */
@@ -47,11 +48,8 @@ body {
 }
 
 .top a:hover {
-	z-index : 100;
 	vertical-align: middle;
 	border-radius : 20px;
-	color : white;
-	background-color:black;
 	padding: 13px;
 }
 /* main */
@@ -68,7 +66,60 @@ body {
 	text-align: center;
 	padding: 10px;
 }
+
+.zeta-menu-bar {
+  background: hotpink;
+  display: inline-block;
+  width: 100%;
+}
+.zeta-menu { margin: 0; padding: 0; }
+.zeta-menu li {
+  float: left;
+  list-style:none;
+  position: relative;
+}
+.zeta-menu li:hover { background: white; }
+.zeta-menu li:hover>a { color: hotpink; }
+.zeta-menu a {
+  color: white;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.zeta-menu ul {
+  background: #eee;
+  border: 1px solid silver;
+  display: none;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 180px;
+}
+.top ul li { float: none; }
+.top ul li:hover { background: #ddd; } 
+.top ul li:hover a { color: black; }
+.top ul a { color: black; }
+.top ul ul { left: 100%; top: 0; }
+.top ul ul li {float:left; margin-right:10px;}
 </style>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	  $(".zeta-menu li").hover(function(){
+	    $('ul:first',this).show();
+	  }, function(){
+	    $('ul:first',this).hide();
+	  });
+	  $(".zeta-menu>li:has(ul)>a").each( function() {
+	    $(this).html( $(this).html()+' &or;' );
+	  });
+	  $(".zeta-menu ul li:has(ul)")
+	    .find("a:first")
+	    .append("<p style='float:right;margin:-3px'>&#9656;</p>");
+	});
+</script>
 </head>
 <body>
 	<div class="top">
@@ -78,8 +129,8 @@ body {
 		<p style="float: left; margin-left:20px;">000 님 환영합니다.</p>
 		<a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a>
 		<a href="${path}/user/userForm.child" style="float: right">회원가입</a>
-		<a	href="${path}/board/list.child?bType=1" style="float: right">자유 게시판</a>
-		<a href="${path}/board/list.child?bType=2" style="float: right">후기 게시판</a>
+		<a	href="${path}/board/list.child?bType=1" style="float: right">커뮤니티</a>
+		<a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a>
 		<%-- 	</c:if>
  --%>
 	</div>

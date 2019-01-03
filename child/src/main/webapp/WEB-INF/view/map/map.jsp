@@ -51,8 +51,6 @@
 	margin: 0 5px 5px 0;
 }
 
-.t {
-}
 option {
 	font-size: large;
 }
@@ -115,9 +113,8 @@ option {
 			<div id="map" class="section"
 				style="width: 95%; height: 330px; margin: 10px auto;">
 				<div class="buttons">
-					<input id="controls" type="hidden" name="모든 지도 컨트롤"
-						value="모든 지도 컨트롤" class="control-btn" /> <input id="min-max-zoom"
-						type="hidden" name="최소/최대 줌 레벨" class="control-btn" />
+					<input id="controls" type="hidden" name="모든 지도 컨트롤" value="모든 지도 컨트롤" class="control-btn" />
+					<input id="min-max-zoom" type="hidden" name="최소/최대 줌 레벨" class="control-btn" />
 				</div>
 			</div>
 			<code id="snippet" class="snippet"></code>
