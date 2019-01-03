@@ -97,7 +97,7 @@
 			<td style="text-align:left;">
 			<a href="detail.child?num=${board.bnum}">${board.subject}</a></td>
 			<td align="left">${board.nickname}</td> 
-			<fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/>
+			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>
 		</tr>
 		</c:forEach>
