@@ -18,12 +18,22 @@ public class AdminController {
 	ChildService service;
 	
 	@RequestMapping("admin/list") 
-	public ModelAndView list(HttpSession session) {
+	public ModelAndView list(Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		User user = service.userInfo(mnum);
 		List<User> userList = service.userList();
+		mav.addObject("user",user);
 		mav.addObject("userlist",userList);
 		return mav;
 	}
+/*	
+	@RequestMapping("admin/info")
+	public ModelAndView info(Integer mnum, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = service.userInfo(mnum);
+		mav.addObject("user",user);
+		return mav;
+	}*/
 }
 
 
