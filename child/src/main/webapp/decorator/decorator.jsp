@@ -116,10 +116,11 @@ $(function(){
 	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">000 님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<c:if test="${sessionScope.loginUser.email=='admin'}">
 	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
 	</c:if>
+	<li class="right"><a href="${path}/admin/list.child" style="float: right">내 정보</a> </li>
 	<li class="right"><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
 	<li class="right"><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
 	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
