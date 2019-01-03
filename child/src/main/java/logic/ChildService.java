@@ -94,4 +94,8 @@ public class ChildService {
 		return user;
 	}
 
+	public void userUpdate(User user) {
+		userDao.userUpdate(user);
+	}
+
 }
