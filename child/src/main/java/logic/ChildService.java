@@ -29,6 +29,12 @@ public class ChildService {
 		}
 		return board;
 	}
+
+	public Board getBoard(Integer bnum) {
+		Board board = boarddao.getBoard(bnum);
+		board.setNickname(getNickName(board.getMnum()));
+		return board;
+	}
 	
 	public String getNickName(int mnum) {
 		return userdao.nickName(mnum);
@@ -45,6 +51,11 @@ public class ChildService {
 	public User userSelect(String email) {
 		User user = userdao.select(email);
 		return user;
+	}
+
+	public List<User> userList() {
+		List<User> list = userdao.userlist(); 
+		return list;
 	}
 
 }

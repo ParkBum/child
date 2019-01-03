@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<h4>ÀÚÀ¯ °Ô½ÃÆÇ</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="2" align="left" style="border-right:hidden;">
@@ -80,7 +81,7 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-			<a href="detail.child?num=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></td>
+			<a href="info.child?bnum=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></td>
 			<td align="left">${board.nickname}</td> 
 			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>

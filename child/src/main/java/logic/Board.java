@@ -6,7 +6,7 @@ public class Board {
 	private int bnum; // 게시글번호
 	private int mnum; // 작성자 회원번호
 	private String nickname; // 닉네임
-	private int btype; // 게시판 종류
+	private int bType; // 게시판 종류
 	private int head; // 말머리
 	private String subject; // 제목
 	private String content; // 내용
@@ -41,12 +41,12 @@ public class Board {
 		this.nickname = nickname;
 	}
 
-	public int getBtype() {
-		return btype;
+	public int getbType() {
+		return bType;
 	}
 
-	public void setBtype(int btype) {
-		this.btype = btype;
+	public void setbType(int bType) {
+		this.bType = bType;
 	}
 
 	public int getHead() {

@@ -51,6 +51,19 @@ public class BoardController {
 		mav.addObject("boardlist", boardlist);
 		mav.addObject("boardcnt", boardcnt);
 		return mav;
-		
+	}
+	
+	@RequestMapping(value = "board/info")
+	public ModelAndView info(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		Board board = service.getBoard(bnum);
+		mav.addObject("board", board);
+		return mav;
+	}
+	
+	@RequestMapping(value = "board/write")
+	public ModelAndView write(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
 	}
 }
