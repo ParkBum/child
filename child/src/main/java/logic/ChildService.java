@@ -1,6 +1,5 @@
 package logic;
 
-
 import java.io.File;
 import java.util.List;
 
@@ -33,15 +32,22 @@ public class ChildService {
 	}
 
 	public void boardInsert(Board board, HttpServletRequest request) {
-		//board.setNum(boardDao.maxNum() + 1);
-		if (board.getFile1() != null && !board.getFile1().isEmpty()) {
-			uploadFileCreate(board.getFile1(), request, "file"); // file의 내용을 파일로 저장
-			board.setFileurl(board.getFile1().getOriginalFilename()); // db에 파일명을 저장
+		board.setBnum(boardDao.maxBnum() + 1);
+		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {
+			uploadFileCreate(board.getMulti1(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile1(board.getMulti1().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti2() != null && !board.getMulti2().isEmpty()) {
+			uploadFileCreate(board.getMulti2(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile2(board.getMulti2().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti3() != null && !board.getMulti3().isEmpty()) {
+			uploadFileCreate(board.getMulti3(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
 		}
 		boardDao.insert(board);
 	}
 
-	
 	public int boardCount(Integer bType, String filterType, String searchType, String searchContent) {
 		return boardDao.getCount(bType, filterType, searchType, searchContent);
 	}
@@ -49,7 +55,7 @@ public class ChildService {
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
 			Integer pageNum, int limit) {
 		List<Board> board = boardDao.getList(bType, filterType, searchType, searchContent, pageNum, limit);
-		for(Board b : board) {
+		for (Board b : board) {
 			b.setNickname(getNickName(b.getMnum()));
 		}
 		return board;
@@ -60,7 +66,7 @@ public class ChildService {
 		board.setNickname(getNickName(board.getMnum()));
 		return board;
 	}
-	
+
 	public String getNickName(int mnum) {
 		return userDao.nickName(mnum);
 	}
@@ -72,14 +78,14 @@ public class ChildService {
 	public int maxnum() {
 		return userDao.maxNum();
 	}
-	
+
 	public User userSelect(String email) {
 		User user = userDao.select(email);
 		return user;
 	}
 
 	public List<User> userList() {
-		List<User> list = userDao.userlist(); 
+		List<User> list = userDao.userlist();
 		return list;
 	}
 
@@ -98,10 +104,3 @@ public class ChildService {
 	}
 
 }
-
-
-
-
-
-
-
