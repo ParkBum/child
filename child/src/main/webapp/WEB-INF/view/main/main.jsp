@@ -7,7 +7,8 @@
 <meta charset="EUC-KR">
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+<script type="text/javascript" src="https://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
+<script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
 
@@ -52,8 +53,14 @@
 </head>
 <body>
 	<div class="canvas-holder">
-		 <canvas id="chart-area" width="100%" height="200px"></canvas>
+		 <canvas id="chart-area" width="50px" height="50px"></canvas>
 	</div>
+	<button id="randomizeData">Randomize Data</button>
+	<button id="addDataset">Add Dataset</button>
+	<button id="removeDataset">Remove Dataset</button>
+	<button id="addData">Add Data</button>
+	<button id="removeData">Remove Data</button>
+	<button id="changeCircleSize">Semi/Full Circle</button>
 	<div class="menus">
 		<div class="card">
 			<div class="image">
