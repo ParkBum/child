@@ -99,8 +99,16 @@ public class UserController {
 		return mav;
 
 	}
+	
+	@RequestMapping("user/update")
+	public ModelAndView update(Integer mnum) {
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
 }
-
+	
 
 
 
