@@ -147,6 +147,9 @@ $(function(){
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
 	<li><p style="float: left; margin-left:20px;">000 님 환영합니다.</p></li>
+	<c:if test="${sessionScope.loginUser.email == 'admin' }">
+	<li><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
+	</c:if>
 	<li><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
 	<li><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
 	<li><a	href="#" style="float: right">커뮤니티</a> 
