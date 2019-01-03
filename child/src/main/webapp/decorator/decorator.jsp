@@ -21,7 +21,6 @@ html {
 }
 
 * {
-	text-align: center;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -31,7 +30,7 @@ body {
 	margin: 0 auto;
 	font-family: Arial, Helvetica, sans-serif;
 }
-/* 상단 바 */
+/* 상단 바 1 */
 .top {
 	overflow: hidden;
 }
@@ -52,34 +51,21 @@ body {
 	border-radius : 20px;
 	padding: 13px;
 }
-/* main */
-.main {
-	z-index : 100;
-	padding: 10px;
-	height: 800px;
-}
-/*하단 footer */
-.footer {
-	z-index : 100;
-	background-color: #006633 ;
-	color: white;
-	text-align: center;
-	padding: 10px;
-}
-
+/* 상단 바 2*/
 .zeta-menu-bar {
-  background: hotpink;
+  background: skyblue;
   display: inline-block;
   width: 100%;
 }
-.zeta-menu { margin: 0; padding: 0; }
+.zeta-menu { margin: auto; padding: 0 auto; }
 .zeta-menu li {
-  float: left;
+  float:left;
   list-style:none;
   position: relative;
+  margin : auto 0;
 }
 .zeta-menu li:hover { background: white; }
-.zeta-menu li:hover>a { color: hotpink; }
+.zeta-menu li:hover>a { color: skyblue; }
 .zeta-menu a {
   color: white;
   display: block;
@@ -96,44 +82,83 @@ body {
   top: 100%;
   width: 180px;
 }
-.top ul li { float: none; }
-.top ul li:hover { background: #ddd; } 
-.top ul li:hover a { color: black; }
-.top ul a { color: black; }
-.top ul ul { left: 100%; top: 0; }
-.top ul ul li {float:left; margin-right:10px;}
+.zeta-menu ul li { float: none; z-index: 100;}
+.zeta-menu ul li:hover { background: #ddd; }
+.zeta-menu ul li:hover a { color: black; }
+.zeta-menu ul a { color: black; }
+.zeta-menu ul ul { left: 100%; top: 0; }
+.zeta-menu ul ul li {float:left; margin-right:10px;}
+
+/* main */
+.main {
+	z-index : 100;
+	padding: 10px;
+	height: 800px;
+}
+/*하단 footer */
+.footer {
+	z-index : 100;
+	background-color: #006633 ;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+
 </style>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
 $(function(){
-	  $(".zeta-menu li").hover(function(){
-	    $('ul:first',this).show();
-	  }, function(){
-	    $('ul:first',this).hide();
-	  });
-	  $(".zeta-menu>li:has(ul)>a").each( function() {
-	    $(this).html( $(this).html()+' &or;' );
-	  });
-	  $(".zeta-menu ul li:has(ul)")
-	    .find("a:first")
-	    .append("<p style='float:right;margin:-3px'>&#9656;</p>");
-	});
+  $(".zeta-menu li").hover(function(){
+    $('ul:first',this).show();
+  }, function(){
+    $('ul:first',this).hide();
+  });
+  $(".zeta-menu>li:has(ul)>a").each( function() {
+    $(this).html( $(this).html()+' &or;' );
+  });
+  $(".zeta-menu ul li:has(ul)")
+    .find("a:first")
+    .append("<p style='margin:-3px'>&#9656;</p>");
+});
 </script>
 </head>
 <body>
 	<div class="top">
-		<%-- <c:if test="${empty sessionScope.login}"> --%>
 		<a href="${path}/main/main.child" style="float: left">
 		<img src="../decorator/house.png" width="25px" height="25px"></a>
-		<p style="float: left; margin-left:20px;">000 님 환영합니다.</p>
+		<c:if test="${empty sessionScope.loginUser}">
 		<a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a>
 		<a href="${path}/user/userForm.child" style="float: right">회원가입</a>
+		</c:if>
+		<c:if test="${!empty sessionScope.loginUser}">
+		<p style="float: left; margin-left:20px;">000 님 환영합니다.</p>
+		<a href="${path}/user/logout.child" style="float: right">로그아웃</a>
+		<a href="${path}/map/map.child" style="float: right">지도 검색</a>
 		<a	href="${path}/board/list.child?bType=1" style="float: right">커뮤니티</a>
 		<a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a>
-		<%-- 	</c:if>
- --%>
+		</c:if>
 	</div>
+	<div class='zeta-menu-bar'>
+  <ul class="zeta-menu">
+    <li><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
+    <c:if test="${empty sessionScope.loginUser}">
+	<li><a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a></li>
+	<li><a href="${path}/user/userForm.child" style="float: right">회원가입</a></li>
+		</c:if>
+	<c:if test="${!empty sessionScope.loginUser}">
+	<li><p style="float: left; margin-left:20px;">000 님 환영합니다.</p></li>
+	<li><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
+	<li><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
+	<li><a	href="#" style="float: right">커뮤니티</a> 
+		<ul>
+			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
+       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a>
+		</ul>
+	</li>
+	<li><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
+		</c:if>
+  </ul>
+</div>
 	<div class="main">
 		<decorator:body />
 	</div>

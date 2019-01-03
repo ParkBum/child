@@ -28,6 +28,7 @@ public class UserController {
 		return mav;
 	}
 
+
 	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm() {
 		ModelAndView mav = new ModelAndView("user/loginForm");
