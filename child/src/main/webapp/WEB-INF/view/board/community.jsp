@@ -7,28 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>자유게시판</title>
 <script type="text/javascript">
-	function filterList(pageNum) {
-		var filterType = document.filterform.searchType.value;
-		if(filterType == null || filterType.length == 0) {
-			document.filterform.searchContent.value = "";
-			document.filterform.pageNum.value = "1";
-			location.href = "list.child?bType=1,pageNum=" + pageNum;
-		} else {
-			document.searchform.pageNum.value = pageNum;
-			document.searchform.submit();
-			return true;
-		}
-		return false;
-	}
 	function searchList(pageNum) {
-		var searchType = document.searchform.searchType.value;
+		var searchType = document.searchForm.searchType.value;
 		if(searchType == null || searchType.length == 0) {
-			document.searchform.searchContent.value = "";
-			document.searchform.pageNum.value = "1";
+			document.searchForm.searchContent.value = "";
+			document.searchForm.pageNum.value = "1";
 			location.href = "list.child?bType=1,pageNum=" + pageNum;
 		} else {
-			document.searchform.pageNum.value = pageNum;
-			document.searchform.submit();
+			document.searchForm.pageNum.value = pageNum;
+			document.searchForm.submit();
 			return true;
 		}
 		return false;
@@ -37,26 +24,25 @@
 </head>
 <body>
 	<table border="1" style="border-collapse:collapse; width:100%;">
-		<tr>
-			<td colspan="2" align="left">
-				<form action="list.child" method="post" name="filterform" onsubmit="return filterList(1)">
+		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
+			<td colspan="2" align="left" style="border-right:hidden;">
+				<form action="list.child" method="post" name="filterForm">
+					<input type="hidden" name="bType" value="1">
 					<input type="hidden" name="pageNum" value="1">
-					<select name="filterType" id="filterType">
+					<select name="filterType" id="filterType" onchange="this.form.submit();">
 						<option value="">머리말 분류</option>
-						<option value="parenting">육아꿀팁</option>
-						<option value="kidscafe">시설추천</option>
+						<option value="1">육아꿀팁</option>
+						<option value="2">시설추천</option>
 					</select>&nbsp;
 					<script type="text/javascript">
 						if('${param.filterType}' != '') {
 							document.getElementById("filterType").value = '${param.filterType}';
 						}
 					</script>
-					<input type="text" name="searchContent" value="${param.searchContent}">
-					<input type="submit" value="검색">
 				</form>
 			</td>
 			<td colspan="3" align="right">
-				<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
+				<form action="list.child" method="post" name="searchForm" onsubmit="return searchList(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="searchType" id="searchType">
 						<option value="">선택하세요</option>
@@ -77,7 +63,7 @@
 		
 		<c:if test="${listcount > 0}">
 		<tr align="center" valign="middle">
-			<td colspan="4">Spring 게시판</td>
+			<td colspan="4">자유 게시판</td>
 			<td>글개수:${listcount}</td>
 		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
@@ -95,7 +81,7 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-			<a href="detail.child?num=${board.bnum}">${board.subject}</a></td>
+			<a href="detail.child?num=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"육아꿀팁":"시설추천"}]&nbsp;${board.subject}</a></td>
 			<td align="left">${board.nickname}</td> 
 			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>
