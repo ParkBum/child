@@ -108,7 +108,7 @@
 		</tr>
 		</c:if>
 		<tr>
-			<td colspan="5" align="right"><a href="write.child">글쓰기</a>
+			<td colspan="5" align="right"><a href="writeForm.child?bType=1">글쓰기</a>
 		</td>
 	</table>
 </body>

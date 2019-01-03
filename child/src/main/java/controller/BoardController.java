@@ -16,6 +16,13 @@ public class BoardController {
 	@Autowired
 	ChildService service;
 	
+	@RequestMapping(value = "board/*")
+	public ModelAndView boardAll(Board board) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board", board);
+		return mav;
+	}
+	
 	@RequestMapping(value = "board/list")
 	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType, String searchContent) {
 		ModelAndView mav = new ModelAndView();
