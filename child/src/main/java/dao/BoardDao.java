@@ -46,11 +46,10 @@ public class BoardDao {
 	}
 
 	public void insert(Board board) {
-		
+		sqlSession.getMapper(BoardMapper.class).insert(board);
 	}
 
 	public int maxBnum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(BoardMapper.class).maxBnum();
 	}
 }

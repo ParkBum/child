@@ -88,4 +88,14 @@ public class ChildService {
 		List<User> list = userDao.userlist();
 		return list;
 	}
+
+	public User userInfo(Integer mnum) {
+		User user = userDao.infoSelect(mnum);
+		return user;
+	}
+
+	public void userUpdate(User user) {
+		userDao.userUpdate(user);
+	}
+
 }

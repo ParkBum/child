@@ -111,8 +111,41 @@ public class UserController {
 		map.put("item", "비동기 통신 아이템");
 		return new ModelAndView("jsonView",map); //jsonview 는 dispatche.xml 의 jsonview 를 가져옴.
 	}
+	
+	@RequestMapping("user/*")
+	public ModelAndView userAll(User user) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+	
+	@RequestMapping("user/update")
+	public ModelAndView update(@Valid User user, BindingResult bindResult, HttpSession session, Integer mnum) {
+		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회 /user는 새 정보
+		ModelAndView mav = new ModelAndView("user/updateForm");
+		if (bindResult.hasErrors()) { 
+			mav.getModel().putAll(bindResult.getModel());
+			return mav;
+		}
+		// 비밀번호 검증
+		if (user.getPassword().equals(user2.getPassword())) { // 비밀번호 일치
+			try {
+				service.userUpdate(user);
+				mav.setViewName("redirect:../admin/list.child?mnum="+user.getMnum());
+			} catch (Exception e) {
+				bindResult.reject("error.login.password");
+				mav.getModel().putAll(bindResult.getModel());
+				mav.setViewName("user/updateForm");
+			}
+		} else { // 비밀번호 불일치
+			bindResult.reject("error.login.password");
+			mav.getModel().putAll(bindResult.getModel());
+			mav.setViewName("user/updateForm");
+		}
+		return mav;
+	}
+	
 }
-
+	
 
 
 
