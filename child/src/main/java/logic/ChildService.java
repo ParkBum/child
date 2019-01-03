@@ -53,6 +53,11 @@ public class ChildService {
 		return user;
 	}
 
+	public List<User> userList() {
+		List<User> list = userdao.userlist(); 
+		return list;
+	}
+
 }
 
 
