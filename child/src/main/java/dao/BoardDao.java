@@ -43,7 +43,6 @@ public class BoardDao {
 	}
 
 	public Board getBoard(Integer bnum) {
-		sqlSession.getMapper(BoardMapper.class).select(bnum);
-		return null;
+		return sqlSession.getMapper(BoardMapper.class).select(bnum);
 	}
 }
