@@ -20,20 +20,13 @@ public class AdminController {
 	@RequestMapping("admin/list") 
 	public ModelAndView list(Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = service.userInfo(mnum);
-		List<User> userList = service.userList();
+		User user = service.userInfo(mnum); //개인정보 조회
+		List<User> userList = service.userList(); //관리자용 회원목록 조회하기
 		mav.addObject("user",user);
 		mav.addObject("userlist",userList);
 		return mav;
 	}
-/*	
-	@RequestMapping("admin/info")
-	public ModelAndView info(Integer mnum, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		User user = service.userInfo(mnum);
-		mav.addObject("user",user);
-		return mav;
-	}*/
+
 }
 
 
