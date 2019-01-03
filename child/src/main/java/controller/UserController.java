@@ -89,9 +89,10 @@ public class UserController {
 		}
 		try {
 			int mnum = service.maxnum();
+			mnum = mnum+1;
 			user.setMnum(mnum);
 			service.userCreate(user);
-			mav.setViewName("user/login");
+			mav.setViewName("user/loginForm");
 			mav.addObject("user", user);
 		} catch (DataIntegrityViolationException e) {
 			br.reject("error.duplicate.user");

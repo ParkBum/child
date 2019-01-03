@@ -15,6 +15,7 @@ td {
 <body>
 <form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f">
 	<input type="hidden" name="bType" value="${board.bType}">
+	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr>
 			<td style="text-align:center;">Á¦¸ñ</td>
