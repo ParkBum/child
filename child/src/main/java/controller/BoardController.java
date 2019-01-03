@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import exception.ShopException;
 import logic.Board;
 import logic.ChildService;
 
@@ -92,7 +91,7 @@ public class BoardController {
 		try {
 			service.boardInsert(board, request);
 			mav.addObject("board", board);
-			mav.setViewName("redirect:/board/list.child");
+			mav.setViewName("redirect:/board/list.child?btype=" + board.getbType());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
