@@ -13,16 +13,12 @@
 
 </script>
 <style type="text/css">
-.chart {
+.canvas-holder {
 	width: 100%;
 	height: 400px;
 	border : solid 1px black;
 }
 
-.chart p {
-	text-align: center;
-	font-family: sans-serif;
-}
 
 .menus {
 	margin-top: 40px;
@@ -55,7 +51,7 @@
 </style>
 </head>
 <body>
-	<div class="chart">
+	<div class="canvas-holder">
 		 <canvas id="chart-area" width="100%" height="200px"></canvas>
 	</div>
 	<div class="menus">
