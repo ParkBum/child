@@ -16,7 +16,7 @@
 }
 
 .inner {
-	display: block;
+	display:inline-block;
 }
 
 .inin {
@@ -101,8 +101,8 @@ input[type=submit] :hover, input[type=reset]:hover {
 				<font color="red"><form:errors path="email" /></font>
 				</div>
 				<div style="width:30%;">
-			<button style="background-color:#33CC99; border-radius: 10px;" onclick="javascript:alert('구현안됨')">인증번호 전송</button>
-			</div>
+			    <button style="background-color:#33CC99; border-radius: 10px;" onclick="javascript:alert('구현안됨')">인증번호 전송</button>
+			    </div>
 			</div>
 			<div class="inin">
 				<form:password path="password" placeholder="비밀번호를 입력하세요" />
