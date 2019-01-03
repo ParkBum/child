@@ -44,4 +44,13 @@ public class BoardDao {
 	public Board getBoard(Integer bnum) {
 		return sqlSession.getMapper(BoardMapper.class).select(bnum);
 	}
+
+	public void insert(Board board) {
+		
+	}
+
+	public int maxBnum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
