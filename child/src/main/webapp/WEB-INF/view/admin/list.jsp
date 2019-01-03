@@ -68,7 +68,7 @@ td.title {
 		</table>
 	</form>
 	&nbsp;
-	<c:if test="${sessionScope.loginUser.email == 'admin'}">
+	<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 	<form action="list.child" method="Post">
 		<table border="1" style="border-collapse: collapse; width: 100%">
 			<tr>

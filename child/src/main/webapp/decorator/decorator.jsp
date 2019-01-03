@@ -117,10 +117,10 @@ $(function(){
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
 	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
-	<c:if test="${sessionScope.loginUser.email=='admin'}">
-	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
-	</c:if>
-	<li class="right"><a href="${path}/admin/list.child" style="float: right">내 정보</a> </li>
+	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
+		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
+		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
+		</a> </li>
 	<li class="right"><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
 	<li class="right"><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
 	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
@@ -130,7 +130,7 @@ $(function(){
 		</ul>
 	</li>
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
-		</c:if>
+	</c:if>
   </ul>
 </div>
 	<div class="main">
