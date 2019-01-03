@@ -37,13 +37,13 @@ body {
   width: 100%;
 }
 .menu { margin: auto; padding: 0 auto; }
-.menu li[class=left] {
+.menu .left {
   float:left;
   list-style:none;
   position: relative;
   margin : auto 0;
 }
-.menu li[class=right] {
+.menu .right {
   float:right;
   list-style:none;
   position: relative;
@@ -67,9 +67,9 @@ body {
   top: 100%;
   width: 180px;
 }
-.menu ul li { float: none; z-index: 100;}
-.menu ul li:hover { background: #ddd; }
-.menu ul li:hover a { color: black; }
+.menu ul li { float: none; z-index: 300;}
+.menu ul .right :hover { background: #ddd; }
+.menu ul .right :hover a { color: black; }
 .menu ul a { color: black; }
 .menu ul ul { left: 100%; top: 0; }
 .menu ul ul li {float:left; margin-right:10px;}
@@ -103,32 +103,32 @@ $(function(){
   });
   $(".menu ul li:has(ul)")
     .find("a:first")
-    .append("<p style='margin:-3px'>&#9656;</p>");
+    .append("<p style='float:right; margin:-3px'>&#9656;</p>");
 });
 </script>
 </head>
 <body>
  <div class='menu-bar'>
   <ul class="menu">
-    <li><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
+    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
     <c:if test="${empty sessionScope.loginUser}">
-	<li><a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a></li>
-	<li><a href="${path}/user/userForm.child" style="float: right">회원가입</a></li>
+	<li class="right"><a href="${path}/user/loginForm.child" >로그인</a></li>
+	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li><p style="float: left; margin-left:20px;">000 님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px;">000 님 환영합니다.</p></li>
 	<c:if test="${sessionScope.loginUser.email=='admin'}">
-	<li><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
+	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
 	</c:if>
-	<li><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
-	<li><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
-	<li><a	href="#" style="float: right">커뮤니티</a> 
+	<li class="right"><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
+	<li class="right"><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
+	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
 		<ul>
 			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
        	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a>
 		</ul>
 	</li>
-	<li><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
+	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
 		</c:if>
   </ul>
 </div>

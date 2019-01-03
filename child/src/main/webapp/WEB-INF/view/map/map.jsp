@@ -23,6 +23,7 @@
 }
 
 #search {
+text-align : center;
 	float: left;
 	width: 40%;
 	height: 350px;

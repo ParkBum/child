@@ -19,7 +19,7 @@
 	font-family: sans-serif;
 }
 
-.menu {
+.menus {
 	margin-top: 40px;
 	width: 100%;
 	height: 300px;
@@ -53,7 +53,7 @@
 	<div class="chart">
 		<p>chart À§Ä¡</p>
 	</div>
-	<div class="menu">
+	<div class="menus">
 		<div class="card">
 			<div class="image">
 				<img src="../decorator/shopping-cart.png" width="150px"
