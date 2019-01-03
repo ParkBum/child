@@ -29,14 +29,14 @@ public class UserController {
 	}
 
 
-	@RequestMapping(value = "user/loginForm", method = RequestMethod.GET)
+	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm() {
 		ModelAndView mav = new ModelAndView("user/loginForm");
 		mav.addObject(new User());
 		return mav;
 	}
 
-	@RequestMapping(value = "user/login", method = RequestMethod.POST)
+	@RequestMapping("user/login")
 	public ModelAndView login(@Valid User user, BindingResult bindResult, HttpSession session) {
 		ModelAndView mav = new ModelAndView("user/loginForm");
 		if (bindResult.hasErrors()) {
@@ -66,6 +66,14 @@ public class UserController {
 			return mav;
 		}
 		mav.setViewName("redirect:../main/main.child");
+		return mav;
+	}
+	
+	@RequestMapping("user/logout")
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		mav.setViewName("redirect:../main/main.child"); 
 		return mav;
 	}
 

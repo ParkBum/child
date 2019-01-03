@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>거래게시판</title>
+<title>자유게시판</title>
 <script type="text/javascript">
 	function searchList(pageNum) {
 		var searchType = document.searchForm.searchType.value;
@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<h4>거래게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="2" align="left" style="border-right:hidden;">
@@ -30,7 +31,7 @@
 					<input type="hidden" name="bType" value="3">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="filterType" id="filterType" onchange="this.form.submit();">
-						<option value="0">전체</option>
+						<option value="">전체</option>
 						<option value="1">삽니다</option>
 						<option value="2">팝니다</option>
 					</select>&nbsp;
