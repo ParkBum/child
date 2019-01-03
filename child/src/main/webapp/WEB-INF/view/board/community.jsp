@@ -102,8 +102,8 @@
 			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
 			<c:if test="${board.reflevel > 0}">¦¦</c:if>
 			<c:if test="${!empty board.fileurl}"><a href="../file/${board.fileurl}">@</a></c:if> --%>
-				<a href="detail.child?num=${board.bnum}">${board.subject}</a></td>
-<%-- 			<td align="left">${board.nickname}</td> --%>
+			<a href="detail.child?num=${board.bnum}">${board.subject}</a></td>
+			<td align="left">${board.nickname}</td> 
 			<td align="center">${board.regdate}</td>
 			<td align="right">${board.readcnt}</td>
 		</tr>
