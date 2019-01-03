@@ -26,7 +26,6 @@ public class BoardDao {
 		map.put("searchContent", searchContent);
 		Integer ret = sqlSession.selectOne(NS + "count", map);
 		return ret;
-
 	}
 
 	public List<Board> getList(Integer bType, String filterType, String searchType, String searchContent,

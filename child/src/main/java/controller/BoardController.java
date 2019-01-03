@@ -2,11 +2,17 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.ShopException;
 import logic.Board;
 import logic.ChildService;
 
@@ -15,15 +21,30 @@ public class BoardController {
 
 	@Autowired
 	ChildService service;
-	
-	@RequestMapping(value = "board/list")
-	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType, String searchContent) {
+
+	@RequestMapping(value = "board/*")
+	public ModelAndView boardAll(Board board) {
 		ModelAndView mav = new ModelAndView();
-		switch(bType) { // 게시판 종류
-			case 1 : mav.setViewName("board/community"); break; // 자유
-			case 2 : mav.setViewName("board/review"); break;	// 후기
-			case 3 : mav.setViewName("board/market"); break;	// 중고거래
-				default : break;
+		mav.addObject("board", board);
+		return mav;
+	}
+
+	@RequestMapping(value = "board/list")
+	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
+			String searchContent) {
+		ModelAndView mav = new ModelAndView();
+		switch (bType) { // 게시판 종류
+		case 1:
+			mav.setViewName("board/community");
+			break; // 자유
+		case 2:
+			mav.setViewName("board/review");
+			break; // 후기
+		case 3:
+			mav.setViewName("board/market");
+			break; // 중고거래
+		default:
+			break;
 		}
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
@@ -40,7 +61,7 @@ public class BoardController {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
-		
+
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);
@@ -52,7 +73,7 @@ public class BoardController {
 		mav.addObject("boardcnt", boardcnt);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "board/info")
 	public ModelAndView info(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
@@ -60,10 +81,21 @@ public class BoardController {
 		mav.addObject("board", board);
 		return mav;
 	}
-	
-	@RequestMapping(value = "board/write")
-	public ModelAndView write(Integer bnum) {
+
+	@RequestMapping(value = "board/write", method = RequestMethod.POST)
+	public ModelAndView write(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			return mav;
+		}
+		try {
+			service.boardInsert(board, request);
+			mav.addObject("board", board);
+			mav.setViewName("redirect:/board/list.child");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return mav;
 	}
 }
