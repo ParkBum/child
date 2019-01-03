@@ -48,6 +48,10 @@ public class UserDao {
 	public User infoSelect(Integer mnum) {
 		return sqlsession.getMapper(UserMapper.class).infoSelect(mnum);
 	}
+
+	public void userUpdate(User user) {
+		sqlsession.getMapper(UserMapper.class).userUpdate(user);
+	}
 }
 
 

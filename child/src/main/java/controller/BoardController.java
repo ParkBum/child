@@ -83,7 +83,7 @@ public class BoardController {
 
 	@RequestMapping(value = "board/write", method = RequestMethod.POST)
 	public ModelAndView write(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("board/writeForm");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
 			return mav;
