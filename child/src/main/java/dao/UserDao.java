@@ -26,6 +26,10 @@ public class UserDao {
 		int i = sqlsession.getMapper(UserMapper.class).maxNum();
 		return i;
 	}
+
+	public String nickName(int mnum) {
+		return sqlsession.getMapper(UserMapper.class).nickName(mnum);	
+	}
 	
 
 }

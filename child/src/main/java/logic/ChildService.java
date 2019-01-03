@@ -23,7 +23,15 @@ public class ChildService {
 
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
 			Integer pageNum, int limit) {
-		return boarddao.getList(bType, filterType, searchType, searchContent, pageNum, limit);
+		List<Board> board = boarddao.getList(bType, filterType, searchType, searchContent, pageNum, limit);
+		for(Board b : board) {
+			b.setNickname(getNickName(b.getMnum()));
+		}
+		return board;
+	}
+	
+	public String getNickName(int mnum) {
+		return userdao.nickName(mnum);
 	}
 
 	public void userCreate(User user) {
