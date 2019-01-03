@@ -60,4 +60,10 @@ public class BoardController {
 		mav.addObject("board", board);
 		return mav;
 	}
+	
+	@RequestMapping(value = "board/write")
+	public ModelAndView write(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
 }
