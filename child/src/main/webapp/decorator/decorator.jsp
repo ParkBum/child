@@ -21,7 +21,6 @@ html {
 }
 
 * {
-	text-align: center;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 }
