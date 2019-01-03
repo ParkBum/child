@@ -12,6 +12,7 @@
 <title><decorator:title /></title>
 <decorator:head />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
 html {
 	/* background-image: url("../decorator/field.jpg"); */
@@ -19,11 +20,11 @@ html {
 	background-size: cover;
 }
 
-* {
+/* * {
 	text-align: center;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 body {
 	max-width: 1200px;
@@ -47,16 +48,12 @@ body {
 }
 
 .top a:hover {
-	z-index : 100;
 	vertical-align: middle;
 	border-radius : 20px;
-	color : white;
-	background-color:black;
 	padding: 13px;
 }
 /* main */
 .main {
-	z-index : 100;
 	padding: 10px;
 	height: 800px;
 }
@@ -78,8 +75,8 @@ body {
 		<p style="float: left; margin-left:20px;">000 님 환영합니다.</p>
 		<a href="${path}/user/loginForm.child" style="float: right; height:100%">로그인</a>
 		<a href="${path}/user/userForm.child" style="float: right">회원가입</a>
-		<a	href="${path}/board/list.child?bType=1" style="float: right">자유 게시판</a>
-		<a href="${path}/board/list.child?bType=2" style="float: right">후기 게시판</a>
+		<a	href="#" class=" " style="float: right">커뮤니티</a>
+		<a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a>
 		<%-- 	</c:if>
  --%>
 	</div>
