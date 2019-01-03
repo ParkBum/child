@@ -29,14 +29,12 @@ public class UserDao {
 		int i = sqlsession.getMapper(UserMapper.class).maxNum();
 		return i;
 	}
-<<<<<<< HEAD
-=======
 
 	public String nickName(int mnum) {
 		return sqlsession.getMapper(UserMapper.class).nickName(mnum);	
 	}
 	
->>>>>>> branch 'master' of https://github.com/ParkBum/child
+
 
 	public User select(String email) {
 		Map<String, String> map = new HashMap<String, String>();
