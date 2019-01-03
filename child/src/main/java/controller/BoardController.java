@@ -77,6 +77,9 @@ public class BoardController {
 	public ModelAndView info(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
+		/*
+		 * boardcnt : 조회수 증가 필요
+		 */
 		mav.addObject("board", board);
 		return mav;
 	}
@@ -91,7 +94,7 @@ public class BoardController {
 		try {
 			service.boardInsert(board, request);
 			mav.addObject("board", board);
-			mav.setViewName("redirect:/board/list.child?btype=" + board.getbType());
+			mav.setViewName("redirect:/board/list.child?bType=" + board.getbType());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

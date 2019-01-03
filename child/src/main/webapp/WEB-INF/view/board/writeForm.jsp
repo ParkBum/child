@@ -63,6 +63,7 @@ $(document).ready(function() {
 		<tr>
 			<td style="text-align:center;">제목</td>
 			<td valign="middle">
+			<c:if test="${board.bType != 2 }"> <%-- 후기게시판에서는 머리말 안보이게 해놓음 --%>
 				<select name="head" style="height:100%;">
 					<option value="">선택하세요</option>
 				<c:if test="${board.bType == 1}">
@@ -73,9 +74,12 @@ $(document).ready(function() {
 					<option value="1">삽니다</option>
 					<option value="2">팝니다</option>
 				</c:if>
-				</select>&nbsp;<form:input path="subject" style="height:100%;" />
+				
+				</select>
+				</c:if>&nbsp;<form:input path="subject" style="height:100%;" />
 			<font color="red"><form:errors path="subject" /></font>
 		</tr>
+		<c:if test="${board.bType == 2}"> <%-- 별점은 후기게시판으로. write시킬 때 sql에 score가 추가됨. --%>
 		<tr>
 			<td style="text-align:center;">별점</td>
 			<td><div class="starRev">
@@ -92,6 +96,7 @@ $(document).ready(function() {
 				<input type="hidden" name="score" id="score" value="0">
 			</div></td>
 		</tr>
+		</c:if>
 		<tr>
 			<td style="text-align:center;">내용</td>
 			<td><form:textarea path="content" rows="15" cols="80" />

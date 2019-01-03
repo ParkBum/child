@@ -11,6 +11,7 @@ public class Board {
 	private int bnum; // 게시글번호
 	private int mnum; // 작성자 회원번호
 	private String nickname; // 닉네임
+	//bType->btype으로 변경해야할듯 : 이창환
 	private int bType; // 게시판 종류
 	@NotNull(message = "말머리를 선택하세요")
 	private int head; // 말머리
