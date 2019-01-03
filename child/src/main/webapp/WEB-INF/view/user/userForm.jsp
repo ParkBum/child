@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>»ç¿ëÀÚ µî·Ï</title>
-<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+<title>ì‚¬ìš©ì ë“±ë¡</title>
+<script language='javascript'
+	src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
 <script>
-$(".check").click(function(){
+/* $(".check").click(function(){
 	$.ajax({
 		url : "mailauth.child",
 		type : "post",
@@ -21,26 +22,32 @@ $(".check").click(function(){
 			alert('error');
 		}
 	});
-});
-
-/* 
- * 
- function check(){
-	var form = document.joinForm;
-	var authNum = ${authNum};
-	var userauthNum = ${userauthNum};
-	if(userauthNum==""||userauthNum==null){
-		alert("ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä")
+}); */
+function validateEmail(sEmail) {
+	var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	if (filter.test(sEmail)) {
+	return true;
 	}
-	if(authNum == userauthNum){
-		alert("ÀÎÁõµÇ¾ú½À´Ï´Ù.")
-	}
-	if(authNum != userauthNum){
-		alert("ÀÎÁõ¹øÈ£¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä.")
-		userauthNum="";
+	else {
 		return false;
 	}
-} */
+}
+$(document).ready(function() {
+	$('#check').click(function() {
+	var sEmail = $('#email').val();
+	if ($.trim(sEmail).length == 0) {
+	alert('Please enter valid email address');
+	e.preventDefault();
+	}
+	if (validateEmail(sEmail)) {
+	alert('ì˜¬ë°”ë¥¸ ì´ë©”ì¼ì…ë‹ˆë‹¤');
+	}
+	else {
+	alert('ì˜ëª»ëœ ì´ë©”ì¼ì…ë‹ˆë‹¤');
+	e.preventDefault();
+	}
+	});
+});â€‹
 </script>
 <style type="text/css">
 .joinForm {
@@ -85,7 +92,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 	<div class="joinForm">
 		<form:form modelAttribute="user" method="post"
 			action="userEntry.child" name="joinForm">
-			<h2>»ç¿ëÀÚ µî·Ï</h2>
+			<h2>ì‚¬ìš©ì ë“±ë¡</h2>
 			<spring:hasBindErrors name="user">
 				<font color="red"> <c:forEach items="${errors.globalErrors}"
 						var="error">
@@ -95,54 +102,41 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</spring:hasBindErrors>
 
 			<div class="inin">
-				<form:input path="email" placeholder="¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä(e-mail Çü½Ä)"
+				<form:input path="email" placeholder="ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”(e-mail í˜•ì‹)"
 					id="email" />
 				<font color="red"><form:errors path="email" /></font>
 			</div>
-			
-			
-			
-			
-			
-			
-			<div class="inin">
-				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;" 
-					id="check">ÀÎÁõ¹øÈ£ Àü¼Û</button>
-					
-			<!-- send°¡ µÊ, ¾ÏÈ£ »ı¼ºÈÄ Àü¼ÛµÊ.  -->
-			
-			</div>
-			
-			
-			
-			
-			
-			<%-- <div class="inin" style="display: inline;">
-				<div style="width: 60%;">
-					<form:hidden path="authNum" name="authNum"/>
-					<form:input path="userauthNum" placeholder="ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä" />
-					<font color="red"><form:errors path="userauthNum" /></font>
-				</div>
 
+
+
+
+
+
+			<div class="inin">
 				<button
-					style="background-color: #33CC99; width: 30%; float: right; border-radius: 10px;"
-					onclick="javascript:check()">ÀÎÁõ¹øÈ£ È®ÀÎ</button>
-			</div> --%>
+					style="background-color: #33CC99; width: 90%; border-radius: 10px;"
+					id="check">ì¸ì¦ë²ˆí˜¸ ì „ì†¡</button>
+
+				<!-- sendê°€ ë¨, ì•”í˜¸ ìƒì„±í›„ ì „ì†¡ë¨.  -->
+
+			</div>
+
 
 			<div class="inin">
-				<form:password path="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä." />
+				<form:password path="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”." />
 				<font color="red"><form:errors path="password" /></font>
 			</div>
 			<div class="inin">
-				<form:password path="password" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ" />
+				<form:password path="password" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" />
 				<font color="red"><form:errors path="password" /></font>
 			</div>
 			<div class="inin">
-				<form:input path="nickname" placeholder="´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä" />
+				<form:input path="nickname" placeholder="ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”" />
 				<font color="red"><form:errors path="nickname" /></font>
 			</div>
 			<div class="inin">
-				<input type="submit" value="°¡ÀÔ"> <input type="reset"value="ÀçÀÛ¼º">
+				<input type="submit" value="ê°€ì…"> <input type="reset"
+					value="ì¬ì‘ì„±">
 			</div>
 
 		</form:form>
