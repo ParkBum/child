@@ -75,11 +75,10 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</div>
 			
 			<div class="inin" style="display:inline;">
-				<div style="width:60%;">
 				<form:input path="email" placeholder="인증번호를 입력하세요"/>
-				<font color="red"><form:errors path="email" /></font>
-				</div>
-				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;"	id="check" onclick="javascript:alert('구현안됨')">인증번호 전송</button>
+				<font color="red"><br><form:errors path="email" /></font>
+				
+				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;"	id="check" onclick="javascript:alert('구현안됨')">인증번호  확인</button>
 			</div>
 
 			<div class="inin">
