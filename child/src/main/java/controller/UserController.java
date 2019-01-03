@@ -142,7 +142,7 @@ public class UserController {
 		return br.toString();
 	}
 	*/
-	@RequestMapping("user/emailAuth.child")
+	/*@RequestMapping("user/emailAuth.child")
 	public ModelAndView policyList(){
 	      AllInfo info = null;
 	      ArrayList list = new ArrayList();
@@ -160,5 +160,5 @@ public class UserController {
         mav.addAllObjects(resultMap);
         mav.setViewName("jsonView");
         return mav;
-	}
+	}*/
 }

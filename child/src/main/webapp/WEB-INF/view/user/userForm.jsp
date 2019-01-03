@@ -5,50 +5,53 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>ì‚¬ìš©ì ë“±ë¡</title>
-<script language='javascript'
-	src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
-<script>
+<title>»ç¿ëÀÚ µî·Ï</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<!-- <script>
 /* $(".check").click(function(){
-	$.ajax({
-		url : "mailauth.child",
-		type : "post",
-		dataType : "json",
-		success : function(e){
-			console.log(e.list[0].s_user)
-			console.log(e.list[1].s_user)
-		},
-		error : function(){
-			alert('error');
-		}
-	});
+$.ajax({
+	url : "mailauth.child",
+	type : "post",
+	dataType : "json",
+	success : function(e){
+		console.log(e.list[0].s_user)
+		console.log(e.list[1].s_user)
+	},
+	error : function(){
+		alert('error');
+	}
+});
 }); */
-function validateEmail(sEmail) {
-	var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-	if (filter.test(sEmail)) {
-	return true;
-	}
-	else {
-		return false;
-	}
+/* function validateEmail(sEmail) {
+var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+if (filter.test(sEmail)) {
+return true;
+}
+else {
+	return false;
+}
 }
 $(document).ready(function() {
-	$('#check').click(function() {
-	var sEmail = $('#email').val();
-	if ($.trim(sEmail).length == 0) {
-	alert('Please enter valid email address');
-	e.preventDefault();
-	}
-	if (validateEmail(sEmail)) {
-	alert('ì˜¬ë°”ë¥¸ ì´ë©”ì¼ì…ë‹ˆë‹¤');
-	}
-	else {
-	alert('ì˜ëª»ëœ ì´ë©”ì¼ì…ë‹ˆë‹¤');
-	e.preventDefault();
-	}
-	});
-});â€‹
+$('#check').click(function() {
+var sEmail = $('#email').val();
+if ($.trim(sEmail).length == 0) {
+alert('Please enter valid email address');
+e.preventDefault();
+}
+if (validateEmail(sEmail)) {
+alert('¿Ã¹Ù¸¥ ÀÌ¸ŞÀÏÀÔ´Ï´Ù');
+}
+else {
+alert('Àß¸øµÈ ÀÌ¸ŞÀÏÀÔ´Ï´Ù');
+e.preventDefault();
+}
+});
+}); */
+</script> -->
+<script type="text/javascript">
+
 </script>
+
 <style type="text/css">
 .joinForm {
 	border-radius: 5px;
@@ -86,57 +89,51 @@ input[type=submit], input[type=reset] {
 input[type=submit] :hover, input[type=reset]:hover {
 	background-color: #333333;
 }
+#checkMsg{
+  font-size: 12px;
+}
+#checkPwd{
+  color : red;
+  font-size: 12px;
+}
+
 </style>
 </head>
 <body>
 	<div class="joinForm">
-		<form:form modelAttribute="user" method="post"
-			action="userEntry.child" name="joinForm">
-			<h2>ì‚¬ìš©ì ë“±ë¡</h2>
+		<form:form modelAttribute="user" method="post" action="userEntry.child" name="joinForm">
+			<h2>»ç¿ëÀÚ µî·Ï</h2>
 			<spring:hasBindErrors name="user">
-				<font color="red"> <c:forEach items="${errors.globalErrors}"
-						var="error">
+				<font color="red"> <c:forEach items="${errors.globalErrors}" var="error">
 						<spring:message code="${error.code}" />
 					</c:forEach>
 				</font>
 			</spring:hasBindErrors>
 
 			<div class="inin">
-				<form:input path="email" placeholder="ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”(e-mail í˜•ì‹)"
+				<form:input path="email" placeholder="¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä(e-mail Çü½Ä)"
 					id="email" />
-				<font color="red"><form:errors path="email" /></font>
-			</div>
-
-
-
-
-
-
-			<div class="inin">
-				<button
-					style="background-color: #33CC99; width: 90%; border-radius: 10px;"
-					id="check">ì¸ì¦ë²ˆí˜¸ ì „ì†¡</button>
-
-				<!-- sendê°€ ë¨, ì•”í˜¸ ìƒì„±í›„ ì „ì†¡ë¨.  -->
-
-			</div>
-
-
-			<div class="inin">
-				<form:password path="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”." />
-				<font color="red"><form:errors path="password" /></font>
+				<font color="red"><br><form:errors path="email" /></font>
 			</div>
 			<div class="inin">
-				<form:password path="password" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" />
-				<font color="red"><form:errors path="password" /></font>
+				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;"	id="check">ÀÎÁõ¹øÈ£ Àü¼Û</button>
+			</div>
+
+			<div class="inin">
+				<form:password path="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä." />
+				<font color="red"><br><form:errors path="password" /></font>
 			</div>
 			<div class="inin">
-				<form:input path="nickname" placeholder="ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”" />
-				<font color="red"><form:errors path="nickname" /></font>
-			</div>
+				<form:password path="password1" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ" />
+				<font color="red"><form:errors path="password1" /></font>
+			</div> <!-- ajax»ç¿ë ºÎºĞ DB¿äÃ» ÇØ¾ß ÇÔ.  -->
+			
 			<div class="inin">
-				<input type="submit" value="ê°€ì…"> <input type="reset"
-					value="ì¬ì‘ì„±">
+				<form:input path="nickname" placeholder="´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä" />
+				<font color="red"><br><form:errors path="nickname" /></font>
+			</div> <!-- ajax»ç¿ë ºÎºĞ DB¿äÃ» ÇØ¾ß ÇÔ.  -->
+			<div class="inin">
+				<input type="submit" value="°¡ÀÔ"> <input type="reset" value="ÀçÀÛ¼º">
 			</div>
 
 		</form:form>
