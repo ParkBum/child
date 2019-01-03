@@ -11,5 +11,6 @@
 		<mapper resource="dao/mapper/UserMapper.xml" />
 		<mapper resource="dao/mapper/BoardMapper.xml" />
 		<mapper resource="dao/mapper/CommentMapper.xml" />
+		<mapper resource="dao/mapper/MapMapper.xml" />
 	</mappers>
 </configuration>	
