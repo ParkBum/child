@@ -19,7 +19,6 @@ public class UserDao {
 	
 	private final String NS = "dao.mapper.UserMapper.";
 	
-	
 	public void createuser(User user) {
 		sqlsession.getMapper(UserMapper.class).insert(user);
 	}

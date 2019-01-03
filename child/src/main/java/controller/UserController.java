@@ -28,14 +28,14 @@ public class UserController {
 		return mav;
 	}
 
-	@RequestMapping(value = "user/loginForm", method = RequestMethod.GET)
+	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm() {
 		ModelAndView mav = new ModelAndView("user/loginForm");
 		mav.addObject(new User());
 		return mav;
 	}
 
-	@RequestMapping(value = "user/login", method = RequestMethod.POST)
+	@RequestMapping("user/login")
 	public ModelAndView login(@Valid User user, BindingResult bindResult, HttpSession session) {
 		ModelAndView mav = new ModelAndView("user/loginForm");
 		if (bindResult.hasErrors()) {
