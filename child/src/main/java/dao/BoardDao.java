@@ -50,7 +50,6 @@ public class BoardDao {
 	}
 
 	public int maxBnum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.getMapper(BoardMapper.class).maxBnum();
 	}
 }
