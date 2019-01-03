@@ -58,6 +58,11 @@ public class ChildService {
 		return list;
 	}
 
+	public User userInfo(Integer mnum) {
+		User user = userdao.infoSelect(mnum);
+		return user;
+	}
+
 }
 
 
