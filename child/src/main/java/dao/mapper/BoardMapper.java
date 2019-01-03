@@ -14,4 +14,7 @@ public interface BoardMapper {
 			+ "values (#{bnum},#{mnum},#{btype},#{head},#{subject},#{content},now(),#{readcnt},#{file1},#{file2},#{file3},0,#{score})")
 	void insert(Board board);
 
+	@Select("select ifnull(max(bnum), 0) from board")
+	int maxBnum();
+
 }
