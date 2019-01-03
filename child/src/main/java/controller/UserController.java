@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -8,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.ChildService;
@@ -99,6 +103,13 @@ public class UserController {
 		}
 		return mav;
 
+	}
+	@RequestMapping("/user/emailauth.html")
+	public ModelAndView getMessage() { //매개변수가 없다.
+		Map map = new HashMap();
+		map.put("result", "비동기 통신 결과");
+		map.put("item", "비동기 통신 아이템");
+		return new ModelAndView("jsonView",map); //jsonview 는 dispatche.xml 의 jsonview 를 가져옴.
 	}
 }
 

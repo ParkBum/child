@@ -6,6 +6,23 @@
 <head>
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
+<script>
+
+function getMessage(){
+	$.ajax({
+		method : "POST",
+		url : "<c:url value='/study/getMessage.html'/>",
+		dataType : "JSON",
+		data : null,
+		error : function(){alert('error');},
+		success : result
+	})
+}
+function result(data){
+  alert(data.result)
+}
+
+</script>
 <style type="text/css">
 .joinForm {
 	border-radius: 5px;
@@ -71,11 +88,11 @@ input[type=submit] :hover, input[type=reset]:hover {
 					id="email" />
 				<font color="red"><br>
 				<form:errors path="email" /></font>
+				<input type="button" value="getMessage" onClick="javascript:getMessage()"/>
 			</div>
 
 			<div class="inin" style="display: inline;">
-				<button
-					style="background-color: #33CC99; width: 90%; border-radius: 10px;"
+				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;"
 					onclick="javascript:alert('구현안됨')">인증번호 전송</button>
 			</div>
 
@@ -117,8 +134,6 @@ input[type=submit] :hover, input[type=reset]:hover {
 	</div>
 </body>
 </html>
-
-
 
 
 <!-- <script>
