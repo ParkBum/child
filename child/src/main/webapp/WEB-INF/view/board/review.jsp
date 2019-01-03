@@ -47,7 +47,7 @@
 		
 		<c:if test="${listcount > 0}">
 		<tr align="center" valign="middle">
-			<td colspan="4">Spring 게시판</td>
+			<td colspan="4">후기 게시판</td>
 			<td>글개수:${listcount}</td>
 		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
@@ -65,7 +65,7 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-				<a href="detail.child?bnum=${board.bnum}">${board.subject}</a></td>
+				<a href="detail.child?bnum=${board.bnum}" style="text-decoration:none;">&nbsp;${board.subject}</a></td>
 			<td align="left">${board.nickname}</td>
 			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>
