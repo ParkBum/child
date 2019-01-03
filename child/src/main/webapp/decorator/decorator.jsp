@@ -14,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js">
 </script>
 <style type="text/css">
 html {
@@ -120,6 +119,10 @@ $(function(){
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
 	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
+	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
+		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
+		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
+		</a> </li>
 	<c:if test="${sessionScope.loginUser.email=='admin'}">
 	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자 페이지</a> </li>
 	</c:if>
@@ -135,7 +138,7 @@ $(function(){
 		</ul>
 	</li>
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
-		</c:if>
+	</c:if>
   </ul>
 </div>
 	<div class="main">
