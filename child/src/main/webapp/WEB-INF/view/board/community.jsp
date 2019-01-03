@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+<h4>자유 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="2" align="left" style="border-right:hidden;">
