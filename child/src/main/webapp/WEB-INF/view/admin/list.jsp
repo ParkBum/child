@@ -43,29 +43,30 @@ td.title {
 </script>
 </head>
 <body>
-	<form action="info.child" method="Post">
+<!-- <form action="info.child" method="Post">
 		
-	</form>
+	 </form> -->
 	<form action="list.child" method="Post">
 		<table border="1" style="border-collapse: collapse; width: 100%">
 			<tr>
-				<td colspan="3">회원 목록</td>
+				<td colspan="4">회원 목록</td>
 			</tr>
 			<tr>
 				<td>회원번호</td>
 				<td>아이디(이메일)</td>
 				<td>닉네임</td>
+				<td>관리자 수정</td>
 			</tr>
 			<c:forEach items="${userlist}" var="user">
 				<tr>
 					<td>${user.mnum}</td>
 					<td>${user.email}</td>
 					<td>${user.nickname}</td>
-			<%-- 		<td>
+			 		<td>
 						<a href="../user/updateForm.child?mnum=${user.mnum}">수정</a>
 						<a href="../user/delete.child?mnum=${user.mnum}">강제탈퇴</a>
 						<a href="../user/mypage.child?mnum=${user.mnum}">회원정보</a>
-					</td> --%>
+					</td> 
 				</tr>
 			</c:forEach>
 		</table>
