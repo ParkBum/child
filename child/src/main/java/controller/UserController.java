@@ -41,7 +41,7 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-		mav.setViewName("main");
+		mav.setViewName("main/main.child");
 		return mav;
 	}
 
