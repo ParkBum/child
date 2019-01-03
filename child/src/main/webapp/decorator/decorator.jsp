@@ -116,7 +116,7 @@ $(function(){
 	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">000 님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<c:if test="${sessionScope.loginUser.email=='admin'}">
 	<li class="right"><a href="${path}/admin/list.child" style="float: right">관리자페이지</a> </li>
 	</c:if>
