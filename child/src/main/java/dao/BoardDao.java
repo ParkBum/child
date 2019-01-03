@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dao.mapper.BoardMapper;
 import logic.Board;
 
 @Repository
@@ -39,5 +40,10 @@ public class BoardDao {
 		map.put("startrow", startrow);
 		map.put("limit", limit);
 		return sqlSession.selectList(NS + "list", map);
+	}
+
+	public Board getBoard(Integer bnum) {
+		sqlSession.getMapper(BoardMapper.class).select(bnum);
+		return null;
 	}
 }

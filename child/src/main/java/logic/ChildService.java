@@ -29,6 +29,12 @@ public class ChildService {
 		}
 		return board;
 	}
+
+	public Board getBoard(Integer bnum) {
+		Board board = boarddao.getBoard(bnum);
+		board.setNickname(getNickName(board.getMnum()));
+		return board;
+	}
 	
 	public String getNickName(int mnum) {
 		return userdao.nickName(mnum);
