@@ -6,8 +6,41 @@
 <head>
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
 <script>
+$(".check").click(function(){
+	$.ajax({
+		url : "mailauth.child",
+		type : "post",
+		dataType : "json",
+		success : function(e){
+			console.log(e.list[0].s_user)
+			console.log(e.list[1].s_user)
+		},
+		error : function(){
+			alert('error');
+		}
+	});
+});
 
+/* 
+ * 
+ function check(){
+	var form = document.joinForm;
+	var authNum = ${authNum};
+	var userauthNum = ${userauthNum};
+	if(userauthNum==""||userauthNum==null){
+		alert("인증번호를 입력해주세요")
+	}
+	if(authNum == userauthNum){
+		alert("인증되었습니다.")
+	}
+	if(authNum != userauthNum){
+		alert("인증번호를 확인해 주세요.")
+		userauthNum="";
+		return false;
+	}
+} */
 </script>
 <style type="text/css">
 .joinForm {
@@ -30,13 +63,13 @@ input[type=text], input[type=password] {
 	text-align: center;
 	padding: 10px;
 	margin: 8px;
-	width : 90%;
+	width: 90%;
 	border-radius: 4px;
 }
 
 input[type=submit], input[type=reset] {
 	background-color: #666666;
-	color: white; 
+	color: white;
 	padding: 10px;
 	margin: 8px;
 	border-radius: 4px;
@@ -44,14 +77,14 @@ input[type=submit], input[type=reset] {
 }
 
 input[type=submit] :hover, input[type=reset]:hover {
-	background-color: #333333; 
+	background-color: #333333;
 }
 </style>
 </head>
 <body>
 	<div class="joinForm">
 		<form:form modelAttribute="user" method="post"
-			action="userEntry.child">
+			action="userEntry.child" name="joinForm">
 			<h2>사용자 등록</h2>
 			<spring:hasBindErrors name="user">
 				<font color="red"> <c:forEach items="${errors.globalErrors}"
@@ -60,26 +93,44 @@ input[type=submit] :hover, input[type=reset]:hover {
 					</c:forEach>
 				</font>
 			</spring:hasBindErrors>
-			
+
 			<div class="inin">
-				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" />
+				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)"
+					id="email" />
 				<font color="red"><form:errors path="email" /></font>
 			</div>
-			<div class="inin">
-			<button style="background-color:#33CC99; width:90%; border-radius: 10px;" onclick="javascript:alert('구현안됨')">인증번호 전송</button>
-			</div>
-			<div class="inin" style="display:inline;">
-				<div style="width:60%;"><form:hidden path="authNum"/>
-				<form:input path="userauthNum" placeholder="인증번호를 입력하세요"/>
-				<font color="red"><form:errors path="userauthNum" /></font>
-				</div>
-				
-			<button style="background-color:#33CC99; width:30%; 
-			float:right; border-radius: 10px;" onclick="javascript:check()">인증번호 확인</button>
-			</div>
+			
+			
+			
+			
+			
 			
 			<div class="inin">
-				<form:password path="password" placeholder="비밀번호를 입력하세요" />
+				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;" 
+					id="check">인증번호 전송</button>
+					
+			<!-- send가 됨, 암호 생성후 전송됨.  -->
+			
+			</div>
+			
+			
+			
+			
+			
+			<%-- <div class="inin" style="display: inline;">
+				<div style="width: 60%;">
+					<form:hidden path="authNum" name="authNum"/>
+					<form:input path="userauthNum" placeholder="인증번호를 입력하세요" />
+					<font color="red"><form:errors path="userauthNum" /></font>
+				</div>
+
+				<button
+					style="background-color: #33CC99; width: 30%; float: right; border-radius: 10px;"
+					onclick="javascript:check()">인증번호 확인</button>
+			</div> --%>
+
+			<div class="inin">
+				<form:password path="password" placeholder="비밀번호를 입력하세요." />
 				<font color="red"><form:errors path="password" /></font>
 			</div>
 			<div class="inin">
@@ -91,8 +142,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 				<font color="red"><form:errors path="nickname" /></font>
 			</div>
 			<div class="inin">
-				<input type="submit" value="가입">
-				<input type="reset" value="재작성">
+				<input type="submit" value="가입"> <input type="reset"value="재작성">
 			</div>
 
 		</form:form>

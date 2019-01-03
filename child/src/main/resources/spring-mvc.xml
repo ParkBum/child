@@ -62,6 +62,10 @@
 				<!-- exception.CartEmptyException 예외가 발생했으면  exception.jsp로 보내-->
 			</property>		
 	</bean>	 
+	<bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"></property>
+	</bean>
+    <bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 	
 <!-- 	<bean id="echoHandler" class="websocket.EchoHandler"/>
 		<websocket:handlers>

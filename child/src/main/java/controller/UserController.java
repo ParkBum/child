@@ -1,9 +1,9 @@
 package controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,9 +12,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,9 +22,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import logic.AllInfo;
 import logic.ChildService;
 import logic.User;
 
@@ -85,7 +83,7 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("user/emailAuth")
+/*	@RequestMapping("user/emailAuth.do")
 	public ModelAndView entry(User user) {
 		ModelAndView mav = new ModelAndView();
 		String email = user.getEmail();
@@ -133,14 +131,34 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
-	private String RandomNum() {
+	/*private String RandomNum() {
 		StringBuffer br = new StringBuffer();
 		for(int i=0; i<=6; i++) {
 			int n = (int)(Math.random() * 10);
 			br.append(n);
 		}
 		return br.toString();
+	}
+	*/
+	@RequestMapping("user/emailAuth.child")
+	public ModelAndView policyList(){
+	      AllInfo info = null;
+	      ArrayList list = new ArrayList();
+	      info = new AllInfo();
+	      info.setS_user("유저1");
+	      list.add(info);
+	      info = new AllInfo();
+	      info.setS_user("유저2");
+	      list.add(info);
+
+		
+  ModelAndView mav = new ModelAndView(); 
+        Map resultMap = new HashMap();
+        resultMap.put("list", list);
+        mav.addAllObjects(resultMap);
+        mav.setViewName("jsonView");
+        return mav;
 	}
 }
