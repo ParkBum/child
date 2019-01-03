@@ -1,6 +1,9 @@
 package dao;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +29,10 @@ public class UserDao {
 		int i = sqlsession.getMapper(UserMapper.class).maxNum();
 		return i;
 	}
-	
 
+	public User select(String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		return sqlsession.selectOne(NS + "list", map);
+	}
 }

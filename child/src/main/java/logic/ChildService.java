@@ -1,7 +1,7 @@
 package logic;
 
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +32,18 @@ public class ChildService {
 
 	public int maxnum() {
 		return userdao.maxNum();
-	} 
+	}
+	
+	public User userSelect(String email) {
+		User user = userdao.select(email);
+		return user;
+	}
+
 }
+
+
+
+
+
+
+
