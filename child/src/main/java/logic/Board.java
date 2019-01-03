@@ -2,6 +2,8 @@ package logic;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,7 +12,7 @@ public class Board {
 	private int mnum; // 작성자 회원번호
 	private String nickname; // 닉네임
 	private int bType; // 게시판 종류
-	@NotEmpty(message = "말머리를 선택하세요")
+	@NotNull(message = "말머리를 선택하세요")
 	private int head; // 말머리
 	@NotEmpty(message = "제목을 선택하세요")
 	private String subject; // 제목

@@ -10,7 +10,50 @@
 td {
 	text-align : left;
 }
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0;}
+.starR2.on{background-position:-15px 0;}
 </style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('.starRev span').click(function(){
+		var starRevId = $(this).attr('id');
+		$(this).parent().children('span').removeClass('on');
+		$(this).addClass('on').prevAll('span').addClass('on');
+		switch(starRevId){
+		case "left1": $("#score").val('0.5'); break;
+		case "right1": $("#score").val('1'); break;
+		case "left2": $("#score").val('1.5'); break;
+		case "right2": $("#score").val('2'); break;
+		case "left3": $("#score").val('2.5'); break;
+		case "right3": $("#score").val('3'); break;
+		case "left4": $("#score").val('3.5'); break;
+		case "right4": $("#score").val('4'); break;
+		case "left5": $("#score").val('4.5'); break;
+		case "right5": $("#score").val('5'); break;
+		}
+		return false;
+	});
+});
+</script>
 </head>
 <body>
 <form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f">
@@ -20,7 +63,7 @@ td {
 		<tr>
 			<td style="text-align:center;">제목</td>
 			<td valign="middle">
-				<select name="filterType" style="height:100%;">
+				<select name="head" style="height:100%;">
 					<option value="">선택하세요</option>
 				<c:if test="${board.bType == 1}">
 					<option value="1">육아꿀팁</option>
@@ -34,13 +77,37 @@ td {
 			<font color="red"><form:errors path="subject" /></font>
 		</tr>
 		<tr>
+			<td style="text-align:center;">별점</td>
+			<td><div class="starRev">
+				<span class="starR1 on" id="left1">별1_왼쪽</span>
+				<span class="starR2 on" id="right1">별1_오른쪽</span>
+				<span class="starR1 on" id="left2">별2_왼쪽</span>
+				<span class="starR2 on" id="right2">별2_오른쪽</span>
+				<span class="starR1 on" id="left3">별3_왼쪽</span>
+				<span class="starR2 on" id="right3">별3_오른쪽</span>
+				<span class="starR1" id="left4">별4_왼쪽</span>
+				<span class="starR2" id="right4">별4_오른쪽</span>
+				<span class="starR1" id="left5">별5_왼쪽</span>
+				<span class="starR2" id="right5">별5_오른쪽</span>
+				<input type="hidden" name="score" id="score" value="0">
+			</div></td>
+		</tr>
+		<tr>
 			<td style="text-align:center;">내용</td>
 			<td><form:textarea path="content" rows="15" cols="80" />
 			<font color="red"><form:errors path="content" /></font>
 		</tr>
 		<tr>
-			<td style="text-align:center;">첨부파일</td>
-			<td><input type="file" name="file1">
+			<td style="text-align:center;">첨부파일1</td>
+			<td><input type="file" name="multi1">
+		</tr>
+		<tr>
+			<td style="text-align:center;">첨부파일2</td>
+			<td><input type="file" name="multi2">
+		</tr>
+		<tr>
+			<td style="text-align:center;">첨부파일3</td>
+			<td><input type="file" name="multi3">
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align:center;">
