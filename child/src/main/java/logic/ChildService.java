@@ -1,12 +1,14 @@
 package logic;
 
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
 import dao.UserDao;
@@ -19,6 +21,27 @@ public class ChildService {
 	@Autowired
 	private BoardDao boardDao;
 
+	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
+		String uploadPath = request.getServletContext().getRealPath("/") + "/" + path + "/";
+		String orgFile = picture.getOriginalFilename(); // 파일명
+		try {
+			picture.transferTo(new File(uploadPath + orgFile));
+			// transferTo : 파일의 내용을 uploadPath + orgFile인 파일에 저장
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void boardInsert(Board board, HttpServletRequest request) {
+		//board.setNum(boardDao.maxNum() + 1);
+		if (board.getFile1() != null && !board.getFile1().isEmpty()) {
+			uploadFileCreate(board.getFile1(), request, "file"); // file의 내용을 파일로 저장
+			board.setFileurl(board.getFile1().getOriginalFilename()); // db에 파일명을 저장
+		}
+		boardDao.insert(board);
+	}
+
+	
 	public int boardCount(Integer bType, String filterType, String searchType, String searchContent) {
 		return boardDao.getCount(bType, filterType, searchType, searchContent);
 	}
