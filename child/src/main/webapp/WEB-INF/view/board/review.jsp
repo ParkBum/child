@@ -24,7 +24,7 @@
 </head>
 <body>
 	<table border="1" style="border-collapse:collapse; width:100%;">
-		<tr>
+		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="5" align="right">
 				<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
 					<input type="hidden" name="pageNum" value="1">
@@ -46,9 +46,8 @@
 		</tr>
 		
 		<c:if test="${listcount > 0}">
-		<tr align="center" valign="middle">
-			<td colspan="4">후기 게시판</td>
-			<td>글개수:${listcount}</td>
+		<tr align="right" valign="middle">
+			<td colspan="5">글개수:${listcount}</td>
 		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
 			<th width="8%" height="26">번호</th>
