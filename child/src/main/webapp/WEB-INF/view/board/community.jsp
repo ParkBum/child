@@ -30,7 +30,7 @@
 					<input type="hidden" name="bType" value="1">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="filterType" id="filterType" onchange="this.form.submit();">
-						<option value="">머리말 분류</option>
+						<option value="">전체</option>
 						<option value="1">육아꿀팁</option>
 						<option value="2">시설추천</option>
 					</select>&nbsp;
