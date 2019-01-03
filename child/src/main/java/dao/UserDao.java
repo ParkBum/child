@@ -44,6 +44,10 @@ public class UserDao {
 	public List<User> userlist() {
 		return sqlsession.selectList(NS + "list");
 	}
+
+	public User infoSelect(Integer mnum) {
+		return sqlsession.getMapper(UserMapper.class).infoSelect(mnum);
+	}
 }
 
 
