@@ -99,10 +99,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 			
 				<form:input path="email" placeholder="인증번호를 입력하세요"/>
 				<font color="red"><form:errors path="email" /></font>
-				
-				
 			    <button style="background-color:#33CC99; width:90%; border-radius: 10px;" onclick="javascript:alert('구현안됨')">인증번호 확인</button>
-			   
 			</div>
 			<div class="inin">
 				<form:password path="password" placeholder="비밀번호를 입력하세요" />
