@@ -93,14 +93,5 @@ public class ChildService {
 		User user = userDao.infoSelect(mnum);
 		return user;
 	}
-	public void boardInsert(Board board, HttpServletRequest request) {
-		board.setNum(boardDao.maxNum() + 1);
-		board.setRef(board.getNum());
-		if (board.getFile1() != null && !board.getFile1().isEmpty()) {
-			uploadFileCreate(board.getFile1(), request, "file"); // file의 내용을 파일로 저장
-			board.setFileurl(board.getFile1().getOriginalFilename()); // db에 파일명을 저장
-		}
-		boardDao.insert(board);
-	}
 
 }
