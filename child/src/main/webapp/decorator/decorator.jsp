@@ -92,7 +92,6 @@ body {
 }
 
 </style>
-<script src="//code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
  <div class='menu-bar'>
@@ -123,7 +122,7 @@ body {
 	<div class="main">
 		<decorator:body />
 	</div>
-	<hr style="color:black;">
+	<hr>
 	<div class="footer">
 		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
