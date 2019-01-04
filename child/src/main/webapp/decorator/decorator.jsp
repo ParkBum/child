@@ -105,7 +105,6 @@ $(function(){
   });
   $(".menu ul li:has(ul)")
     .find("a:first")
-    .append("<p style='float:right; margin:-3px'>&#9656;</p>");
 });
 </script>
 </head>
