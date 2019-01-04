@@ -62,10 +62,13 @@ td.title {
 				<td>¼öÁ¤</td>
 			</tr>
 			<tr>
-				<td>${user.mnum}</td>
-				<td>${user.email}</td>
-				<td>${user.nickname}</td>
-				<td><a href="../user/updateForm.child?mnum=${user.mnum}">¼öÁ¤</a></td>
+				<td>${sessionScope.loginUser.mnum}</td>
+				<td>${sessionScope.loginUser.email}</td>
+				<td>${sessionScope.loginUser.nickname}</td>
+				<td><a href="../user/updateForm.child?mnum=${sessionScope.loginUser.mnum}">¼öÁ¤</a>
+					<c:if test="${sessionScope.loginUser.mnum != 1}">
+						<a href="../user/delete.child?mnum=${sessionScope.loginUser.mnum}">Å»Åð</a>
+					</c:if></td>
 			</tr>
 		</table>
 	</form>
@@ -87,8 +90,7 @@ td.title {
 					<td>${user.mnum}</td>
 					<td>${user.email}</td>
 					<td>${user.nickname}</td>
-					<td><a href="../user/updateForm.child?mnum=${user.mnum}">¼öÁ¤</a>
-						<a href="../user/delete.child?mnum=${user.mnum}">°­Á¦Å»Åð</a></td>
+					<td><a href="../user/delete.child?mnum=${user.mnum}">°­Á¦Å»Åð</a></td>
 				</tr>
 			</c:forEach>
 		</table>
