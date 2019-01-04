@@ -79,7 +79,7 @@ $(document).ready(function() {
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="bnum" value="${board.bnum}">
 	<input type="hidden" name="score" value="${board.score}">
-	<table border="1" style="border-collapse: collapse; width:60%;">
+	<table border="1" style="border-collapse: collapse; width:60%;" align="center">
 		<tr style="height:30px;">
 			<td width="15%" style="text-align:center;">ÀÛ¼ºÀÚ</td>
 			<td width="90%">&nbsp;${board.nickname}</td>
