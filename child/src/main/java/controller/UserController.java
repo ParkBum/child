@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -128,29 +129,21 @@ public class UserController {
 	}
 
 	@RequestMapping("user/userdelete")
-	public ModelAndView userdelete(@Valid User user, BindingResult bindResult, HttpSession session) {
+	public ModelAndView userdelete(User user, HttpSession session, Integer mnum) {
 		ModelAndView mav = new ModelAndView();
-		User dbUser = service.userSelect(user.getEmail());
-		if (bindResult.hasErrors()) {
-			mav.getModel().putAll(bindResult.getModel());
-			return mav;
-		}
+		User dbUser = (User) session.getAttribute("loginUser");
 		if (user.getPassword().equals(dbUser.getPassword())) {
 			try {
-				service.userDelete(user);
+				service.userDelete(mnum);
 				session.invalidate();
 				mav.setViewName("redirect:../main/main.child");
 			} catch (Exception e) {
-				bindResult.reject("error.login.password");
-				mav.getModel().putAll(bindResult.getModel());
+				e.printStackTrace();
 				mav.setViewName("user/delete");
 			}
 		} else { // 비밀번호 불일치
-			bindResult.reject("error.login.password");
-			mav.getModel().putAll(bindResult.getModel());
 			mav.setViewName("user/delete");
 		}
-
 		return mav;
 	}
 
