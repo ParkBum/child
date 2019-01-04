@@ -1,13 +1,10 @@
 package controller;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-=======
 import javax.servlet.http.HttpServletResponse;
->>>>>>> branch 'master' of https://github.com/ParkBum/child/
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
