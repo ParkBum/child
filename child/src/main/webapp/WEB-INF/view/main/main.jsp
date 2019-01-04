@@ -60,7 +60,8 @@ var myChart = new Chart(ctx, {
 .canvas-holder {
 	width: 100%;
 	height: 400px;
-	border : solid 1px black;
+	border : solid 2px silver;
+	border-radius: 20px;
 }
 
 
