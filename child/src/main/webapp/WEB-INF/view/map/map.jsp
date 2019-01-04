@@ -143,9 +143,9 @@ option {
 			$("#interaction, #tile-transition, #controls").addClass(
 					"control-on");
 		</script>
+		<%-- ¸¶Ä¿ Âï±â ºÎºÐ --%>
 		<script type="text/javascript">
 		var map = document.getElementById('map');
-		//¸¶Ä¿ Âï±â
 		<c:forEach items="${addr}" var="addrs">
 		var myaddress = ${addrs};
 		naver.maps.Service.geocode({address:myaddress},function(status,response) {
