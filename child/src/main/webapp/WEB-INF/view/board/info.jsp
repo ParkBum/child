@@ -45,7 +45,7 @@ td {
 				<img src="../file/${board.file1}" style="width:300px;height:300px;">
 				</c:if>&nbsp;
 				<c:if test="${!empty board.file2}">
-				<img src="../file/${board.file3}" style="width:300px;height:300px;">
+				<img src="../file/${board.file2}" style="width:300px;height:300px;">
 				</c:if>&nbsp;
 				<c:if test="${!empty board.file3}">
 				<img src="../file/${board.file3}" style="width:300px;height:300px;">
