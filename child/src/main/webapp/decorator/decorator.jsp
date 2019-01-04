@@ -92,7 +92,7 @@ body {
 <body>
  <div class='menu-bar'>
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/logo2.png"></a></li>
+    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/logo.png"></a></li>
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
