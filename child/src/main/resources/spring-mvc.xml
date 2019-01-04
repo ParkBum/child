@@ -62,8 +62,4 @@
 				<!-- exception.CartEmptyException 예외가 발생했으면  exception.jsp로 보내-->
 			</property>		
 	</bean>	 
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
-	<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
-		<property name="contentType" value="application/json; charset=UTF-8" />
-	</bean>
 </beans>	

@@ -14,6 +14,7 @@ import logic.User;
 
 @Controller
 public class AdminController {
+	
 	@Autowired
 	ChildService service;
 	
