@@ -67,4 +67,25 @@
       <property name="prefix" value="/WEB-INF/view/" />
       <property name="suffix" value=".jsp" />
    </bean>
+   
+   <mvc:annotation-driven>
+         <!-- messageConvertert -->
+         <mvc:message-converters>
+                  <bean class="org.springframework.http.converter.StringHttpMessageConverter">	
+                     <property name="supportedMediaTypes">
+                                   <list>
+                                   			<!-- 기존의 ajax는 html에서 작성이 되기때문에 jsp에 추가적인 값을 넣어주기 위해서 value 값을 넣어줌 -->
+                                            <value>text/html; charset=UTF-8</value>
+                                   </list>
+                           </property>
+                    </bean>
+                  <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                     <property name="supportedMediaTypes">
+                           <list>			<!-- json의 인코딩은 utf-8 -->
+                                          <value>application/json; charset=UTF-8</value>
+                                     </list>
+                           </property>
+                  </bean>
+         </mvc:message-converters>
+   </mvc:annotation-driven>
 </beans>	
