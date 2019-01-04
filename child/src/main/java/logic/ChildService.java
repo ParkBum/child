@@ -122,6 +122,10 @@ public class ChildService {
 		userDao.userDelete(mnum);
 	}
 
+	public void boardDelete(Integer bnum) {
+		boardDao.boardDelete(bnum);
+	}
+
 }
 
 

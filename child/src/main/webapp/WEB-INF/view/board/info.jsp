@@ -82,7 +82,10 @@ $(document).ready(function() {
 	<table border="1" style="border-collapse: collapse; width:60%;" align="center">
 		<tr style="height:30px;">
 			<td width="15%" style="text-align:center;">작성자</td>
-			<td width="90%">&nbsp;${board.nickname}</td>
+			<td width="90%">&nbsp;${board.nickname}
+			<c:if test="${board.bType == 3}">
+				&nbsp;<input type="button" value="신고">
+				</c:if></td>
 		</tr>
 		<tr style="height:30px;">
 			<td style="text-align:center;">제목</td>
@@ -144,3 +147,18 @@ $(document).ready(function() {
 	</table>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

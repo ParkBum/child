@@ -81,7 +81,7 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-			<a href="info.child?num=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}]&nbsp;${board.subject}</a></td>
+			<a href="info.child?bnum=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}]&nbsp;${board.subject}</a></td>
 			<td align="left">${board.nickname}</td> 
 			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>

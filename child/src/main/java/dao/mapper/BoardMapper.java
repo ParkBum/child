@@ -1,5 +1,6 @@
 package dao.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,5 +17,8 @@ public interface BoardMapper {
 
 	@Select("select ifnull(max(bnum), 0) from board")
 	int maxBnum();
+
+	@Delete("delete from board where bnum = #{bnum}")
+	void boardDelete(Integer bnum);
 
 }

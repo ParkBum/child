@@ -100,5 +100,31 @@ public class BoardController {
 		mav.addObject("board", board);
 		return mav;
 	}
+	
+	@RequestMapping(value = "board/delete")
+	public ModelAndView delete(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		service.boardDelete(bnum);
+		mav.setViewName("redirect:/board/list.child?bType=3");
+		return mav;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
