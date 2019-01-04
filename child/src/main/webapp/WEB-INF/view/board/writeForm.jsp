@@ -69,8 +69,8 @@ $(document).ready(function() {
 	$('#list').click(function() {
 		location.href = "list.child?bType=" + $('input[name=bType]').val();
 	});
-	$('form').submit(function(){
-		var check = confirm('등록 하시겠습니까?');
+	$('form').submit(function() {
+		var check = confirm('등록하시겠습니까?');
 		var btype = $('input[name=bType]').val();
 		var head = $('select[name=head]').val();
 		if (check) {
