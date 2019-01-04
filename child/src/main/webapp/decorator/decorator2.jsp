@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
 </script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style type="text/css">
 html {
 /* 	background-image: url("../decorator/field.jpg"); */
@@ -38,7 +39,7 @@ body {
 
 /* 상단 바 */
 .menu-bar {
-  background: skyblue;
+  background-color: navy;
   display: inline-block;
   width: 100%;
 }
@@ -55,8 +56,8 @@ body {
   position: relative;
   margin : auto 0;
 }
-.menu li:hover { background: white; }
-.menu li:hover>a { color: skyblue; }
+.menu .right:hover { background: white; }
+.menu .right:hover>a { color: navy; }
 .menu a {
   color: white;
   display: block;
@@ -89,7 +90,7 @@ body {
 /*하단 footer */
 .footer {
 
-	background-color: #006633 ;
+	background-color: #999999 ;
 	color: white;
 	text-align: center;
 	padding: 10px;
@@ -97,18 +98,32 @@ body {
 
 </style>
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+$(function(){
+  $(".menu li").hover(function(){
+    $('ul:first',this).show();
+  }, function(){
+    $('ul:first',this).hide();
+  });
+  $(".menu>li:has(ul)>a").each( function() {
+    $(this).html( $(this).html()+' &or;' );
+  });
+  $(".menu ul li:has(ul)")
+    .find("a:first")
+});
+</script>
 </head>
 <body>
-<div id="wrap">
+
  <div class='menu-bar'>
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
+    <li class="left"><a href="${path}/main/main.child">home</a></li>
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child" >로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px; color:white;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
 		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
@@ -125,13 +140,15 @@ body {
 	</c:if>
   </ul>
 </div>
+<div id="wrap">
 	<div class="main">
-		<decorator:body />
-	</div>
-	<hr style="color:black;">
-	<div class="footer">
-		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+		<decorator:body/>
 	</div>
 </div>
+	<hr style="color:black;">
+	<div class="footer">
+		<p class="foottext"><i class="material-icons" style="color:white; font-size: 20px;">home</i>&nbsp;서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+	</div>
+
 </body>
 </html>
