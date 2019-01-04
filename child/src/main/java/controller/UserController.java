@@ -108,7 +108,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("user/update")
-	public ModelAndView update(@Valid User user, BindingResult bindResult, HttpSession session, Integer mnum) {
+	public ModelAndView update(@Valid User user, BindingResult bindResult, Integer mnum, HttpSession session) {
 		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회 /user는 새 정보
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) { 
@@ -119,7 +119,8 @@ public class UserController {
 		if (user.getPassword().equals(user2.getPassword())) { // 비밀번호 일치
 			try {
 				service.userUpdate(user);
-				mav.setViewName("redirect:../admin/list.child?mnum="+user.getMnum());
+				mav.addObject("user",user);
+				mav.setViewName("redirect:../admin/list.child?mnum="+ mnum);
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
