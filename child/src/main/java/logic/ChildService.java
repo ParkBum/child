@@ -118,4 +118,21 @@ public class ChildService {
 
 	}
 
+	public void userDelete(Integer mnum) {
+		userDao.userDelete(mnum);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

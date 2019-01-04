@@ -52,6 +52,12 @@ public class UserDao {
 	public void userUpdate(User user) {
 		sqlsession.getMapper(UserMapper.class).userUpdate(user);
 	}
+
+	public void userDelete(Integer mnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mnum", mnum);
+		sqlsession.getMapper(UserMapper.class).userDelete(mnum);
+	}
 }
 
 

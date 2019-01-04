@@ -16,7 +16,9 @@ public class User {
 	@Size(min=4, message="패스워드는 4자 이상이어야 합니다.")
 	private String password;
 	private String password1;
-	private String authnum;
+	private String addr1;
+	private String addr2;
+	private String addr3;
 	
 	
 
@@ -26,14 +28,6 @@ public class User {
 
 	public void setPassword1(String password1) {
 		this.password1 = password1;
-	}
-
-	public String getAuthnum() {
-		return authnum;
-	}
-
-	public void setAuthnum(String authnum) {
-		this.authnum = authnum;
 	}
 
 	public int getMnum() {
@@ -67,5 +61,31 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
+
+	public String getAddr3() {
+		return addr3;
+	}
+
+	public void setAddr3(String addr3) {
+		this.addr3 = addr3;
+	}
+	
+	
 
 }
