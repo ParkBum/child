@@ -77,13 +77,16 @@ public class BoardController {
 	public ModelAndView info(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
+		/*
+		 * boardcnt : 조회수 증가 필요
+		 */
 		mav.addObject("board", board);
 		return mav;
 	}
 
 	@RequestMapping(value = "board/write", method = RequestMethod.POST)
 	public ModelAndView write(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("board/writeForm");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
 			return mav;
@@ -91,7 +94,7 @@ public class BoardController {
 		try {
 			service.boardInsert(board, request);
 			mav.addObject("board", board);
-			mav.setViewName("redirect:/board/list.child?btype=" + board.getbType());
+			mav.setViewName("redirect:/board/list.child?bType=" + board.getbType());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

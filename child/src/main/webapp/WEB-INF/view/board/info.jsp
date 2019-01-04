@@ -27,6 +27,7 @@ td {
 			<td style="text-align:center;">제목</td>
 			<td>&nbsp;${board.subject}</td>
 		</tr>
+		<%-- 후기 게시판은 별점 나타내는 부분 표시 --%>
 		<tr>
 			<td style="text-align:center;">내용</td>
 			<td>
