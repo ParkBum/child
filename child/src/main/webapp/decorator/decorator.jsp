@@ -13,6 +13,7 @@
 <decorator:head />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
 </script>
 <style type="text/css">
@@ -20,17 +21,18 @@ html {
 /* 	background-image: url("../decorator/field.jpg"); */
 	background-position : center;
 	background-size: cover;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 * {
 	box-sizing: border-box;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
 	max-width: 1200px;
 	margin: 0 auto;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 /* 상단 바 */
 .menu-bar {
@@ -80,6 +82,7 @@ body {
 }
 /*하단 footer */
 .footer {
+	background-color:;
 	text-align: center;
 	padding: 10px;
 }
