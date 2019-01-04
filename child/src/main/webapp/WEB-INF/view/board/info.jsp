@@ -38,15 +38,15 @@ $(document).ready(function() {
 	if (btype == 2) {
 		switch(score){
 			case "0.5": $('#left1').addClass('on').prevAll('span').addClass('on'); break;
-			case "1": $('#right1').addClass('on').prevAll('span').addClass('on'); break;
+			case "1.0": $('#right1').addClass('on').prevAll('span').addClass('on'); break;
 			case "1.5": $('#left2').addClass('on').prevAll('span').addClass('on'); break;
-			case "2": $('#right2').addClass('on').prevAll('span').addClass('on'); break;
+			case "2.0": $('#right2').addClass('on').prevAll('span').addClass('on'); break;
 			case "2.5": $('#left3').addClass('on').prevAll('span').addClass('on'); break;
-			case "3": $('#right3').addClass('on').prevAll('span').addClass('on'); break;
+			case "3.0": $('#right3').addClass('on').prevAll('span').addClass('on'); break;
 			case "3.5": $('#left4').addClass('on').prevAll('span').addClass('on'); break;
-			case "4": $('#right4').addClass('on').prevAll('span').addClass('on'); break;
+			case "4.0": $('#right4').addClass('on').prevAll('span').addClass('on'); break;
 			case "4.5": $('#left5').addClass('on').prevAll('span').addClass('on'); break;
-			case "5": $('#right5').addClass('on').prevAll('span').addClass('on'); break;
+			case "5.0": $('#right5').addClass('on').prevAll('span').addClass('on'); break;
 		}
 	}	
 	
@@ -116,6 +116,7 @@ $(document).ready(function() {
 				</table>
 			</td>
 		</tr>
+		<c:if test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
 		<tr>
 			<td style="text-align:center;">Ã·ºÎÆÄÀÏ</td>
 			<td>&nbsp;
@@ -130,6 +131,7 @@ $(document).ready(function() {
 				</c:if>
 			</td>
 		</tr>
+		</c:if>
 		<tr>
 			<td colspan="2" style="text-align:center;height:30px;">
 			<c:if test="${sessionScope.loginUser.mnum == board.mnum}">

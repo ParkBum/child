@@ -46,15 +46,15 @@ $(document).ready(function() {
 		$(this).addClass('on').prevAll('span').addClass('on');
 		switch(starRevId){
 		case "left1": $("#score").val('0.5'); break;
-		case "right1": $("#score").val('1'); break;
+		case "right1": $("#score").val('1.0'); break;
 		case "left2": $("#score").val('1.5'); break;
-		case "right2": $("#score").val('2'); break;
+		case "right2": $("#score").val('2.0'); break;
 		case "left3": $("#score").val('2.5'); break;
-		case "right3": $("#score").val('3'); break;
+		case "right3": $("#score").val('3.0'); break;
 		case "left4": $("#score").val('3.5'); break;
-		case "right4": $("#score").val('4'); break;
+		case "right4": $("#score").val('4.0'); break;
 		case "left5": $("#score").val('4.5'); break;
-		case "right5": $("#score").val('5'); break;
+		case "right5": $("#score").val('5.0'); break;
 		}
 		return false;
 	});
