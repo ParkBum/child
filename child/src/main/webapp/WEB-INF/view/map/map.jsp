@@ -59,10 +59,11 @@ option {
 </head>
 <body>
 	<div id="SearchAndMap">
+		<form action="search.child" method="post">
 		<div id="search">
 			<div style="display: inline-block; margin :8% auto; vertical-align: middle; width : 80%;">
 					<p>구를 선택해주세요</p>
-					<select name="">
+					<select name="gu">
 							<option>강남구</option>
 							<option>강동구</option>
 							<option>강북구</option>
@@ -90,26 +91,27 @@ option {
 							<option>중랑구</option>
 					</select>
 					<p>어린이집 유형</p>
-
-					<select name="">
+					<select name="type">
+							<option value="">선택하세요</option>
 							<option>가정</option>
 							<option>국공립</option>
 							<option>민간</option>
-							<option>법인/단체 등</option>
+							<option>법인·단체등</option>
 							<option>사회복지법인</option>
 							<option>협동</option>
 					</select>
 					<p>통원 버스 유무</p>
-					<select name="">
+					<select name="bus">
+							<option value="">선택하세요</option>
 							<option>운영</option>
 							<option>미운영</option>
 					</select>
 					<hr>
-				<input type="text" name="" placeholder="검색할 단어를 입력해주세요">
-				<input type="button" value="검색" onsubmit="">
+				<input type="text" name="word" placeholder="검색할 단어를 입력해주세요">
+				<input type="submit" value="검색">			
 			</div>
-
 		</div>
+		</form>
 		<div id="wmap">
 			<div id="map" class="section"
 				style="width: 95%; height: 330px; margin: 10px auto;">
@@ -124,6 +126,7 @@ option {
 			//지도를 삽입할 HTML 요소 또는 HTML 요소의 id를 지정합니다.
 			var mapDiv = document.getElementById('map'); // 'map'으로 선언해도 동일
 			//옵션 없이 지도 객체를 생성하면 서울 시청을 중심으로 하는 11 레벨의 지도가 생성됩니다.
+			
 			var map = new naver.maps.Map(mapDiv, {
 				center : new naver.maps.LatLng(37.2900533, 127.1036797),
 				zoom : 10,
@@ -136,11 +139,40 @@ option {
 					position : naver.maps.Position.TOP_LEFT
 				}
 			});
-
-
 			//지도 컨트롤
 			$("#interaction, #tile-transition, #controls").addClass(
 					"control-on");
+		</script>
+		<script type="text/javascript">
+		var map = document.getElementById('map');
+		//마커 찍기
+		<c:forEach items="${addr}" var="addrs">
+		var myaddress = ${addrs};
+		naver.maps.Service.geocode({address:myaddress},function(status,response) {
+			if (status !== naver.maps.Service.Status.OK) {
+	              return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
+	          }
+		
+		var result = response.result;
+		 // 검색 결과 갯수: result.total
+         // 첫번째 결과 결과 주소: result.items[0].address
+         // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
+         var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
+         // 마커 표시
+         var marker = new naver.maps.Marker({
+             position: myaddr,
+             map: map
+		});
+         // 마커 클릭 이벤트 처리
+          naver.maps.Event.addListener(marker, "click", function(e) {
+            if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+            }
+          });
+		});
+        </c:forEach>
 		</script>
 	</div>
 </body>

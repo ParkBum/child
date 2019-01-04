@@ -140,7 +140,7 @@ $(function(){
 	</div>
 	<hr style="color:black;">
 	<div class="footer">
-		<p class="foottext" >서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
 </body>
 </html>

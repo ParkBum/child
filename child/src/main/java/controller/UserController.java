@@ -22,11 +22,6 @@ public class UserController {
 	@Autowired
 	ChildService service;
 
-	@RequestMapping("main/main")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	}
 
 
 	@RequestMapping("user/loginForm")

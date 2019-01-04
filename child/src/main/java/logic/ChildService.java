@@ -2,6 +2,7 @@ package logic;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
+import dao.MapDao;
 import dao.UserDao;
 
 @Service
@@ -19,6 +21,8 @@ public class ChildService {
 	private UserDao userDao;
 	@Autowired
 	private BoardDao boardDao;
+	@Autowired
+	private MapDao mapDao;
 
 	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
 		String uploadPath = request.getServletContext().getRealPath("/") + "/" + path + "/";
@@ -94,8 +98,24 @@ public class ChildService {
 		return user;
 	}
 
+
 	public void userUpdate(User user) {
 		userDao.userUpdate(user);
+	}
+
+
+	public List<String> gusort() {
+		return mapDao.gusort();
+	}
+
+	public List<Integer> cntsort() {
+		return mapDao.cntsort();
+	}
+
+	public List<String> getpoint(String gu, String type, String bus, String word) {
+		
+		return mapDao.getpoints(gu,type,bus,word);
+
 	}
 
 }
