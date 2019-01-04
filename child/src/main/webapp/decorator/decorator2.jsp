@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
 </script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style type="text/css">
 html {
 /* 	background-image: url("../decorator/field.jpg"); */
@@ -28,12 +29,17 @@ html {
 }
 
 body {
-	max-width: 1200px;
 	margin: 0 auto;
 	font-family: Arial, Helvetica, sans-serif;
 }
+#wrap {
+	max-width : 1200px;
+	margin : 0 auto;
+}
+
 /* 상단 바 */
 .menu-bar {
+  background-color: navy;
   display: inline-block;
   width: 100%;
 }
@@ -50,7 +56,10 @@ body {
   position: relative;
   margin : auto 0;
 }
+.menu .right:hover { background: white; }
+.menu .right:hover>a { color: navy; }
 .menu a {
+  color: white;
   display: block;
   padding: 10px 20px;
   text-decoration: none;
@@ -80,22 +89,41 @@ body {
 }
 /*하단 footer */
 .footer {
+
+	background-color: #999999 ;
+	color: white;
 	text-align: center;
 	padding: 10px;
 }
 
 </style>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+$(function(){
+  $(".menu li").hover(function(){
+    $('ul:first',this).show();
+  }, function(){
+    $('ul:first',this).hide();
+  });
+  $(".menu>li:has(ul)>a").each( function() {
+    $(this).html( $(this).html()+' &or;' );
+  });
+  $(".menu ul li:has(ul)")
+    .find("a:first")
+});
+</script>
 </head>
 <body>
+
  <div class='menu-bar'>
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/logo2.png"></a></li>
+    <li class="left"><a href="${path}/main/main.child">home</a></li>
     <c:if test="${empty sessionScope.loginUser}">
-	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
-	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
+	<li class="right"><a href="${path}/user/loginForm.child" >로그인</a></li>
+	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px; color:white;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
 		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
@@ -105,19 +133,22 @@ body {
 	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
 		<ul>
 			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
-       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
+       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a>
 		</ul>
 	</li>
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
 	</c:if>
   </ul>
 </div>
+<div id="wrap">
 	<div class="main">
-		<decorator:body />
+		<decorator:body/>
 	</div>
-	<hr>
+</div>
+	<hr style="color:black;">
 	<div class="footer">
-		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+		<p class="foottext"><i class="material-icons" style="color:white; font-size: 20px;">home</i>&nbsp;서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
+
 </body>
 </html>

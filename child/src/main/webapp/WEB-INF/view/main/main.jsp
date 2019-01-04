@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(function() {
 var ctx = document.getElementById("Chart").getContext('2d');
 var myChart = new Chart(ctx, {
@@ -55,7 +55,7 @@ var myChart = new Chart(ctx, {
     }
 });
 })
-</script> -->
+</script>
 <style type="text/css">
 .canvas-holder {
 	width: 100%;
@@ -73,9 +73,9 @@ var myChart = new Chart(ctx, {
 
 .card {
 	margin: 25px 0;
-	float: right;
-	width: 33.3%;
+	width: 100%;
 	height: 250px;
+	border : solid 1px black;
 	text-align: center;
 }
 
@@ -83,9 +83,10 @@ var myChart = new Chart(ctx, {
 	display: inline-block;
 	width: 180px;
 	height: 230px;
-	border-radius: 20px;
-	background-color: #9FF781;
-	margin: 25px;
+	/* border-radius: 20px;
+	background-color: #9FF781; */
+	border : solid 1px black;
+	margin: 10px 30px;
 	width: 180px;
 }
 
@@ -102,22 +103,18 @@ var myChart = new Chart(ctx, {
 	<div class="menus">
 		<div class="card">
 			<div class="image">
-				<img src="../decorator/shopping-cart.png" width="150px"
-					height="150px" style="margin: 10px"> <a class="main-a"
-					href="../board/list.child?bType=3">중고거래></a>
-			</div>
-		</div>
-		<div class="card">
-			<div class="image">
-				<img src="../decorator/group.png" width="150px" height="150px"
-					style="margin: 10px"> <a  class="main-a" href="../board/list.child?bType=1">커뮤니티></a>
+				<!-- <img src="../decorator/shopping-cart.png" width="150px"
+					height="150px" style="margin: 10px"> <a class="main-a" href="../board/list.child?bType=3">중고거래></a> -->
 			</div>
 
-		</div>
-		<div class="card">
 			<div class="image">
-				<img src="../decorator/location.png" width="150px" height="150px"
-					style="margin: 10px"> <a class="main-a" href="../map/map.child">지도 검색></a>
+				<!-- <img src="../decorator/group.png" width="150px" height="150px"
+					style="margin: 10px"> <a  class="main-a" href="../board/list.child?bType=1">커뮤니티></a> -->
+			</div>
+
+			<div class="image">
+			<!-- 	<img src="../decorator/location.png" width="150px" height="150px"
+					style="margin: 10px"> <a class="main-a" href="../map/map.child">지도 검색></a> -->
 			</div>
 		</div>
 	</div>
