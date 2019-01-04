@@ -52,4 +52,14 @@ public class BoardDao {
 	public int maxBnum() {
 		return sqlSession.getMapper(BoardMapper.class).maxBnum();
 	}
+
+	public void boardDelete(Integer bnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("bnum", bnum);
+		sqlSession.getMapper(BoardMapper.class).boardDelete(bnum);
+	}
 }
+
+
+
+

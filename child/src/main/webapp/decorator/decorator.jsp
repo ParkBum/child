@@ -34,7 +34,6 @@ body {
 }
 /* 상단 바 */
 .menu-bar {
-  background: skyblue;
   display: inline-block;
   width: 100%;
 }
@@ -51,10 +50,7 @@ body {
   position: relative;
   margin : auto 0;
 }
-.menu li:hover { background: white; }
-.menu li:hover>a { color: skyblue; }
 .menu a {
-  color: white;
   display: block;
   padding: 10px 20px;
   text-decoration: none;
@@ -84,9 +80,6 @@ body {
 }
 /*하단 footer */
 .footer {
-
-	background-color: #006633 ;
-	color: white;
 	text-align: center;
 	padding: 10px;
 }
@@ -96,10 +89,10 @@ body {
 <body>
  <div class='menu-bar'>
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
+    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/logo2.png"></a></li>
     <c:if test="${empty sessionScope.loginUser}">
-	<li class="right"><a href="${path}/user/loginForm.child" >로그인</a></li>
-	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
+	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
+	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
 	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
@@ -112,7 +105,7 @@ body {
 	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
 		<ul>
 			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
-       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a>
+       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
 		</ul>
 	</li>
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
