@@ -10,7 +10,48 @@
 td {
 	text-align : left;
 }
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+}
+.starR1.on{background-position:0 0;}
+.starR2.on{background-position:-15px 0;}
 </style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	var btype = $('input[name=bType]').val();
+	var score = $('input[name=score]').val();
+	
+	if (btype == 2) {
+		switch(score){
+		case "0.5": $('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case "1": $('#right1').addClass('on').prevAll('span').addClass('on'); break;
+		case "1.5": $('#left2').addClass('on').prevAll('span').addClass('on'); break;
+		case "2": $('#right2').addClass('on').prevAll('span').addClass('on'); break;
+		case "2.5": $('#left3').addClass('on').prevAll('span').addClass('on'); break;
+		case "3": $('#right3').addClass('on').prevAll('span').addClass('on'); break;
+		case "3.5": $('#left4').addClass('on').prevAll('span').addClass('on'); break;
+		case "4": $('#right4').addClass('on').prevAll('span').addClass('on'); break;
+		case "4.5": $('#left5').addClass('on').prevAll('span').addClass('on'); break;
+		case "5": $('#right5').addClass('on').prevAll('span').addClass('on'); break;
+		}
+	}
+	
+});
+</script>
 </head>
 <body>
 <h4><c:choose>
@@ -18,7 +59,9 @@ td {
 <c:when test="${board.bType == 2}">후기</c:when>
 <c:when test="${board.bType == 3}">거래</c:when>
 </c:choose>게시판</h4>
-	<table border="1" style="border-collapse: collapse; width: 100%;">
+	<input type="hidden" name="bType" value="${board.bType}">
+	<input type="hidden" name="score" value="${board.score}">
+	<table border="1" style="border-collapse: collapse; width: 60%;">
 		<tr>
 			<td width="15%" style="text-align:center;">글쓴이</td>
 			<td width="90%">&nbsp;${board.nickname}</td>
@@ -27,7 +70,24 @@ td {
 			<td style="text-align:center;">제목</td>
 			<td>&nbsp;${board.subject}</td>
 		</tr>
-		<%-- 후기 게시판은 별점 나타내는 부분 표시 --%>
+		<c:if test="${board.bType == 2}">
+		<tr style="height:30px;">
+			<th style="text-align:center;">별점</th>
+			<td style="padding-left:5px;">
+			<div class="starRev">
+				<span class="starR1" id="left1">별1_왼쪽</span>
+				<span class="starR2" id="right1">별1_오른쪽</span>
+				<span class="starR1" id="left2">별2_왼쪽</span>
+				<span class="starR2" id="right2">별2_오른쪽</span>
+				<span class="starR1" id="left3">별3_왼쪽</span>
+				<span class="starR2" id="right3">별3_오른쪽</span>
+				<span class="starR1" id="left4">별4_왼쪽</span>
+				<span class="starR2" id="right4">별4_오른쪽</span>
+				<span class="starR1" id="left5">별5_왼쪽</span>
+				<span class="starR2" id="right5">별5_오른쪽</span>
+			</div></td>
+		</tr>
+		</c:if>
 		<tr>
 			<td style="text-align:center;">내용</td>
 			<td>
