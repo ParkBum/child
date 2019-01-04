@@ -1,9 +1,6 @@
 package logic;
 
 import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,9 +8,7 @@ public class Board {
 	private int bnum; // 게시글번호
 	private int mnum; // 작성자 회원번호
 	private String nickname; // 닉네임
-	//bType->btype으로 변경해야할듯 했으나 boardMapper.java에서 수정 : 이창환
 	private int bType; // 게시판 종류
-	@NotEmpty(message = "말머리를 선택하세요")
 	private int head; // 말머리
 	@NotEmpty(message = "제목을 선택하세요")
 	private String subject; // 제목

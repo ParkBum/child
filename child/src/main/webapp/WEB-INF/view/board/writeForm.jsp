@@ -65,11 +65,32 @@ $(document).ready(function() {
 	$('#box2').click(function() {
 		$('#tr2').show();
 	});
+	
+	$('#list').click(function() {
+		location.href = "list.child?bType=" + $('input[name=bType]').val();
+	});
+	$('form').submit(function(){
+		var check = confirm('등록 하시겠습니까?');
+		var btype = $('input[name=bType]').val();
+		var head = $('select[name=head]').val();
+		if (check) {
+			if (btype == 2){
+				return check_submit;				
+			} else {
+				if (head.length == 0){
+					alert("말머리를 선택하세요");
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+	});
 });
 </script>
 </head>
 <body>
-<form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f">
+<form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f" method="post">
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 	<input type="hidden" name="score" id="score" value="0">
@@ -128,8 +149,7 @@ $(document).ready(function() {
 		</tr>
 		<tr style="height:30px;">
 			<td colspan="2" style="text-align:center;">
-			<a href="javascript:document.f.submit()">게시물등록</a>
-			<a href="list.child?bType=${board.bType}">게시물목록</a>
+			<input type="submit" value="등록"><input type="button" id="list" value="목록">
 			</td>
 		</tr>
 	</table>
