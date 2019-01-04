@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function() {
 var ctx = document.getElementById("Chart").getContext('2d');
 var myChart = new Chart(ctx, {
@@ -55,12 +55,13 @@ var myChart = new Chart(ctx, {
     }
 });
 })
-</script>
+</script> -->
 <style type="text/css">
 .canvas-holder {
 	width: 100%;
 	height: 400px;
-	border : solid 1px black;
+	border : solid 2px silver;
+	border-radius: 20px;
 }
 
 

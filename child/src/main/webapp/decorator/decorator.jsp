@@ -17,7 +17,7 @@
 </script>
 <style type="text/css">
 html {
-	background-image: url("../decorator/field.jpg");
+/* 	background-image: url("../decorator/field.jpg"); */
 	background-position : center;
 	background-size: cover;
 }
@@ -69,7 +69,7 @@ body {
   top: 100%;
   width: 180px;
 }
-.menu ul li { float: none; z-index: 300;}
+.menu ul li { list-style:none; float: none; z-index: 300;}
 .menu ul .right :hover { background: #ddd; }
 .menu ul .right :hover a { color: black; }
 .menu ul a { color: black; }
@@ -105,7 +105,6 @@ $(function(){
   });
   $(".menu ul li:has(ul)")
     .find("a:first")
-    .append("<p style='float:right; margin:-3px'>&#9656;</p>");
 });
 </script>
 </head>
