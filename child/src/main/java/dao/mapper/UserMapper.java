@@ -25,6 +25,6 @@ public interface UserMapper {
 	void userUpdate(User user);
 
 	@Delete("Delete from user where mnum = #{mnum}")
-	void userDelete(User user);
+	void userDelete(Integer mnum);
 
 }
