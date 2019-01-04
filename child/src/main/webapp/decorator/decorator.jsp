@@ -69,7 +69,7 @@ body {
   top: 100%;
   width: 180px;
 }
-.menu ul li { float: none; z-index: 300;}
+.menu ul li { list-style:none; float: none; z-index: 300;}
 .menu ul .right :hover { background: #ddd; }
 .menu ul .right :hover a { color: black; }
 .menu ul a { color: black; }
