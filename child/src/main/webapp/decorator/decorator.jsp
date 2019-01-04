@@ -39,7 +39,13 @@ body {
   width: 100%;
 }
 .menu { margin: auto; padding: 0 auto; }
-.menu .left {
+.menu .lefthome {
+  float:left;
+  list-style:none;
+  position: relative;
+  margin : auto 0;
+}
+.menu .lefttext {
   float:left;
   list-style:none;
   position: relative;
@@ -78,13 +84,11 @@ body {
 
 /* main */
 .main {
-	
 	padding: 10px;
 	height: 800px;
 }
 /*하단 footer */
 .footer {
-
 	background-color: #006633 ;
 	color: white;
 	text-align: center;
@@ -111,13 +115,16 @@ $(function(){
 <body>
  <div class='menu-bar'>
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
+    <li class="lefthome"><a href="${path}/main/main.child">
+    <!-- <img src="../decorator/house.png" width="25px" height="25px"> -->
+    home
+    </a></li>
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child" >로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child" >회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
+	<li class="lefttext"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
 	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
 		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
