@@ -20,9 +20,7 @@ public interface UserMapper {
 	@Select("select * from user where mnum = #{mnum}")
 	User infoSelect(Integer mnum);
 
-	@Update("update user set email = #{email}, nickname= #{nickname}, password = #{password}" +
-					" where mnum = #{mnum}")
+	@Update("update user set nickname= #{nickname} where mnum = #{mnum}")
 	void userUpdate(User user);
-
 
 }

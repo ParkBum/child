@@ -88,13 +88,24 @@ td.title {
 					<td>${user.email}</td>
 					<td>${user.nickname}</td>
 					<td><a href="../user/updateForm.child?mnum=${user.mnum}">¼öÁ¤</a>
-						<a href="../user/delete.child?mnum=${user.mnum}">°­Á¦Å»Åð</a> 
-						<a href="../user/mypage.child?mnum=${user.mnum}">È¸¿øÁ¤º¸</a></td>
+						<a href="../user/delete.child?mnum=${user.mnum}">°­Á¦Å»Åð</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
 	</c:if>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

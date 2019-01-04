@@ -17,7 +17,7 @@
 </script>
 <style type="text/css">
 html {
-	background-image: url("../decorator/field.jpg");
+/* 	background-image: url("../decorator/field.jpg"); */
 	background-position : center;
 	background-size: cover;
 }
