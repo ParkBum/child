@@ -60,7 +60,8 @@ var myChart = new Chart(ctx, {
 .canvas-holder {
 	width: 100%;
 	height: 400px;
-	background-color : navy;
+	border : solid 2px silver;
+	border-radius: 20px;
 }
 
 
@@ -82,8 +83,8 @@ var myChart = new Chart(ctx, {
 	display: inline-block;
 	width: 180px;
 	height: 230px;
-	border-radius: 50%;
-	background-color: gold;
+	border-radius: 20px;
+	background-color: #9FF781;
 	margin: 25px;
 	width: 180px;
 }
@@ -101,21 +102,22 @@ var myChart = new Chart(ctx, {
 	<div class="menus">
 		<div class="card">
 			<div class="image">
-<!-- 				<img src="../decorator/shopping-cart.png" width="150px"	height="150px" style="margin: 10px"> -->
-				<a class="main-a" href="../board/list.child?bType=3">중고거래></a>
+				<img src="../decorator/shopping-cart.png" width="150px"
+					height="150px" style="margin: 10px"> <a class="main-a"
+					href="../board/list.child?bType=3">중고거래></a>
 			</div>
 		</div>
 		<div class="card">
 			<div class="image">
-				<!-- <img src="../decorator/group.png" width="150px" height="150px" style="margin: 10px"> -->
-				<a  class="main-a" href="../board/list.child?bType=1">커뮤니티></a>
+				<img src="../decorator/group.png" width="150px" height="150px"
+					style="margin: 10px"> <a  class="main-a" href="../board/list.child?bType=1">커뮤니티></a>
 			</div>
 
 		</div>
 		<div class="card">
 			<div class="image">
-				<!-- <img src="../decorator/location.png" width="150px" height="150px"style="margin: 10px"> -->
-				 <a class="main-a" href="../map/map.child">지도 검색></a>
+				<img src="../decorator/location.png" width="150px" height="150px"
+					style="margin: 10px"> <a class="main-a" href="../map/map.child">지도 검색></a>
 			</div>
 		</div>
 	</div>

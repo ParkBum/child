@@ -16,25 +16,90 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
 </script>
 <style type="text/css">
+html {
+/* 	background-image: url("../decorator/field.jpg"); */
+	background-position : center;
+	background-size: cover;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#wrap {
+	max-width : 1200px;
+	margin : 0 auto;
+}
+
+/* 상단 바 */
+.menu-bar {
+  background: skyblue;
+  display: inline-block;
+  width: 100%;
+}
+.menu { margin: auto; padding: 0 auto; }
+.menu .left {
+  float:left;
+  list-style:none;
+  position: relative;
+  margin : auto 0;
+}
+.menu .right {
+  float:right;
+  list-style:none;
+  position: relative;
+  margin : auto 0;
+}
+.menu li:hover { background: white; }
+.menu li:hover>a { color: skyblue; }
+.menu a {
+  color: white;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.menu ul {
+  background: #eee;
+  border: 1px solid silver;
+  display: none;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 180px;
+}
+.menu ul li { list-style:none; float: none; z-index: 300;}
+.menu ul .right :hover { background: #ddd; }
+.menu ul .right :hover a { color: black; }
+.menu ul a { color: black; }
+.menu ul ul { left: 100%; top: 0; }
+.menu ul ul li {float:left; margin-right:10px;}
+
+/* main */
+.main {
+	
+	padding: 10px;
+	height: 800px;
+}
+/*하단 footer */
+.footer {
+
+	background-color: #006633 ;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
 
 </style>
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script>
-$(function(){
-  $(".menu li").hover(function(){
-    $('ul:first',this).show();
-  }, function(){
-    $('ul:first',this).hide();
-  });
-  $(".menu>li:has(ul)>a").each( function() {
-    $(this).html( $(this).html()+' &or;' );
-  });
-  $(".menu ul li:has(ul)")
-    .find("a:first")
-});
-</script>
 </head>
 <body>
+<div id="wrap">
  <div class='menu-bar'>
   <ul class="menu">
     <li class="left"><a href="${path}/main/main.child"><img src="../decorator/house.png" width="25px" height="25px"></a></li>
@@ -67,5 +132,6 @@ $(function(){
 	<div class="footer">
 		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
+</div>
 </body>
 </html>
