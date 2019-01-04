@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>게시판 글쓰기</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style type="text/css">
 td {
 	text-align : left;
@@ -59,11 +60,12 @@ $(document).ready(function() {
 <form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f">
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
+	<input type="hidden" name="score" id="score" value="0">
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr>
 			<td style="text-align:center;">제목</td>
 			<td valign="middle">
-			<c:if test="${board.bType != 2 }"> <%-- 후기게시판에서는 머리말 안보이게 해놓음 --%>
+			<c:if test="${board.bType != 2 }">
 				<select name="head" style="height:100%;">
 					<option value="">선택하세요</option>
 				<c:if test="${board.bType == 1}">
@@ -79,7 +81,7 @@ $(document).ready(function() {
 				</c:if>&nbsp;<form:input path="subject" style="height:100%;" />
 			<font color="red"><form:errors path="subject" /></font>
 		</tr>
-		<c:if test="${board.bType == 2}"> <%-- 별점은 후기게시판으로. write시킬 때 sql에 score가 추가됨. --%>
+		<c:if test="${board.bType == 2}">
 		<tr>
 			<td style="text-align:center;">별점</td>
 			<td><div class="starRev">
@@ -93,7 +95,6 @@ $(document).ready(function() {
 				<span class="starR2" id="right4">별4_오른쪽</span>
 				<span class="starR1" id="left5">별5_왼쪽</span>
 				<span class="starR2" id="right5">별5_오른쪽</span>
-				<input type="hidden" name="score" id="score" value="0">
 			</div></td>
 		</tr>
 		</c:if>
@@ -104,20 +105,20 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<td style="text-align:center;">첨부파일1</td>
-			<td><input type="file" name="multi1">
+			<td><input type="file" name="multi1"><a href="#"><i class="material-icons" style="vertical-align:middle;">add_box</i></a></td>
 		</tr>
 		<tr>
 			<td style="text-align:center;">첨부파일2</td>
-			<td><input type="file" name="multi2">
+			<td><input type="file" name="multi2"><a href="#"><i class="material-icons" style="vertical-align:middle;">add_box</i></a></td>
 		</tr>
 		<tr>
 			<td style="text-align:center;">첨부파일3</td>
-			<td><input type="file" name="multi3">
+			<td><input type="file" name="multi3"></td>
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align:center;">
 			<a href="javascript:document.f.submit()">게시물등록</a>
-			<a href="list.shop">게시물목록</a>
+			<a href="list.child?bType=${board.bType}">게시물목록</a>
 			</td>
 		</tr>
 	</table>
