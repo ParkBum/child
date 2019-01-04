@@ -13,7 +13,7 @@ public class Board {
 	private String nickname; // 닉네임
 	//bType->btype으로 변경해야할듯 했으나 boardMapper.java에서 수정 : 이창환
 	private int bType; // 게시판 종류
-	@NotNull(message = "말머리를 선택하세요")
+	@NotEmpty(message = "말머리를 선택하세요")
 	private int head; // 말머리
 	@NotEmpty(message = "제목을 선택하세요")
 	private String subject; // 제목
