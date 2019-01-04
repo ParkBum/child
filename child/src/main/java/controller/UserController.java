@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,11 +12,14 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import logic.ChildService;
 import logic.User;
+import util.NaverLoginBO;
 
 @Controller
 public class UserController {
@@ -25,8 +29,9 @@ public class UserController {
 
 
 	@RequestMapping("user/loginForm")
-	public ModelAndView loginForm() {
-		ModelAndView mav = new ModelAndView("user/loginForm");
+	public ModelAndView loginForm(HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		ModelAndView mav = new ModelAndView("user/loginForm", "url", naverAuthUrl);
 		mav.addObject(new User());
 		return mav;
 	}
@@ -63,6 +68,31 @@ public class UserController {
 		mav.setViewName("redirect:../main/main.child");
 		return mav;
 	}
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+
+	/* NaverLoginBO */
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO){
+		this.naverLoginBO = naverLoginBO;
+	}
+	/*
+	@RequestMapping("user/login")
+	public ModelAndView login(HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		return new ModelAndView("user/loginForm", "url", naverAuthUrl);
+	}*/
+	
+	@RequestMapping("user/callback")
+	public ModelAndView callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
+		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+		return new ModelAndView("user/callback","result", apiResult);
+		
+//		회원 관리를 해야하는 부분. 
+	}
+	
 	
 	@RequestMapping("user/logout")
 	public ModelAndView logout(HttpSession session) {
@@ -98,13 +128,6 @@ public class UserController {
 		}
 		return mav;
 
-	}
-	@RequestMapping("/user/emailauth.html")
-	public ModelAndView getMessage() { //매개변수가 없다.
-		Map map = new HashMap();
-		map.put("result", "비동기 통신 결과");
-		map.put("item", "비동기 통신 아이템");
-		return new ModelAndView("jsonView",map); //jsonview 는 dispatche.xml 의 jsonview 를 가져옴.
 	}
 	
 	@RequestMapping("user/*")

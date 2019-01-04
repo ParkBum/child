@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-
-</div>
+    <br>
+    <div style="text-align:center">${result}</div>
 </body>
 </html>
