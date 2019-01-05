@@ -13,20 +13,24 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE board
 (
-	bnum int(11) NOT NULL,
-	mnum int(11) NOT NULL,
-	btype int(11) NOT NULL,
-	head int(11) NOT NULL,
-	subject varchar(100),
-	content varchar(500),
-	regdate datetime,
-	readcnt int(11),
-	file1 varchar(200),
-	file2 varchar(200),
-	file3 varchar(200),
-	red int(11),
-	PRIMARY KEY (bnum)
-);
+   `bnum` INT(11) NOT NULL,
+   `mnum` INT(11) NOT NULL,
+   `btype` INT(11) NOT NULL,
+   `head` INT(11) NULL DEFAULT NULL,
+   `subject` VARCHAR(100) NULL DEFAULT NULL,
+   `content` VARCHAR(500) NULL DEFAULT NULL,
+   `regdate` DATETIME NULL DEFAULT NULL,
+   `readcnt` INT(11) NULL DEFAULT NULL,
+   `file1` VARCHAR(200) NULL DEFAULT NULL,
+   `file2` VARCHAR(200) NULL DEFAULT NULL,
+   `file3` VARCHAR(200) NULL DEFAULT NULL,
+   `red` INT(11) NULL DEFAULT NULL,
+   `score` DOUBLE NULL DEFAULT NULL,
+   PRIMARY KEY (`bnum`),
+   INDEX `mnum` (`mnum`),
+   CONSTRAINT `board_ibfk_1` FOREIGN KEY (`mnum`) REFERENCES `user` (`mnum`)
+)
+
 
 
 CREATE TABLE comment

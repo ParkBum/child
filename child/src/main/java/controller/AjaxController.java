@@ -1,9 +1,15 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import logic.ChildService;
+import logic.User;
 
 @Controller
 public class AjaxController {
@@ -11,6 +17,24 @@ public class AjaxController {
 	@Autowired
 	private ChildService service;
 	
+	/*@ResponseBody
+	@RequestMapping("user/check")
+	public Map<Object,Object> check(String nickname){
+		String dbnick = service.userSelect())
+		if(nickname != )
+		return null;
+	}*/
+	
+	@ResponseBody
+	@RequestMapping("user/niccheck") //비밀번호 일치 하나요??
+	public Map<Object, Object> nickcheck(String nickname){
+		Map<Object, Object> map = new HashMap<Object, Object>();
+			// 닉네임 확인하는 그거...
+		String msg ="";
+		
+		return map;
+		 
+	}
 }
 	
 	

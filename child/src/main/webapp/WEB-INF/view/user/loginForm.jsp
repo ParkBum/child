@@ -99,7 +99,7 @@ input[type=submit]:hover, input[type=button]:hover {
 			<div class="inner">
 				<div class="inin">
 					<input type="submit" value="로그인"> 
-					<input type="button" value="회원가입" onclick="location.href='userEntry.child'">
+					<input type="button" value="회원가입" onclick="location.href='userForm.child'">
 					<a href="${url}">NaverIdLogin</a>
 				</div>
 			</div>
