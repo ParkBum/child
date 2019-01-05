@@ -130,14 +130,14 @@ input[type=submit] :hover, input[type=reset]:hover {
 			
 			<!-- 주소칸 -->
 			<div class="form-group">                   
-			<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+			<form:input path="addr1" class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" />
 			    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 			</div>
 			<div class="form-group">
-			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
+			    <form:input path="addr2" input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
 			</div>
 			<div class="form-group">
-			    <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+			    <form:input path="addr3" input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
 			</div>
 			
 						
