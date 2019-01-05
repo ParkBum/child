@@ -66,33 +66,62 @@ var myChart = new Chart(ctx, {
 
 
 .menus {
-	margin-top: 40px;
+	margin-top: 25px;
 	width: 100%;
-	height: 300px;
+	height: 250px;
 }
-
-.card {
+.public {
+	margin-top: 20px;
+	width: 100%;
+	height: 95px;
+	border : solid 2px silver;
+}
+.card1 {
+	background-position : center;
+	background-size :cover;
 	margin: 25px 0;
 	width: 100%;
 	height: 250px;
-	border : solid 1px black;
+/* 	border : solid 1px #F8E0E0; */
 	text-align: center;
+	background :  linear-gradient(to right, rgba(255, 0, 102, 0.7),  rgba(255, 0, 204, 0.7)),url("../decorator/samples.png");
 }
 
-.image {
+.card2 {
+	background-position : center;
+	background-size :cover;
+	margin: 8px 0;
+	width: 100%;
+	height: 75px;
+	text-align: center;
+	
+}
+
+.image1 {
 	display: inline-block;
-	width: 180px;
 	height: 230px;
-	/* border-radius: 20px;
-	background-color: #9FF781; */
-	border : solid 1px black;
+	border-radius: 20px;
+	/* background-color: #E6E6E6; 
+	border : solid 1px #E6E6E6; */
 	margin: 10px 30px;
 	width: 180px;
+}
+
+.image2 {
+	display: inline-block;
+	height: 65px;
+	margin: 5px 0;
+	width: 24.5%;
 }
 
 .main-a {
 	text-decoration: none;
 	font-size: xx-large;
+	color : white; 
+}
+.main-b {
+	text-decoration: none;
+	marign:2px 0;
 }
 </style>
 </head>
@@ -101,20 +130,38 @@ var myChart = new Chart(ctx, {
 		 <canvas id="Chart" width="384px" height="130px"></canvas>
 	</div>
 	<div class="menus">
-		<div class="card">
-			<div class="image">
-				<!-- <img src="../decorator/shopping-cart.png" width="150px"
-					height="150px" style="margin: 10px"> <a class="main-a" href="../board/list.child?bType=3">중고거래></a> -->
+		<div class="card1">
+			<div class="image1">
+				  <a class="main-a" href="../map/map.child" style="border:solid 1px black;"><img src="../decorator/locations.png" width="150px" height="150px"
+					></a> 
 			</div>
-
-			<div class="image">
-				<!-- <img src="../decorator/group.png" width="150px" height="150px"
-					style="margin: 10px"> <a  class="main-a" href="../board/list.child?bType=1">커뮤니티></a> -->
+			<div class="image1">
+				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
+					height="150px" style="margin: 10px"></a>
 			</div>
-
-			<div class="image">
-			<!-- 	<img src="../decorator/location.png" width="150px" height="150px"
-					style="margin: 10px"> <a class="main-a" href="../map/map.child">지도 검색></a> -->
+			<div class="image1">
+				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
+					height="150px" style="margin: 10px"></a>
+			</div>
+		</div>
+	</div>
+	<div class="public">
+		<div class="card2">
+			<div class="image2">
+				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
+					height="58px"></a>
 			</div>
 		</div>
 	</div>
