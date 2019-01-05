@@ -8,6 +8,7 @@
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
 $(function() {
@@ -39,7 +40,7 @@ var myChart = new Chart(ctx, {
     	responsive:true,
     	title: {
 			display: true,
-			text: '2018 통계된 2017 어린이집 수'
+			text: '어린이 집 관련 현황(2017년 기준)'
 		},
     	hover : {
     		mode : 'nearest',
@@ -74,7 +75,6 @@ var myChart = new Chart(ctx, {
 	margin-top: 20px;
 	width: 100%;
 	height: 95px;
-	border : solid 2px silver;
 }
 .card1 {
 	background-position : center;
@@ -101,23 +101,24 @@ var myChart = new Chart(ctx, {
 	display: inline-block;
 	height: 230px;
 	border-radius: 20px;
-	/* background-color: #E6E6E6; 
-	border : solid 1px #E6E6E6; */
-	margin: 10px 30px;
-	width: 180px;
+	margin: 10px 50px;
+	width: 200px;
 }
 
 .image2 {
 	display: inline-block;
-	height: 65px;
-	margin: 5px 0;
-	width: 24.5%;
+	height: 66px;
+	margin: 5px 2px;
+	width: 24%;
+	border:solid 2px silver;
+	padding : 1px;
 }
 
 .main-a {
 	text-decoration: none;
 	font-size: xx-large;
 	color : white; 
+
 }
 .main-b {
 	text-decoration: none;
@@ -132,16 +133,16 @@ var myChart = new Chart(ctx, {
 	<div class="menus">
 		<div class="card1">
 			<div class="image1">
-				  <a class="main-a" href="../map/map.child" style="border:solid 1px black;"><img src="../decorator/locations.png" width="150px" height="150px"
-					></a> 
+				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
+					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
 			<div class="image1">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
-					height="150px" style="margin: 10px"></a>
+					height="150px" style="margin: 10px 0;"><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
 			<div class="image1">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
-					height="150px" style="margin: 10px"></a>
+					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
 		</div>
 	</div>
