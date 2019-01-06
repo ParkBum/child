@@ -53,6 +53,7 @@ option {
 </style>
 </head>
 <body>
+<div id="L">
 	<div id="SearchAndMap">
 		<form action="search.child" method="post">
 		<div id="search">
@@ -135,5 +136,6 @@ option {
 		</c:forEach>
 		</script>
 	</div>
+</div>
 </body>
 </html>

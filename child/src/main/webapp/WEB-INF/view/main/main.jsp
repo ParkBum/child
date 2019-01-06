@@ -23,7 +23,6 @@ $(function() {
 	border-radius: 20px;
 }
 
-
 .menus {
 	margin-top: 25px;
 	width: 100%;
@@ -40,9 +39,8 @@ $(function() {
 	margin: 25px 0;
 	width: 100%;
 	height: 250px;
-
 	text-align: center;
-	background :  linear-gradient(to right, rgba(255, 23, 15, 0.7),  rgba(255, 0, 204, 0.7)),url("../decorator/samples.png");
+	background :  linear-gradient(to right, rgba(000,000,102, 0.7),  rgba(000, 000, 204, 0.7)),url("../decorator/samples.png");
 }
 
 .card2 {
@@ -178,6 +176,7 @@ legend.append("text")
 </script>
 </head>
 <body>
+	<div id="wrap">
 	<div class="canvas-holder">
 		 <svg width="384" height="130">
 		 </svg>
@@ -197,6 +196,7 @@ legend.append("text")
 					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="public">
 		<div class="card2">

@@ -28,21 +28,26 @@ html {
 }
 
 body {
-	max-width: 1200px;
+	/* max-width: 1200px; */
+	display :block;
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 /* 상단 바 */
 .menu-bar {
+
   display: inline-block;
   width: 100%;
+  margin : 0px;
+  height : 180px;
+
 }
 .menu { margin: auto; padding: 0 auto; }
 .menu .left {
   float:left;
   list-style:none;
   position: relative;
-  margin : auto 0;
+  margin : auto ;
 }
 .menu .right {
   float:right;
@@ -66,7 +71,7 @@ body {
   width: 180px;
 }
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu .right:hover  { background: #ddd; }
+.menu .right:hover  { background: white; opacity: 0.5; }
 .menu .right:hover a { color: black; }
 .menu ul a { color: black; }
 .menu ul ul { left: 100%; top: 0; }
@@ -83,38 +88,43 @@ position:absolute;
 width:200px;
 z-index:200;
 }
-.menu-bar .right:hover ul { display:block; border:solid 1px black;}			  
+.menu-bar .right:hover ul { display:block;}			  
 .menu-bar .right:hover ul li {background: white;}			  
-.menu-bar .right:hover ul li:hover {background : silver;}			  
+.menu-bar .right:hover ul li:hover {background : silver; opacity: 0.5;}			  
 
 /* main */
 .main {
-	
+	width : 1400px;
+	margin: 0 auto;
 	padding: 10px;
 	height: 800px;
 }
 /*하단 footer */
 .footer {
-	background-color:;
 	text-align: center;
-	padding: 10px;
+	color : black;
+  	width: 90%;
+  	margin : 0 5%;
+ 	 height : 80px;
 }
 
 </style>
-<script>
-<%-- dropdown 관련 --%>
-</script>
 </head>
 <body>
+<%-- 원래 메뉴 --%>
  <div class='menu-bar'>
+  <div style="border:solid 1px black; width:100%; height : 40px;">
+ 		
+ </div>
+ <div style="border:solid 1px black; width:100%; height : 100px; color : black;">
   <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/logo.png"></a></li>
+    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/home-icon-silhouette.png" style="width:30px; height:30px;"></a></li>
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
 		</c:if>
 	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다.</p></li>
+	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다. 오늘도 좋은 하루 되세요</p></li>
 	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
 		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
@@ -130,11 +140,18 @@ z-index:200;
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
 	</c:if>
   </ul>
-</div>
+  </div>
+ <div style="border:solid 1px black; width:100%; height : 40px;">
+ 	
+ </div>
+ </div>
+
+<div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
 	<div class="main">
 		<decorator:body />
 	</div>
-	<hr>
+	<!-- <hr> -->
+<div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
 	<div class="footer">
 		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
