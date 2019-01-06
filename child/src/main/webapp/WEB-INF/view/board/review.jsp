@@ -23,15 +23,16 @@
 </script>
 </head>
 <body>
+<h4>후기 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
-		<tr>
+		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="5" align="right">
 				<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<select name="searchType" id="searchType">
 						<option value="">선택하세요</option>
 						<option value="subject">제목</option>
-						<option value="name">글쓴이</option>
+						<option value="nickname">글쓴이</option>
 						<option value="content">내용</option>
 					</select>&nbsp;
 					<script type="text/javascript">
@@ -46,9 +47,8 @@
 		</tr>
 		
 		<c:if test="${listcount > 0}">
-		<tr align="center" valign="middle">
-			<td colspan="4">Spring 게시판</td>
-			<td>글개수:${listcount}</td>
+		<tr align="right" valign="middle">
+			<td colspan="5">글개수:${listcount}</td>
 		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
 			<th width="8%" height="26">번호</th>
@@ -65,15 +65,9 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-			<c:if test="${empty board.fileurl}">
-				&nbsp;&nbsp;&nbsp;
-			</c:if>
-			<c:forEach begin="1" end="${board.reflevel}">&nbsp;&nbsp;&nbsp;</c:forEach>
-			<c:if test="${board.reflevel > 0}">└</c:if>
-			<c:if test="${!empty board.fileurl}"><a href="../file/${board.fileurl}">@</a></c:if>
-				<a href="detail.child?num=${board.num}">${board.subject}</a></td>
-			<td align="left">${board.name}</td>
-			<td align="center">${board.regdate}</td>
+				<a href="info.child?bnum=${board.bnum}" style="text-decoration:none;">&nbsp;${board.subject}</a></td>
+			<td align="left">${board.nickname}</td>
+			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>
 		</tr>
 		</c:forEach>
@@ -98,7 +92,7 @@
 		</tr>
 		</c:if>
 		<tr>
-			<td colspan="5" align="right"><a href="write.child">글쓰기</a>
+			<td colspan="5" align="right"><a href="writeForm.child?bType=2">글쓰기</a>
 		</td>
 	</table>
 </body>

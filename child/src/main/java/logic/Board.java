@@ -1,20 +1,29 @@
 package logic;
 
 import java.util.Date;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Board {
-	private int bnum;	// 게시글번호
-	private int mnum;	// 작성자 회원번호
-	private int btype;	// 게시판 종류
-	private int head;	// 말머리
-	private String subject;	// 제목
-	private String content;	// 내용
-	private Date regdate;	// 작성 날짜
-	private int readcnt;	// 조회수
-	private String file1;	// 첨부파일 1
-	private String file2;	// 첨부파일 2
-	private String file3;	// 첨부파일 3
-	private int red;	// 신고 수
+	private int bnum; // 게시글번호
+	private int mnum; // 작성자 회원번호
+	private String nickname; // 닉네임
+	private int bType; // 게시판 종류
+	private int head; // 말머리
+	@NotEmpty(message = "제목을 선택하세요")
+	private String subject; // 제목
+	@NotEmpty(message = "내용을 선택하세요")
+	private String content; // 내용
+	private Date regdate; // 작성 날짜
+	private int readcnt; // 조회수
+	private String file1; // 첨부파일 1 이름
+	private String file2; // 첨부파일 2 이름
+	private String file3; // 첨부파일 3 이름
+	private MultipartFile multi1; // 첨부파일 원본1
+	private MultipartFile multi2; // 첨부파일 원본2
+	private MultipartFile multi3; // 첨부파일 원본3
+	private int red; // 신고 수
+	private double score;
 
 	public int getBnum() {
 		return bnum;
@@ -32,12 +41,20 @@ public class Board {
 		this.mnum = mnum;
 	}
 
-	public int getBtype() {
-		return btype;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setBtype(int btype) {
-		this.btype = btype;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public int getbType() {
+		return bType;
+	}
+
+	public void setbType(int bType) {
+		this.bType = bType;
 	}
 
 	public int getHead() {
@@ -104,6 +121,30 @@ public class Board {
 		this.file3 = file3;
 	}
 
+	public MultipartFile getMulti1() {
+		return multi1;
+	}
+
+	public void setMulti1(MultipartFile multi1) {
+		this.multi1 = multi1;
+	}
+
+	public MultipartFile getMulti2() {
+		return multi2;
+	}
+
+	public void setMulti2(MultipartFile multi2) {
+		this.multi2 = multi2;
+	}
+
+	public MultipartFile getMulti3() {
+		return multi3;
+	}
+
+	public void setMulti3(MultipartFile multi3) {
+		this.multi3 = multi3;
+	}
+
 	public int getRed() {
 		return red;
 	}
@@ -111,4 +152,13 @@ public class Board {
 	public void setRed(int red) {
 		this.red = red;
 	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
 }
