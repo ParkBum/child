@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
@@ -106,7 +106,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
 .range(['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd','#e1b2c3']);
 
-d3.csv("../main/dcc_total.csv", function(d, i, columns) {
+d3.csv("../decorator/dcc_total.csv", function(d, i, columns) {
 console.log(d)
 for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
 d.total = t;
@@ -179,7 +179,7 @@ legend.append("text")
 </head>
 <body>
 	<div class="canvas-holder">
-		 <svg width="384px" height="130px">
+		 <svg width="384" height="130">
 		 </svg>
 	</div>
 	<div class="menus">
