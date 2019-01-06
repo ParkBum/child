@@ -8,53 +8,11 @@
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="//d3js.org/d3.v5.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
 $(function() {
-var ctx = document.getElementById("Chart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [<c:forEach items="${gulist}" var="gulist">'${gulist}',</c:forEach>],
-        datasets: [{
-			label : '2017년 어린이집 시설 수',
-            data: [<c:forEach items="${cntlist}" var="list">'${list}',</c:forEach>], 
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'
-
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)'
-
-            ],
-            borderWidth: 1,
-            pointRadius: 10,
-            fill: false
-        }
-        ]
-    },
-    options: {
-    	responsive:true,
-    	title: {
-			display: true,
-			text: '어린이 집 관련 현황(2017년 기준)'
-		},
-    	hover : {
-    		mode : 'nearest',
-    		intersect : true
-    	},
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
 })
 </script>
 <style type="text/css">

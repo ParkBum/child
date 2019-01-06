@@ -19,10 +19,10 @@ public class MapController {
 		ModelAndView mav = new ModelAndView();
 		
 //		List<String> gulist = service.gusort();
-//		List<Integer> cntlist = service.cntsort();
+		List<Integer> cntlist = service.cntsort();
 //		
 //		mav.addObject("gulist", gulist);
-//		mav.addObject("cntlist", cntlist);
+		mav.addObject("cntlist", cntlist);
 		return mav;
 	}
 	
