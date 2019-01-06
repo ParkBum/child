@@ -106,9 +106,9 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
 .range(['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd','#e1b2c3']);
 
-d3.csv("../decorator/dcc_total.csv", function(d, i, columns) {
+d3.csv("../decorator/dcc_total.csv"). then(function(d, i, columns) {
 console.log(d)
-for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
 d.total = t;
 return d;
 }, function(error, data) {

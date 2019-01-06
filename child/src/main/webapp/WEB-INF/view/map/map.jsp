@@ -10,12 +10,9 @@
 <title>어린이집 검색</title>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../docs/js/examples-base.js"></script>
-<script type="text/javascript" src="../../docs/js/highlight.min.js"></script>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/maps3.js?clientId=o9mqgo9laj&oss=true&amp;submodules=panorama&amp;submodules=geocoder"></script>
-<link rel="stylesheet" type="text/css"
-	href="../../docs/css/examples-base.css" />
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf"></script>
 <style type="text/css">
 #SearchAndMap {
 	width: 100%;
@@ -113,66 +110,16 @@ option {
 		</div>
 		</form>
 		<div id="wmap">
-			<div id="map" class="section"
-				style="width: 95%; height: 330px; margin: 10px auto;">
-				<div class="buttons">
-					<input id="controls" type="hidden" name="모든 지도 컨트롤" value="모든 지도 컨트롤" class="control-btn" />
-					<input id="min-max-zoom" type="hidden" name="최소/최대 줌 레벨" class="control-btn" />
-				</div>
-			</div>
-			<code id="snippet" class="snippet"></code>
+				<div id="map" style="width: 95%; height: 330px; margin: 10px auto;"></div>
 		</div>
-		<script id="code">
-			//지도를 삽입할 HTML 요소 또는 HTML 요소의 id를 지정합니다.
-			var mapDiv = document.getElementById('map'); // 'map'으로 선언해도 동일
-			//옵션 없이 지도 객체를 생성하면 서울 시청을 중심으로 하는 11 레벨의 지도가 생성됩니다.
-			
-			var map = new naver.maps.Map(mapDiv, {
-				center : new naver.maps.LatLng(37.2900533, 127.1036797),
-				zoom : 10,
-				zoomControl : true,
-				zoomControlOptions : {
-					position : naver.maps.Position.TOP_RIGHT
-				},
-				mapTypeControl : true,
-				mapTypeControlOptions : {
-					position : naver.maps.Position.TOP_LEFT
-				}
-			});
-			//지도 컨트롤
-			$("#interaction, #tile-transition, #controls").addClass(
-					"control-on");
-		</script>
-		<%-- 마커 찍기 부분 --%>
 		<script type="text/javascript">
-		var map = document.getElementById('map');
-		<c:forEach items="${addr}" var="addrs">
-		var myaddress = ${addrs};
-		naver.maps.Service.geocode({address:myaddress},function(status,response) {
-			if (status !== naver.maps.Service.Status.OK) {
-	              return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
-	          }
-		
-		var result = response.result;
-		 // 검색 결과 갯수: result.total
-         // 첫번째 결과 결과 주소: result.items[0].address
-         // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
-         var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
-         // 마커 표시
-         var marker = new naver.maps.Marker({
-             position: myaddr,
-             map: map
-		});
-         // 마커 클릭 이벤트 처리
-          naver.maps.Event.addListener(marker, "click", function(e) {
-            if (infowindow.getMap()) {
-                infowindow.close();
-            } else {
-                infowindow.open(map, marker);
-            }
-          });
-		});
-        </c:forEach>
+		var container = document.getElementById('map');
+		var options = {
+			center: new daum.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new daum.maps.Map(container, options);
 		</script>
 	</div>
 </body>

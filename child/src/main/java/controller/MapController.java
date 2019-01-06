@@ -46,7 +46,7 @@ public class MapController {
 		}
 		List<String> addr = service.getpoint(gu,type,bus,word);
 		mav.addObject("addr",addr);
-		mav.setViewName("redirect:map.child");
+		mav.setViewName("map/map");
 		return mav;
 	}
 	

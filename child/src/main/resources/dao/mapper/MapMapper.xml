@@ -9,15 +9,15 @@ select gu from seoul group by gu
 select count(gu) from seoul group by gu
 </select>
 <select id = "getpoints" resultType="String" parameterType="map">
-select addr from seoul where gu = ${gu}
+select addr from seoul where gu = "${gu}"
 	<if test="type != null">
-		and type = ${type}
+		and type = "${type}"
 	</if>
 	<if test="bus != null">
-		and bus = ${bus}
+		and bus = "${bus}"
 	</if>
 	<if test="word != null">
-		and name like '%${word}%'
+		and name like "%${word}%"
 	</if>
 </select>
 </mapper>
