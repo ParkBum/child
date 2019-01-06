@@ -43,7 +43,7 @@ td.title {
    }
    
    function admindelete(mnum){
-	   var del = confirm("°­Åð¤¡?")
+	   var del = confirm("°­Á¦Å»Åð ÇÏ½Ã°Ú½À´Ï±î?")
 	   if(del){
 		   location.href = "delete.child?mnum="+mnum;
 	   }
