@@ -11,32 +11,26 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 /* 비밀번호 확인. */
-$(document).ready(
-	function() {
-			var password = $("#password").val();
-			
-			var password1 = document.getElementById('password1').value
-			
-			
-				$("#password1").change(function(){
-					alert(password)
-					if(password == "" && password1 =="")
-						$("#msg").text("")
-					if(password == password1){
-						
-						alert("password" + password)
-						alert("password1" + password1)
-						$("#msg").text("비밀번호가 일치합니다.")
-					}else{
-						$("#msg").text("비밀번호가 일치하지 않습니다.")
-					}	
-				})
-			
-		
-		 $("#nickname").change(
-				function() {
+$(function() {
+		$(".pass").keyup(function(){
+			var pwd = $("#password").val();
+			var pwd1 = $("#password1").val();
+			var msg ="";
+			if(pwd == "" && pwd1 ==""){
+				msg;				
+			}
+			if(pwd == pwd1){
+				msg = "비밀번호가 일치합니다.";
+				$('#check').css('color','green');
+			}else{
+				msg = "비밀번호가 일치하지 않습니다.";
+				$('#check').css('color','red');
+			}
+				$('#check').html(msg);
+		})
+		  $("#nickname").keyup(function() {
 					var data = {
-						"nickname" : $("#nickname").val()
+						"nickname" : $("#nickname").val(),
 						}
 					$.ajax({
 						url : "niccheck.child",
@@ -44,15 +38,15 @@ $(document).ready(
 						data : data,
 						dataType : "json",
 						success : function(data){
-							$("#msg").val(data.msg);
+							$("#msg").html(data.msg);
 						},
 						error : function(xhr, status, error) { //서버응답 실패
 	                           alert("서버오류 : " + xhr.status + ", error : "
 	                                 + error + ", status : " + status);
 	                    }
 					})
-				}) 
-	})
+				})  
+	});
 
 function execPostCode() {/* 주소 검색 부분 */
     new daum.Postcode({
@@ -164,12 +158,13 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</div>
 
 			<div class="inin">
-				<form:password path="password" placeholder="비밀번호를 입력하세요." id="password" name="password" />
+				<form:password path="password" class="pass" placeholder="비밀번호를 입력하세요." id="password" name="password" />
 				<font color="red"><br>
 				<form:errors path="password" /></font>
 				
-				<form:password path="password1" placeholder="비밀번호 확인" id="password1" name="password1"/>
-				<font color="red" id=msg></font>
+				<form:password path="password1" class="pass" placeholder="비밀번호 확인" id="password1" name="password1"/>
+				<br>
+				<font name="check" id="check" size="3" color="red"></font> 
 			</div>
 			<!-- ajax사용 부분 DB요청 해야 함.  -->
 			
@@ -195,14 +190,13 @@ input[type=submit] :hover, input[type=reset]:hover {
 			<!-- 주소칸 -->
 			<div class="inin">
 				<form:input path="nickname" placeholder="닉네임을 입력하세요" name="nickname" id="nickname" />
-				<font color="red"><br>
-				<form:errors path="nickname" /></font>
+				<br>
+				<font name="msg" id="msg" size="3" color="red"></font>
 			</div>
 			<!-- ajax사용 부분 DB요청 해야 함.  -->
 
 			<div class="inin">
-				<input type="submit" value="가입"> <input type="reset"
-					value="재작성">
+				<input type="submit" value="가입"> <input type="reset" value="재작성">
 			</div>
 
 		</form:form>

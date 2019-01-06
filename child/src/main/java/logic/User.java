@@ -21,8 +21,18 @@ public class User {
 	private String addr2;
 	@NotEmpty(message="상세주소를 입력해주세요")
 	private String addr3;
+	private String id;
 	
 	
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getPassword1() {
 		return password1;

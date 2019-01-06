@@ -114,6 +114,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("user/userForm");
 		if (br.hasErrors()) {
 			mav.getModel().putAll(br.getModel());
+			mav.setViewName("user/userForm");
 			return mav;
 		}
 		try {
@@ -123,9 +124,12 @@ public class UserController {
 			service.userCreate(user);
 			mav.setViewName("user/loginForm");
 			mav.addObject("user", user);
-		} catch (DataIntegrityViolationException e) {
-			br.reject("error.duplicate.user");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		/*catch (DataIntegrityViolationException e) {
+			br.reject("error.duplicate.user.email");
+		}*/
 		return mav;
 
 	}

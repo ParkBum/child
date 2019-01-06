@@ -39,6 +39,12 @@ public class UserDao {
 		map.put("email", email);
 		return sqlsession.selectOne(NS + "list", map);
 	}
+	
+	public User selectnick(String nickname) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("nickname", nickname);
+		return sqlsession.selectOne(NS + "list", map);
+	}
 
 
 	public List<User> userlist() {

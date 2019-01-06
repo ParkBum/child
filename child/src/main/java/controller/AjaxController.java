@@ -29,11 +29,14 @@ public class AjaxController {
 	@RequestMapping("user/niccheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> nickcheck(String nickname){
 		Map<Object, Object> map = new HashMap<Object, Object>();
-			// 닉네임 확인하는 그거...
 		String msg ="";
-		
+		if(service.userSelect(nickname)==null) {
+			msg = "사용가능한 닉네임입니다.";
+		} else {
+			msg = "이미 사용중인 닉네임입니다.";
+		}
+		map.put("msg", msg);
 		return map;
-		 
 	}
 }
 	
