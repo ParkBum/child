@@ -8,7 +8,7 @@
 <title>게시글 수정하기</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style type="text/css">
-td {
+td { 
 	text-align : left;
 }
 th {
