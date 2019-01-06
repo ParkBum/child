@@ -114,7 +114,7 @@ if (error) throw error;
 
 var keys = data.columns.slice(1);
 
-data.sort(function(a, b) { return b.total - a.total; });
+data.sort(function(a, b) { return b.total - a.total;});
 x.domain(data.map(function(d) { return d.gu; }));
 y.domain([0, d3.max(data, function(d) { return d.totol; })]).nice();
 z.domain(keys);

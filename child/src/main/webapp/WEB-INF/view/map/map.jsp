@@ -60,7 +60,7 @@ option {
 			<div style=" margin :0 auto; /* vertical-align: middle; */ width : 100%; display: inline-block;">
 				<div style="width:100%; height: 30px; margin:5px auto;">
 					<div style="width:33%; float: left;">
-					구를 선택해주세요&nbsp;
+					구를 선택해주세요&nbsp;&nbsp;
 					<select name="gu">
 							<option>강남구</option>
 							<option>강동구</option>
@@ -90,7 +90,7 @@ option {
 					</select>
 					</div>
 					<div style="width:33%; float: left;">
-					어린이집 유형&nbsp;
+					어린이집 유형&nbsp;&nbsp;
 					<select name="type">
 							<option value="">선택하세요</option>
 							<option>가정</option>
@@ -102,7 +102,7 @@ option {
 					</select>
 					</div>
 					<div style="width:33%; float: left;">
-					통원 버스 유무&nbsp;
+					통원 버스 유무&nbsp;&nbsp;
 					<select name="bus">
 							<option value="">선택하세요</option>
 							<option>운영</option>
