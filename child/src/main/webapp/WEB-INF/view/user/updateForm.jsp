@@ -26,14 +26,19 @@
 				<form:errors path="email" /></font></td>
 			</tr>
 			<tr height="40px">
-				<td>비밀번호</td>
-				<td><form:password path="password" /> <font color="red">
-				<form:errors path="password" /></font></td>
-			</tr>
-			<tr height="40px">
 				<td>닉네임</td>
 				<td><form:input path="nickname" value="${sessionScope.loginUser.nickname}" readonly="true"/> <font color="red">
 				<form:errors path="nickname" /></font></td>
+			</tr>
+			<tr height="40px">
+				<td>새 비밀번호</td>
+				<td><form:password path="password1" /> <font color="red">
+				<form:errors path="password" /></font></td>
+			</tr>
+			<tr height="40px">
+				<td>새 비밀번호 확인</td>
+				<td><form:password path="password1" /> <font color="red">
+				<form:errors path="password" /></font></td>
 			</tr>
 			<tr height="40px">
 				<td colspan="2" align="center"><input type="submit" value="수정">
