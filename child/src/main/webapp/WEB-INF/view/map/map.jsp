@@ -10,9 +10,7 @@
 <title>어린이집 검색</title>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/maps3.js?clientId=o9mqgo9laj&oss=true&amp;submodules=panorama&amp;submodules=geocoder"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <style type="text/css">
 #SearchAndMap {
 	width: 100%;
@@ -113,6 +111,7 @@ option {
 				<div id="map" style="width: 95%; height: 330px; margin: 10px auto;"></div>
 		</div>
 		<script type="text/javascript">
+		<%-- 지도 생성 --%>
 		var container = document.getElementById('map');
 		var options = {
 			center: new daum.maps.LatLng(33.450701, 126.570667),
@@ -120,6 +119,20 @@ option {
 		};
 
 		var map = new daum.maps.Map(container, options);
+		</script>
+		
+		<script type="text/javascript">
+		<%--좌표 지정 --%>
+		var geocoder = new daum.maps.services.Geocoder();
+
+		var callback = function(result, status) {
+		    if (status === daum.maps.services.Status.OK) {
+		        console.log(result);
+		    }
+		};
+		<c:forEach var="addrs" items="${addr}">
+		geocoder.addressSearch(${addrs}, callback);
+		</c:forEach>
 		</script>
 	</div>
 </body>
