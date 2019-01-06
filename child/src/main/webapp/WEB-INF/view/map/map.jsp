@@ -13,24 +13,24 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <style type="text/css">
 #SearchAndMap {
-	width: 100%;
-	height: 350px;
+	width: 60%;
+	height: 780px;
+	text-align: center;
 }
 
 #search {
-text-align : center;
-	float: left;
-	width: 40%;
-	height: 350px;
+	width: 100%;
+	height: 80px;
 	background-color: white;
 	margin: 0 10px;
 	border: solid 1px black;
+	vertical-align: middle;
 }
 
 #wmap {
-	float: right;
-	width: 55%;
-	height: 350px;
+	
+	width: 100%;
+	height: 700px;
 	border: solid 1px black;
 	margin: 0 10px;
 }
@@ -57,8 +57,10 @@ option {
 	<div id="SearchAndMap">
 		<form action="search.child" method="post">
 		<div id="search">
-			<div style="display: inline-block; margin :8% auto; vertical-align: middle; width : 80%;">
-					<p>구를 선택해주세요</p>
+			<div style=" margin :0 auto; /* vertical-align: middle; */ width : 100%; display: inline-block;">
+				<div style="width:100%; height: 30px; margin:5px auto;">
+					<div style="width:33%; float: left;">
+					구를 선택해주세요&nbsp;
 					<select name="gu">
 							<option>강남구</option>
 							<option>강동구</option>
@@ -86,7 +88,9 @@ option {
 							<option>중구</option>
 							<option>중랑구</option>
 					</select>
-					<p>어린이집 유형</p>
+					</div>
+					<div style="width:33%; float: left;">
+					어린이집 유형&nbsp;
 					<select name="type">
 							<option value="">선택하세요</option>
 							<option>가정</option>
@@ -96,20 +100,25 @@ option {
 							<option>사회복지법인</option>
 							<option>협동</option>
 					</select>
-					<p>통원 버스 유무</p>
+					</div>
+					<div style="width:33%; float: left;">
+					통원 버스 유무&nbsp;
 					<select name="bus">
 							<option value="">선택하세요</option>
 							<option>운영</option>
 							<option>미운영</option>
 					</select>
-					<hr>
+					</div>
+				</div>
+				<div style="width:100%; height : 30px; margin : 5px auto;">
 				<input type="text" name="word" placeholder="검색할 단어를 입력해주세요">
 				<input type="submit" value="검색">			
+				</div>
 			</div>
 		</div>
 		</form>
 		<div id="wmap">
-				<div id="map" style="width: 95%; height: 330px; margin: 10px auto;"></div>
+				<div id="map" style="width: 95%; height: 95%; margin: 15px auto;  padding:10px;"></div>
 		</div>
 		<script type="text/javascript">
 		<%-- 지도 생성 --%>

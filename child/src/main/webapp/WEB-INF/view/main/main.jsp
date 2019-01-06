@@ -19,8 +19,8 @@ $(function() {
 .canvas-holder {
 	width: 100%;
 	height: 400px;
-	border : solid 2px silver;
-	border-radius: 20px;
+/* 	border : solid 2px silver;
+	border-radius: 20px; */
 }
 
 .menus {
@@ -178,8 +178,8 @@ legend.append("text")
 <body>
 	<div id="wrap">
 	<div class="canvas-holder">
-		 <svg width="384" height="130">
-		 </svg>
+		<!--  <svg width="384" height="130">
+		 </svg> --><!-- <img src="../decorator/child7.jpg" style="width:100%; height:100%;"> -->
 	</div>
 	<div class="menus">
 		<div class="card1">

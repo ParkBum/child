@@ -37,10 +37,14 @@ body {
 .menu-bar {
 
   display: inline-block;
-  width: 100%;
-  margin : 0px;
-  height : 180px;
-
+  color : white;
+ /*  width: 90%;
+  margin : 0 5%; */
+  width:100%;
+  height : 140px;
+  background :  linear-gradient(to right, rgba(255, 255, 255, 0.5),  rgba(255, 255, 255, 0.5)),url("../decorator/child1.jpg"); 
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .menu { margin: auto; padding: 0 auto; }
 .menu .left {
@@ -71,7 +75,7 @@ body {
   width: 180px;
 }
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu .right:hover  { background: white; opacity: 0.5; }
+.menu .right:hover  { background: white; }
 .menu .right:hover a { color: black; }
 .menu ul a { color: black; }
 .menu ul ul { left: 100%; top: 0; }
@@ -113,12 +117,9 @@ z-index:200;
 <body>
 <%-- 원래 메뉴 --%>
  <div class='menu-bar'>
-  <div style="border:solid 1px black; width:100%; height : 40px;">
- 		
- </div>
- <div style="border:solid 1px black; width:100%; height : 100px; color : black;">
-  <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/home-icon-silhouette.png" style="width:30px; height:30px;"></a></li>
+     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#333333">
+ 		 <ul class="menu">
+    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/home-icon-silhouette.png" style="width:30px; height:25px;"></a></li>
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
@@ -140,10 +141,10 @@ z-index:200;
 	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
 	</c:if>
   </ul>
-  </div>
- <div style="border:solid 1px black; width:100%; height : 40px;">
- 	
  </div>
+ <div style="/* border:solid 1px black;  */width:100%; height : 100px;">
+
+  </div>
  </div>
 
 <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
