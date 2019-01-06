@@ -17,7 +17,6 @@
 </script>
 <style type="text/css">
 html {
-/* 	background-image: url("../decorator/field.jpg"); */
 	background-position : center;
 	background-size: cover;
 	font-family: 'Noto Sans KR', sans-serif;
@@ -59,7 +58,7 @@ body {
 .menu ul {
   background: #eee;
   border: 1px solid silver;
-  display: none;
+  display: block;
   padding: 0;
   position: absolute;
   left: 0;
@@ -67,11 +66,26 @@ body {
   width: 180px;
 }
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu ul .right :hover { background: #ddd; }
-.menu ul .right :hover a { color: black; }
+.menu .right:hover  { background: #ddd; }
+.menu .right:hover a { color: black; }
 .menu ul a { color: black; }
 .menu ul ul { left: 100%; top: 0; }
 .menu ul ul li {float:left; margin-right:10px;}
+
+.menu-bar .right ul {
+background: rgb(109,109,109);
+display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:200px;
+z-index:200;
+}
+.menu-bar .right:hover ul { display:block; border:solid 1px black;}			  
+.menu-bar .right:hover ul li {background: white;}			  
+.menu-bar .right:hover ul li:hover {background : silver;}			  
 
 /* main */
 .main {
@@ -87,6 +101,9 @@ body {
 }
 
 </style>
+<script>
+<%-- dropdown 관련 --%>
+</script>
 </head>
 <body>
  <div class='menu-bar'>
