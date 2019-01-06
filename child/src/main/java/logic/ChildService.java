@@ -19,7 +19,7 @@ public class ChildService {
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
+	@Autowired 
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
