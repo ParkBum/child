@@ -10,7 +10,6 @@
 <body>
 <h2>사용자 수정</h2>
 	<form:form modelAttribute="user" method="post" action="update.child?mnum=${sessionScope.loginUser.mnum}">
-		<%--입력정보 문제 에러메세지 여기서 찍음. --%>
 		<spring:hasBindErrors name="user">
 			<font color="red"> <c:forEach items="${errors.globalErrors}"
 					var="error">

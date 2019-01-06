@@ -108,7 +108,14 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list.child?bType=3");
 		return mav;
 	}
-
+/*	
+	@RequestMapping(value = "board/updateForm")
+	public ModelAndView update(Board board) {
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+*/
 }
 
 

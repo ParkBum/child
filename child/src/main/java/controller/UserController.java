@@ -136,7 +136,8 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-		// 비밀번호 검증
+		
+		/*// 비밀번호 검증
 		if (user.getPassword().equals(user2.getPassword())) { // 비밀번호 일치
 			try {
 				service.userUpdate(user);
@@ -151,7 +152,7 @@ public class UserController {
 			bindResult.reject("error.login.password");
 			mav.getModel().putAll(bindResult.getModel());
 			mav.setViewName("user/updateForm");
-		}
+		}*/
 		return mav;
 	}
 

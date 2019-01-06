@@ -110,7 +110,7 @@ $(document).ready(function() {
 					<option value="2">팝니다</option>
 				</c:if>
 				</select>
-				</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;" value="${board.subject}"/>
+				</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;"/>
 			<font color="red"><form:errors path="subject" /></font>
 		</tr>
 		<c:if test="${board.bType == 2}">
@@ -149,7 +149,8 @@ $(document).ready(function() {
 		</tr>
 		<tr style="height:30px;">
 			<td colspan="2" style="text-align:center;">
-			<input type="submit" value="등록"><input type="button" id="list" value="목록">
+			<input type="submit" value="등록">
+			<input type="button" id="list" value="목록">
 			</td>
 		</tr>
 	</table>
