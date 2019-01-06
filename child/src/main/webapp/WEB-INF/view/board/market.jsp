@@ -72,7 +72,7 @@
 			<th width="14%" height="26">글쓴이</th>
 			<th width="17%" height="26">날짜</th>
 			<th width="11%" height="26">조회수</th>
-		</tr>
+		</tr> 
 		
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
