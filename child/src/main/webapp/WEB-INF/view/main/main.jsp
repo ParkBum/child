@@ -13,6 +13,14 @@
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
 $(function() {
+		var dataset=[15,5,32,20,21];
+		d3.select("#canvas-holder")
+			.selectAll("p")
+			.data(dataset)
+			.enter()
+			.append("p")
+			.text("hi bro~");
+		
 })
 </script>
 <style type="text/css">
