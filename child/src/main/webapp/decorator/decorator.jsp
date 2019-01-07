@@ -98,7 +98,7 @@ z-index:200;
    width : 65%;
    margin: 0 auto;
    padding: 10px;
-   height: 800px;
+   height: 850px;
 }
 /*го╢э footer */
 .footer {
