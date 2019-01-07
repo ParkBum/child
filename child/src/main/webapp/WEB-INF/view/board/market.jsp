@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>거래 게시판</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function searchList(pageNum) {
 		var searchType = document.searchForm.searchType.value;
@@ -20,9 +21,18 @@
 		}
 		return false;
 	}
+	
+	$('document').ready(function() {
+		$('#market').click(function() {
+			location.href = "list.child?bType=3";
+		});
+	});
 </script>
 </head>
 <body>
+<div align="center">
+<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="market">
+</div>
 <h4>거래 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">

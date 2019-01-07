@@ -22,20 +22,25 @@
 		}
 		return false;
 	}
-	
-	$('#co').click(function() {
+$('document').ready(function() {
+	$('#community').click(function() {
 		location.href = "list.child?bType=1";
 	});
 	
-	$('#re').click(function() {
+	$('#review').click(function() {
 		location.href = "list.child?bType=2";
-	});
+	});	
+})	
+</script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
 </script>
 </head>
 <body>
 <div align="center">
-<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="co">
-<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="re">
+<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="community">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="review">
 </div>
 <h4>자유 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
