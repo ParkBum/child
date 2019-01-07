@@ -47,9 +47,19 @@ d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decor
 		.attr("fill",function(d) {return z(d.key);})
 		.selectAll("rect")
 		.data(function(d){return d;})
-		
+		.enter().append("rect")
+		.attr("x",function(d){return x(d.data.gu);})
+		.attr("y",function(d){return y(d[1];)})
+		.attr("height",function(d){return y(d[0])-y[1];})
+		.attr("width",x.bandwidth());
 	
+	g.append("g")
+		.attr("class","axis")
+		.attr("transform","translate(0,"+height+")")
+		.call(d3.axisBottom(x));
 	
+	g.append("g")
+		.attr("class")
 	
 	
 	)
