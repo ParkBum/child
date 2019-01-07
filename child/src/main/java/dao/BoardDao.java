@@ -58,6 +58,10 @@ public class BoardDao {
 		map.put("bnum", bnum);
 		sqlSession.getMapper(BoardMapper.class).boardDelete(bnum);
 	}
+/*
+	public void boardUpdate(Board board) {
+		sqlSession.getMapper(BoardMapper.class).boardUpdate(board);
+	}*/
 }
 
 

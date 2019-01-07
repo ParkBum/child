@@ -35,6 +35,12 @@ th {
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
 </style>
+<!-- <script type="text/javascript">
+	function file_delete() {
+		document.f.file2.value = "";
+		file_desc.style.display = "none";
+	}
+</script> -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -90,7 +96,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f" method="post">
+<form:form modelAttribute="board" action="update.child" enctype="multipart/form-data" name="f" method="post">
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 	<input type="hidden" name="score" id="score" value="0">
@@ -132,15 +138,21 @@ $(document).ready(function() {
 		</c:if>
 		<tr style="height:400px;">
 			<th style="text-align:center;">내용</th>
-			<td style="padding:5px;vertical-align:middle;"><form:textarea path="content" style="width:100%;height:400px;border:0;resize:none;" placeholder="내용을 입력하세요" />
+			<td style="padding:5px;vertical-align:middle;">
+			<form:textarea path="content" style="width:100%;height:400px;border:0;resize:none;" placeholder="내용을 입력하세요" />
 			<font color="red"><form:errors path="content" /></font>
 		</tr>
 		<tr style="height:30px;">
-			<th style="text-align:right;"><a href="#"><i class="material-icons" style="vertical-align:middle;float:left;" id="box1">add_box</i></a>첨부파일1&nbsp;</th>
-			<td><input type="file" name="multi1"></td>
+			<th style="text-align:right;"><a href="#">
+			<i class="material-icons" style="vertical-align:middle;float:left;" id="box1">add_box</i></a>첨부파일1&nbsp;</th>
+			<c:if test="${!empty board.file1}">
+			<a href="javascript:file_delete()">[첨부파일삭제]</a>
+				<td><input type="file" name="multi1"></td>
+			</c:if>
 		</tr>
 		<tr id="tr1" style="height:30px;">
-			<th style="text-align:right;"><a href="#"><i class="material-icons" style="vertical-align:middle;float:left;" id="box2">add_box</i></a>첨부파일2&nbsp;</th>
+			<th style="text-align:right;"><a href="#">
+			<i class="material-icons" style="vertical-align:middle;float:left;" id="box2">add_box</i></a>첨부파일2&nbsp;</th>
 			<td><input type="file" name="multi2"></td>
 		</tr>
 		<tr id="tr2" style="height:30px;">
