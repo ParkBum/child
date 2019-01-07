@@ -26,12 +26,13 @@ var y = d3.scaleLinear()
 			.rangeRound([height,0])
 
 var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
-d3.csv("../decorator/dcc_total2.csv",function(i,d,columns){
+d3.csv("../decorator/dcc_total.csv",function(i,d,columns){
 	for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
 	d.tot = t;
 	return d;
 	}, function(error, data) {
 	if (error) throw error;
+	console.log(data);
 	
 	var keys = data.columns.slice(1);
 	
