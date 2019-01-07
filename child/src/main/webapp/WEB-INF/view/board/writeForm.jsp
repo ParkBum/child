@@ -93,13 +93,13 @@ $(document).ready(function() {
 <div align="center" style="margin-bottom:30px;">
 <c:choose>
 	<c:when test="${board.bType == 1}">
-	<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="community">
+	<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="community">
 	</c:when>
 	<c:when test="${board.bType == 2}">
-<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="review">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="review">
 	</c:when>
 	<c:when test="${board.bType == 3}">
-	<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="market">
+	<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="market">
 	</c:when>
 </c:choose>
 </div>
