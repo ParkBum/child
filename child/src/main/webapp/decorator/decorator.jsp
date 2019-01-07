@@ -95,7 +95,7 @@ z-index:200;
 
 /* main */
 .main {
-	width : 1200px;
+	width : 65%;
 	margin: 0 auto;
 	padding: 10px;
 	height: 800px;
