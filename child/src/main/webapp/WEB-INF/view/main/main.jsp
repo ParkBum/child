@@ -8,13 +8,9 @@
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
-<script type="text/javascript">
-$(function() {
-})
-</script>
 <style type="text/css">
 .canvas-holder {
 	width: 100%;
@@ -22,7 +18,12 @@ $(function() {
  	border : solid 2px silver;
 /* 	border-radius: 20px;  */
 }
-
+.canvas-holder div {
+	font : 10px;
+	background-color: steelblue;
+	text-align: right;
+	color : white;
+}
 .menus {
 	margin-top: 25px;
 	width: 100%;
@@ -96,91 +97,28 @@ $(function() {
 </style>
 <script type="text/javascript">
 $(function() {
-var svg = d3.select("svg"),
- margin = {top: 20, right: 20, bottom: 30, left: 40},
-width = +svg.attr("width") - margin.left - margin.right,
-height = +svg.attr("height") - margin.top - margin.bottom,
-g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	d3.csv("../decorator/dcc_total.csv"). then(function(d, i, columns) {
+		console.log(d)
+		for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
+		d.total = t;
+		return d;
+		}, function(error, data) {
+		if (error) throw error;
+		});
 
-var x = d3.scaleBand()
-.rangeRound([0, width])
-.paddingInner(0.25)
-.align(0.1);
+var data = [4,8,15,16,23,42]
+var x = d3.scale.linear()
+		  .domain([0,d3.max(data)])
+		  .range([0,420])
+d3.select(".canvas-holder")
+	.selectAll('div')
+	.data(data)
+	.enter()
+	.append('div')
+		.style('width',function(d){return x(d)+'px';})
+		.text(function(d){return d;})
 
-var y = d3.scaleLinear()
-.rangeRound([height, 0]);
 
-var z = d3.scaleOrdinal()
-.range(['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd','#e1b2c3']);
-
-d3.csv("../decorator/dcc_total.csv"). then(function(d, i, columns) {
-console.log(d)
-for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
-d.total = t;
-return d;
-}, function(error, data) {
-if (error) throw error;
-
-var keys = data.columns.slice(1);
-
-data.sort(function(a, b) { return b.total - a.total;});
-x.domain(data.map(function(d) { return d.gu; }));
-y.domain([0, d3.max(data, function(d) { return d.totol; })]).nice();
-z.domain(keys);
-
-var bars = g.append("g")
-.selectAll("g")
-.data(d3.stack().keys(keys)(data))
-.enter().append("g")
-  .attr("fill", function(d) { return z(d.key); })
-.selectAll("rect")
-.data(function(d) { return d; })
-.enter().append("rect")
-  .attr("x", function(d) { return x(d.data.gu); })
-  .attr("y", function(d) { return y(d[1]); })
-  .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-  .attr("width", x.bandwidth());
-
-g.append("g")
-  .attr("class", "axis")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
-
-g.append("g")
-  .attr("class", "axis")
-  .call(d3.axisLeft(y).ticks(null, "s"))
-.append("text")
-  .attr("x", 0)
-  .attr("y", y(y.ticks().pop()) + 0.5)
-  .attr("dy", "0.32em")
-  .attr("fill", "#000")
-  .attr("font-weight", "bold")
-  .attr("text-anchor", "start")
-  .text("Incidents");
-
-var legend = g.append("g")
-  .attr("font-family", "sans-serif")
-  .attr("font-size", 10)
-  .attr("text-anchor", "end")
-.selectAll("g")
-.data(keys.slice().reverse())
-.enter().append("g")
-  .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-legend.append("rect")
-  .attr("x", width - 19)
-  .attr("width", 19)
-  .attr("height", 19)
-  .attr("fill", z);
-
-legend.append("text")
-  .attr("x", width - 24)
-  .attr("y", 9.5)
-  .attr("dy", "0.32em")
-  .text(function(d) { return d; });
-});
-
-	
 })
 </script>
 </head>
