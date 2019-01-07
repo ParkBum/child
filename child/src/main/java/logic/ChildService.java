@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +20,7 @@ public class ChildService {
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
+	@Autowired 
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
@@ -87,6 +88,12 @@ public class ChildService {
 		User user = userDao.select(email);
 		return user;
 	}
+	
+	public User userSelectnick(String nickname) {
+		User user = userDao.selectnick(nickname);
+		return user;
+	}
+
 
 	public List<User> userList() {
 		List<User> list = userDao.userlist();
@@ -125,7 +132,34 @@ public class ChildService {
 	public void boardDelete(Integer bnum) {
 		boardDao.boardDelete(bnum);
 	}
+	
+	public static boolean isEmail(String email) {
+        if (email==null) return false;
+        boolean b = Pattern.matches(
+            "[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", 
+            email.trim());
+        return b;
+    }
 
+	public void comment(Integer bnum) {
+		
+	}
+
+/*	public void boardUpdate(Board board,HttpServletRequest request) {
+		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {
+			uploadFileCreate(board.getMulti1(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile1(board.getMulti1().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti2() != null && !board.getMulti2().isEmpty()) {
+			uploadFileCreate(board.getMulti2(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile2(board.getMulti2().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti3() != null && !board.getMulti3().isEmpty()) {
+			uploadFileCreate(board.getMulti3(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
+		}
+		boardDao.boardUpdate(board);
+	}*/
 }
 
 

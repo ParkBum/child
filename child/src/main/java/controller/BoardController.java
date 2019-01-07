@@ -108,8 +108,29 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list.child?bType=3");
 		return mav;
 	}
-
+	
+	@RequestMapping(value = "board/updateForm")
+	public ModelAndView updateForm(Integer bnum,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		Board board = service.getBoard(bnum);
+		mav.addObject("board", board);
+	//	board.setFile1(file1);
+	//	service.boardUpdate(board,request);
+		return mav;
+	}
+	
+	@RequestMapping(value = "board/comment")
+	public ModelAndView comment(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		service.comment(bnum);
+		return mav;
+	}
 }
+
+
+
+
+
 
 
 

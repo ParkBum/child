@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>0</x>
-	<y>0</y>
+	<y>251</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -41,7 +41,11 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
+<<<<<<< HEAD
 				<output_path>register3.sql</output_path>
+=======
+				<output_path>user.sql</output_path>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +139,11 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-12-28 15:02:35</creation_date>
+<<<<<<< HEAD
 			<updated_date>2019-01-07 16:50:15</updated_date>
+=======
+			<updated_date>2019-01-06 20:54:42</updated_date>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -398,6 +406,22 @@
 		</word>
 		<word>
 			<id>14</id>
+			<length>50</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>id</logical_name>
+			<physical_name>id</physical_name>
+			<type>varchar(n)</type>
+		</word>
+		<word>
+			<id>15</id>
 			<length>11</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -413,7 +437,7 @@
 			<type>int(n)</type>
 		</word>
 		<word>
-			<id>15</id>
+			<id>16</id>
 			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -429,7 +453,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>16</id>
+			<id>17</id>
 			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -445,7 +469,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>17</id>
+			<id>18</id>
 			<length>11</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -461,8 +485,13 @@
 			<type>int(n)</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>18</id>
 			<length>null</length>
+=======
+			<id>19</id>
+			<length>11</length>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -477,7 +506,7 @@
 			<type>integer</type>
 		</word>
 		<word>
-			<id>19</id>
+			<id>20</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -493,6 +522,7 @@
 			<type>datetime</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>20</id>
 			<length>11</length>
 			<decimal>null</decimal>
@@ -510,6 +540,25 @@
 		</word>
 		<word>
 			<id>21</id>
+=======
+			<id>21</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>score</logical_name>
+			<physical_name>score</physical_name>
+			<type>double precision</type>
+		</word>
+		<word>
+			<id>22</id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -544,7 +593,7 @@
 			<connections>
 				<relation>
 					<id>0</id>
-					<source>1</source>
+					<source>2</source>
 					<target>0</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -566,7 +615,7 @@
 				</relation>
 				<relation>
 					<id>1</id>
-					<source>2</source>
+					<source>1</source>
 					<target>0</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -629,7 +678,11 @@
 				</normal_column>
 				<normal_column>
 					<id>1</id>
+<<<<<<< HEAD
 					<referenced_column>5</referenced_column>
+=======
+					<referenced_column>13</referenced_column>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -663,7 +716,11 @@
 				</normal_column>
 				<normal_column>
 					<id>2</id>
+<<<<<<< HEAD
 					<referenced_column>17</referenced_column>
+=======
+					<referenced_column>5</referenced_column>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -819,7 +876,11 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>3</word_id>
+=======
+					<word_id>15</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>5</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -852,6 +913,10 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
+=======
+					<word_id>14</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>6</id>
 					<referenced_column>17</referenced_column>
 					<relation>2</relation>
@@ -863,8 +928,13 @@
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
+<<<<<<< HEAD
 					<foreign_key>true</foreign_key>
 					<not_null>true</not_null>
+=======
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -886,7 +956,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>4</word_id>
+=======
+					<word_id>9</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -952,7 +1026,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>21</word_id>
+=======
+					<word_id>17</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -985,7 +1063,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>8</word_id>
+=======
+					<word_id>0</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>10</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -996,7 +1078,7 @@
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
-					<not_null>false</not_null>
+					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -1018,8 +1100,46 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+					<word_id>1</word_id>
+					<id>11</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+<<<<<<< HEAD
 					<word_id>19</word_id>
 					<id>11</id>
+=======
+					<word_id>2</word_id>
+					<id>12</id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1095,7 +1215,7 @@
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
-					<not_null>false</not_null>
+					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -1251,8 +1371,13 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>14</word_id>
 					<id>17</id>
+=======
+					<word_id>3</word_id>
+					<id>13</id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1284,13 +1409,186 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>9</word_id>
+=======
+					<id>14</id>
+					<referenced_column>5</referenced_column>
+					<relation>2</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>int(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>4</word_id>
+					<id>15</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>int(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>13</word_id>
+					<id>16</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>int(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>22</word_id>
+					<id>17</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>8</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>18</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>varchar(n)</type>
+<<<<<<< HEAD
+=======
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>20</word_id>
+					<id>19</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>datetime</type>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1317,8 +1615,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>15</word_id>
 					<id>19</id>
+=======
+					<word_id>18</word_id>
+					<id>20</id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1350,6 +1653,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>16</word_id>
 					<id>20</id>
 					<description></description>
@@ -1384,6 +1688,9 @@
 				</normal_column>
 				<normal_column>
 					<word_id>0</word_id>
+=======
+					<word_id>10</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>21</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1416,7 +1723,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>1</word_id>
+=======
+					<word_id>11</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>22</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1449,7 +1760,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>2</word_id>
+=======
+					<word_id>12</word_id>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 					<id>23</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1482,6 +1797,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>18</word_id>
 					<id>24</id>
 					<description></description>
@@ -1489,6 +1805,48 @@
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>integer</type>
+=======
+					<word_id>19</word_id>
+					<id>24</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>int(n)</type>
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>21</word_id>
+					<id>25</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>double precision</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
