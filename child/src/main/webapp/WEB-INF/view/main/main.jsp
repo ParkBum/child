@@ -18,15 +18,15 @@ $(function() {
 <style type="text/css">
 .canvas-holder {
 	width: 100%;
-	height: 400px;
-/* 	border : solid 2px silver;
-	border-radius: 20px; */
+	height: 500px;
+ 	border : solid 2px silver;
+/* 	border-radius: 20px;  */
 }
 
 .menus {
 	margin-top: 25px;
 	width: 100%;
-	height: 250px;
+	height: 180px;
 }
 .public {
 	margin-top: 20px;
@@ -198,7 +198,7 @@ legend.append("text")
 		</div>
 	</div>
 	</div>
-	<div class="public">
+<!-- 	<div class="public">
 		<div class="card2">
 			<div class="image2">
 				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
@@ -217,6 +217,6 @@ legend.append("text")
 					height="58px"></a>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </body>
 </html>

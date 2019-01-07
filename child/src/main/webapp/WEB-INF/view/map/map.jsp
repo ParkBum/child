@@ -23,7 +23,7 @@
 	height: 80px;
 	background-color: white;
 	margin: 0 10px;
-	border: solid 1px black;
+/* 	border: solid 1px black; */
 	vertical-align: middle;
 }
 
