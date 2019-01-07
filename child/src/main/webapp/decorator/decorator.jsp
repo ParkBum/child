@@ -35,7 +35,7 @@ body {
 }
 /* »ó´Ü ¹Ù */
 .menu-bar {
-
+background-color:blue;
   display: inline-block;
   color : black;
  /*  width: 90%;
