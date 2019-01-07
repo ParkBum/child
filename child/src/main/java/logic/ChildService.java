@@ -140,6 +140,11 @@ public class ChildService {
             email.trim());
         return b;
     }
+
+	public void comment(Integer bnum) {
+		
+	}
+
 /*	public void boardUpdate(Board board,HttpServletRequest request) {
 		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {
 			uploadFileCreate(board.getMulti1(), request, "file"); // file의 내용을 파일로 저장

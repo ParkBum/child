@@ -36,6 +36,7 @@ th {
 .starR2.on{background-position:-15px 0;}
 </style>
 <script type="text/javascript">
+<<<<<<< HEAD
    function file_delete1() {
       document.f.file1.value = "";
       file_desc.style.display = "none";
@@ -48,6 +49,20 @@ th {
       document.f.file3.value = "";
       file_desc.style.display = "none";
    }
+=======
+	function file_delete1() {
+		document.f.file1.value = "";
+		file_desc.style.display = "none";
+	}
+	function file_delete2() {
+		document.f.file2.value = "";
+		file_desc.style.display = "none";
+	}
+	function file_delete3() {
+		document.f.file3.value = "";
+		file_desc.style.display = "none";
+	}
+>>>>>>> branch 'master' of https://github.com/ParkBum/child/
 </script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
@@ -192,6 +207,31 @@ $(document).ready(function() {
             <a href="../file/${board.file3}">${board.file3}</a>
             <input type="file" name="multi3">
             <a href="javascript:file_delete3()">[梅何颇老昏力]</a></td>
+         		梅何颇老1&nbsp;</th>
+         <td>
+        <a href="../file/${board.file1}">${board.file1}</a>
+         	<input type="file" name="multi1">
+         	<a href="javascript:file_delete1()">[梅何颇老昏力]</a></td>
+      </tr>
+      </c:if>
+      <c:if test="${!empty board.file2}">
+      <tr id="tr1" style="height:30px;">
+         <th style="text-align:right;"><a href="#">
+         <i class="material-icons" style="vertical-align:middle;float:left;" id="box2">add_box</i></a>
+         		梅何颇老2&nbsp;</th>
+         <td>
+        <a href="../file/${board.file2}">${board.file2}</a>
+        	<input type="file" name="multi2">
+        	<a href="javascript:file_delete2()">[梅何颇老昏力]</a></td>
+      </tr></c:if>
+      
+      <c:if test=" ${!empty board.file3} ">
+      <tr id="tr2" style="height:30px;">
+         <th style="text-align:right;">梅何颇老3&nbsp;</th>
+         <td>
+         	<a href="../file/${board.file3}">${board.file3}</a>
+         	<input type="file" name="multi3">
+         	<a href="javascript:file_delete3()">[梅何颇老昏力]</a></td>
       </tr>
       </c:if>
       <tr style="height:30px;">
