@@ -37,14 +37,11 @@ body {
 .menu-bar {
 
   display: inline-block;
-  color : white;
+  color : black;
  /*  width: 90%;
   margin : 0 5%; */
   width:100%;
   height : 140px;
-  background :  linear-gradient(to right, rgba(255, 255, 255, 0.5),  rgba(255, 255, 255, 0.5)),url("../decorator/child1.jpg"); 
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .menu { margin: auto; padding: 0 auto; }
 .menu .left {
@@ -98,7 +95,7 @@ z-index:200;
 
 /* main */
 .main {
-	width : 1400px;
+	width : 1200px;
 	margin: 0 auto;
 	padding: 10px;
 	height: 800px;
@@ -134,9 +131,8 @@ z-index:200;
 <body>
 <%-- 원래 메뉴 --%>
  <div class='menu-bar'>
-     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#333333">
- 		 <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/home-icon-silhouette.png" style="width:30px; height:25px;"></a></li>
+     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#2E9AFE">
+	<ul class="menu">
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
@@ -159,12 +155,13 @@ z-index:200;
 	</c:if>
   </ul>
  </div>
- <div style="/* border:solid 1px black;  */width:100%; height : 100px;">
-
+ <div style="/* border:solid 1px black;  */width:80%; height : 100px; margin:0 10%;">
+	<a href="${path}/main/main.child"><img src="../decorator/logo.png" style="width:130px; height:100px;"></a>
+  
   </div>
  </div>
 
-<div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
+<!-- <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div> -->
 	<div class="main">
 		<decorator:body />
 	</div>
