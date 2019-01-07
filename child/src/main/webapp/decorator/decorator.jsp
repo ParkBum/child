@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
 <meta charset="EUC-KR">
 <title><decorator:title /></title>
 <decorator:head />
@@ -38,7 +38,7 @@ body {
 
   display: inline-block;
   color : black;
- /* width: 90%;
+ /*  width: 90%;
   margin : 0 5%; */
   width:100%;
   height : 140px;
@@ -95,9 +95,8 @@ z-index:200;
 
 /* main */
 .main {
-	/* width : 1400px; */
-	width : 80%;
-	margin: 0 10%;
+	width : 1200px;
+	margin: 0 auto;
 	padding: 10px;
 	height: 800px;
 }
@@ -109,21 +108,16 @@ z-index:200;
   	margin : 0 10%;
  	 height : 80px;
 }
-.public {
-	margin-top: 20px;
-	width: 100%;
-	height: 95px;
-}
 .card2 {
 	background-position : center;
 	background-size :cover;
-	margin: 8px 0;
 	width: 100%;
 	height: 75px;
 	text-align: center;
 	
 }
 .image2 {
+	background-color: white;
 	display: inline-block;
 	height: 46px;
 	margin: 5px 2px;
@@ -137,34 +131,32 @@ z-index:200;
 <body>
 <%-- 원래 메뉴 --%>
  <div class='menu-bar'>
-     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#2E9AFE">
-	<ul class="menu">
-    <c:if test="${empty sessionScope.loginUser}">
-	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
-	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
-		</c:if>
-	<c:if test="${!empty sessionScope.loginUser}">
-	<li class="left"><p style="margin:10px;">${sessionScope.loginUser.nickname}님 환영합니다. 오늘도 좋은 하루 되세요</p></li>
-	<li class="right"><a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="float: right">
-		<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">내 정보</c:if>
-		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">관리자 페이지</c:if>
-		</a> </li>
-	<li class="right"><a href="${path}/user/logout.child" style="float: right">로그아웃</a> </li>
-	<li class="right"><a href="${path}/map/map.child" style="float: right">지도 검색</a></li>
-	<li class="right"><a href="#" style="float: right">커뮤니티</a> 
+    <div style="/* border:solid 1px black; */ width:100%; height : 40px;">
+		<ul class="menu" style="margin:10px 300px 10px 200px;">
+		<li class="left">
+			<a href="${path}/main/main.child"><img src="../decorator/logo.png" 
+									style="width:130px; height:100px; margin: 0 0 5% 10%;"></a></li>
+		<c:if test="${!empty sessionScope.loginUser}"><li class="left">
+		<p>${sessionScope.loginUser.nickname}님 환영합니다. 오늘도 좋은 하루 되세요</p></li></c:if>
+		<c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child">로그아웃</a></li></c:if>
+		<c:if test="${!empty sessionScope.loginUser}"><li class="right">
+			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">회원정보</c:if>
+			<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+			<a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원관리</a></c:if></li></c:if>
+		<c:if test="${empty sessionScope.loginUser}"><li class="right">
+								<a href="${path}/user/loginForm.child">로그인</a></li></c:if>
+		<c:if test="${empty sessionScope.loginUser}"><li class="right">
+								<a href="${path}/user/userForm.child">회원가입</a></li></c:if>
+		<li class="right"><a href="${path}/board/list.child?bType=3">중고 장터</a></li>
+		<li class="right"><a href="#">커뮤니티</a> 
 		<ul>
 			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
        	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
 		</ul>
-	</li>
-	<li class="right"><a href="${path}/board/list.child?bType=3" style="float: right">중고 장터</a></li>
-	</c:if>
-  </ul>
- </div>
- <div style="/* border:solid 1px black;  */width:80%; height : 100px; margin:0 10%;">
-	<a href="${path}/main/main.child"><img src="../decorator/logo.png" style="width:130px; height:100px;"></a>
-  
-  </div>
+		</li>
+		<li class="right"><a href="${path}/map/map.child">지도 검색</a></li>
+ 	 </ul>
+ 	</div>
  </div>
 
 <!-- <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div> -->
@@ -172,14 +164,14 @@ z-index:200;
 		<decorator:body />
 	</div>
 	<!-- <hr> -->
-<div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
-	<div class="footer">
-		<br>
-		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
-		<hr>
-		<br>
-	</div>
-	<div class="card2">
+<!-- <div style="height:8px; width:100%; background-color: #FFCC52 ; display: inline-block;"></div> -->
+	<div style="background-color: #FFC322;">
+		<div class="footer">
+			<br>
+			<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+			<br>
+		</div>
+		<div class="card2">
 			<div class="image2">
 				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="200px"
 					height="40px"></a>
@@ -196,6 +188,7 @@ z-index:200;
 				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="200px"
 					height="40px"></a>
 			</div>
+	</div>
 	</div>
 </body>
 </html>
