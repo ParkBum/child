@@ -7,5 +7,8 @@
 		<if test="email != null">
 			where email = #{email}
 		</if>
+		<if test="nickname != null">
+			where nickname = #{nickname}
+		</if>
 	</select>
 </mapper>

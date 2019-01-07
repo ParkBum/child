@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +21,7 @@ public class ChildService {
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
+	@Autowired 
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
@@ -90,6 +91,12 @@ public class ChildService {
 		User user = userDao.select(email);
 		return user;
 	}
+	
+	public User userSelectnick(String nickname) {
+		User user = userDao.selectnick(nickname);
+		return user;
+	}
+
 
 	public List<User> userList() {
 		List<User> list = userDao.userlist();
@@ -128,6 +135,14 @@ public class ChildService {
 	public void boardDelete(Integer bnum) {
 		boardDao.boardDelete(bnum);
 	}
+	
+	public static boolean isEmail(String email) {
+        if (email==null) return false;
+        boolean b = Pattern.matches(
+            "[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", 
+            email.trim());
+        return b;
+    }
 
 	public void commentWrite(Comment comment) {
 		commentDao.commentWrite(comment);
