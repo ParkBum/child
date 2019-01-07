@@ -38,7 +38,7 @@ body {
 
   display: inline-block;
   color : black;
- /*  width: 90%;
+ /* width: 90%;
   margin : 0 5%; */
   width:100%;
   height : 140px;
@@ -96,8 +96,8 @@ z-index:200;
 /* main */
 .main {
 	/* width : 1400px; */
-	width : 100%;
-	margin: 0 auto;
+	width : 80%;
+	margin: 0 10%;
 	padding: 10px;
 	height: 800px;
 }
