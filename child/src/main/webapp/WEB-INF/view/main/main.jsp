@@ -28,11 +28,11 @@ $(function() {
 	width: 100%;
 	height: 180px;
 }
-.public {
+/* .public {
 	margin-top: 20px;
 	width: 100%;
 	height: 95px;
-}
+} */
 .card1 {
 	background-position : center;
 	background-size :cover;
@@ -40,10 +40,10 @@ $(function() {
 	width: 100%;
 	height: 250px;
 	text-align: center;
-	background :  linear-gradient(to right, rgba(000,000,102, 0.7),  rgba(000, 000, 204, 0.7)),url("../decorator/samples.png");
+/* 	background :  linear-gradient(to right, rgba(000,000,102, 0.7),  rgba(000, 000, 204, 0.7)),url("../decorator/samples.png"); */
 }
 
-.card2 {
+/* .card2 {
 	background-position : center;
 	background-size :cover;
 	margin: 8px 0;
@@ -51,7 +51,7 @@ $(function() {
 	height: 75px;
 	text-align: center;
 	
-}
+} */
 
 .image1 {
 	display: inline-block;
@@ -61,19 +61,19 @@ $(function() {
 	width: 200px;
 }
 
-.image2 {
+/* .image2 {
 	display: inline-block;
 	height: 66px;
 	margin: 5px 2px;
 	width: 24%;
 	border:solid 2px silver;
 	padding : 1px;
-}
+} */
 
 .main-a {
 	text-decoration: none;
 	font-size: xx-large;
-	color : white; 
+	color : black; 
 
 }
 .main-b {
@@ -183,22 +183,22 @@ legend.append("text")
 	</div>
 	<div class="menus">
 		<div class="card1">
-			<div class="image1">
+			<div class="image1" style="background-color: #F5ECCE">
 				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
 					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
-			<div class="image1">
+			<div class="image1" style="background-color: #F5ECCE">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
-			<div class="image1">
+			<div class="image1" style="background-color: #F5ECCE">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
 		</div>
 	</div>
 	</div>
-<!-- 	<div class="public">
+ 	<!-- <div class="public">
 		<div class="card2">
 			<div class="image2">
 				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"

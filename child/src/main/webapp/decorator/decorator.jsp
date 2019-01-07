@@ -107,11 +107,32 @@ z-index:200;
 .footer {
 	text-align: center;
 	color : black;
-  	width: 90%;
-  	margin : 0 5%;
+  	width: 80%;
+  	margin : 0 10%;
  	 height : 80px;
 }
-
+.public {
+	margin-top: 20px;
+	width: 100%;
+	height: 95px;
+}
+.card2 {
+	background-position : center;
+	background-size :cover;
+	margin: 8px 0;
+	width: 100%;
+	height: 75px;
+	text-align: center;
+	
+}
+.image2 {
+	display: inline-block;
+	height: 66px;
+	margin: 5px 2px;
+	width: 24%;
+	border:solid 2px silver;
+	padding : 1px;
+}
 </style>
 </head>
 <body>
@@ -154,6 +175,27 @@ z-index:200;
 	<!-- <hr> -->
 <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
 	<div class="footer">
+		 	<div class="public">
+		<div class="card2">
+			<div class="image2">
+				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
+					height="58px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
+					height="58px"></a>
+			</div>
+		</div>
+	</div>
+	<hr>
 		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
 	</div>
 </body>
