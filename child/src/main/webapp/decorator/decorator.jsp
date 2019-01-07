@@ -72,7 +72,7 @@ body {
   width: 180px;
 }
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu .right:hover  { background: white; }
+.menu .right:hover  { background: #FFC322; }
 .menu .right:hover a { color: black; }
 .menu ul a { color: black; }
 .menu ul ul { left: 100%; top: 0; }
@@ -90,8 +90,8 @@ width:200px;
 z-index:200;
 }
 .menu-bar .right:hover ul { display:block;}           
-.menu-bar .right:hover ul li {background: white;}           
-.menu-bar .right:hover ul li:hover {background : silver; opacity: 0.5;}           
+.menu-bar .right:hover ul li {background: white;} 
+.menu-bar .right:hover ul li:hover {background : #FFC322;}           
 
 /* main */
 .main {
