@@ -26,18 +26,18 @@ var y = d3.scaleLinear()
 			.rangeRound([height,0])
 
 var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
-d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decorator/dcc_total.csv",function(i,d,columns){
+d3.csv("../decorator/dcc_total2.csv",function(i,d,columns){
 	for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
-	d.total = t;
+	d.tot = t;
 	return d;
 	}, function(error, data) {
 	if (error) throw error;
 	
 	var keys = data.columns.slice(1);
 	
-	data.sort(function(a,b){return b.total-a.total;});
+	data.sort(function(a,b){return b.tot-a.tot;});
 	x.domain(data.map(function(d) {return d.gu}));
-	y.domain([0,d3.max(data, function(d) {return d.total;})]).nice();
+	y.domain([0,d3.max(data, function(d) {return d.tot;})]).nice();
 	z.domain(keys);
 	
 	var bars = g.append("g")
@@ -49,8 +49,8 @@ d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decor
 		.data(function(d){return d;})
 		.enter().append("rect")
 		.attr("x",function(d){return x(d.data.gu);})
-		.attr("y",function(d){return y(d[1];)})
-		.attr("height",function(d){return y(d[0])-y[1];})
+		.attr("y",function(d){return y(d[1]);})
+		.attr("height",function(d){return y(d[0])-y(d[1]);})
 		.attr("width",x.bandwidth());
 	
 	g.append("g")
@@ -59,15 +59,45 @@ d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decor
 		.call(d3.axisBottom(x));
 	
 	g.append("g")
-		.attr("class")
+		.attr("class","axis")
+		.call(d3.axisLeft(y).ticks(null,"s"))
+	 .append("text")
+	 	.attr("x",2)
+	 	.attr("y",y(y.ticks().pop())+0.5)
+	 	.attr("dy","0.32em")
+	 	.attr("fill","#000")
+	 	.attr("font-weight","bold")
+	 	.attr("text-anchor","start");
 	
+	var legend = g.append("g")
+		.attr("font-family","sans-serif")
+		.attr("font-size",10)
+		.attr("text-anchor","end")
+		.selectAll("g")
+		.data(keys.slice().reverse())
+	 	.enter().append("g")
+	 	.attr("transform",function(d,i){return "translate(0,"+i*20+")";})
+	 
+	 legend.append("rect")
+	 	.attr("x",width-19)
+	 	.attr("width",19)
+	 	.attr("height",19)
+	 	.attr("fill",z);
 	
-	)
+	legend.append("text")
+		.attr("x",width-24)
+		.attr("y",9.5)
+		.attr("dy","0.32em")
+		.text(function(d){return d;});
+	 	
+	
+	});
 	
 		
 })
 </script>
 <style type="text/css">
+.axis .domain {display:none;}
 .canvas-holder {
 	width: 1200px;
 	height: 500px;
