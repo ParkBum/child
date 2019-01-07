@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="EUC-KR">
 <title><decorator:title /></title>
 <decorator:head />
