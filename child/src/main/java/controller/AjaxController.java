@@ -21,12 +21,8 @@ public class AjaxController {
 	@RequestMapping("user/niccheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> nickcheck(String nickname){
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		System.out.println(nickname);
 		String msg ="";
-		
-		
 		if(service.userSelectnick(nickname)==null) {
-			System.out.println(service.userSelectnick(nickname));
 			msg = "사용가능한 닉네임입니다.";
 		} else {
 			msg = "이미 사용중인 닉네임입니다.";
@@ -38,6 +34,7 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("user/emailcheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> emailcheck(String email){
+		System.out.println(email);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		String msg ="";
 		if(service.userSelect(email)==null) {
@@ -45,6 +42,7 @@ public class AjaxController {
 		} else {
 			msg = "중복된 E-mail입니다.";
 		}
+		System.out.println(msg);
 		map.put("msge", msg);
 		return map;
 	}

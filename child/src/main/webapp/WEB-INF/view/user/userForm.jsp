@@ -49,9 +49,10 @@ $(function() {
 	                    }
 					})
 				})
-/* 		   $("#email").keyup(function() {
+		   $("#email").keyup(function() {
+			   			var email = $("#email").val();
 						var data = {
-							"email" : $("#email").val(),
+							"email" : email,
 							}
 						$.ajax({
 							url : "emailcheck.child",
@@ -66,7 +67,7 @@ $(function() {
 		                                 + error + ", status : " + status);
 		                    }
 						})
-					})  */
+					})  
 	});
 
 function execPostCode() {/* 주소 검색 부분 */
