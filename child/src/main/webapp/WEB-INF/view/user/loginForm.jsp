@@ -20,7 +20,7 @@
 }
 
 .inin {
-	margin: 10px 0;
+	margin: 10px 0;	
 }
 
 input[type=text], input[type=password] {
@@ -79,9 +79,11 @@ input[type=submit]:hover, input[type=button]:hover {
 						style="padding: 3px;">
 				</div>
 				<div class="inin">
+				<form:hidden path="id" name="id" value=""/>
+				<input type="hidden" value="${result}">
 					<form:input path="email" placeholder="아이디(e-mail)을 입력하세요"
 						border="solid 1px black" />
-					<font color="red"> <form:errors path="email" /></font>
+					<br><font color="red"> <form:errors path="email" /></font>
 				</div>
 			</div>
 			<div class="inner">

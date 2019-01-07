@@ -1,13 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -82,13 +79,21 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
-//		Map<String, Object> map = new HashMap<String,Object>();
+
 		String email = "";
 		String id ="";
 		for(int i=0;i<18; i++) {
 			if(i==13) 	id =apiResult.split("\"")[i];
 			if(i==17) 	email =apiResult.split("\"")[i];
 		}
+		//.toString() 했을때[L 로 되어있어서 배열형태인 것을 알게 되었다.
+		
+		
+//		ModelAndView mav = new ModelAndView("user/callback","result", apiResult);
+
+		ModelAndView mav = new ModelAndView();
+		session.setAttribute("loginUser", service.userSelect(email));
+		mav.addObject("result",apiResult);
 		return new ModelAndView("user/callback","result", apiResult);
 //		회원 관리를 해야하는 부분. 
 	}
