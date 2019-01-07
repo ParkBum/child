@@ -98,7 +98,8 @@ z-index:200;
 
 /* main */
 .main {
-	width : 1400px;
+	/* width : 1400px; */
+	width : 100%;
 	margin: 0 auto;
 	padding: 10px;
 	height: 800px;

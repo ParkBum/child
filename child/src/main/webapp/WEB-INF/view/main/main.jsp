@@ -16,6 +16,13 @@ $(function() {
 })
 </script>
 <style type="text/css">
+#wrap {
+	width:100%;
+}
+#wrapmain {
+	width : 90%;
+	margin : 0 5%;
+}
 .canvas-holder {
 	width: 100%;
 	height: 500px;
@@ -177,21 +184,23 @@ legend.append("text")
 </head>
 <body>
 	<div id="wrap">
+	<div id="wrapmain">
 	<div class="canvas-holder">
 		<!--  <svg width="384" height="130">
 		 </svg> --><!-- <img src="../decorator/child7.jpg" style="width:100%; height:100%;"> -->
 	</div>
+	</div>
 	<div class="menus">
 		<div class="card1">
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1" style="background-color: #F5ECCE"> <%-- mouseover 시 색 변경 --%>
 				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
 					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1" style="background-color: #A9D0F5">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1" style="background-color: #A9F5D0">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
