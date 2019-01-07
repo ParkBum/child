@@ -28,7 +28,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
 d3.csv("../decorator/dcc_total.csv",function(i,d,columns){
 	for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
-	d.tot = t;
+	d.total = t;
 	return d;
 	}, function(error, data) {
 	if (error) throw error;
@@ -36,9 +36,9 @@ d3.csv("../decorator/dcc_total.csv",function(i,d,columns){
 	
 	var keys = data.columns.slice(1);
 	
-	data.sort(function(a,b){return b.tot-a.tot;});
+	data.sort(function(a,b){return b.total-a.total;});
 	x.domain(data.map(function(d) {return d.gu}));
-	y.domain([0,d3.max(data, function(d) {return d.tot;})]).nice();
+	y.domain([0,d3.max(data, function(d) {return d.total;})]).nice();
 	z.domain(keys);
 	
 	var bars = g.append("g")
