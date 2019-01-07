@@ -90,6 +90,19 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<div align="center" style="margin-bottom:30px;">
+<c:choose>
+	<c:when test="${board.bType == 1}">
+	<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="community">
+	</c:when>
+	<c:when test="${board.bType == 2}">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="review">
+	</c:when>
+	<c:when test="${board.bType == 3}">
+	<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="market">
+	</c:when>
+</c:choose>
+</div>
 <form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f" method="post">
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">

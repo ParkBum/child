@@ -34,11 +34,10 @@
 </script>
 </head>
 <body>
-<div align="center">
+<div align="center" style="margin-bottom:30px;">
 <input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="community">
 <input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="review">
 </div>
-<h4>후기 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="5" align="right">

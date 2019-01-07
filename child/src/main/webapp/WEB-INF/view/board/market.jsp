@@ -30,10 +30,9 @@
 </script>
 </head>
 <body>
-<div align="center">
+<div align="center" style="margin-bottom:30px;">
 <input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="market">
 </div>
-<h4>거래 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="2" align="left" style="border-right:hidden;">
