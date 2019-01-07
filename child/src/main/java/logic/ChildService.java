@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -132,6 +133,13 @@ public class ChildService {
 		boardDao.boardDelete(bnum);
 	}
 	
+	public static boolean isEmail(String email) {
+        if (email==null) return false;
+        boolean b = Pattern.matches(
+            "[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", 
+            email.trim());
+        return b;
+    }
 /*	public void boardUpdate(Board board,HttpServletRequest request) {
 		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {
 			uploadFileCreate(board.getMulti1(), request, "file"); // file의 내용을 파일로 저장

@@ -38,7 +38,11 @@ public class AjaxController {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		String msg ="";
 		if(service.userSelect(email)==null) {
-			msg = "사용가능한 E-mail입니다.";
+			if(service.isEmail(email)) {
+				msg = "사용가능한 E-mail입니다.";
+			}else {
+				msg = "E-mail형식이 아닙니다.";
+			}
 		} else {
 			msg = "중복된 E-mail입니다.";
 		}
