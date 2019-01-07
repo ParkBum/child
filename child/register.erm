@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>0</x>
-	<y>251</y>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -26,7 +26,7 @@
 	<font_name>맑은 고딕</font_name>
 	<font_size>9</font_size>
 	<settings>
-		<database>MySQL</database>
+		<database>StandardSQL</database>
 		<capital>false</capital>
 		<table_style></table_style>
 		<notation></notation>
@@ -42,14 +42,20 @@
 		<export_setting>
 			<export_ddl_setting>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<output_path>register3.sql</output_path>
 =======
 				<output_path>user.sql</output_path>
 >>>>>>> branch 'master' of https://github.com/ParkBum/child
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
+=======
+				<output_path></output_path>
+				<encoding></encoding>
+				<line_feed></line_feed>
+>>>>>>> refs/heads/bs2
 				<is_open_after_saved>true</is_open_after_saved>
-				<environment_id>0</environment_id>
+				<environment_id>null</environment_id>
 				<category_id>null</category_id>
 				<ddl_target>
 					<create_comment>true</create_comment>
@@ -66,8 +72,8 @@
 					<drop_tablespace>true</drop_tablespace>
 					<drop_trigger>true</drop_trigger>
 					<drop_view>true</drop_view>
-					<inline_column_comment>false</inline_column_comment>
-					<inline_table_comment>false</inline_table_comment>
+					<inline_column_comment>true</inline_column_comment>
+					<inline_table_comment>true</inline_table_comment>
 					<comment_value_description>true</comment_value_description>
 					<comment_value_logical_name>false</comment_value_logical_name>
 					<comment_value_logical_name_description>false</comment_value_logical_name_description>
@@ -130,20 +136,20 @@
 				<font_size>9</font_size>
 			<x>50</x>
 			<y>50</y>
-			<color>
-				<r>255</r>
-				<g>255</g>
-				<b>255</b>
-			</color>
 			<connections>
 			</connections>
 			<display>false</display>
+<<<<<<< HEAD
 			<creation_date>2018-12-28 15:02:35</creation_date>
 <<<<<<< HEAD
 			<updated_date>2019-01-07 16:50:15</updated_date>
 =======
 			<updated_date>2019-01-06 20:54:42</updated_date>
 >>>>>>> branch 'master' of https://github.com/ParkBum/child
+=======
+			<creation_date>2019-01-07 17:55:18</creation_date>
+			<updated_date>2019-01-07 18:05:46</updated_date>
+>>>>>>> refs/heads/bs2
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -167,19 +173,12 @@
 		</model_properties>
 		<table_properties>
 			<schema></schema>
-			<character_set></character_set>
-			<collation></collation>
-			<storage_engine></storage_engine>
-			<primary_key_length_of_text>null</primary_key_length_of_text>
 		</table_properties>
 		<environment_setting>
-			<environment>
-				<id>0</id>
-				<name>기본</name>
-			</environment>
 		</environment_setting>
 	</settings>
 	<dictionary>
+<<<<<<< HEAD
 		<word>
 			<id>0</id>
 			<length>10</length>
@@ -573,10 +572,13 @@
 			<physical_name>subject</physical_name>
 			<type>varchar(n)</type>
 		</word>
+=======
+>>>>>>> refs/heads/bs2
 	</dictionary>
 	<tablespace_set>
 	</tablespace_set>
 	<contents>
+<<<<<<< HEAD
 		<table>
 			<id>0</id>
 			<height>204</height>
@@ -1885,6 +1887,8 @@
 				<primary_key_length_of_text>null</primary_key_length_of_text>
 			</table_properties>
 		</table>
+=======
+>>>>>>> refs/heads/bs2
 	</contents>
 	<column_groups>
 	</column_groups>
