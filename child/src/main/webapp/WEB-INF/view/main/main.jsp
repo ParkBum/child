@@ -195,7 +195,7 @@ legend.append("text")
 		<div class="card1">
 			<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
 				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
-					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
+					style="margin:10px 0;"><br>어린이집 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
 			<div class="image1-2">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
