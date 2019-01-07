@@ -17,25 +17,35 @@ public class AjaxController {
 	@Autowired
 	private ChildService service;
 	
-	/*@ResponseBody
-	@RequestMapping("user/check")
-	public Map<Object,Object> check(String nickname){
-		String dbnick = service.userSelect())
-		if(nickname != )
-		return null;
-	}*/
-	
 	@ResponseBody
 	@RequestMapping("user/niccheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> nickcheck(String nickname){
 		Map<Object, Object> map = new HashMap<Object, Object>();
+		System.out.println(nickname);
 		String msg ="";
-		if(service.userSelect(nickname)==null) {
+		
+		
+		if(service.userSelectnick(nickname)==null) {
+			System.out.println(service.userSelectnick(nickname));
 			msg = "사용가능한 닉네임입니다.";
 		} else {
 			msg = "이미 사용중인 닉네임입니다.";
 		}
 		map.put("msg", msg);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("user/emailcheck") //비밀번호 일치 하나요??
+	public Map<Object, Object> emailcheck(String email){
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		String msg ="";
+		if(service.userSelect(email)==null) {
+			msg = "사용가능한 E-mail입니다.";
+		} else {
+			msg = "중복된 E-mail입니다.";
+		}
+		map.put("msge", msg);
 		return map;
 	}
 }

@@ -16,10 +16,11 @@ $(function() {
 			var pwd = $("#password").val();
 			var pwd1 = $("#password1").val();
 			var msg ="";
-			if(pwd == "" && pwd1 ==""){
-				msg;				
-			}
-			if(pwd == pwd1){
+			if(pwd.length<=4){
+				msg ="비밀번호는 4자 이상으로 설정해야 합니다.";	
+			}else if(pwd == "" && pwd1 ==""){
+				msg = "";
+			}else if(pwd == pwd1){
 				msg = "비밀번호가 일치합니다.";
 				$('#check').css('color','green');
 			}else{
@@ -29,8 +30,10 @@ $(function() {
 				$('#check').html(msg);
 		})
 		  $("#nickname").keyup(function() {
+			  
+			  var name = $("#nickname").val();
 					var data = {
-						"nickname" : $("#nickname").val(),
+						"nickname" :name
 						}
 					$.ajax({
 						url : "niccheck.child",
@@ -45,7 +48,25 @@ $(function() {
 	                                 + error + ", status : " + status);
 	                    }
 					})
-				})  
+				})
+/* 		   $("#email").keyup(function() {
+						var data = {
+							"email" : $("#email").val(),
+							}
+						$.ajax({
+							url : "emailcheck.child",
+							type : "post",
+							data : data,
+							dataType : "json",
+							success : function(data){
+								$("#msge").html(data.msg);
+							},
+							error : function(xhr, status, error) { //서버응답 실패
+		                           alert("서버오류 : " + xhr.status + ", error : "
+		                                 + error + ", status : " + status);
+		                    }
+						})
+					})  */
 	});
 
 function execPostCode() {/* 주소 검색 부분 */
@@ -152,9 +173,8 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</spring:hasBindErrors>
 
 			<div class="inin">
-				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" />
-				<font color="red"><br>
-				<form:errors path="email" /></font>
+				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" />
+				<font id="msge" size="3" color="red"></font>
 			</div>
 
 			<div class="inin">
@@ -164,7 +184,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 				
 				<form:password path="password1" class="pass" placeholder="비밀번호 확인" id="password1" name="password1"/>
 				<br>
-				<font name="check" id="check" size="3" color="red"></font> 
+				<font id="check" size="3" color="red"></font> 
 			</div>
 			<!-- ajax사용 부분 DB요청 해야 함.  -->
 			
@@ -184,9 +204,6 @@ input[type=submit] :hover, input[type=reset]:hover {
 			    <br>
 			    <font color="red"><form:errors path="addr3" /></font>
 			</div>
-			
-						
-			
 			<!-- 주소칸 -->
 			<div class="inin">
 				<form:input path="nickname" placeholder="닉네임을 입력하세요" name="nickname" id="nickname" />

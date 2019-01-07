@@ -100,7 +100,8 @@ input[type=submit]:hover, input[type=button]:hover {
 				<div class="inin">
 					<input type="submit" value="로그인"> 
 					<input type="button" value="회원가입" onclick="location.href='userForm.child'">
-					<a href="${url}">NaverIdLogin</a>
+					<a href="${url}"><img src="../decorator/naverlogin.png" width="50px" height="50px" style="padding: 3px;"></a>
+					
 				</div>
 			</div>
 		</form:form>

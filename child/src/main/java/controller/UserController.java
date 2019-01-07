@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,8 +82,10 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("apiResult", apiResult);
+		JSONObject obj = new JSONObject(map);
 		return new ModelAndView("user/callback","result", apiResult);
-		
 //		회원 관리를 해야하는 부분. 
 	}
 	
@@ -110,6 +114,10 @@ public class UserController {
 			return mav;
 		}
 		try {
+			if(service.userSelect(user.getEmail())!=null) {
+				mav.addObject(user);
+				return new ModelAndView("user/userForm");
+			}
 			int mnum = service.maxnum();
 			mnum = mnum + 1;
 			user.setMnum(mnum);
@@ -119,9 +127,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*catch (DataIntegrityViolationException e) {
-			br.reject("error.duplicate.user.email");
-		}*/
+		
 		return mav;
 
 	}
