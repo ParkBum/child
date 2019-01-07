@@ -17,7 +17,7 @@ $(function() {
 </script>
 <style type="text/css">
 .canvas-holder {
-	width: 100%;
+	width: 1200px;
 	height: 500px;
  	border : solid 2px silver;
 /* 	border-radius: 20px;  */
@@ -25,7 +25,7 @@ $(function() {
 
 .menus {
 	margin-top: 25px;
-	width: 100%;
+	width: 1200px;
 	height: 180px;
 }
 /* .public {
