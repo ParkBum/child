@@ -82,9 +82,15 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("apiResult", apiResult);
-		JSONObject obj = new JSONObject(map);
+//		Map<String, Object> map = new HashMap<String,Object>();
+		String email = "";
+		String id ="";
+		for(int i=0;i<4;i++) {			
+			System.out.println(apiResult.split(",")[i].split("\"")[i]);
+			email = apiResult.split(",")[i].split("\"")[i];
+			id = apiResult.split(",")[i].split(":\"")[i];
+		}
+		System.out.println(email);
 		return new ModelAndView("user/callback","result", apiResult);
 //		회원 관리를 해야하는 부분. 
 	}
