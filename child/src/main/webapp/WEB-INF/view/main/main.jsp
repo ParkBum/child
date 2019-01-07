@@ -53,12 +53,21 @@ $(function() {
 	
 } */
 
-.image1 {
+.image1-1,.image1-2,.image1-3 {
 	display: inline-block;
 	height: 230px;
 	border-radius: 20px;
 	margin: 10px 50px;
 	width: 200px;
+}
+.image1-1:hover{
+	background-color: #F5ECCE; 
+}
+.image1-2:hover{
+	background-color: #A9D0F5; 
+}
+.image1-3:hover{
+	background-color: #A9F5D0; 
 }
 
 /* .image2 {
@@ -181,17 +190,17 @@ legend.append("text")
 		<!--  <svg width="384" height="130">
 		 </svg> --><!-- <img src="../decorator/child7.jpg" style="width:100%; height:100%;"> -->
 	</div>
-	<div class="menus">
+<div class="menus">
 		<div class="card1">
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
 				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
 					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1-2">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
-			<div class="image1" style="background-color: #F5ECCE">
+			<div class="image1-3">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
 					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
 			</div>
