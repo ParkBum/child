@@ -2,13 +2,44 @@ package logic;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Comment {
 	private int cnum;
 	private int bnum;
 	private int mnum;
-	private String comment;
+	@NotEmpty(message = "내용을 입력하세요")
+	private String recomment;
 	private Date comdate;
+/*	private int ref;
+	private int refstep;
+	private int reflevel;
+	
 
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getRefstep() {
+		return refstep;
+	}
+
+	public void setRefstep(int refstep) {
+		this.refstep = refstep;
+	}
+
+	public int getReflevel() {
+		return reflevel;
+	}
+
+	public void setReflevel(int reflevel) {
+		this.reflevel = reflevel;
+	}
+*/
 	public int getCnum() {
 		return cnum;
 	}
@@ -33,12 +64,12 @@ public class Comment {
 		this.mnum = mnum;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getRecomment() {
+		return recomment;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void seRecomment(String recomment) {
+		this.recomment = recomment;
 	}
 
 	public Date getComdate() {
