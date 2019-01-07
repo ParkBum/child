@@ -35,6 +35,20 @@ th {
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
 </style>
+<script type="text/javascript">
+	function file_delete1() {
+		document.f.file1.value = "";
+		file_desc.style.display = "none";
+	}
+	function file_delete2() {
+		document.f.file2.value = "";
+		file_desc.style.display = "none";
+	}
+	function file_delete3() {
+		document.f.file3.value = "";
+		file_desc.style.display = "none";
+	}
+</script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -148,18 +162,38 @@ $(document).ready(function() {
          <td style="padding:5px;vertical-align:middle;"><form:textarea path="content" style="width:100%;height:400px;border:0;resize:none;" placeholder="내용을 입력하세요" />
          <font color="red"><form:errors path="content" /></font>
       </tr>
+      
+      <c:if test="${!empty board.file1}">
       <tr style="height:30px;">
-         <th style="text-align:right;"><a href="#"><i class="material-icons" style="vertical-align:middle;float:left;" id="box1">add_box</i></a>첨부파일1&nbsp;</th>
-         <td><input type="file" name="multi1"></td>
+         <th style="text-align:right;"><a href="#">
+         <i class="material-icons" style="vertical-align:middle;float:left;" id="box1">add_box</i></a>
+         		첨부파일1&nbsp;</th>
+         <td>
+        <a href="../file/${board.file1}">${board.file1}</a>
+         	<input type="file" name="multi1">
+         	<a href="javascript:file_delete1()">[첨부파일삭제]</a></td>
       </tr>
+      </c:if>
+      <c:if test="${!empty board.file2}">
       <tr id="tr1" style="height:30px;">
-         <th style="text-align:right;"><a href="#"><i class="material-icons" style="vertical-align:middle;float:left;" id="box2">add_box</i></a>첨부파일2&nbsp;</th>
-         <td><input type="file" name="multi2"></td>
-      </tr>
+         <th style="text-align:right;"><a href="#">
+         <i class="material-icons" style="vertical-align:middle;float:left;" id="box2">add_box</i></a>
+         		첨부파일2&nbsp;</th>
+         <td>
+        <a href="../file/${board.file2}">${board.file2}</a>
+        	<input type="file" name="multi2">
+        	<a href="javascript:file_delete2()">[첨부파일삭제]</a></td>
+      </tr></c:if>
+      
+      <c:if test=" ${!empty board.file3} ">
       <tr id="tr2" style="height:30px;">
          <th style="text-align:right;">첨부파일3&nbsp;</th>
-         <td><input type="file" name="multi3"></td>
+         <td>
+         	<a href="../file/${board.file3}">${board.file3}</a>
+         	<input type="file" name="multi3">
+         	<a href="javascript:file_delete3()">[첨부파일삭제]</a></td>
       </tr>
+      </c:if>
       <tr style="height:30px;">
          <td colspan="2" style="text-align:center;">
          <input type="submit" value="등록"><input type="button" id="list" value="목록">

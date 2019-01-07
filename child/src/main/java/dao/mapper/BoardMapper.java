@@ -26,6 +26,7 @@ public interface BoardMapper {
 				+ " multi1=#{file1}, multi2=#{file2}, multi3=#{file3} where bnum=#{bnum}")
 	void boardUpdate(Board board);
 */
+
 }
 
 

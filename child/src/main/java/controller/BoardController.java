@@ -118,7 +118,13 @@ public class BoardController {
 	//	service.boardUpdate(board,request);
 		return mav;
 	}
-
+	
+	@RequestMapping(value = "board/comment")
+	public ModelAndView comment(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		service.comment(bnum);
+		return mav;
+	}
 }
 
 

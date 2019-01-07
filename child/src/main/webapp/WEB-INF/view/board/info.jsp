@@ -67,6 +67,11 @@ $(document).ready(function() {
 		var btype = $('input[name=bType]').val();
 		location.href = "list.child?bType=" + btype;
 	})
+	
+	$('#comment').click(function() {
+		var bnum = $('input[name=bnum]').val();
+		location.href = "comment.child?bnum=" + bnum;
+	})
 });
 </script>
 </head>
@@ -84,6 +89,7 @@ $(document).ready(function() {
 	</c:when>
 </c:choose>
 </div>
+
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="bnum" value="${board.bnum}">
 	<input type="hidden" name="score" value="${board.score}">
@@ -93,7 +99,7 @@ $(document).ready(function() {
 			<td width="90%">&nbsp;${board.nickname}
 			<c:if test="${board.bType == 3}">
 				&nbsp;<input type="button" value="½Å°í">
-				</c:if></td>
+				</c:if></td> 
 		</tr>
 		<tr style="height:30px;">
 			<td style="text-align:center;">Á¦¸ñ</td>
@@ -132,13 +138,13 @@ $(document).ready(function() {
 			<td style="text-align:center;">Ã·ºÎÆÄÀÏ</td>
 			<td>&nbsp;
 				<c:if test="${!empty board.file1}">
-				<img src="../file/${board.file1}" style="width:200px;height:200px;">
+				<img src="../file/${board.file1}" style="width:150px;height:150px;"> 
 				</c:if>&nbsp;
 				<c:if test="${!empty board.file2}">
-				<img src="../file/${board.file2}" style="width:200px;height:200px;">
+				<img src="../file/${board.file2}" style="width:150px;height:150px;">
 				</c:if>&nbsp;
 				<c:if test="${!empty board.file3}">
-				<img src="../file/${board.file3}" style="width:200px;height:200px;">
+				<img src="../file/${board.file3}" style="width:150px;height:150px;">
 				</c:if>
 			</td>
 		</tr>
@@ -150,6 +156,15 @@ $(document).ready(function() {
 				<input type="button" id="delete" value="»èÁ¦">
 			</c:if>
 				<input type="button" id="list" value="¸ñ·Ï">
+			</td>
+		</tr>
+		<!-- ´ñ±Û -->
+			<tr style="height:30px;">
+			<td style="text-align:center;">´ñ±Û</td> 
+			<td>  
+				´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname} 
+				<textarea path="comment" style="width:100%;height:100px;border:0;resize:none;" placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea>
+				<input type="button" id="comment" value="µî·Ï">
 			</td>
 		</tr>
 	</table>
