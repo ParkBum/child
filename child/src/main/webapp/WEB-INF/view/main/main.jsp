@@ -56,9 +56,10 @@ $(function() {
 .image1-1,.image1-2,.image1-3 {
 	display: inline-block;
 	height: 230px;
+	position : relative;
 	border-radius: 20px;
-	margin: 10px 50px;
-	width: 200px;
+	margin: 2% 5%;
+	width: 20%;
 }
 .image1-1:hover{
 	background-color: #F5ECCE; 
@@ -198,7 +199,7 @@ legend.append("text")
 			</div>
 			<div class="image1-2">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
-					height="150px" style="margin: 10px 0;"><br>Ä¿¹Â´ÏÆ¼&nbsp;<i class="fa fa-arrow-right"></i></a>
+					height="150px" style="margin: 10px 0;"><font><br>Ä¿¹Â´ÏÆ¼&nbsp;<i class="fa fa-arrow-right"></i></font></a>
 			</div>
 			<div class="image1-3">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"

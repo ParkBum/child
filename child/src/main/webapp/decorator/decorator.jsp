@@ -105,7 +105,7 @@ z-index:200;
 	text-align: center;
 	color : black;
   	width: 80%;
-  	margin : 0 10%;
+  	margin : 0 auto;
  	 height : 80px;
 }
 .card2 {
@@ -173,19 +173,19 @@ z-index:200;
 		</div>
 		<div class="card2">
 			<div class="image2">
-				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="200px"
+				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
 					height="40px"></a>
 			</div>
 			<div class="image2">
-				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="200px"
+				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
 					height="40px"></a>
 			</div>
 			<div class="image2">
-				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="200px"
+				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
 					height="40px"></a>
 			</div>
 			<div class="image2">
-				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="200px"
+				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
 					height="40px"></a>
 			</div>
 	</div>
