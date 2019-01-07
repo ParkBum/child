@@ -13,7 +13,7 @@
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <style type="text/css">
 .canvas-holder {
-	width: 100%;
+	width: 1200px;
 	height: 500px;
  	border : solid 2px silver;
 /* 	border-radius: 20px;  */
@@ -26,7 +26,7 @@
 }
 .menus {
 	margin-top: 25px;
-	width: 100%;
+	width: 1200px;
 	height: 180px;
 }
 /* .public {
@@ -57,9 +57,10 @@
 .image1-1,.image1-2,.image1-3 {
 	display: inline-block;
 	height: 230px;
+	position : relative;
 	border-radius: 20px;
-	margin: 10px 50px;
-	width: 200px;
+	margin: 2% 5%;
+	width: 20%;
 }
 .image1-1:hover{
 	background-color: #F5ECCE; 
@@ -132,11 +133,11 @@ d3.select(".canvas-holder")
 		<div class="card1">
 			<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
 				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
-					style="margin:10px 0;"><br>지도 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
+					style="margin:10px 0;"><br>어린이집 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
 			</div>
 			<div class="image1-2">
 				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
-					height="150px" style="margin: 10px 0;"><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></a>
+					height="150px" style="margin: 10px 0;"><font><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></font></a>
 			</div>
 			<div class="image1-3">
 				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"

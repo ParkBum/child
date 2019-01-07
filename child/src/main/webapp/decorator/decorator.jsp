@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
-<%@ taglib prefix="decorator"	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="decorator"   uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -17,21 +17,21 @@
 </script>
 <style type="text/css">
 html {
-	background-position : center;
-	background-size: cover;
-	font-family: 'Noto Sans KR', sans-serif;
+   background-position : center;
+   background-size: cover;
+   font-family: 'Noto Sans KR', sans-serif;
 }
 
 * {
-	box-sizing: border-box;
-	font-family: 'Noto Sans KR', sans-serif;
+   box-sizing: border-box;
+   font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
-	/* max-width: 1200px; */
-	display :block;
-	margin: 0 auto;
-	font-family: 'Noto Sans KR', sans-serif;
+   /* max-width: 1200px; */
+   display :block;
+   margin: 0 auto;
+   font-family: 'Noto Sans KR', sans-serif;
 }
 /* 상단 바 */
 .menu-bar {
@@ -43,7 +43,7 @@ body {
   width:100%;
   height : 140px;
 }
-.menu { margin: auto; padding: 0 auto; }
+.menu { padding: 0 auto; }
 .menu .left {
   float:left;
   list-style:none;
@@ -89,34 +89,37 @@ position:absolute;
 width:200px;
 z-index:200;
 }
-.menu-bar .right:hover ul { display:block;}			  
-.menu-bar .right:hover ul li {background: white;}			  
-.menu-bar .right:hover ul li:hover {background : silver; opacity: 0.5;}			  
+.menu-bar .right:hover ul { display:block;}           
+.menu-bar .right:hover ul li {background: white;}           
+.menu-bar .right:hover ul li:hover {background : silver; opacity: 0.5;}           
 
 /* main */
 .main {
-	width : 1200px;
-	margin: 0 auto;
-	padding: 10px;
-	height: 800px;
+   width : 65%;
+   margin: 0 auto;
+   padding: 10px;
+   height: 800px;
 }
 /*하단 footer */
 .footer {
-	text-align: center;
-	color : black;
-  	width: 80%;
-  	margin : 0 10%;
- 	 height : 80px;
+   text-align: center;
+   color : black;
+     width: 80%;
+     margin : 0 auto;
+     height : 80px;
 }
 .card2 {
-	background-position : center;
-	background-size :cover;
-	width: 100%;
-	height: 75px;
-	text-align: center;
-	
+
+   background-position : center;
+   background-size :cover;
+   width: 100%;
+   height: 75px;
+   text-align: center;
+   
+
 }
 .image2 {
+
 	background-color: white;
 	display: inline-block;
 	height: 46px;
@@ -125,19 +128,22 @@ z-index:200;
 	border:solid 2px silver;
 	padding : 1px;
 	margin : 10px 10px 0px 10px;
+
 }
 </style>
 </head>
 <body>
 <%-- 원래 메뉴 --%>
+ <c:if test="${!empty sessionScope.loginUser}">
+   <font size="2" style="float:right; margin:3px 300px 0 0;">${sessionScope.loginUser.nickname}님 환영합니다.</font>
+ </c:if>
  <div class='menu-bar'>
+
     <div style="/* border:solid 1px black; */ width:100%; height : 40px;">
 		<ul class="menu" style="margin:10px 300px 10px 200px;">
 		<li class="left">
 			<a href="${path}/main/main.child"><img src="../decorator/logo.png" 
 									style="width:130px; height:100px; margin: 0 0 5% 10%;"></a></li>
-		<c:if test="${!empty sessionScope.loginUser}"><li class="left">
-		<p>${sessionScope.loginUser.nickname}님 환영합니다. 오늘도 좋은 하루 되세요</p></li></c:if>
 		<c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child">로그아웃</a></li></c:if>
 		<c:if test="${!empty sessionScope.loginUser}"><li class="right">
 			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">회원정보</c:if>
@@ -154,12 +160,13 @@ z-index:200;
        	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
 		</ul>
 		</li>
-		<li class="right"><a href="${path}/map/map.child">지도 검색</a></li>
+		<li class="right"><a href="${path}/map/map.child">어린이집 검색</a></li>
  	 </ul>
  	</div>
  </div>
 
 <!-- <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div> -->
+
 	<div class="main">
 		<decorator:body />
 	</div>
@@ -190,5 +197,8 @@ z-index:200;
 			</div>
 	</div>
 	</div>
+
+
+
 </body>
 </html>

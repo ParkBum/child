@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>자유게시판</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function searchList(pageNum) {
 		var searchType = document.searchForm.searchType.value;
@@ -20,9 +22,21 @@
 		}
 		return false;
 	}
+	
+	$('#co').click(function() {
+		location.href = "list.child?bType=1";
+	});
+	
+	$('#re').click(function() {
+		location.href = "list.child?bType=2";
+	});
 </script>
 </head>
 <body>
+<div align="center">
+<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="co">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="re">
+</div>
 <h4>자유 게시판</h4>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
