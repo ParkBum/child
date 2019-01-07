@@ -8,18 +8,52 @@
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
 <script type="text/javascript">
 $(function() {
-		var dataset=[15,5,32,20,21];
-		d3.select("#canvas-holder")
-			.selectAll("p")
-			.data(dataset)
-			.enter()
-			.append("p")
-			.text("hi bro~");
+	var svg = d3.select("svg"),
+	margin = {top:20,right:20,bottom:30,left:50}, //그래프에서 margin을 정함
+	width = +svg.attr("width") - margin.left-margin.right,
+	height = +svg.attr("height") - margin.top - margin.bottom,
+	g = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+	
+var x = d3.scaleBand()
+			.rangeRound([0,width])
+
+var y = d3.scaleLinear()
+			.rangeRound([height,0])
+
+var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
+d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decorator/dcc_total.csv",function(i,d,columns){
+	for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
+	d.total = t;
+	return d;
+	}, function(error, data) {
+	if (error) throw error;
+	
+	var keys = data.columns.slice(1);
+	
+	data.sort(function(a,b){return b.total-a.total;});
+	x.domain(data.map(function(d) {return d.gu}));
+	y.domain([0,d3.max(data, function(d) {return d.total;})]).nice();
+	z.domain(keys);
+	
+	var bars = g.append("g")
+		.selectAll("g")
+		.data(d3.stack().keys(keys)(data))
+		.enter().append("g")
+		.attr("fill",function(d) {return z(d.key);})
+		.selectAll("rect")
+		.data(function(d){return d;})
+		
+	
+	
+	
+	
+	)
+	
 		
 })
 </script>
@@ -104,7 +138,7 @@ $(function() {
 
 </style>
 <script type="text/javascript">
-$(function() {
+/* $(function() {
 var svg = d3.select("svg"),
  margin = {top: 20, right: 20, bottom: 30, left: 40},
 width = +svg.attr("width") - margin.left - margin.right,
@@ -190,15 +224,15 @@ legend.append("text")
 });
 
 	
-})
+}) */
 </script>
 </head>
 <body>
 	<div id="wrap">
-	<div class="canvas-holder">
+	<svg class="canvas-holder">
 		<!--  <svg width="384" height="130">
 		 </svg> --><!-- <img src="../decorator/child7.jpg" style="width:100%; height:100%;"> -->
-	</div>
+	</svg>
 <div class="menus">
 		<div class="card1">
 			<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
