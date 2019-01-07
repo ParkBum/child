@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>후기게시판 목록</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function searchList(pageNum) {
 		var searchType = document.searchform.searchType.value;
@@ -20,10 +21,23 @@
 		}
 		return false;
 	}
+	
+	$('document').ready(function() {
+		$('#community').click(function() {
+			location.href = "list.child?bType=1";
+		});
+		
+		$('#review').click(function() {
+			location.href = "list.child?bType=2";
+		});	
+	})	
 </script>
 </head>
 <body>
-<h4>후기 게시판</h4>
+<div align="center" style="margin-bottom:30px;">
+<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="community">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="review">
+</div>
 	<table border="1" style="border-collapse:collapse; width:100%;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="5" align="right">
