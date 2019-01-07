@@ -37,14 +37,11 @@ body {
 .menu-bar {
 
   display: inline-block;
-  color : white;
+  color : black;
  /*  width: 90%;
   margin : 0 5%; */
   width:100%;
   height : 140px;
-  background :  linear-gradient(to right, rgba(255, 255, 255, 0.5),  rgba(255, 255, 255, 0.5)),url("../decorator/child1.jpg"); 
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .menu { margin: auto; padding: 0 auto; }
 .menu .left {
@@ -128,20 +125,20 @@ z-index:200;
 }
 .image2 {
 	display: inline-block;
-	height: 66px;
+	height: 46px;
 	margin: 5px 2px;
-	width: 24%;
+	width: 14%;
 	border:solid 2px silver;
 	padding : 1px;
+	margin : 10px 10px 0px 10px;
 }
 </style>
 </head>
 <body>
 <%-- 원래 메뉴 --%>
  <div class='menu-bar'>
-     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#333333">
- 		 <ul class="menu">
-    <li class="left"><a href="${path}/main/main.child"><img src="../decorator/home-icon-silhouette.png" style="width:30px; height:25px;"></a></li>
+     <div style="/* border:solid 1px black; */ width:100%; height : 40px; background-color:#2E9AFE">
+	<ul class="menu">
     <c:if test="${empty sessionScope.loginUser}">
 	<li class="right"><a href="${path}/user/loginForm.child">로그인</a></li>
 	<li class="right"><a href="${path}/user/userForm.child">회원가입</a></li>
@@ -164,40 +161,41 @@ z-index:200;
 	</c:if>
   </ul>
  </div>
- <div style="/* border:solid 1px black;  */width:100%; height : 100px;">
-
+ <div style="/* border:solid 1px black;  */width:80%; height : 100px; margin:0 10%;">
+	<a href="${path}/main/main.child"><img src="../decorator/logo.png" style="width:130px; height:100px;"></a>
+  
   </div>
  </div>
 
-<div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
+<!-- <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div> -->
 	<div class="main">
 		<decorator:body />
 	</div>
 	<!-- <hr> -->
 <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div>
 	<div class="footer">
-		 	<div class="public">
-		<div class="card2">
-			<div class="image2">
-				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
-					height="58px"></a>
-			</div>
-		</div>
-	</div>
-	<hr>
+		<br>
 		<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
+		<hr>
+		<br>
+	</div>
+	<div class="card2">
+			<div class="image2">
+				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="200px"
+					height="40px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="200px"
+					height="40px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="200px"
+					height="40px"></a>
+			</div>
+			<div class="image2">
+				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="200px"
+					height="40px"></a>
+			</div>
 	</div>
 </body>
 </html>

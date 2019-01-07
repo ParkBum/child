@@ -16,13 +16,7 @@ $(function() {
 })
 </script>
 <style type="text/css">
-#wrap {
-	width:100%;
-}
-#wrapmain {
-	width : 90%;
-	margin : 0 5%;
-}
+
 .canvas-holder {
 	width: 100%;
 	height: 500px;
