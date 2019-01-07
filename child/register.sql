@@ -47,6 +47,9 @@ CREATE TABLE user
 	email varchar(100) NOT NULL,
 	nickname varchar(50) NOT NULL,
 	password varchar(100) NOT NULL,
+	addr1 varchar(10),
+	addr2 varchar(100),
+	addr3 varchar(50),
 	PRIMARY KEY (mnum)
 );
 

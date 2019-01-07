@@ -15,6 +15,7 @@
 			<if test="searchType != null and searchContent!=null">
 				 and ${searchType} like '%${searchContent}%'
 			</if>
+			order by regdate desc
 		</if>
 		<if test="startrow != null and limit != null">
 			limit #{startrow},#{limit}

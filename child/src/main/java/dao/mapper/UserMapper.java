@@ -1,5 +1,6 @@
 package dao.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -20,9 +21,10 @@ public interface UserMapper {
 	@Select("select * from user where mnum = #{mnum}")
 	User infoSelect(Integer mnum);
 
-	@Update("update user set email = #{email}, nickname= #{nickname}, password = #{password}" +
-					" where mnum = #{mnum}")
+	@Update("update user set nickname= #{nickname} where mnum = #{mnum}")
 	void userUpdate(User user);
 
+	@Delete("Delete from user where mnum = #{mnum}")
+	void userDelete(Integer mnum);
 
 }

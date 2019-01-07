@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +18,11 @@ public class MapController {
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<String> gulist = service.gusort();
-		List<Integer> cntlist = service.cntsort();
-		
-		mav.addObject("gulist", gulist);
-		mav.addObject("cntlist", cntlist);
+//		List<String> gulist = service.gusort();
+//		List<Integer> cntlist = service.cntsort();
+//		
+//		mav.addObject("gulist", gulist);
+//		mav.addObject("cntlist", cntlist);
 		return mav;
 	}
 	
@@ -47,7 +46,7 @@ public class MapController {
 		}
 		List<String> addr = service.getpoint(gu,type,bus,word);
 		mav.addObject("addr",addr);
-		mav.setViewName("redirect:map.child");
+		mav.setViewName("map/map");
 		return mav;
 	}
 	

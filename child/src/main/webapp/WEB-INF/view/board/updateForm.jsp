@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>게시판 글쓰기</title>
+<title>게시글 수정하기</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style type="text/css">
-td {
+td { 
 	text-align : left;
 }
 th {
@@ -110,7 +110,7 @@ $(document).ready(function() {
 					<option value="2">팝니다</option>
 				</c:if>
 				</select>
-				</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;" placeholder="제목을 입력하세요" />
+				</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;" value="${board.subject}"/>
 			<font color="red"><form:errors path="subject" /></font>
 		</tr>
 		<c:if test="${board.bType == 2}">

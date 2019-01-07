@@ -72,7 +72,7 @@
 			<th width="14%" height="26">±Û¾´ÀÌ</th>
 			<th width="17%" height="26">³¯Â¥</th>
 			<th width="11%" height="26">Á¶È¸¼ö</th>
-		</tr>
+		</tr> 
 		
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
@@ -81,7 +81,7 @@
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
 			<td style="text-align:left;">
-			<a href="info.child?num=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}]&nbsp;${board.subject}</a></td>
+			<a href="info.child?bnum=${board.bnum}" style="text-decoration:none;">&nbsp;[${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}]&nbsp;${board.subject}</a></td>
 			<td align="left">${board.nickname}</td> 
 			<td align="center"><fmt:formatDate value="${board.regdate}" pattern="YYYY-MM-dd"/></td>
 			<td align="right">${board.readcnt}</td>

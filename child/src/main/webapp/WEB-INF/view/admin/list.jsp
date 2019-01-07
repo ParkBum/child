@@ -41,6 +41,14 @@ td.title {
          chks[i].checked = chk.checked;
       }
    }
+   
+   function admindelete(mnum){
+	   var del = confirm("강제탈퇴 하시겠습니까?")
+	   if(del){
+		   location.href = "delete.child?mnum="+mnum;
+	   }
+	   return false;
+   }
 
 </script>
 </head>
@@ -62,10 +70,13 @@ td.title {
 				<td>수정</td>
 			</tr>
 			<tr>
-				<td>${user.mnum}</td>
-				<td>${user.email}</td>
-				<td>${user.nickname}</td>
-				<td><a href="../user/updateForm.child?mnum=${user.mnum}">수정</a></td>
+				<td>${sessionScope.loginUser.mnum}</td>
+				<td>${sessionScope.loginUser.email}</td>
+				<td>${sessionScope.loginUser.nickname}</td>
+				<td><a href="../user/updateForm.child?mnum=${sessionScope.loginUser.mnum}">수정</a>
+					<c:if test="${sessionScope.loginUser.mnum != 1}">
+						<a href="../user/delete.child?mnum=${sessionScope.loginUser.mnum}">탈퇴</a>
+					</c:if></td>
 			</tr>
 		</table>
 	</form>
@@ -74,12 +85,13 @@ td.title {
 	<form action="list.child" method="Post">
 		<table border="1" style="border-collapse: collapse; width: 100%">
 			<tr>
-				<td colspan="4">회원 목록</td>
+				<td colspan="5">회원 목록</td>
 			</tr>
 			<tr>
 				<td>회원번호</td>
 				<td>아이디(이메일)</td>
 				<td>닉네임</td>
+				<td>경고횟수</td>
 				<td>관리자 수정</td>
 			</tr>
 			<c:forEach items="${userlist}" var="user">
@@ -87,14 +99,25 @@ td.title {
 					<td>${user.mnum}</td>
 					<td>${user.email}</td>
 					<td>${user.nickname}</td>
-					<td><a href="../user/updateForm.child?mnum=${user.mnum}">수정</a>
-						<a href="../user/delete.child?mnum=${user.mnum}">강제탈퇴</a> 
-						<a href="../user/mypage.child?mnum=${user.mnum}">회원정보</a></td>
+					<td> </td>
+					<td><a href="javascript:admindelete(${user.mnum})">강제탈퇴</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
 	</c:if>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,14 +20,7 @@ public class BoardController {
 
 	@Autowired
 	ChildService service;
-
-	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", board);
-		return mav;
-	}
-
+	
 	@RequestMapping(value = "board/list")
 	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
 			String searchContent) {
@@ -100,4 +93,38 @@ public class BoardController {
 		}
 		return mav;
 	}
+
+	@RequestMapping(value = "board/*")
+	public ModelAndView boardAll(Board board) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board", board);
+		return mav;
+	}
+	
+	@RequestMapping(value = "board/delete")
+	public ModelAndView delete(Integer bnum) {
+		ModelAndView mav = new ModelAndView();
+		service.boardDelete(bnum);
+		mav.setViewName("redirect:/board/list.child?bType=3");
+		return mav;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
