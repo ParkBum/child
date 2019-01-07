@@ -96,7 +96,24 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 <form:form modelAttribute="board" action="update.child" enctype="multipart/form-data" name="f" method="post">
+=======
+<div align="center" style="margin-bottom:30px;">
+<c:choose>
+	<c:when test="${board.bType == 1}">
+	<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="community">
+	</c:when>
+	<c:when test="${board.bType == 2}">
+<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="review">
+	</c:when>
+	<c:when test="${board.bType == 3}">
+	<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="market">
+	</c:when>
+</c:choose>
+</div>
+<form:form modelAttribute="board" action="write.child" enctype="multipart/form-data" name="f" method="post">
+>>>>>>> branch 'master' of https://github.com/ParkBum/child
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 	<input type="hidden" name="score" id="score" value="0">

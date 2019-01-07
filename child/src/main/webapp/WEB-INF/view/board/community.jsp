@@ -39,7 +39,7 @@ $('document').ready(function() {
 </head>
 <body>
 <div align="center" style="margin-bottom:30px;">
-<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:black; color:white;" id="community">
+<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="community">
 <input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="review">
 </div>
 	<table border="1" style="border-collapse:collapse; width:100%;">
@@ -94,7 +94,7 @@ $('document').ready(function() {
 		
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
-			onmouseover="this.style.backgroundColor='#5CD1E5'" 
+			onmouseover="this.style.backgroundColor='#FFF5C7'" 
 			onmouseout="this.style.backgroundColor=''">
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
