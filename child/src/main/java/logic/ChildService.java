@@ -19,7 +19,7 @@ public class ChildService {
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
+	@Autowired 
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
@@ -87,6 +87,12 @@ public class ChildService {
 		User user = userDao.select(email);
 		return user;
 	}
+	
+	public User userSelectnick(String nickname) {
+		User user = userDao.selectnick(nickname);
+		return user;
+	}
+
 
 	public List<User> userList() {
 		List<User> list = userDao.userlist();

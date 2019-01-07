@@ -16,11 +16,23 @@ public class User {
 	@Size(min=4, message="패스워드는 4자 이상이어야 합니다.")
 	private String password;
 	private String password1;
+	@NotEmpty(message="주소를 입력해주세요")
 	private String addr1;
 	private String addr2;
+	@NotEmpty(message="상세주소를 입력해주세요")
 	private String addr3;
+	private String id;
 	
 	
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getPassword1() {
 		return password1;

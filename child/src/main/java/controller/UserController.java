@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,8 +82,10 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("apiResult", apiResult);
+		JSONObject obj = new JSONObject(map);
 		return new ModelAndView("user/callback","result", apiResult);
-		
 //		회원 관리를 해야하는 부분. 
 	}
 	
@@ -106,18 +110,24 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("user/userForm");
 		if (br.hasErrors()) {
 			mav.getModel().putAll(br.getModel());
+			mav.setViewName("user/userForm");
 			return mav;
 		}
 		try {
+			if(service.userSelect(user.getEmail())!=null || service.userSelectnick(user.getNickname())!=null) {
+				mav.addObject(user);
+				return new ModelAndView("user/userForm");
+			}
 			int mnum = service.maxnum();
 			mnum = mnum + 1;
 			user.setMnum(mnum);
 			service.userCreate(user);
 			mav.setViewName("user/loginForm");
 			mav.addObject("user", user);
-		} catch (DataIntegrityViolationException e) {
-			br.reject("error.duplicate.user");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		return mav;
 
 	}
@@ -155,6 +165,7 @@ public class UserController {
 		return mav;
 	}
 
+
 	@RequestMapping("user/userdelete")
 	public ModelAndView userdelete(User user, HttpSession session, Integer mnum) {
 		ModelAndView mav = new ModelAndView();
@@ -175,50 +186,4 @@ public class UserController {
 	}
 }
 
-/*
- * @RequestMapping("user/emailAuth.do") public ModelAndView entry(User user) {
- * ModelAndView mav = new ModelAndView(); String email = user.getEmail(); String
- * authNum = ""; authNum = RandomNum(); sendEmail(email.toString(), authNum);
- * mav.setViewName("user/emailAuth"); mav.addObject("email",email);
- * mav.addObject("authNum",authNum); return mav; }
- * 
- * private void sendEmail(String email, String authNum) { String from =
- * "20dy@naver.com"; try{ Properties prop = new Properties();
- * prop.put("mail.smtp.host" ,"smtp.naver.com");
- * prop.put("mail.smtp.starttls.enable" ,"true"); // prop.put("mail.user",
- * mail.getNaverid()); // prop.put("mail.from", mail.getNaverid());
- * prop.put("mail.debug", "true"); prop.put("mail.smtp.auth", "true");
- * prop.put("mail.smtp.port", "465"); prop.put("mail.smtp.user", email);
- * prop.put("mail.smtp.socketFactory.port", "465");
- * prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
- * prop.put("mail.smtp.socketFactory.fallback", "false"); Session session =
- * Session.getInstance(prop, new javax.mail.Authenticator() { protected
- * PasswordAuthentication getPassswordAuthentication() { return new
- * PasswordAuthentication("20dy@naver.com", "park0405!@!"); } }); //메일서버에 연결
- * String content = "인증번호는 ["+authNum+"] 입니다."; MimeMessage msg = new
- * MimeMessage(session); //메일로 전송할 객체 생성 msg.setFrom(new
- * InternetAddress(from,MimeUtility.encodeText("운영자","UTF-8","B")));
- * InternetAddress[] addr = {new InternetAddress(email)};
- * msg.setRecipients(Message.RecipientType.TO, addr); // 보낸 사람, 여러명
- * msg.setSubject("인증번호 발급"); msg.setSentDate(new Date()); //보낸 날짜
- * msg.setContent(content,"text/html;charset=euc-kr"); Transport.send(msg); //메일
- * 전송 실행 } catch (MessagingException me) { me.printStackTrace(); } catch
- * (Exception e) { e.printStackTrace(); } }
- */
 
-/*
- * private String RandomNum() { StringBuffer br = new StringBuffer(); for(int
- * i=0; i<=6; i++) { int n = (int)(Math.random() * 10); br.append(n); } return
- * br.toString(); }
- */
-/*
- * @RequestMapping("user/emailAuth.child") public ModelAndView policyList(){
- * AllInfo info = null; ArrayList list = new ArrayList(); info = new AllInfo();
- * info.setS_user("유저1"); list.add(info); info = new AllInfo();
- * info.setS_user("유저2"); list.add(info);
- * 
- * 
- * ModelAndView mav = new ModelAndView(); Map resultMap = new HashMap();
- * resultMap.put("list", list); mav.addAllObjects(resultMap);
- * mav.setViewName("jsonView"); return mav; }
- */
