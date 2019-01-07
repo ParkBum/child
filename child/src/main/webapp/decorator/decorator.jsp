@@ -127,6 +127,7 @@ z-index:200;
 	width: 14%;
 	border:solid 2px silver;
 	padding : 1px;
+	margin : 10px 10px 0px 10px;
 }
 </style>
 </head>
