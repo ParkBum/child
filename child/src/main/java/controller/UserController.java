@@ -85,12 +85,16 @@ public class UserController {
 //		Map<String, Object> map = new HashMap<String,Object>();
 		String email = "";
 		String id ="";
-		for(int i=0;i<4;i++) {			
-			System.out.println(apiResult.split(",")[i].split("\"")[i]);
-			email = apiResult.split(",")[i].split("\"")[i];
-			id = apiResult.split(",")[i].split(":\"")[i];
+		
+		for(int i=0;i<18; i++) {
+			System.out.println("["+i+"]"+apiResult.split("\"")[i]);
+			if(i==13) {
+				id =apiResult.split("\"")[i];
+			}
+			if(i==17) {
+				email =apiResult.split("\"")[i];
+			}
 		}
-		System.out.println(email);
 		return new ModelAndView("user/callback","result", apiResult);
 //		회원 관리를 해야하는 부분. 
 	}
