@@ -43,7 +43,7 @@ body {
   width:100%;
   height : 140px;
 }
-.menu { margin: auto; padding: 0 auto; }
+.menu { padding: 0 auto; }
 .menu .left {
   float:left;
   list-style:none;
@@ -95,7 +95,7 @@ z-index:200;
 
 /* main */
 .main {
-	width : 1200px;
+	width : 65%;
 	margin: 0 auto;
 	padding: 10px;
 	height: 800px;
@@ -130,14 +130,15 @@ z-index:200;
 </head>
 <body>
 <%-- 원래 메뉴 --%>
+ <c:if test="${!empty sessionScope.loginUser}">
+	<font size="2" style="float:right; margin:3px 300px 0 0;">${sessionScope.loginUser.nickname}님 환영합니다.</font>
+ </c:if>
  <div class='menu-bar'>
-    <div style="/* border:solid 1px black; */ width:100%; height : 40px;">
-		<ul class="menu" style="margin:10px 300px 10px 200px;">
+    <div style="width:100%; height:40px;">
+		<ul class="menu" style="margin:0px 300px 10px 200px;">
 		<li class="left">
 			<a href="${path}/main/main.child"><img src="../decorator/logo.png" 
-									style="width:130px; height:100px; margin: 0 0 5% 10%;"></a></li>
-		<c:if test="${!empty sessionScope.loginUser}"><li class="left">
-		<p>${sessionScope.loginUser.nickname}님 환영합니다. 오늘도 좋은 하루 되세요</p></li></c:if>
+									style="width:130px; height:100px; margin: 0 0 3% 15%;"></a></li>
 		<c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child">로그아웃</a></li></c:if>
 		<c:if test="${!empty sessionScope.loginUser}"><li class="right">
 			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">회원정보</c:if>
