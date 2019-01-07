@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
+import dao.CommentDao;
 import dao.MapDao;
 import dao.UserDao;
 
@@ -23,6 +24,8 @@ public class ChildService {
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
+	@Autowired
+	private CommentDao commentDao;
 
 	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
 		String uploadPath = request.getServletContext().getRealPath("/") + "/" + path + "/";
@@ -126,9 +129,24 @@ public class ChildService {
 		boardDao.boardDelete(bnum);
 	}
 
-	public void comment(Integer bnum) {
-		
+	public void commentWrite(Comment comment) {
+		commentDao.commentWrite(comment);
 	}
+
+	public List<Comment> commentList(Integer bnum) {
+		return commentDao.commentSelect(bnum);
+	}
+	
+	
+	
+	
+	
+	
+	
+
+/*	public List<Comment> commentlist(Integer bnum) {
+		return commentDao.commentwrite(bnum);
+	}*/
 
 /*	public void boardUpdate(Board board,HttpServletRequest request) {
 		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {

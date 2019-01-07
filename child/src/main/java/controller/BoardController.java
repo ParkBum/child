@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import logic.Board;
 import logic.ChildService;
+import logic.Comment;
+import logic.User;
 
 @Controller
 public class BoardController {
@@ -70,10 +73,14 @@ public class BoardController {
 	public ModelAndView info(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
+		List<Comment> commentList = service.commentList(bnum);
+		Comment comment = new Comment();
 		/*
 		 * boardcnt : 조회수 증가 필요
 		 */
 		mav.addObject("board", board);
+		mav.addObject("commentList", commentList);
+		mav.addObject("comment", comment);
 		return mav;
 	}
 
@@ -95,7 +102,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board) {
+	public ModelAndView boardAll(Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("board", board);
 		return mav;
@@ -119,12 +126,21 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "board/comment")
-	public ModelAndView comment(Integer bnum) {
+	@RequestMapping(value = "board/commentWrite")
+	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		service.comment(bnum);
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			return mav;
+		}
+		User user = (User) session.getAttribute("loginUser");//현재 유저 정보
+		comment.setMnum(user.getMnum());
+		service.commentWrite(comment);
+		mav.setViewName("redirect:/board/info.child?bnum="+comment.getBnum());
 		return mav;
 	}
+	
+	
 }
 
 

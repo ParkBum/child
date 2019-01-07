@@ -67,11 +67,6 @@ $(document).ready(function() {
 		var btype = $('input[name=bType]').val();
 		location.href = "list.child?bType=" + btype;
 	})
-	
-	$('#comment').click(function() {
-		var bnum = $('input[name=bnum]').val();
-		location.href = "comment.child?bnum=" + bnum;
-	})
 });
 </script>
 </head>
@@ -91,7 +86,6 @@ $(document).ready(function() {
 </div>
 
 	<input type="hidden" name="bType" value="${board.bType}">
-	<input type="hidden" name="bnum" value="${board.bnum}">
 	<input type="hidden" name="score" value="${board.score}">
 	<table border="1" style="border-collapse: collapse; width:60%;" align="center">
 		<tr style="height:30px;">
@@ -161,12 +155,29 @@ $(document).ready(function() {
 		<!-- ´ñ±Û -->
 			<tr style="height:30px;">
 			<td style="text-align:center;">´ñ±Û</td> 
-			<td>  
-				´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname} 
-				<textarea path="comment" style="width:100%;height:100px;border:0;resize:none;" placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea>
-				<input type="button" id="comment" value="µî·Ï">
+			<td>
+				<form:form action="commentWrite.child" method="Post" modelAttribute="comment"> 
+					<input type="hidden" name="bnum" value="${board.bnum}"> 
+							´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname} 
+					<form:textarea path="recomment" style="width:100%;height:100px;border:0;resize:none;" placeholder="´ñ±Û ÀÔ·Â"></form:textarea>
+					<input type="submit" value="µî·Ï">
+				</form:form>
 			</td>
 		</tr>
+ 	<!-- ´ñ±Û ÀÖÀ»¶§¸¸ º¸ÀÌ°Ô -->
+		<c:if test="${commentList != null}">
+		<tr>
+			<td colspan="2">
+				<c:forEach var="c" items="${commentList}">
+					${c.cnum} : ${c.mnum} : ${c.comdate}
+						<br>
+					&nbsp;${c.recomment}<br><br>
+				<%-- <c:if test="${sessionScope.loginUser == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+					<a href="redelete.bo?num=${c.num}&seqnum=${r.seqnum}&btype=${board.btype}">[»èÁ¦]</a>
+				</c:if> --%>
+					<hr>
+				</c:forEach></td>
+		</tr></c:if> 
 	</table>
 </body>
 </html>

@@ -7,6 +7,7 @@ error.login.id=아이디를 확인하세요.
 error.login.password=비밀번호를 확인하세요.
 error.required.nickname=닉네임을 입력해 주세요
 error.login.nickname=닉네임을 확인하세요.
+error.required.recomment=댓글내용을 입력해 주세요
 
 error.required.userName=이름을 입력해 주세요
 error.required.postcode=우편번호를 입력해 주세요
