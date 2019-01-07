@@ -66,7 +66,7 @@ d3.csv("https://github.com/ParkBum/child/blob/master/child/src/main/webapp/decor
 }
 
 .menus {
-	margin-top: 25px;
+	margin-top: 80px;
 	width: 1200px;
 	height: 180px;
 }
