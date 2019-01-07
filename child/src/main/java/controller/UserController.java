@@ -114,7 +114,7 @@ public class UserController {
 			return mav;
 		}
 		try {
-			if(service.userSelect(user.getEmail())!=null) {
+			if(service.userSelect(user.getEmail())!=null || service.userSelectnick(user.getNickname())!=null) {
 				mav.addObject(user);
 				return new ModelAndView("user/userForm");
 			}

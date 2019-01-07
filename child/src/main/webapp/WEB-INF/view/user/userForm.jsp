@@ -30,8 +30,8 @@ $(function() {
 				$('#check').html(msg);
 		})
 		  $("#nickname").keyup(function() {
-			  
 			  var name = $("#nickname").val();
+			  
 					var data = {
 						"nickname" :name
 						}
@@ -60,7 +60,7 @@ $(function() {
 							data : data,
 							dataType : "json",
 							success : function(data){
-								$("#msge").html(data.msg);
+								$("#msge").html(data.msge);
 							},
 							error : function(xhr, status, error) { //서버응답 실패
 		                           alert("서버오류 : " + xhr.status + ", error : "
@@ -175,6 +175,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 
 			<div class="inin">
 				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" />
+				<br>
 				<font id="msge" size="3" color="red"></font>
 			</div>
 

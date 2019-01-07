@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import logic.ChildService;
-import logic.User;
 
 @Controller
 public class AjaxController {
@@ -27,6 +26,7 @@ public class AjaxController {
 		} else {
 			msg = "이미 사용중인 닉네임입니다.";
 		}
+		if(nickname == null || nickname =="") msg=" ";
 		map.put("msg", msg);
 		return map;
 	}
@@ -42,7 +42,7 @@ public class AjaxController {
 		} else {
 			msg = "중복된 E-mail입니다.";
 		}
-		System.out.println(msg);
+		if(email == null || email =="") msg=" ";
 		map.put("msge", msg);
 		return map;
 	}
