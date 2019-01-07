@@ -64,10 +64,10 @@ $(function() {
 	background-color: #F5ECCE; 
 }
 .image1-2:hover{
-	background-color: #A9D0F5; 
+	background-color: #A9F5D0; 
 }
 .image1-3:hover{
-	background-color: #A9F5D0; 
+	background-color: #A9D0F5; 
 }
 
 /* .image2 {
