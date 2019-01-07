@@ -35,7 +35,7 @@ d3.csv("../decorator/dcc_total.csv",function(i,d,columns){
 	console.log(data);
 	
 	var keys = data.columns.slice(1);
-	
+	console.log(keys)
 	data.sort(function(a,b){return b.total-a.total;});
 	x.domain(data.map(function(d) {return d.gu}));
 	y.domain([0,d3.max(data, function(d) {return d.total;})]).nice();
