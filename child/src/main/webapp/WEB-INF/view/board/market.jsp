@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>거래 게시판</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function searchList(pageNum) {
 		var searchType = document.searchForm.searchType.value;
@@ -20,63 +21,82 @@
 		}
 		return false;
 	}
+	
+	$('document').ready(function() {
+		$('#market').click(function() {
+			location.href = "list.child?bType=3";
+		});
+	});
 </script>
+<style type="text/css">
+.cmain {
+	padding-left:600px;
+}
+.search {
+	margin-bottom: 50px;
+    padding: 17px 0 17px;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    background: #f7f7f7 url(../../../images/skin/search_box/bg.gif) no-repeat 80px center;
+    width: 800px;
+}
+.filter {
+	margin-bottom: 5px;
+}
+</style>
 </head>
 <body>
-<h4>거래 게시판</h4>
-	<table border="1" style="border-collapse:collapse; width:100%;">
-		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
-			<td colspan="2" align="left" style="border-right:hidden;">
-				<form action="list.child" method="post" name="filterForm">
-					<input type="hidden" name="bType" value="3">
-					<input type="hidden" name="pageNum" value="1">
-					<select name="filterType" id="filterType" onchange="this.form.submit();">
-						<option value="">전체</option>
-						<option value="1">삽니다</option>
-						<option value="2">팝니다</option>
-					</select>&nbsp;
-					<script type="text/javascript">
-						if('${param.filterType}' != '') {
-							document.getElementById("filterType").value = '${param.filterType}';
-						}
-					</script>
-				</form>
-			</td>
-			<td colspan="3" align="right">
-				<form action="list.child" method="post" name="searchForm" onsubmit="return searchList(1)">
-					<input type="hidden" name="pageNum" value="1">
-					<select name="searchType" id="searchType">
-						<option value="">선택하세요</option>
-						<option value="subject">제목</option>
-						<option value="name">글쓴이</option>
-						<option value="content">내용</option>
-					</select>&nbsp;
-					<script type="text/javascript">
-						if('${param.searchType}' != '') {
-							document.getElementById("searchType").value = '${param.searchType}';
-						}
-					</script>
-					<input type="text" name="searchContent" value="${param.searchContent}">
-					<input type="submit" value="검색">
-				</form>
-			</td>
-		</tr>
-		
+<div class="cmain">
+	<div style="margin-bottom:30px;">
+		<h4>거래 게시판</h4>
+	</div>
+	<div class="search">
+	<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
+		<input type="hidden" name="pageNum" value="1">
+		<select name="searchType" id="searchType">
+			<option value="subject" selected="selected">제목</option>
+			<option value="nickname">글쓴이</option>
+			<option value="content">내용</option>
+		</select>&nbsp;
+		<script type="text/javascript">
+			if('${param.searchType}' != '') {
+				document.getElementById("searchType").value = '${param.searchType}';
+			}
+		</script>
+		<input type="text" name="searchContent" value="${param.searchContent}" style="width:150px;">
+		<input type="submit" value="검색">
+	</form>
+	</div>
+	<div class="filter">
+		<form action="list.child" method="post" name="filterForm">
+			<input type="hidden" name="bType" value="3">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="filterType" id="filterType" onchange="this.form.submit();">
+				<option value="">전체</option>
+				<option value="1">삽니다</option>
+				<option value="2">팝니다</option>
+			</select>&nbsp;
+			<script type="text/javascript">
+				if('${param.filterType}' != '') {
+					document.getElementById("filterType").value = '${param.filterType}';
+				}
+			</script>
+		<font size="2">Total ${listcount}건 ${pageNum}페이지</font>
+		</form>
+	</div>
+	<div>
+	<table border="1" style="border-collapse:collapse; width:800px;">
 		<c:if test="${listcount > 0}">
-		<tr align="right" valign="middle">
-			<td colspan="5">글개수:${listcount}</td>
-		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
 			<th width="8%" height="26">번호</th>
 			<th width="50%" height="26">제목</th>
 			<th width="14%" height="26">글쓴이</th>
 			<th width="17%" height="26">날짜</th>
-			<th width="11%" height="26">조회수</th>
-		</tr> 
-		
+			<th width="11%" height="26">조회</th>
+		</tr>
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
-			onmouseover="this.style.backgroundColor='#5CD1E5'" 
+			onmouseover="this.style.backgroundColor='#FFF5C7'" 
 			onmouseout="this.style.backgroundColor=''">
 			<td height="23">${boardcnt}</td>
 			<c:set var="boardcnt" value="${boardcnt - 1}" />
@@ -111,5 +131,7 @@
 			<td colspan="5" align="right"><a href="writeForm.child?bType=3">글쓰기</a>
 		</td>
 	</table>
+	</div>
+</div>
 </body>
 </html>

@@ -7,9 +7,71 @@
 <meta charset="EUC-KR">
 <title>사용자 등록</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-function execPostCode() {
+/* 비밀번호 확인. */
+$(function() {
+		$(".pass").keyup(function(){
+			var pwd = $("#password").val();
+			var pwd1 = $("#password1").val();
+			var msg ="";
+			if(pwd.length<=4){
+				msg ="비밀번호는 4자 이상으로 설정해야 합니다.";	
+			}else if(pwd == "" && pwd1 ==""){
+				msg = "";
+			}else if(pwd == pwd1){
+				
+				msg = "비밀번호가 일치합니다.";
+				$('#check').css('color','green');
+			}else{
+				msg = "비밀번호가 일치하지 않습니다.";
+				$('#check').css('color','red');
+			}
+				$('#check').html(msg);
+		})
+		  $("#nickname").keyup(function() {
+			  var name = $("#nickname").val();
+			  
+					var data = {
+						"nickname" :name
+						}
+					$.ajax({
+						url : "niccheck.child",
+						type : "post",
+						data : data,
+						dataType : "json",
+						success : function(data){
+							$("#msg").html(data.msg);
+						},
+						error : function(xhr, status, error) { //서버응답 실패
+	                           alert("서버오류 : " + xhr.status + ", error : "
+	                                 + error + ", status : " + status);
+	                    }
+					})
+				})
+		   $("#email").keyup(function() {
+			   			var email = $("#email").val();
+						var data = {
+							"email" : email,
+							}
+						$.ajax({
+							url : "emailcheck.child",
+							type : "post",
+							data : data,
+							dataType : "json",
+							success : function(data){
+								$("#msge").html(data.msge);
+							},
+							error : function(xhr, status, error) { //서버응답 실패
+		                           alert("서버오류 : " + xhr.status + ", error : "
+		                                 + error + ", status : " + status);
+		                    }
+						})
+					})  
+	});
+
+function execPostCode() {/* 주소 검색 부분 */
     new daum.Postcode({
         oncomplete: function(data) {
            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -51,6 +113,7 @@ function execPostCode() {
        }
     }).open();
 }
+
 </script>
 <style type="text/css">
 .joinForm {
@@ -112,107 +175,58 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</spring:hasBindErrors>
 
 			<div class="inin">
-				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" />
-				<font color="red"><br>
-				<form:errors path="email" /></font>
+			<c:if test="${entryUser != null}">
+				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" value="${entryUser.email}" readonly="readonly"/>
+				<form:hidden path="id" value="${entryUser.id}"/>
+			</c:if>
+			<c:if test="${entryUser == null}">
+				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" />
+			</c:if>
+				<br>
+				<font id="msge" size="3" color="red"></font>
 			</div>
 
 			<div class="inin">
-				<form:password path="password" placeholder="비밀번호를 입력하세요." />
+				<form:password path="password" class="pass" placeholder="비밀번호를 입력하세요." id="password" name="password" />
 				<font color="red"><br>
 				<form:errors path="password" /></font>
 				
-				<form:password path="password1" placeholder="비밀번호 확인" />
-				<font color="red"><form:errors path="password1" /></font>
+				<form:password path="password1" class="pass" placeholder="비밀번호 확인" id="password1" name="password1"/>
+				<br>
+				<font id="check" size="3" color="red"></font> 
 			</div>
 			<!-- ajax사용 부분 DB요청 해야 함.  -->
 			
 			
 			<!-- 주소칸 -->
 			<div class="form-group">                   
-			<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
-			    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
+			<form:input path="addr1" class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" />
+			    <button type="button" class="btn btn-default" onclick="execPostCode()"><i class="fa fa-search"></i> 우편번호 찾기</button>
 			</div>
 			<div class="form-group">
-			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
+			    <form:input path="addr2" class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
+			    <br>
+			    <font color="red"><form:errors path="addr1" /></font>
 			</div>
 			<div class="form-group">
-			    <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+			    <form:input path="addr3" class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+			    <br>
+			    <font color="red"><form:errors path="addr3" /></font>
 			</div>
-			
-						
-			
 			<!-- 주소칸 -->
 			<div class="inin">
-				<form:input path="nickname" placeholder="닉네임을 입력하세요" />
-				<font color="red"><br>
-				<form:errors path="nickname" /></font>
+				<form:input path="nickname" placeholder="닉네임을 입력하세요" name="nickname" id="nickname" />
+				<br>
+				<font name="msg" id="msg" size="3" color="red"></font>
 			</div>
 			<!-- ajax사용 부분 DB요청 해야 함.  -->
 
 			<div class="inin">
-				<input type="submit" value="가입"> <input type="reset"
-					value="재작성">
+				<input type="submit" value="가입"> <input type="reset" value="재작성">
 			</div>
-
+				<form:hidden path="red" value="0"/>
 		</form:form>
 	</div>
 </body>
 </html>
 
-
-<!-- <script>
-/* $(".check").click(function(){
-$.ajax({
-	url : "mailauth.child",
-	type : "post",
-	dataType : "json",
-	success : function(e){
-		console.log(e.list[0].s_user)
-		console.log(e.list[1].s_user)
-	},
-	error : function(){
-		alert('error');
-	}
-});
-}); */
-/* function validateEmail(sEmail) {
-var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-if (filter.test(sEmail)) {
-return true;
-}
-else {
-	return false;
-}
-}
-$(document).ready(function() {
-$('#check').click(function() {
-var sEmail = $('#email').val();
-if ($.trim(sEmail).length == 0) {
-alert('Please enter valid email address');
-e.preventDefault();
-}
-if (validateEmail(sEmail)) {
-alert('올바른 이메일입니다');
-}
-else {
-alert('잘못된 이메일입니다');
-e.preventDefault();
-}
-});
-}); */
-</script> -->
-
-<%-- <div class="inin" style="display: inline;">
-				<button	style="background-color: #33CC99; width: 90%; border-radius: 10px;"
-					onclick="javascript:alert('구현안됨')">인증번호 전송</button>
-			</div>
-
-			<div class="inin" style="display: inline;">
-				<form:input path="authnum" placeholder="인증번호를 입력하세요" />
-				<font color="red"><br>
-				<form:errors path="authnum" /></font>
-				<button
-					style="background-color: #33CC99; width: 90%; border-radius: 10px;"
-					id="check" onclick="javascript:alert('구현안됨')">인증번호 확인</button>
-			</div> --%>

@@ -57,6 +57,8 @@ background-color:blue;
   margin : auto 0;
 }
 .menu a {
+  background-color: #F6A5BC;
+  color: white;
   display: block;
   padding: 10px 20px;
   text-decoration: none;
@@ -71,10 +73,11 @@ background-color:blue;
   top: 100%;
   width: 180px;
 }
+
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu .right:hover  { background: white; }
-.menu .right:hover a { color: black; }
-.menu ul a { color: black; }
+.menu .right:hover a { background-color: #CE5B7C; }
+.menu .right:hover a { color: white; }
+.menu ul a { color: white; }
 .menu ul ul { left: 100%; top: 0; }
 .menu ul ul li {float:left; margin-right:10px;}
 
@@ -89,24 +92,25 @@ position:absolute;
 width:200px;
 z-index:200;
 }
-.menu-bar .right:hover ul { display:block;}           
-.menu-bar .right:hover ul li {background: white;}           
-.menu-bar .right:hover ul li:hover {background : silver; opacity: 0.5;}           
-
+.menu-bar .right:hover ul { display:block;}
+.menu-bar .right:hover ul li {background-color: #FAACC4;}
+.menu-bar .right:hover ul li:hover {background-color: #CE5B7C;} 
+     
 /* main */
 .main {
-   width : 65%;
-   margin: 0 auto;
+   margin-bottom: 5%;
    padding: 10px;
-   height: 800px;
+   align: center;
+   width:100%;
+   height:100%;
 }
 /*하단 footer */
 .footer {
    text-align: center;
    color : black;
-     width: 80%;
-     margin : 0 auto;
-     height : 80px;
+   width: 100%;
+   margin : 0 auto;
+   height : 80px;
 }
 .card2 {
 
@@ -138,31 +142,31 @@ z-index:200;
    <font size="2" style="float:right; margin:3px 300px 0 0;">${sessionScope.loginUser.nickname}님 환영합니다.</font>
  </c:if>
  <div class='menu-bar'>
-
-    <div style="/* border:solid 1px black; */ width:100%; height : 40px;">
-		<ul class="menu" style="margin:10px 300px 10px 200px;">
-		<li class="left">
-			<a href="${path}/main/main.child"><img src="../decorator/logo.png" 
-									style="width:130px; height:100px; margin: 0 0 5% 10%;"></a></li>
-		<c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child">로그아웃</a></li></c:if>
-		<c:if test="${!empty sessionScope.loginUser}"><li class="right">
-			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">회원정보</c:if>
-			<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
-			<a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원관리</a></c:if></li></c:if>
-		<c:if test="${empty sessionScope.loginUser}"><li class="right">
-								<a href="${path}/user/loginForm.child">로그인</a></li></c:if>
-		<c:if test="${empty sessionScope.loginUser}"><li class="right">
-								<a href="${path}/user/userForm.child">회원가입</a></li></c:if>
-		<li class="right"><a href="${path}/board/list.child?bType=3">중고 장터</a></li>
-		<li class="right"><a href="#">커뮤니티</a> 
-		<ul>
-			<li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
-       	    <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
-		</ul>
-		</li>
-		<li class="right"><a href="${path}/map/map.child">어린이집 검색</a></li>
- 	 </ul>
- 	</div>
+    <div style="width:100%; height:40px;">
+      <ul class="menu" style="margin:0px 300px 10px 200px;">
+      <li class="left">
+         <a href="${path}/main/main2.child" style="background-color:white;"><img src="../decorator/logo.png" 
+                           style="width:130px; height:100px; margin: 0 0 3% 15%;"></a></li>
+      <c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">로그아웃</a></li></c:if>
+      <c:if test="${!empty sessionScope.loginUser}"><li class="right">
+         <c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
+         <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원정보</a></c:if>
+         <c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+         <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원관리</a></c:if></li></c:if>
+      <c:if test="${empty sessionScope.loginUser}"><li class="right">
+                        <a href="${path}/user/loginForm.child" style="border-radius: 0 20px 20px 0;">로그인</a></li></c:if>
+      <c:if test="${empty sessionScope.loginUser}"><li class="right">
+                        <a href="${path}/user/userForm.child">회원가입</a></li></c:if>
+      <li class="right"><a href="${path}/board/list.child?bType=3">중고거래</a></li>
+      <li class="right"><a href="${path}/board/list.child?bType=1">커뮤니티</a> 
+      <ul>
+         <li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
+         <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
+      </ul>
+      </li>
+      <li class="right"><a href="${path}/map/map.child" style="border-radius: 20px 0 0 20px;">어린이집 검색</a></li>
+     </ul>
+    </div>
  </div>
 
 <!-- <div style="height:8px; width:100%; background-color: #999999 ; display: inline-block;"></div> -->
@@ -172,33 +176,29 @@ z-index:200;
 	</div>
 	<!-- <hr> -->
 <!-- <div style="height:8px; width:100%; background-color: #FFCC52 ; display: inline-block;"></div> -->
-	<div style="background-color: #FFC322;">
-		<div class="footer">
-			<br>
-			<p class="foottext">서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)</p>
-			<br>
-		</div>
-		<div class="card2">
-			<div class="image2">
-				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="200px"
-					height="40px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="200px"
-					height="40px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="200px"
-					height="40px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="200px"
-					height="40px"></a>
-			</div>
+	<hr>
+	<div class="footer" align="center" style="width:550px; text-align:left">
+		<img src="../decorator/logo1.png" style="width:50px; height:45px; float:left;">
+		어린이 집마련 프로젝트팀<br>
+		서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
 	</div>
-	</div>
-
-
-
+	<div class="card2" style="background-color: #F6A5BC;">
+         <div class="image2">
+            <a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
+               height="40px"></a>
+         </div>
+         <div class="image2">
+            <a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
+               height="40px"></a>
+         </div>
+         <div class="image2">
+            <a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
+               height="40px"></a>
+         </div>
+         <div class="image2">
+            <a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
+               height="40px"></a>
+         </div>
+   	</div>
 </body>
 </html>

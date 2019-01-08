@@ -23,11 +23,11 @@ th {
    color: white;
    text-align: center;
 }
-
+/* 
 td {
    background-color: #f2f2f2;
 }
-
+ */
 td.title {
    background-color: #e2e2e2;
    color: blue;

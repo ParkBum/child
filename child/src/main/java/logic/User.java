@@ -16,11 +16,34 @@ public class User {
 	@Size(min=4, message="패스워드는 4자 이상이어야 합니다.")
 	private String password;
 	private String password1;
+	@NotEmpty(message="주소를 입력해주세요")
 	private String addr1;
 	private String addr2;
+	@NotEmpty(message="상세주소를 입력해주세요")
 	private String addr3;
+	private String id;
+	private int red;
 	
 	
+	
+	
+
+	
+	public int getRed() {
+		return red;
+	}
+
+	public void setRed(int red) {
+		this.red = red;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getPassword1() {
 		return password1;
@@ -84,6 +107,13 @@ public class User {
 
 	public void setAddr3(String addr3) {
 		this.addr3 = addr3;
+	}
+
+	@Override
+	public String toString() {
+		return "User [mnum=" + mnum + ", email=" + email + ", nickname=" + nickname + ", password=" + password
+				+ ", password1=" + password1 + ", addr1=" + addr1 + ", addr2=" + addr2 + ", addr3=" + addr3 + ", id="
+				+ id + ", red=" + red + "]";
 	}
 	
 	

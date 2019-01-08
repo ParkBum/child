@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
+import dao.CommentDao;
 import dao.MapDao;
 import dao.UserDao;
 
@@ -19,10 +21,12 @@ public class ChildService {
 
 	@Autowired
 	private UserDao userDao;
-	@Autowired
+	@Autowired 
 	private BoardDao boardDao;
 	@Autowired
 	private MapDao mapDao;
+	@Autowired
+	private CommentDao commentDao;
 
 	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
 		String uploadPath = request.getServletContext().getRealPath("/") + "/" + path + "/";
@@ -87,6 +91,12 @@ public class ChildService {
 		User user = userDao.select(email);
 		return user;
 	}
+	
+	public User userSelectnick(String nickname) {
+		User user = userDao.selectnick(nickname);
+		return user;
+	}
+
 
 	public List<User> userList() {
 		List<User> list = userDao.userlist();
@@ -125,7 +135,58 @@ public class ChildService {
 	public void boardDelete(Integer bnum) {
 		boardDao.boardDelete(bnum);
 	}
+	
+	public static boolean isEmail(String email) {
+        if (email==null) return false;
+        boolean b = Pattern.matches(
+            "[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", 
+            email.trim());
+        return b;
+    }
 
+	public void commentWrite(Comment comment) {
+		comment.setCnum(commentDao.maxCnum() + 1);
+		commentDao.commentWrite(comment);
+	}
+
+	public List<Comment> commentList(Integer bnum) {
+		return commentDao.commentSelect(bnum);
+	}
+
+	public void addRed(Integer mnum) {
+		userDao.addRed(mnum);		
+	}
+
+	public void commentDelete(Integer cnum) {
+		commentDao.delete(cnum);
+	}
+	
+	
+	
+	
+	
+	
+	
+
+/*	public List<Comment> commentlist(Integer bnum) {
+		return commentDao.commentwrite(bnum);
+	}*/
+
+/*	public void boardUpdate(Board board,HttpServletRequest request) {
+		if (board.getMulti1() != null && !board.getMulti1().isEmpty()) {
+			uploadFileCreate(board.getMulti1(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile1(board.getMulti1().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti2() != null && !board.getMulti2().isEmpty()) {
+			uploadFileCreate(board.getMulti2(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile2(board.getMulti2().getOriginalFilename()); // db에 파일명을 저장
+		}
+		if (board.getMulti3() != null && !board.getMulti3().isEmpty()) {
+			uploadFileCreate(board.getMulti3(), request, "file"); // file의 내용을 파일로 저장
+			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
+		}
+		boardDao.boardUpdate(board);
+	}*/
 }
 
 

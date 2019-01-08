@@ -39,6 +39,12 @@ public class UserDao {
 		map.put("email", email);
 		return sqlsession.selectOne(NS + "list", map);
 	}
+	
+	public User selectnick(String nickname) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("nickname", nickname);
+		return sqlsession.selectOne(NS + "list", map);
+	}
 
 
 	public List<User> userlist() {
@@ -53,10 +59,15 @@ public class UserDao {
 		sqlsession.getMapper(UserMapper.class).userUpdate(user);
 	}
 
+
 	public void userDelete(Integer mnum) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mnum", mnum);
 		sqlsession.getMapper(UserMapper.class).userDelete(mnum);
+	}
+
+	public void addRed(Integer mnum) {
+		sqlsession.getMapper(UserMapper.class).addRed(mnum);
 	}
 }
 
