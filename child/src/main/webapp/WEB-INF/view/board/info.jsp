@@ -73,11 +73,11 @@ $(document).ready(function() {
 		var check = confirm("신고하시겠습니까?");
 		if (check) {
 			$.ajax({
-		        url : "board/addRed",
+		        url : "addRed.child",
 		        type: "get",
-		        data : { "red" : 1 },
+		        data : { "mnum" : $('input[name=mnum]').val() },
 		        success : function(responseData){
-		            
+		            $('#siren').html("신고 완료")
 				}
 			})
 		}
@@ -100,6 +100,7 @@ $(document).ready(function() {
 </c:choose>
 </div>
 	<input type="hidden" name="bType" value="${board.bType}">
+	<input type="hidden" name="mnum" value="${board.mnum}">
 	<input type="hidden" name="score" value="${board.score}">
 	<table border="1" style="border-collapse: collapse; width:60%;" align="center">
 		<tr style="height:30px;">

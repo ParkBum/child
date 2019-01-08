@@ -151,6 +151,10 @@ public class ChildService {
 	public List<Comment> commentList(Integer bnum) {
 		return commentDao.commentSelect(bnum);
 	}
+
+	public void addRed(Integer mnum) {
+		userDao.addRed(mnum);		
+	}
 	
 	
 	

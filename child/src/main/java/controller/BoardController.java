@@ -23,7 +23,7 @@ public class BoardController {
 
 	@Autowired
 	ChildService service;
-	
+
 	@RequestMapping(value = "board/list")
 	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
 			String searchContent) {
@@ -108,17 +108,17 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list.child?bType=3");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "board/updateForm")
-	public ModelAndView updateForm(Integer bnum,HttpServletRequest request) {
+	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		mav.addObject("board", board);
-	//	board.setFile1(file1);
-	//	service.boardUpdate(board,request);
+		// board.setFile1(file1);
+		// service.boardUpdate(board,request);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
 	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -126,10 +126,17 @@ public class BoardController {
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
 			return mav;
 		}
-		User user = (User) session.getAttribute("loginUser");//현재 유저 정보
+		User user = (User) session.getAttribute("loginUser");// 현재 유저 정보
 		comment.setMnum(user.getMnum());
 		service.commentWrite(comment);
-		mav.setViewName("redirect:/board/info.child?bnum="+comment.getBnum());
+		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
+		return mav;
+	}
+
+	@RequestMapping(value = "board/addRed")
+	public ModelAndView addRed(Integer mnum) {
+		ModelAndView mav = new ModelAndView();
+		service.addRed(mnum);
 		return mav;
 	}
 
@@ -139,28 +146,5 @@ public class BoardController {
 		mav.addObject("board", board);
 		return mav;
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
