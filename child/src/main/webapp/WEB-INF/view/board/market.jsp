@@ -28,12 +28,19 @@
 		});
 	});
 </script>
+<style type="text/css">
+.cmain {
+	padding-left:600px;
+}
+</style>
 </head>
 <body>
-<div align="center" style="margin-bottom:30px;">
-<input type="button" value="거래게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="market">
-</div>
-	<table border="1" style="border-collapse:collapse; width:100%;">
+<div class="cmain">
+	<div style="margin-bottom:30px;">
+		<h4>거래 게시판</h4>
+	</div>
+	<div>
+	<table border="1" style="border-collapse:collapse; width:800px;">
 		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
 			<td colspan="2" align="left" style="border-right:hidden;">
 				<form action="list.child" method="post" name="filterForm">
@@ -120,5 +127,7 @@
 			<td colspan="5" align="right"><a href="writeForm.child?bType=3">글쓰기</a>
 		</td>
 	</table>
+	</div>
+</div>
 </body>
 </html>
