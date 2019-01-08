@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Comment;
 
@@ -22,5 +23,8 @@ public interface CommentMapper {
 
 	@Delete("delete from comment where cnum = #{cnum}")
 	void delete(Integer cnum);
+
+	@Update("update set comment recomment = #{recomment}, comdate = now()")
+	void update(Integer cnum);
 	
 }

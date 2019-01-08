@@ -160,6 +160,10 @@ public class ChildService {
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
 	}
+
+	public void commentUpdate(Integer cnum) {
+		commentDao.update(cnum);
+	}
 	
 	
 	

@@ -75,6 +75,9 @@ public class BoardController {
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
 		Comment comment = new Comment();
+		//댓글 10개 넘어가면 다음페이지로 넘기기
+		int limit = 10;
+		
 		
 		/*
 		 * boardcnt : 조회수 증가 필요
@@ -139,6 +142,14 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		service.commentDelete(cnum);
 		mav.setViewName("redirect:/board/info.child?bnum="+bnum);
+		return mav;
+	}
+	
+	@RequestMapping(value="board/commentUpdate", method=RequestMethod.POST)
+	public ModelAndView commentUpdate(Integer bnum, Integer cnum) {
+		ModelAndView mav = new ModelAndView();
+		service.commentUpdate(cnum);
+		mav.setViewName("redirect:/board/info.child?bnum=" + bnum);
 		return mav;
 	}
 

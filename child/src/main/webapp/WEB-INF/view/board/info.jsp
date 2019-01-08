@@ -52,6 +52,7 @@ function commentDelete(bnum, cnum){
 	   }
 	   return false;
 }
+
 </script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -233,9 +234,9 @@ function commentDelete(bnum, cnum){
 					<input type="submit" value="등록">
 				</form:form></td>
 		</tr>
-			<tr>
+			<tr>   
 				<td colspan="2">
-		<c:if test="${commentList != null}">
+			<c:if test="${commentList != null}">
 				<c:forEach var="c" items="${commentList}">
 					→${c.cnum}<br>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
@@ -251,12 +252,19 @@ function commentDelete(bnum, cnum){
 						</c:choose>)
 						<br>  
 					&nbsp;${c.recomment}<br>
+					<c:if test=""></c:if> 
+					<a href="#">[답글] </a> 
 						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
 				</c:if>  
+				<form:form action="commentUpdate.child" method="Post">
+					<input type="hidden" name="cnum" value="${c.cnum}"> 
+					<input type="hidden" name="bnum" value="${c.bnum}"> 
+					<input type="text" value="${c.recomment}">
+					<input type="submit" value="수정">
+				</form:form>
 				<hr>
 					</c:forEach></c:if></td>
-		
 			</tr>
 	</table>
 </body>

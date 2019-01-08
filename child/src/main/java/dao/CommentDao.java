@@ -36,6 +36,10 @@ public class CommentDao {
 		map.put("cnum", cnum);
 		sqlSession.getMapper(CommentMapper.class).delete(cnum);
 	}
+
+	public void update(Integer cnum) {
+		sqlSession.getMapper(CommentMapper.class).update(cnum);
+	}
 	
 }
 
