@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 $(function() {
-	$(document).ready(function(){
+	/* $(document).ready(function(){
 		// create the svg
 		var svg = d3.select("svg"),
 		    margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -129,26 +129,103 @@ $(function() {
 		    .style("text-anchor", "middle")
 		    .attr("font-size", "15px")
 		    .attr("font-weight", "bold");
-	})
+	}) */
+	
+	//pie chart
+/* 	var svg = d3.select("body")
+	.append("svg")
+	.append("g")
+
+svg.append("g")
+	.attr("class", "slices");
+svg.append("g")
+	.attr("class", "labels");
+svg.append("g")
+	.attr("class", "lines");
+	
+var width = 960,
+height = 450,
+radius = Math.min(width, height) / 2;
+
+var pie = d3.layout.pie()
+.sort(null)
+.value(function(d) {
+	return d.value;
+}); */
+
+	var svg = d3.select("svg"),
+	    width = +svg.attr("width"),
+	    height = +svg.attr("height"),
+	    radius = Math.min(width, height) / 2,
+	    g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    function randomcolor() {
+    	return "#"+Math.round(Math.random()* 0xffffff).toString(16);
+    }
+	var color = d3.scaleOrdinal([randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor(),randomcolor()]);
+
+	var pie = d3.pie()
+	    .sort(null)
+	    .value(function(d) { return d.total; });
+
+	var path = d3.arc()
+	    .outerRadius(radius - 10)
+	    .innerRadius(0);
+
+	var label = d3.arc()
+	    .outerRadius(radius - 40)
+	    .innerRadius(radius - 40);
+
+	d3.csv("../decorator/dcc_total_2.csv", function(d) {
+	  d.total = +d.total;
+	  return d;
+	}, function(error, data) {
+	  if (error) throw error;
+
+	  var arc = g.selectAll(".arc")
+	    .data(pie(data))
+	    .enter().append("g")
+	      .attr("class", "arc");
+
+	  arc.append("path")
+	      .attr("d", path)
+	      .attr("fill", function(d) { return color(d.data.gu); });
+
+	  arc.append("text")
+	      .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
+	      .attr("font-size", "15px")
+	      .attr("dy", "0.35em")
+	      .text(function(d) { return d.data.gu;});
+	});
 })
 </script>
 <style type="text/css">
-svg{
+body {
+text-align: center;
+
+}
+/* svg{
 	font : 10px;
 	width: 1200px;
 	height: 550px;
  	border : solid 2px silver;
+} */
+ svg {
+ 	border : solid 1px silver;
 }
-.canvas-holder div {
-	font : 10px;
-	background-color: steelblue;
-	text-align: right;
-	color : white;
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
 }
 .menus {
 	margin-top: 25px;
 	width: 1200px;
 	height: 180px;
+	margin : 0 auto;
 }
 /* .public {
 	margin-top: 20px;
@@ -221,7 +298,7 @@ svg{
 <body>
 	<div id="wrap">
 	<div>
-		  <svg>
+		  <svg width="960" height="500">
 		 </svg> 
 	</div>
 <div class="menus">
@@ -241,26 +318,6 @@ svg{
 		</div>
 	</div>
 	</div>
- 	<!-- <div class="public">
-		<div class="card2">
-			<div class="image2">
-				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
-					height="58px"></a>
-			</div>
-		</div>
-	</div> -->
 	<input type="hidden" value="${result}">
 </body>
 </html>
