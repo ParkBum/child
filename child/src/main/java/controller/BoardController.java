@@ -23,7 +23,7 @@ public class BoardController {
 
 	@Autowired
 	ChildService service;
-	
+
 	@RequestMapping(value = "board/list")
 	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
 			String searchContent) {
@@ -75,6 +75,7 @@ public class BoardController {
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
 		Comment comment = new Comment();
+		
 		/*
 		 * boardcnt : 조회수 증가 필요
 		 */
@@ -108,59 +109,44 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list.child?bType=3");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "board/updateForm")
-	public ModelAndView updateForm(Integer bnum,HttpServletRequest request) {
+	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		mav.addObject("board", board);
-	//	board.setFile1(file1);
-	//	service.boardUpdate(board,request);
-		return mav;
-	}
-	
-	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
-	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		if (bindingResult.hasErrors()) { // 에러 발생한 경우
-			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
-			return mav;
-		}
-		User user = (User) session.getAttribute("loginUser");//현재 유저 정보
-		comment.setMnum(user.getMnum());
-		service.commentWrite(comment);
-		mav.setViewName("redirect:/board/info.child?bnum="+comment.getBnum());
+		// board.setFile1(file1);
+		// service.boardUpdate(board,request);
 		return mav;
 	}
 
+	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
+	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
+		ModelAndView mav = new ModelAndView("board/info");
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			System.out.println(bindingResult.getModel());
+			return mav;
+		}
+		User user = (User) session.getAttribute("loginUser");// 현재 유저 정보
+		service.commentWrite(comment);
+		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
+		return mav;
+	}
+
+	@RequestMapping(value = "board/addRed")
+	public ModelAndView addRed(Integer mnum) {
+		ModelAndView mav = new ModelAndView();
+		service.addRed(mnum);
+		return mav;
+	}
+
+	
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("board", board);
 		return mav;
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -145,11 +145,16 @@ public class ChildService {
     }
 
 	public void commentWrite(Comment comment) {
+		comment.setCnum(commentDao.maxCnum() + 1);
 		commentDao.commentWrite(comment);
 	}
 
 	public List<Comment> commentList(Integer bnum) {
 		return commentDao.commentSelect(bnum);
+	}
+
+	public void addRed(Integer mnum) {
+		userDao.addRed(mnum);		
 	}
 	
 	
