@@ -139,7 +139,7 @@ z-index:200;
     <div style="width:100%; height:40px;">
       <ul class="menu" style="margin:0px 300px 10px 200px;">
       <li class="left">
-         <a href="${path}/main/main.child" style="background-color:white;"><img src="../decorator/logo.png" 
+         <a href="${path}/main/main2.child" style="background-color:white;"><img src="../decorator/logo.png" 
                            style="width:130px; height:100px; margin: 0 0 3% 15%;"></a></li>
       <c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">·Î±×¾Æ¿ô</a></li></c:if>
       <c:if test="${!empty sessionScope.loginUser}"><li class="right">
