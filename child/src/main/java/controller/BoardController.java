@@ -133,6 +133,7 @@ public class BoardController {
 		return mav;
 	}
 
+	
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();

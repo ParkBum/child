@@ -170,6 +170,7 @@ $(document).ready(function() {
 			<td colspan="2">
 				<c:forEach var="c" items="${commentList}">
 					${c.cnum} : ${c.mnum} : ${c.comdate}
+					
 						<br>
 					&nbsp;${c.recomment}<br><br>
 				<%-- <c:if test="${sessionScope.loginUser == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
