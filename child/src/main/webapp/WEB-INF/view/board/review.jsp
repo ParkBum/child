@@ -51,7 +51,6 @@
 	<div style="margin-bottom:30px;">
 		<h4>후기 게시판</h4>
 	</div>
-	<div>
 	<div class="search">
 	<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
 		<input type="hidden" name="pageNum" value="1">
@@ -70,6 +69,7 @@
 	</form>
 	</div>
 	<font size="2">Total ${listcount}건 ${pageNum}페이지</font>
+	<div>
 	<table border="1" style="border-collapse:collapse; width:800px;">
 		<c:if test="${listcount > 0}">
 		<tr align="center" valign="middle" bordercolor="#212121">
@@ -79,7 +79,6 @@
 			<th width="17%" height="26">날짜</th>
 			<th width="11%" height="26">조회</th>
 		</tr>
-		
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
 			onmouseover="this.style.backgroundColor='#FFF5C7'" 
