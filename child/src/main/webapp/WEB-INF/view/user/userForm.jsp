@@ -21,6 +21,7 @@ $(function() {
 			}else if(pwd == "" && pwd1 ==""){
 				msg = "";
 			}else if(pwd == pwd1){
+				
 				msg = "비밀번호가 일치합니다.";
 				$('#check').css('color','green');
 			}else{
@@ -30,8 +31,8 @@ $(function() {
 				$('#check').html(msg);
 		})
 		  $("#nickname").keyup(function() {
-			  
 			  var name = $("#nickname").val();
+			  
 					var data = {
 						"nickname" :name
 						}
@@ -49,9 +50,10 @@ $(function() {
 	                    }
 					})
 				})
-/* 		   $("#email").keyup(function() {
+		   $("#email").keyup(function() {
+			   			var email = $("#email").val();
 						var data = {
-							"email" : $("#email").val(),
+							"email" : email,
 							}
 						$.ajax({
 							url : "emailcheck.child",
@@ -59,14 +61,14 @@ $(function() {
 							data : data,
 							dataType : "json",
 							success : function(data){
-								$("#msge").html(data.msg);
+								$("#msge").html(data.msge);
 							},
 							error : function(xhr, status, error) { //서버응답 실패
 		                           alert("서버오류 : " + xhr.status + ", error : "
 		                                 + error + ", status : " + status);
 		                    }
 						})
-					})  */
+					})  
 	});
 
 function execPostCode() {/* 주소 검색 부분 */
@@ -173,7 +175,14 @@ input[type=submit] :hover, input[type=reset]:hover {
 			</spring:hasBindErrors>
 
 			<div class="inin">
+			<c:if test="${entryUser != null}">
+				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" value="${entryUser.email}" readonly="readonly"/>
+				<form:hidden path="id" value="${entryUser.id}"/>
+			</c:if>
+			<c:if test="${entryUser == null}">
 				<form:input path="email" placeholder="아이디를 입력하세요(e-mail 형식)" id="email" name="email" />
+			</c:if>
+				<br>
 				<font id="msge" size="3" color="red"></font>
 			</div>
 
@@ -192,7 +201,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 			<!-- 주소칸 -->
 			<div class="form-group">                   
 			<form:input path="addr1" class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" />
-			    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+			    <button type="button" class="btn btn-default" onclick="execPostCode()"><i class="fa fa-search"></i> 우편번호 찾기</button>
 			</div>
 			<div class="form-group">
 			    <form:input path="addr2" class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
@@ -215,7 +224,7 @@ input[type=submit] :hover, input[type=reset]:hover {
 			<div class="inin">
 				<input type="submit" value="가입"> <input type="reset" value="재작성">
 			</div>
-
+				<form:hidden path="red" value="0"/>
 		</form:form>
 	</div>
 </body>

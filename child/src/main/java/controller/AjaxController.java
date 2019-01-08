@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import logic.ChildService;
-import logic.User;
 
 @Controller
 public class AjaxController {
@@ -21,16 +20,13 @@ public class AjaxController {
 	@RequestMapping("user/niccheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> nickcheck(String nickname){
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		System.out.println(nickname);
 		String msg ="";
-		
-		
 		if(service.userSelectnick(nickname)==null) {
-			System.out.println(service.userSelectnick(nickname));
 			msg = "사용가능한 닉네임입니다.";
 		} else {
 			msg = "이미 사용중인 닉네임입니다.";
 		}
+		if(nickname == null || nickname =="") msg=" ";
 		map.put("msg", msg);
 		return map;
 	}
@@ -38,13 +34,19 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("user/emailcheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> emailcheck(String email){
+		System.out.println(email);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		String msg ="";
 		if(service.userSelect(email)==null) {
-			msg = "사용가능한 E-mail입니다.";
+			if(service.isEmail(email)) {
+				msg = "사용가능한 E-mail입니다.";
+			}else {
+				msg = "E-mail형식이 아닙니다.";
+			}
 		} else {
 			msg = "중복된 E-mail입니다.";
 		}
+		if(email == null || email =="") msg=" ";
 		map.put("msge", msg);
 		return map;
 	}

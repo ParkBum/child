@@ -3,6 +3,7 @@ package dao.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Board;
 
@@ -20,5 +21,18 @@ public interface BoardMapper {
 
 	@Delete("delete from board where bnum = #{bnum}")
 	void boardDelete(Integer bnum);
+/*
+	@Update("Update board set subject=#{subject}, content=#{content}, score=#{score}"
+				+ " multi1=#{file1}, multi2=#{file2}, multi3=#{file3} where bnum=#{bnum}")
+	void boardUpdate(Board board);
+*/
 
 }
+
+
+
+
+
+
+
+
