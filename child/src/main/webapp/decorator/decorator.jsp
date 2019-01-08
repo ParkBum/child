@@ -98,9 +98,11 @@ z-index:200;
      
 /* main */
 .main {
-   margin-bottom: 10%;
+   margin-bottom: 5%;
    padding: 10px;
    align: center;
+   width:100%;
+   height:100%;
 }
 /*го╢э footer */
 .footer {
