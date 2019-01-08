@@ -6,106 +6,170 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script type="text/javascript">
 
 </script>
 <script type="text/javascript">
-$(function() {
+$(document).ready(function(){
 	var svg = d3.select("svg"),
-	margin = {top:20,right:20,bottom:30,left:50}, //그래프에서 margin을 정함
-	width = +svg.attr("width") - margin.left-margin.right,
-	height = +svg.attr("height") - margin.top - margin.bottom,
-	g = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+		margin = {top:20,right:20,bottom:30,left:40},
+		width = svg.attr("width"),
+		height = +svg.attr("height"),
+		g = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+	var x =d3.scaleBand()
+		.rangeRound([0,width])
+		.paddingInner(0.05)
+		.align(0.1);
 	
-var x = d3.scaleBand()
-			.rangeRound([0,width])
-
-var y = d3.scaleLinear()
-			.rangeRound([height,0])
-
-var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
-d3.json("../decorator/ddc_total.csv" ,function(i,d,columns){
-	for (i = 2, t = 0; i < columns; ++i)console.log(d[columns[i]]); t += d[columns[i]]  = +d[columns[i]] ;
-	d.total = t;
-	return d;
-	}, function(error, data) {
-	if (error) throw error;
-	console.log(data);
+	var y = d3.scaleLinear()
+		.rangeRound([height,0]);
 	
-	var keys = data.columns.slice(1);
-	console.log(keys)
-	data.sort(function(a,b){return b.total-a.total;});
-	x.domain(data.map(function(d) {return d.gu}));
-	y.domain([0,d3.max(data, function(d) {return d.total;})]).nice();
-	z.domain(keys);
+	var z = d3.scaleOrdinal().range(["#111111","#eeeeee","#aaaaaa","#bbbbbb","#cccc11","#dd22dd","#ee1212"]);
 	
-	var bars = g.append("g")
-		.selectAll("g")
-		.data(d3.stack().keys(keys)(data))
-		.enter().append("g")
-		.attr("fill",function(d) {return z(d.key);})
-		.selectAll("rect")
-		.data(function(d){return d;})
-		.enter().append("rect")
-		.attr("x",function(d){return x(d.data.gu);})
-		.attr("y",function(d){return y(d[1]);})
-		.attr("height",function(d){return y(d[0])-y(d[1]);})
-		.attr("width",x.bandwidth());
+	var data = [{"gu":"gangdong","public":53,"welfare":1,"corporate":2,"private":108,"home":117,"parental":0,"job":3},
+		{"gu":"songpa","public":57,"welfare":1,"corporate":5,"private":146,"home":195,"parental":2,"job":15},
+		{"gu":"gangnam","public":53,"welfare":0,"corporate":0,"private":71,"home":81,"parental":1,"job":25},
+		{"gu":"seocho","public":61,"welfare":0,"corporate":1,"private":44,"home":79,"parental":2,"job":19},
+		{"gu":"gwanak","public":66,"welfare":4,"corporate":6,"private":93,"home":106,"parental":0,"job":5},
+		{"gu":"dongjak","public":53,"welfare":3,"corporate":2,"private":74,"home":90,"parental":1,"job":7},
+		{"gu":"yeongdeungpo","public":54,"welfare":2,"corporate":1,"private":77,"home":99,"parental":0,"job":30},
+		{"gu":"geumcheon","public":45,"welfare":1,"corporate":13,"private":54,"home":53,"parental":1,"job":7},
+		{"gu":"guro","public":60,"welfare":3,"corporate":8,"private":97,"home":158,"parental":6,"job":9},
+		{"gu":"gangseo","public":70,"welfare":2,"corporate":3,"private":145,"home":212,"parental":1,"job":8},
+		{"gu":"yangcheon","public":66,"welfare":0,"corporate":3,"private":86,"home":169,"parental":1,"job":6},
+		{"gu":"mapo","public":62,"welfare":0,"corporate":6,"private":51,"home":78,"parental":4,"job":12},
+		{"gu":"seodaemun","public":47,"welfare":0,"corporate":3,"private":51,"home":51,"parental":1,"job":5},
+		{"gu":"eunpyeong","public":41,"welfare":1,"corporate":7,"private":158,"home":84,"parental":1,"job":2},
+		{"gu":"nohwon","public":57,"welfare":4,"corporate":1,"private":78,"home":330,"parental":1,"job":7},
+		{"gu":"dobong","public":42,"welfare":1,"corporate":2,"private":77,"home":129,"parental":2,"job":2},
+		{"gu":"gangbuk","public":46,"welfare":1,"corporate":3,"private":72,"home":49,"parental":1,"job":2},
+		{"gu":"seongbuk","public":66,"welfare":3,"corporate":17,"private":95,"home":110,"parental":1,"job":6},
+		{"gu":"hungnang","public":39,"welfare":1,"corporate":4,"private":101,"home":105,"parental":0,"job":2},
+		{"gu":"dongdaemun","public":55,"welfare":0,"corporate":3,"private":69,"home":92,"parental":0,"job":9},
+		{"gu":"gwangjin","public":34,"welfare":0,"corporate":4,"private":106,"home":65,"parental":2,"job":3},
+		{"gu":"seongdong","public":70,"welfare":0,"corporate":3,"private":40,"home":70,"parental":0,"job":7},
+		{"gu":"yongsan","public":28,"welfare":2,"corporate":9,"private":28,"home":51,"parental":1,"job":9},
+		{"gu":"jung","public":21,"welfare":0,"corporate":7,"private":7,"home":14,"parental":0,"job":18},
+		{"gu":"jongro","public":28,"welfare":2,"corporate":3,"private":11,"home":5,"parental":0,"job":26}];
 	
-	g.append("g")
-		.attr("class","axis")
-		.attr("transform","translate(0,"+height+")")
-		.call(d3.axisBottom(x));
-	
-	g.append("g")
-		.attr("class","axis")
-		.call(d3.axisLeft(y).ticks(null,"s"))
-	 .append("text")
-	 	.attr("x",2)
-	 	.attr("y",y(y.ticks().pop())+0.5)
-	 	.attr("dy","0.32em")
-	 	.attr("fill","#000")
-	 	.attr("font-weight","bold")
-	 	.attr("text-anchor","start");
-	
-	var legend = g.append("g")
-		.attr("font-family","sans-serif")
-		.attr("font-size",10)
-		.attr("text-anchor","end")
-		.selectAll("g")
-		.data(keys.slice().reverse())
-	 	.enter().append("g")
-	 	.attr("transform",function(d,i){return "translate(0,"+i*20+")";})
-	 
-	 legend.append("rect")
-	 	.attr("x",width-19)
-	 	.attr("width",19)
-	 	.attr("height",19)
-	 	.attr("fill",z);
-	
-	legend.append("text")
-		.attr("x",width-24)
-		.attr("y",9.5)
-		.attr("dy","0.32em")
-		.text(function(d){return d;});
-	 	
-	
-	});
-	
+		var keys=[];
+		for (key in data[0]){
+			if(key != "gu")
+				keys.push(key);
+		}
+		data.forEach(function(d){
+		d.total = 0;
+		keys.forEach(function(k){
+			d.total += d[k];
+		})
+		});
 		
-})
+		data.sort(function(a,b){
+			return b.total - a.total;
+		});
+		
+		x.domain(data.map(function(d){
+			return d.gu;
+		}));
+		y.domain([0,d3.max(data,function(d){
+			return d.total;
+		})]).nice();
+		z.domain(keys);
+		
+		g.append("g")
+			.selectAll("g")
+			.data(d3.stack().keys(keys)(data))
+			.enter().append("g")
+			.attr("fill",function(d){
+				return z(d.key);
+			})
+			.selectAll("rect")
+			.data(function(d){
+				return d;
+			})
+			.enter().append("rect")
+			.attr("x",function(d){
+				return x(d.data.gu);
+			})
+			.attr("y",function(d){
+				return y(d[1]);
+			})
+			.attr("height",function(d){
+				return y(d[1])-y(d[0]);
+			})
+			.attr("width",x.bandwidth());
+		
+		  g.append("g")
+		    .attr("class", "axis")
+		    .attr("transform", "translate(0," + height + ")")
+		    .call(d3.axisBottom(x));
+
+		  g.append("g")
+		    .attr("class", "axis")
+		    .call(d3.axisLeft(y).ticks(null, "s"))
+		    .append("text")
+		    .attr("x", 2)
+		    .attr("y", y(y.ticks().pop()) + 0.5)
+		    .attr("dy", "0.32em")
+		    .attr("fill", "#000")
+		    .attr("font-weight", "bold")
+		    .attr("text-anchor", "start")
+		    .text("Population");
+
+		  var legend = g.append("g")
+		    .attr("font-family", "sans-serif")
+		    .attr("font-size", 10)
+		    .attr("text-anchor", "end")
+		    .selectAll("g")
+		    .data(keys.slice().reverse())
+		    .enter().append("g")
+		    .attr("transform", function(d, i) {
+		      return "translate(0," + i * 20 + ")";
+		    });
+
+		  legend.append("rect")
+		    .attr("x", width - 19)
+		    .attr("width", 19)
+		    .attr("height", 19)
+		    .attr("fill", z);
+
+		  legend.append("text")
+		    .attr("x", width - 24)
+		    .attr("y", 9.5)
+		    .attr("dy", "0.32em")
+		    .text(function(d) {
+		      return d;
+		    });
+})		
 </script>
 <style type="text/css">
-.axis .domain {display:none;}
-.canvas-holder {
+/*차트영역*/
+svg{
+	font : 10px;
+	/* shape-rendering : crispEdges; */
 	width: 1200px;
 	height: 500px;
  	border : solid 2px silver;
+}
+  .axis .domain {
+    display: none;
+  }
+/* .axis path, .axis line {
+	fill:none;
+	stroke:#000;
+}
+path.domain{
+stroke:none;
+}
+.y .tick line {
+	stroke:#ddd;
+} */
+.canvas-holder {
+/* 	width: 1200px;
+	height: 500px;
+ 	border : solid 2px silver; */
 /* 	border-radius: 20px;  */
 }
 
