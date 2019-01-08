@@ -75,6 +75,9 @@ public class BoardController {
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
 		Comment comment = new Comment();
+		
+		mav.addObject("nickname", service.getNickName(comment.getMnum()));
+		
 		/*
 		 * boardcnt : 조회수 증가 필요
 		 */

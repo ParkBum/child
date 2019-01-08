@@ -113,7 +113,7 @@ td {
 						"mnum" : $('input[name=mnum]').val()
 					},
 					success : function(data) {
-						alert("신고완료")
+						$('#siren').hide()
 					}
 				})
 			}
@@ -223,7 +223,7 @@ td {
 		</tr>
 		<!-- 댓글 있을때만 보이게 -->
 		<c:if test="${commentList != null}">
-			<tr>
+			<tr>${nickname} :
 				<td colspan="2"><c:forEach var="c" items="${commentList}">
 					${c.cnum} : ${c.mnum} :  
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
