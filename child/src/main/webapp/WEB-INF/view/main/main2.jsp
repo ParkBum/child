@@ -14,6 +14,7 @@
 }
 
 .menus {
+	margin: 30px;
 	width : 1200px;
 }
 

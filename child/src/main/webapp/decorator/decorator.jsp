@@ -153,7 +153,7 @@ z-index:200;
                         <a href="${path}/user/loginForm.child" style="border-radius: 0 20px 20px 0;">로그인</a></li></c:if>
       <c:if test="${empty sessionScope.loginUser}"><li class="right">
                         <a href="${path}/user/userForm.child">회원가입</a></li></c:if>
-      <li class="right"><a href="${path}/board/list.child?bType=3">중고거래</a></li>
+      <li class="right"><a href="${path}/board/list.child?bType=3">중고장터</a></li>
       <li class="right"><a href="${path}/board/list.child?bType=1">커뮤니티</a> 
       <ul>
          <li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
