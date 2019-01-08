@@ -249,10 +249,9 @@ function commentDelete(bnum, cnum){
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
 						</c:choose>)
-						<br> 
+						<br>  
 					&nbsp;${c.recomment}<br>
 						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-						 <input type="button" id="commentDelete" value="삭제">
 					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
 				</c:if>  
 				<hr>
