@@ -32,66 +32,75 @@ $('document').ready(function() {
 	});	
 })	
 </script>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 </script>
+<style type="text/css">
+.cmain {
+	padding-left:600px;
+}
+.search {
+	margin-bottom: 50px;
+    padding: 17px 0 17px;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    background: #f7f7f7 80px center;
+    width: 800px;
+}
+.filter {
+	margin-bottom: 5px;
+}
+</style>
 </head>
 <body>
-<div align="center" style="margin-bottom:30px;">
-<input type="button" value="자유게시판" class="w3-button w3-round-xxlarge" style="background-color:#FFC322; color:black" id="community">
-<input type="button" value="후기게시판" class="w3-button w3-round-xxlarge" style="background-color:#EEEEEE; color:#777777;" id="review">
-</div>
-	<table border="1" style="border-collapse:collapse; width:100%;">
-		<tr style="border-left:hidden;border-right:hidden;border-top:hidden;">
-			<td colspan="2" align="left" style="border-right:hidden;">
-				<form action="list.child" method="post" name="filterForm">
-					<input type="hidden" name="bType" value="1">
-					<input type="hidden" name="pageNum" value="1">
-					<select name="filterType" id="filterType" onchange="this.form.submit();">
-						<option value="">전체</option>
-						<option value="1">육아꿀팁</option>
-						<option value="2">시설추천</option>
-					</select>&nbsp;
-					<script type="text/javascript">
-						if('${param.filterType}' != '') {
-							document.getElementById("filterType").value = '${param.filterType}';
-						}
-					</script>
-				</form>
-			</td>
-			<td colspan="3" align="right">
-				<form action="list.child" method="post" name="searchForm" onsubmit="return searchList(1)">
-					<input type="hidden" name="pageNum" value="1">
-					<select name="searchType" id="searchType">
-						<option value="">선택하세요</option>
-						<option value="subject">제목</option>
-						<option value="name">글쓴이</option>
-						<option value="content">내용</option>
-					</select>&nbsp;
-					<script type="text/javascript">
-						if('${param.searchType}' != '') {
-							document.getElementById("searchType").value = '${param.searchType}';
-						}
-					</script>
-					<input type="text" name="searchContent" value="${param.searchContent}">
-					<input type="submit" value="검색">
-				</form>
-			</td>
-		</tr>
-		
+<div class="cmain">
+	<div style="margin-bottom:30px;">
+		<h4>자유 게시판</h4>
+	</div>
+	<div class="search">
+	<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
+		<input type="hidden" name="pageNum" value="1">
+		<select name="searchType" id="searchType">
+			<option value="subject" selected="selected">제목</option>
+			<option value="nickname">글쓴이</option>
+			<option value="content">내용</option>
+		</select>&nbsp;
+		<script type="text/javascript">
+			if('${param.searchType}' != '') {
+				document.getElementById("searchType").value = '${param.searchType}';
+			}
+		</script>
+		<input type="text" name="searchContent" value="${param.searchContent}" style="width:150px;">
+		<input type="submit" value="검색">
+	</form>
+	</div>
+	<div class="filter">
+		<form action="list.child" method="post" name="filterForm">
+			<input type="hidden" name="bType" value="1">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="filterType" id="filterType" onchange="this.form.submit();">
+				<option value="">전체</option>
+				<option value="1">육아꿀팁</option>
+				<option value="2">추천장소</option>
+			</select>&nbsp;
+			<script type="text/javascript">
+				if('${param.filterType}' != '') {
+					document.getElementById("filterType").value = '${param.filterType}';
+				}
+			</script>
+		<font size="2">Total ${listcount}건 ${pageNum}페이지</font>
+		</form>
+	</div>
+	<div>
+	<table border="1" style="border-collapse:collapse; width:800px;">
 		<c:if test="${listcount > 0}">
-		<tr align="right" valign="middle">
-			<td colspan="5">글개수:${listcount}</td>
-		</tr>
 		<tr align="center" valign="middle" bordercolor="#212121">
 			<th width="8%" height="26">번호</th>
 			<th width="50%" height="26">제목</th>
 			<th width="14%" height="26">글쓴이</th>
 			<th width="17%" height="26">날짜</th>
-			<th width="11%" height="26">조회수</th>
+			<th width="11%" height="26">조회</th>
 		</tr>
-		
 		<c:forEach items="${boardlist}" var="board">
 		<tr align="center" valign="middle" bordercolor="#333333" 
 			onmouseover="this.style.backgroundColor='#FFF5C7'" 
@@ -129,5 +138,7 @@ $('document').ready(function() {
 			<td colspan="5" align="right"><a href="writeForm.child?bType=1">글쓰기</a>
 		</td>
 	</table>
+	</div>
+</div>
 </body>
 </html>

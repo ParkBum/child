@@ -57,7 +57,7 @@ body {
   margin : auto 0;
 }
 .menu a {
-  background-color: #FAACC4;
+  background-color: #F6A5BC;
   color: white;
   display: block;
   padding: 10px 20px;
@@ -75,7 +75,7 @@ body {
 }
 
 .menu ul li { list-style:none; float: none; z-index: 300;}
-.menu .right:hover a { background-color: #E4668A; }
+.menu .right:hover a { background-color: #CE5B7C; }
 .menu .right:hover a { color: white; }
 .menu ul a { color: white; }
 .menu ul ul { left: 100%; top: 0; }
@@ -94,7 +94,7 @@ z-index:200;
 }
 .menu-bar .right:hover ul { display:block;}
 .menu-bar .right:hover ul li {background-color: #FAACC4;}
-.menu-bar .right:hover ul li:hover {background-color: #E4668A;} 
+.menu-bar .right:hover ul li:hover {background-color: #CE5B7C;} 
      
 /* main */
 .main {
@@ -153,8 +153,8 @@ z-index:200;
                         <a href="${path}/user/loginForm.child" style="border-radius: 0 20px 20px 0;">로그인</a></li></c:if>
       <c:if test="${empty sessionScope.loginUser}"><li class="right">
                         <a href="${path}/user/userForm.child">회원가입</a></li></c:if>
-      <li class="right"><a href="${path}/board/list.child?bType=3">중고거래</a></li>
-      <li class="right"><a href="#">커뮤니티</a> 
+      <li class="right"><a href="${path}/board/list.child?bType=3">중고장터</a></li>
+      <li class="right"><a href="${path}/board/list.child?bType=1">커뮤니티</a> 
       <ul>
          <li><a href="${path}/board/list.child?bType=1">자유게시판</a></li>
          <li><a href="${path}/board/list.child?bType=2">후기게시판</a></li>
@@ -177,7 +177,7 @@ z-index:200;
 		어린이 집마련 프로젝트팀<br>
 		서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
 	</div>
-	<div class="card2" style="background-color: #FAACC4;">
+	<div class="card2" style="background-color: #F6A5BC;">
          <div class="image2">
             <a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
                height="40px"></a>
