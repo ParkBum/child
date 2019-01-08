@@ -6,11 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc">
+<script type="text/javascript">
+
+</script>
 <script type="text/javascript">
 $(function() {
 	var svg = d3.select("svg"),
@@ -26,8 +29,8 @@ var y = d3.scaleLinear()
 			.rangeRound([height,0])
 
 var z = d3.scaleOrdinal().range(["#333333","#111111","#222222","#444444","#555555","#666666","#777777"])
-d3.csv("../decorator/dcc_total.csv",function(i,d,columns){
-	for (i = 1, t = 0; i < columns; ++i) t += d[columns[i]] = +d[columns[i]];
+d3.json("../decorator/ddc_total.csv" ,function(i,d,columns){
+	for (i = 2, t = 0; i < columns; ++i)console.log(d[columns[i]]); t += d[columns[i]]  = +d[columns[i]] ;
 	d.total = t;
 	return d;
 	}, function(error, data) {
