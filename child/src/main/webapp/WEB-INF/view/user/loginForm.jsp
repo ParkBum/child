@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>로그인</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <style type="text/css">
 .loginForm {
 	border-radius: 5px;
@@ -101,7 +103,7 @@ input[type=submit]:hover, input[type=button]:hover {
 				<div class="inin">
 					<input type="submit" value="로그인"> 
 					<input type="button" value="회원가입" onclick="location.href='userForm.child'">
-					<%-- <a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a> --%>
+					<a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a>
 				</div>
 			</div>
 		</form:form>

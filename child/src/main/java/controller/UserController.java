@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import logic.ChildService;
 import logic.Login;
 import logic.User;
+import util.NaverLoginBO;
 
 
 @Controller
@@ -24,9 +27,8 @@ public class UserController {
 
 	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm(HttpSession session) {
-//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-//		ModelAndView mav = new ModelAndView("user/loginForm", "url", naverAuthUrl);
-		ModelAndView mav = new ModelAndView();
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		ModelAndView mav = new ModelAndView("user/loginForm", "url", naverAuthUrl);
 		mav.addObject(new Login());
 		return mav;
 	}
@@ -68,38 +70,46 @@ public class UserController {
 		return mav;
 	}
 
-//	/* NaverLoginBO */
-//	private NaverLoginBO naverLoginBO;
-//
-//	/* NaverLoginBO */
-//	@Autowired
-//	private void setNaverLoginBO(NaverLoginBO naverLoginBO){
-//		this.naverLoginBO = naverLoginBO;
-//	}
-//	
-//	@RequestMapping("user/callback")
-//	public ModelAndView callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
-//		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
-//		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
-//		String apiResult = naverLoginBO.getUserProfile(oauthToken);
-//
-//		String email = "";
-//		String id ="";
-//		for(int i=0;i<18; i++) {
-//			if(i==13) 	id =apiResult.split("\"")[i];
-//			if(i==17) 	email =apiResult.split("\"")[i];
-//		}
-//		//.toString() 했을때[L 로 되어있어서 배열형태인 것을 알게 되었다.
-//		
-//		
-////		ModelAndView mav = new ModelAndView("user/callback","result", apiResult);
-//
-//		ModelAndView mav = new ModelAndView();
-////		session.setAttribute("loginUser", service.userSelect(email));
-//		mav.addObject("result",apiResult);
-//		return new ModelAndView("user/callback","result", apiResult);
-////		회원 관리를 해야하는 부분. 
-//	}
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+
+	/* NaverLoginBO */
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO){
+		this.naverLoginBO = naverLoginBO;
+	}
+	
+	@RequestMapping("user/callback")
+	public ModelAndView callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
+		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		String apiResult = naverLoginBO.getUserProfile(oauthToken);
+
+		String email = "";
+		String id ="";
+		for(int i=0;i<18; i++) {
+			if(i==13) 	id =apiResult.split("\"")[i];
+			if(i==17) 	email =apiResult.split("\"")[i];
+		}
+		//.toString() 했을때[L 로 되어있어서 배열형태인 것을 알게 되었다.
+
+		ModelAndView mav = new ModelAndView();
+		if(service.userSelect(email).getId()==null) {
+			User user = new User();
+			user.setEmail(email);
+			user.setId(id);
+			mav.addObject("email",user.getEmail());
+			mav.addObject("id",user.getId());
+			mav.addObject("result",apiResult);
+			return new ModelAndView("user/callback","result", apiResult);
+			//계정이 없는 경우도 담는데,,,
+		}
+		// 계정이 있는 경우 user 객체를 담는다.
+		session.setAttribute("loginUser", service.userSelect(email));
+		mav.addObject("result",apiResult);
+		return new ModelAndView("user/callback","result", apiResult);
+//		회원 관리를 해야하는 부분. 
+	}
 	
 	
 	@RequestMapping("user/logout")
