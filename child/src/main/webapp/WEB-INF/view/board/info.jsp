@@ -43,6 +43,16 @@ td {
 	background-position: -15px 0;
 }
 </style>
+<script type="text/javascript">
+function commentDelete(bnum, cnum){
+	   var del = confirm("댓글을 삭제하시겠습니까?")
+	   if(del){
+		   location.href = "commentDelete.child?bnum="+bnum+"&cnum="+cnum;
+		   alert("삭제했습니다.");
+	   }
+	   return false;
+}
+</script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
@@ -104,7 +114,7 @@ td {
 			var btype = $('input[name=bType]').val();
 			location.href = "list.child?bType=" + btype;
 		})
-
+		
 		$('#siren').click(function() {
 			var check = confirm("신고하시겠습니까?");
 			if (check) {
@@ -215,8 +225,8 @@ td {
 			<td>
 				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
-							댓글 작성자 : ${sessionScope.loginUser.nickname} 
 					<input type="hidden" name="mnum" value="${loginUser.mnum}">
+							댓글 작성자 : ${sessionScope.loginUser.nickname}
 					<form:textarea path="recomment"
 						style="width:100%;height:100px;border:0;resize:none;"
 						placeholder="댓글 입력"></form:textarea>
@@ -239,13 +249,12 @@ td {
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
 						</c:choose>)
-						<br> 
+						<br>  
 					&nbsp;${c.recomment}<br>
-						<br>
-						<%-- <c:if test="${sessionScope.loginUser == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<a href="redelete.bo?num=${c.num}&seqnum=${r.seqnum}&btype=${board.btype}">[삭제]</a>
-				</c:if> --%>
-						<hr>
+						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
+				</c:if>  
+				<hr>
 					</c:forEach></c:if></td>
 		
 			</tr>

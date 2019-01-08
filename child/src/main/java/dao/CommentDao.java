@@ -1,12 +1,13 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import dao.mapper.BoardMapper;
 import dao.mapper.CommentMapper;
 import logic.Comment;
 
@@ -29,5 +30,22 @@ public class CommentDao {
 	public int maxCnum() {
 		return sqlSession.getMapper(CommentMapper.class).maxBnum();
 	}
+
+	public void delete(Integer cnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("cnum", cnum);
+		sqlSession.getMapper(CommentMapper.class).delete(cnum);
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+

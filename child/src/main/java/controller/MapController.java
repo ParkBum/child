@@ -14,8 +14,8 @@ public class MapController {
 	@Autowired
 	ChildService service;
 	
-	@RequestMapping("main/main")
-	public ModelAndView main() {
+	@RequestMapping("main/main2")
+	public ModelAndView main2() {
 		ModelAndView mav = new ModelAndView();
 		
 //		List<String> gulist = service.gusort();
