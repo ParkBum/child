@@ -41,7 +41,7 @@
     padding: 17px 0 17px;
     text-align: center;
     border: 1px solid #dbdbdb;
-    background: #f7f7f7 url(../../../images/skin/search_box/bg.gif) no-repeat 80px center;
+    background: #f7f7f7 80px center;
     width: 800px;
 }
 </style>
