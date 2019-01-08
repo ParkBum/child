@@ -36,7 +36,6 @@ th {
 .starR2.on{background-position:-15px 0;}
 </style>
 <script type="text/javascript">
-<<<<<<< HEAD
    function file_delete1() {
       document.f.file1.value = "";
       file_desc.style.display = "none";
@@ -49,7 +48,6 @@ th {
       document.f.file3.value = "";
       file_desc.style.display = "none";
    }
-=======
 	function file_delete1() {
 		document.f.file1.value = "";
 		file_desc.style.display = "none";
@@ -62,7 +60,6 @@ th {
 		document.f.file3.value = "";
 		file_desc.style.display = "none";
 	}
->>>>>>> branch 'master' of https://github.com/ParkBum/child/
 </script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
