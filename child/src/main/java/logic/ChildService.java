@@ -145,6 +145,7 @@ public class ChildService {
     }
 
 	public void commentWrite(Comment comment) {
+		comment.setCnum(commentDao.maxCnum() + 1);
 		commentDao.commentWrite(comment);
 	}
 

@@ -68,7 +68,7 @@ public class Comment {
 		return recomment;
 	}
 
-	public void seRecomment(String recomment) {
+	public void setRecomment(String recomment) {
 		this.recomment = recomment;
 	}
 

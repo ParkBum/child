@@ -212,18 +212,20 @@ td {
 		<!-- ´ñ±Û -->
 		<tr style="height: 30px;">
 			<td style="text-align: center;">´ñ±Û</td>
-			<td><form:form action="commentWrite.child" method="Post" modelAttribute="comment">
+			<td>
+				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
 							´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname} 
+					<input type="hidden" name="mnum" value="${loginUser.mnum}">
 					<form:textarea path="recomment"
 						style="width:100%;height:100px;border:0;resize:none;"
 						placeholder="´ñ±Û ÀÔ·Â"></form:textarea>
 					<input type="submit" value="µî·Ï">
 				</form:form></td>
 		</tr>
-		<c:if test="${commentList != null}">
 			<tr>
 				<td colspan="2">
+		<c:if test="${commentList != null}">
 				<c:forEach var="c" items="${commentList}">
 					¡æ${c.cnum}<br>
 					È¸¿ø¹øÈ£ : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
@@ -244,9 +246,9 @@ td {
 					<a href="redelete.bo?num=${c.num}&seqnum=${r.seqnum}&btype=${board.btype}">[»èÁ¦]</a>
 				</c:if> --%>
 						<hr>
-					</c:forEach></td>
+					</c:forEach></c:if></td>
+		
 			</tr>
-		</c:if>
 	</table>
 </body>
 </html>
