@@ -225,7 +225,7 @@ td {
 		<c:if test="${commentList != null}">
 			<tr>
 				<td colspan="2"><c:forEach var="c" items="${commentList}">
-					${c.cnum} : ${c.mnum} : 
+					${c.cnum} : ${c.mnum} :  
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 					<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
 						<c:choose>
