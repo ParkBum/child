@@ -6,6 +6,7 @@
 		<typeAlias type="logic.User" alias="User"/>
 		<typeAlias type="logic.Board" alias="Board"/>
 		<typeAlias type="logic.Comment" alias="Comment"/>
+		<typeAlias type="logic.Login" alias="Login"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="dao/mapper/UserMapper.xml" />

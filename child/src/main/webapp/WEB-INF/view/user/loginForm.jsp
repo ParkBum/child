@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>로그인</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <style type="text/css">
 .loginForm {
 	border-radius: 5px;
@@ -80,9 +82,8 @@ input[type=submit]:hover, input[type=button]:hover {
 				</div>
 				<div class="inin">
 				<input type="hidden" value="${result}">
-					<form:input path="email" placeholder="아이디(e-mail)을 입력하세요"
-						border="solid 1px black" />
-					<br><font color="red"> <form:errors path="email" /></font>
+					<form:input path="login_email" placeholder="아이디(e-mail)을 입력하세요" border="solid 1px black" />
+					<br><font color="red"> <form:errors path="login_email" /></font>
 				</div>
 			</div>
 			<div class="inner">
@@ -91,9 +92,9 @@ input[type=submit]:hover, input[type=button]:hover {
 						style="padding: 3px;">
 				</div>
 				<div class="inin">
-					<form:password path="password" placeholder="비밀번호를 입력하세요"
+					<form:password path="login_password" placeholder="비밀번호를 입력하세요"
 						border="solid 1px black" />
-					<font color="red"> <form:errors path="password" />
+					<font color="red"> <form:errors path="login_password" />
 					</font>
 				</div>
 			</div>
@@ -101,7 +102,7 @@ input[type=submit]:hover, input[type=button]:hover {
 				<div class="inin">
 					<input type="submit" value="로그인"> 
 					<input type="button" value="회원가입" onclick="location.href='userForm.child'">
-					<%-- <a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a> --%>
+					<a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a>
 				</div>
 			</div>
 		</form:form>
