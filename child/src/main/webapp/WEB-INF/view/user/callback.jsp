@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%-- <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <!doctype html>
@@ -49,4 +49,4 @@ h3 {
   </script>
 
 </body>
-</html>
+</html> --%>

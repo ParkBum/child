@@ -46,9 +46,9 @@ input[type=submit]:hover, input[type=button]:hover {
 </head>
 <body>
 	<div class="loginForm">
-		<form:form modelAttribute="user" method="post" action="login.child">
+		<form:form modelAttribute="login" method="post" action="login.child">
 			<h2>로그인</h2>
-			<spring:hasBindErrors name="user">
+			<spring:hasBindErrors name="login">
 				<font color="red"> <c:forEach items="${errors.globalErrors}"
 						var="error">
 						<spring:message code="${error.code}" />
@@ -79,7 +79,6 @@ input[type=submit]:hover, input[type=button]:hover {
 						style="padding: 3px;">
 				</div>
 				<div class="inin">
-				<form:hidden path="id" name="id" value=""/>
 				<input type="hidden" value="${result}">
 					<form:input path="email" placeholder="아이디(e-mail)을 입력하세요"
 						border="solid 1px black" />
@@ -102,7 +101,7 @@ input[type=submit]:hover, input[type=button]:hover {
 				<div class="inin">
 					<input type="submit" value="로그인"> 
 					<input type="button" value="회원가입" onclick="location.href='userForm.child'">
-					<a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a>
+					<%-- <a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px;"></a> --%>
 				</div>
 			</div>
 		</form:form>
