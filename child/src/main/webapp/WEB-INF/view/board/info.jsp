@@ -47,6 +47,8 @@ td {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$('#addred').hide()
+		
 		var btype = $('input[name=bType]').val();
 		var score = $('input[name=score]').val();
 
@@ -111,12 +113,11 @@ td {
 					type : "get",
 					data : {
 						"mnum" : $('input[name=mnum]').val()
-					},
-					success : function(data) {
-						$('#siren').hide()
 					}
 				})
 			}
+			$('#siren').hide()
+			$('#addred').show()
 		})
 	});
 </script>
@@ -150,7 +151,7 @@ td {
 			<td width="15%" style="text-align: center;">작성자</td>
 			<td width="90%">&nbsp;${board.nickname} <c:if
 					test="${board.bType == 3}">
-				&nbsp;<img src="${path}/decorator/siren.png" id="siren">
+				&nbsp;<img src="${path}/decorator/siren.png" id="siren"><font id="addred" size="1" color="red"><b>신고완료</b></font>
 				</c:if></td>
 		</tr>
 		<tr style="height: 30px;">
