@@ -22,10 +22,21 @@ public class User {
 	@NotEmpty(message="상세주소를 입력해주세요")
 	private String addr3;
 	private String id;
+	private int red;
+	
+	
 	
 	
 
 	
+	public int getRed() {
+		return red;
+	}
+
+	public void setRed(int red) {
+		this.red = red;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -96,6 +107,13 @@ public class User {
 
 	public void setAddr3(String addr3) {
 		this.addr3 = addr3;
+	}
+
+	@Override
+	public String toString() {
+		return "User [mnum=" + mnum + ", email=" + email + ", nickname=" + nickname + ", password=" + password
+				+ ", password1=" + password1 + ", addr1=" + addr1 + ", addr2=" + addr2 + ", addr3=" + addr3 + ", id="
+				+ id + ", red=" + red + "]";
 	}
 	
 	
