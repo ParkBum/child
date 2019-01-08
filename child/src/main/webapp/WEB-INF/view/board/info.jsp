@@ -223,9 +223,9 @@ td {
 					<input type="submit" value="등록">
 				</form:form></td>
 		</tr>
-		<c:if test="${commentList != null}">
 			<tr>
 				<td colspan="2">
+		<c:if test="${commentList != null}">
 				<c:forEach var="c" items="${commentList}">
 					→${c.cnum}<br>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
@@ -246,9 +246,9 @@ td {
 					<a href="redelete.bo?num=${c.num}&seqnum=${r.seqnum}&btype=${board.btype}">[삭제]</a>
 				</c:if> --%>
 						<hr>
-					</c:forEach></td>
+					</c:forEach></c:if></td>
+		
 			</tr>
-		</c:if>
 	</table>
 </body>
 </html>
