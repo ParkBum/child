@@ -216,6 +216,7 @@ td {
 				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
 							댓글 작성자 : ${sessionScope.loginUser.nickname} 
+					<input type="hidden" name="mnum" value="${loginUser.mnum}">
 					<form:textarea path="recomment"
 						style="width:100%;height:100px;border:0;resize:none;"
 						placeholder="댓글 입력"></form:textarea>
