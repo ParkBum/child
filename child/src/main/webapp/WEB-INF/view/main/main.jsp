@@ -811,5 +811,6 @@ legend.append("text")
 			</div>
 		</div>
 	</div> -->
+	<input type="hidden" value="${result}">
 </body>
 </html>

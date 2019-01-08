@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import logic.Board;
 import logic.ChildService;
+import logic.Comment;
+import logic.User;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	ChildService service;
-	
+
 	@RequestMapping(value = "board/list")
 	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
 			String searchContent) {
@@ -70,10 +73,15 @@ public class BoardController {
 	public ModelAndView info(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
+		List<Comment> commentList = service.commentList(bnum);
+		Comment comment = new Comment();
+		
 		/*
 		 * boardcnt : 조회수 증가 필요
 		 */
 		mav.addObject("board", board);
+		mav.addObject("commentList", commentList);
+		mav.addObject("comment", comment);
 		return mav;
 	}
 
@@ -94,13 +102,6 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", board);
-		return mav;
-	}
-	
 	@RequestMapping(value = "board/delete")
 	public ModelAndView delete(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
@@ -108,44 +109,44 @@ public class BoardController {
 		mav.setViewName("redirect:/board/list.child?bType=3");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "board/updateForm")
-	public ModelAndView updateForm(Integer bnum,HttpServletRequest request) {
+	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		mav.addObject("board", board);
-	//	board.setFile1(file1);
-	//	service.boardUpdate(board,request);
+		// board.setFile1(file1);
+		// service.boardUpdate(board,request);
 		return mav;
 	}
-	
-	@RequestMapping(value = "board/comment")
-	public ModelAndView comment(Integer bnum) {
+
+	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
+	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
+		ModelAndView mav = new ModelAndView("board/info");
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			System.out.println(bindingResult.getModel());
+			return mav;
+		}
+		User user = (User) session.getAttribute("loginUser");// 현재 유저 정보
+		service.commentWrite(comment);
+		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
+		return mav;
+	}
+
+	@RequestMapping(value = "board/addRed")
+	public ModelAndView addRed(Integer mnum) {
 		ModelAndView mav = new ModelAndView();
-		service.comment(bnum);
+		service.addRed(mnum);
 		return mav;
 	}
+
+	
+	@RequestMapping(value = "board/*")
+	public ModelAndView boardAll(Board board, Comment comment) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board", board);
+		return mav;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

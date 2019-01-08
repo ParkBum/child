@@ -65,6 +65,10 @@ public class UserDao {
 		map.put("mnum", mnum);
 		sqlsession.getMapper(UserMapper.class).userDelete(mnum);
 	}
+
+	public void addRed(Integer mnum) {
+		sqlsession.getMapper(UserMapper.class).addRed(mnum);
+	}
 }
 
 

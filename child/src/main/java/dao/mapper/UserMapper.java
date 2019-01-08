@@ -27,4 +27,7 @@ public interface UserMapper {
 	@Delete("Delete from user where mnum = #{mnum}")
 	void userDelete(Integer mnum);
 
+	@Insert("update user set red = ifnull(red, 0) + 1 where mnum = #{mnum}")
+	void addRed(Integer mnum);
+
 }
