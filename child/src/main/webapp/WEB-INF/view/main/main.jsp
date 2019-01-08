@@ -14,9 +14,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var svg = d3.select("svg"),
-		margin = {top:20,right:20,bottom:30,left:40},
-		width = svg.attr("width"),
-		height = +svg.attr("height"),
+		margin = {top:200,right:200,bottom:300,left:400},
+		width = svg.attr("width") - margin.left - margin.right,
+		height = +svg.attr("height")-margin.top - margin.bottom,
 		g = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
 	var x =d3.scaleBand()
 		.rangeRound([0,width])
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	var y = d3.scaleLinear()
 		.rangeRound([height,0]);
 	
-	var z = d3.scaleOrdinal().range(["#111111","#eeeeee","#aaaaaa","#bbbbbb","#cccc11","#dd22dd","#ee1212"]);
+	var z = d3.scaleOrdinal().range(["#111111","#ee1231","#aaaaaa","#bbbbbb","#cccc11","#dd22dd","#ee1212"]);
 	
 	var data = [{"gu":"gangdong","public":53,"welfare":1,"corporate":2,"private":108,"home":117,"parental":0,"job":3},
 		{"gu":"songpa","public":57,"welfare":1,"corporate":5,"private":146,"home":195,"parental":2,"job":15},
@@ -116,7 +116,6 @@ $(document).ready(function(){
 		    .attr("fill", "#000")
 		    .attr("font-weight", "bold")
 		    .attr("text-anchor", "start")
-		    .text("Population");
 
 		  var legend = g.append("g")
 		    .attr("font-family", "sans-serif")
@@ -130,9 +129,9 @@ $(document).ready(function(){
 		    });
 
 		  legend.append("rect")
-		    .attr("x", width - 19)
-		    .attr("width", 19)
-		    .attr("height", 19)
+		    .attr("x", width - 50)
+		    .attr("width", 50)
+		    .attr("height", 50)
 		    .attr("fill", z);
 
 		  legend.append("text")
