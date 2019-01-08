@@ -119,7 +119,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "board/commentWrite")
+	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
 	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
