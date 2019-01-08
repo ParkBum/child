@@ -35,8 +35,8 @@ public class UserController {
 
 	@RequestMapping("user/login")
 	public ModelAndView login(@Valid Login login, BindingResult bindResult, HttpSession session) {
-		ModelAndView mav = new ModelAndView("user/loginForm");
-		
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		ModelAndView mav = new ModelAndView("user/loginForm", "url", naverAuthUrl);
 		if (bindResult.hasErrors()) {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
