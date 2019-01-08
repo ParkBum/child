@@ -7,10 +7,8 @@
 <meta charset="UTF-8">
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script> -->
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/scc"> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
 <script type="text/javascript">
 $(function() {
 	$(document).ready(function(){
@@ -135,11 +133,11 @@ $(function() {
 })
 </script>
 <style type="text/css">
-.canvas-holder {
+svg{
+	font : 10px;
 	width: 1200px;
-	height: 500px;
+	height: 550px;
  	border : solid 2px silver;
-/* 	border-radius: 20px;  */
 }
 
 .menus {
@@ -217,8 +215,8 @@ $(function() {
 </head>
 <body>
 	<div id="wrap">
-	<div class="canvas-holder">
-		  <svg width="1200" height="500">
+	<div>
+		  <svg>
 		 </svg> 
 	</div>
 <div class="menus">
