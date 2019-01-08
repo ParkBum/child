@@ -135,13 +135,13 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/addRed")
+	@RequestMapping(value = "board/addRed", params="key=ajax")
 	public ModelAndView addRed(Integer mnum) {
 		ModelAndView mav = new ModelAndView();
 		service.addRed(mnum);
+		mav.setViewName("info");
 		return mav;
 	}
-
 	
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(Board board, Comment comment) {
