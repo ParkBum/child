@@ -221,11 +221,12 @@ td {
 					<input type="submit" value="등록">
 				</form:form></td>
 		</tr>
-		<!-- 댓글 있을때만 보이게 -->
 		<c:if test="${commentList != null}">
 			<tr>
-				<td colspan="2"><c:forEach var="c" items="${commentList}">
-					${c.cnum} : ${c.mnum} :  
+				<td colspan="2">
+				<c:forEach var="c" items="${commentList}">
+					→${c.cnum}<br>
+					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 					<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
 						<c:choose>
@@ -235,8 +236,8 @@ td {
 							<c:otherwise>
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
-						</c:choose>
-						<br>
+						</c:choose>)
+						<br> 
 					&nbsp;${c.recomment}<br>
 						<br>
 						<%-- <c:if test="${sessionScope.loginUser == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
