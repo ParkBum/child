@@ -74,8 +74,6 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
-		
-	//	commentList.add();
 		Comment comment = new Comment();
 		/*
 		 * boardcnt : 조회수 증가 필요
@@ -135,13 +133,13 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/addRed", params="key=ajax")
+	@RequestMapping(value = "board/addRed")
 	public ModelAndView addRed(Integer mnum) {
 		ModelAndView mav = new ModelAndView();
 		service.addRed(mnum);
-		mav.setViewName("info");
 		return mav;
 	}
+
 	
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(Board board, Comment comment) {
