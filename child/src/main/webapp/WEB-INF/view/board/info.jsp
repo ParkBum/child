@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,6 +68,20 @@ $(document).ready(function() {
 		var btype = $('input[name=bType]').val();
 		location.href = "list.child?bType=" + btype;
 	})
+	
+	$('#siren').click(function() {
+		var check = confirm("신고하시겠습니까?");
+		if (check) {
+			$.ajax({
+		        url : "addRed.child",
+		        type: "get",
+		        data : { "mnum" : $('input[name=mnum]').val() },
+		        success : function(responseData){
+		            $('#siren').html("신고 완료")
+				}
+			})
+		}
+	})
 });
 </script>
 </head>
@@ -84,15 +99,15 @@ $(document).ready(function() {
 	</c:when>
 </c:choose>
 </div>
-
 	<input type="hidden" name="bType" value="${board.bType}">
+	<input type="hidden" name="mnum" value="${board.mnum}">
 	<input type="hidden" name="score" value="${board.score}">
 	<table border="1" style="border-collapse: collapse; width:60%;" align="center">
 		<tr style="height:30px;">
 			<td width="15%" style="text-align:center;">작성자</td>
 			<td width="90%">&nbsp;${board.nickname}
 			<c:if test="${board.bType == 3}">
-				&nbsp;<input type="button" value="신고">
+				&nbsp;<img src="${path}/decorator/siren.png" id="siren">
 				</c:if></td> 
 		</tr>
 		<tr style="height:30px;">
