@@ -169,6 +169,7 @@ z-index:200;
    </div>
    <!-- <hr> -->
 <!-- <div style="height:8px; width:100%; background-color: #FFCC52 ; display: inline-block;"></div> -->
+	<hr>
 	<div class="footer" align="center" style="width:550px; text-align:left">
 		<img src="../decorator/logo1.png" style="width:50px; height:45px; float:left;">
 		어린이 집마련 프로젝트팀<br>
