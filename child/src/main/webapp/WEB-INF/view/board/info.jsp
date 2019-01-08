@@ -112,8 +112,8 @@ td {
 					data : {
 						"mnum" : $('input[name=mnum]').val()
 					},
-					success : function(responseData) {
-						$('#siren').html("신고 완료")
+					success : function(data) {
+						alert("신고완료")
 					}
 				})
 			}
