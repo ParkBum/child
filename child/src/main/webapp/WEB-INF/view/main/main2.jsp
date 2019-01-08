@@ -186,6 +186,7 @@ legend.append("text")
 </script>
 </head>
 <body>
+<div align="center">
 	<div id="wrap">
 	<div class="canvas-holder">
 		<!--  <svg width="384" height="130">
@@ -229,5 +230,6 @@ legend.append("text")
 		</div>
 	</div> -->
 	<input type="hidden" value="${result}">
+</div>
 </body>
 </html>
