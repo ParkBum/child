@@ -21,6 +21,7 @@ $(function() {
 			}else if(pwd == "" && pwd1 ==""){
 				msg = "";
 			}else if(pwd == pwd1){
+				
 				msg = "비밀번호가 일치합니다.";
 				$('#check').css('color','green');
 			}else{

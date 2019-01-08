@@ -215,8 +215,8 @@ td {
 			<td>
 				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
-							댓글 작성자 : ${sessionScope.loginUser.nickname} 
 					<input type="hidden" name="mnum" value="${loginUser.mnum}">
+							댓글 작성자 : ${sessionScope.loginUser.nickname}
 					<form:textarea path="recomment"
 						style="width:100%;height:100px;border:0;resize:none;"
 						placeholder="댓글 입력"></form:textarea>
@@ -241,11 +241,10 @@ td {
 						</c:choose>)
 						<br> 
 					&nbsp;${c.recomment}<br>
-						<br>
-						<%-- <c:if test="${sessionScope.loginUser == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<a href="redelete.bo?num=${c.num}&seqnum=${r.seqnum}&btype=${board.btype}">[삭제]</a>
-				</c:if> --%>
-						<hr>
+						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+					<a href="commentDelete.child?num=${c.cnum}">[삭제]</a>
+				</c:if> 
+				<hr>
 					</c:forEach></c:if></td>
 		
 			</tr>
