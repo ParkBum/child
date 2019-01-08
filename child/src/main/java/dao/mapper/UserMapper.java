@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Update;
 import logic.User;
 
 public interface UserMapper {
-	@Insert("insert into user (mnum,email,password,nickname,id,addr1,addr2,addr3)"
-			+ " values(#{mnum},#{email},#{password},#{nickname},#{id},#{addr1},#{addr2},#{addr3})")
+	@Insert("insert into user (mnum,email,password,nickname,id,addr1,addr2,addr3,red)"
+			+ " values(#{mnum},#{email},#{password},#{nickname},#{id},#{addr1},#{addr2},#{addr3},#{red})")
 	void insert(User user);
 
 	@Select("select ifnull(max(mnum),0) from user")
