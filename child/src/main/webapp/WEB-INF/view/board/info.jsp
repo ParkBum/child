@@ -212,7 +212,8 @@ td {
 		<!-- ´ñ±Û -->
 		<tr style="height: 30px;">
 			<td style="text-align: center;">´ñ±Û</td>
-			<td><form:form action="commentWrite.child" method="Post" modelAttribute="comment">
+			<td>
+				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
 							´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname} 
 					<form:textarea path="recomment"

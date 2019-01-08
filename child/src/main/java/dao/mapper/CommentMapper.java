@@ -15,5 +15,8 @@ public interface CommentMapper {
 
 	@Select("select * from comment where bnum = #{bnum}")
 	List<Comment> selectComment(Integer bnum);
+
+	@Select("select ifnull(max(cnum), 0) from comment")
+	int maxBnum();
 	
 }

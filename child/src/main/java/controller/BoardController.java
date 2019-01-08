@@ -122,13 +122,13 @@ public class BoardController {
 
 	@RequestMapping(value = "board/commentWrite", method = RequestMethod.POST)
 	public ModelAndView commentWrite(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("board/info");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			System.out.println(bindingResult.getModel());
 			return mav;
 		}
 		User user = (User) session.getAttribute("loginUser");// 현재 유저 정보
-		comment.setMnum(user.getMnum());
 		service.commentWrite(comment);
 		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
