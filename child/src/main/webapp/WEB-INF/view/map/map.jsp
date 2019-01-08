@@ -170,15 +170,13 @@ option {
 		      }
 		   };
 		
-		   
-		
 		</script>
 		
-      <c:forEach items="${stationList}" var="station">	<!-- 리스트 출력 -->
+      <c:forEach items="${daycarelist}" var="daycare">	<!-- 리스트 출력 -->
       <script type="text/javascript">
          var content = {
-               content: '<div>${station.유치원이름}</div>', /* 이름 */
-                 latlng: new daum.maps.LatLng("${station.latitude}", "${station.longtitude}")/* 위도 경도 */
+               content: '<div>${daycare.name}</div>', /* 이름 */
+                 latlng: new daum.maps.LatLng("${daycare.lat}", "${daycare.lon}")/* 위도 경도 */
          }
          positions.push(content);
       </script>

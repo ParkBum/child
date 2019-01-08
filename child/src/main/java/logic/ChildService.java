@@ -156,6 +156,11 @@ public class ChildService {
 	public void addRed(Integer mnum) {
 		userDao.addRed(mnum);		
 	}
+
+	public List<Daycare> daycareList() {
+		// TODO Auto-generated method stub
+		return mapDao.daycareList();
+	}
 	
 	
 	

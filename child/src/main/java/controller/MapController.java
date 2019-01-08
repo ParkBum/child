@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.ChildService;
+import logic.Daycare;
 
 @Controller
 public class MapController {
@@ -29,7 +30,8 @@ public class MapController {
 	@RequestMapping("map/map")
 	public ModelAndView map() {
 		ModelAndView mav = new ModelAndView();
-		
+		List<Daycare> daycarelist = service.daycareList();
+		mav.addObject("daycarelist",daycarelist);
 		return mav;
 	}
 	
