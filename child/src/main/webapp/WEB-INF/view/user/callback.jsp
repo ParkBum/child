@@ -21,13 +21,8 @@ h3 {
   $(document).ready(function() {
     var name = ${result}.response.name;
     var email = ${result}.response.email;
-    /* $("#name").html("환영합니다. "+name+"님"); */
     $("#email").html("환영합니다. "+email+"님");
     });
-  if(sessionScope.loginUser == null){
-  location.href = "${pageContext.request.contextPath}/";
-	  
-  }
 </script>
 
 </head>
@@ -40,21 +35,76 @@ h3 {
   <h2 style="text-align: center" id="name"></h2>
   <h4 style="text-align: center" id="email"></h4>
   <script>
+
     $(function () {
+    	  	var user = ${enrtyUser}
       $("body").hide();
       $("body").fadeIn(1000);  // 1초 뒤에 사라 지자 
-     
-      setTimeout(function(){$("body").fadeOut(1000);},1000);
-      setTimeout(function(){location.href= "${pageContext.request.contextPath}/"},2000);
-// 2초 뒤에 메인 화면 으로 가자  
+      	setTimeout(function(){$("body").fadeOut(1000);},1000);
+		setTimeout(function(){location.href= "${pageContext.request.contextPath}/user/userForm.child"},2000);
     })
   </script>
+  
 
 </body>
 </html>
 
 
-
+<%-- <%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+<%@ page contentType="text/html;charset=EUC-KR" language="java" %>
+<html>
+  <head>
+    <title>네이버로그인</title>
+  </head>
+  <body>
+  <%
+    String clientId = "c2lgrvoieKRPOBcL8fD_";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "a7657XOHSA";//애플리케이션 클라이언트 시크릿값";
+    String code = request.getParameter("code");
+    String state = request.getParameter("state");
+	System.out.println(state);
+    String redirectURI = URLEncoder.encode("http://localhost:8080/child/user/callback.child", "EUC-KR");
+    String apiURL;
+    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+    apiURL += "client_id=" + clientId;
+    apiURL += "&client_secret=" + clientSecret;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&code=" + code;
+    apiURL += "&state=" + state;
+    String access_token = "";
+    String refresh_token = "";
+    System.out.println("apiURL="+apiURL);
+    try {
+      URL url = new URL(apiURL);
+      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+      con.setRequestMethod("GET");
+      int responseCode = con.getResponseCode();
+      BufferedReader br;
+      System.out.print("responseCode="+responseCode);
+      if(responseCode==200) { // 정상 호출
+        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      } else {  // 에러 발생
+        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+      }
+      String inputLine;
+      StringBuffer res = new StringBuffer();
+      while ((inputLine = br.readLine()) != null) {
+        res.append(inputLine);
+      }
+      br.close();
+      if(responseCode==200) {
+        out.println(res.toString());
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  %>
+</body>
+</html> --%>
 <!-- <!doctype html>
 <html lang="ko">
 <head>
@@ -92,6 +142,3 @@ h3 {
 </script>
 </body>
 </html> -->
-
-
-

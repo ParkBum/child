@@ -82,9 +82,8 @@ input[type=submit]:hover, input[type=button]:hover {
 				</div>
 				<div class="inin">
 				<input type="hidden" value="${result}">
-					<form:input path="email" placeholder="아이디(e-mail)을 입력하세요"
-						border="solid 1px black" />
-					<br><font color="red"> <form:errors path="email" /></font>
+					<form:input path="login_email" placeholder="아이디(e-mail)을 입력하세요" border="solid 1px black" />
+					<br><font color="red"> <form:errors path="login_email" /></font>
 				</div>
 			</div>
 			<div class="inner">
@@ -93,9 +92,9 @@ input[type=submit]:hover, input[type=button]:hover {
 						style="padding: 3px;">
 				</div>
 				<div class="inin">
-					<form:password path="password" placeholder="비밀번호를 입력하세요"
+					<form:password path="login_password" placeholder="비밀번호를 입력하세요"
 						border="solid 1px black" />
-					<font color="red"> <form:errors path="password" />
+					<font color="red"> <form:errors path="login_password" />
 					</font>
 				</div>
 			</div>
