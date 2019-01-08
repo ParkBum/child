@@ -101,13 +101,6 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board, Comment comment) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", board);
-		return mav;
-	}
-	
 	@RequestMapping(value = "board/delete")
 	public ModelAndView delete(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
@@ -139,7 +132,13 @@ public class BoardController {
 		mav.setViewName("redirect:/board/info.child?bnum="+comment.getBnum());
 		return mav;
 	}
-	
+
+	@RequestMapping(value = "board/*")
+	public ModelAndView boardAll(Board board, Comment comment) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board", board);
+		return mav;
+	}
 	
 }
 
