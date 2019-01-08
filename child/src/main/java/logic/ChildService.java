@@ -156,6 +156,10 @@ public class ChildService {
 	public void addRed(Integer mnum) {
 		userDao.addRed(mnum);		
 	}
+
+	public void commentDelete(Integer cnum) {
+		commentDao.delete(cnum);
+	}
 	
 	
 	

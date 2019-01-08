@@ -53,8 +53,8 @@ option {
 </style>
 </head>
 <body>
-<div id="L">
-	<div id="SearchAndMap">
+<div id="L" align="center">
+	<div id="SearchAndMap" >
 		<form action="search.child" method="post">
 		<div id="search">
 			<div style=" margin :0 auto; /* vertical-align: middle; */ width : 100%; display: inline-block;">
@@ -117,8 +117,8 @@ option {
 			</div>
 		</div>
 		</form>
-		<div id="wmap">
-				<div id="map" style="width: 95%; height: 95%; margin: 15px auto;  padding:10px;"></div>
+		<div id="wmap" align="center">
+				<div id="map" style="width: 95%; height: 95%; margin: 15px auto;  padding:10px;"align="center"></div>
 		</div>
 		<script type="text/javascript">
 		<%-- 지도 생성 --%>

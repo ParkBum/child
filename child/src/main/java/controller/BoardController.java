@@ -133,6 +133,14 @@ public class BoardController {
 		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
 	}
+	
+	@RequestMapping(value = "board/commentDelete")
+	public ModelAndView commentDelete(Integer bnum, Integer cnum) {
+		ModelAndView mav = new ModelAndView();
+		service.commentDelete(cnum);
+		mav.setViewName("redirect:/board/info.child?bnum="+bnum);
+		return mav;
+	}
 
 	@RequestMapping(value = "board/addRed")
 	public ModelAndView addRed(Integer mnum) {
