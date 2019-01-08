@@ -29,6 +29,7 @@ public class MapController {
 	@RequestMapping("map/map")
 	public ModelAndView map() {
 		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 	
@@ -49,6 +50,4 @@ public class MapController {
 		mav.setViewName("map/map");
 		return mav;
 	}
-	
-	
 }
