@@ -43,6 +43,16 @@ td {
 	background-position: -15px 0;
 }
 </style>
+<script type="text/javascript">
+function commentDelete(bnum, cnum){
+	   var del = confirm("댓글을 삭제하시겠습니까?")
+	   if(del){
+		   location.href = "commentDelete.child?bnum="+bnum+"&cnum="+cnum;
+		   alert("삭제했습니다.");
+	   }
+	   return false;
+}
+</script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
@@ -104,7 +114,7 @@ td {
 			var btype = $('input[name=bType]').val();
 			location.href = "list.child?bType=" + btype;
 		})
-
+		
 		$('#siren').click(function() {
 			var check = confirm("신고하시겠습니까?");
 			if (check) {
@@ -242,8 +252,9 @@ td {
 						<br> 
 					&nbsp;${c.recomment}<br>
 						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<a href="commentDelete.child?num=${c.cnum}">[삭제]</a>
-				</c:if> 
+						 <input type="button" id="commentDelete" value="삭제">
+					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
+				</c:if>  
 				<hr>
 					</c:forEach></c:if></td>
 		
