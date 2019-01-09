@@ -29,6 +29,8 @@ public class MapController {
 	@RequestMapping("map/map")
 	public ModelAndView map() {
 		ModelAndView mav = new ModelAndView();
+		/*List<Daycare> daycarelist = service.daycareList();
+		mav.addObject("daycarelist",daycarelist);*/
 		return mav;
 	}
 	
@@ -49,6 +51,4 @@ public class MapController {
 		mav.setViewName("map/map");
 		return mav;
 	}
-	
-	
 }
