@@ -11,13 +11,23 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 /* 
-function update(){
-	var ok = confirm('정보를 수정하시겠습니까?');
-	if(ok){
-		location.href="update.child?mnum="+${sessionScope.loginUser.mnum};
-	}
-}
+
+$(function(){
+	$("#password1").keyup(function(){
+		var pwd1 = $("#password1").val();
+		var msg = "";
+		if(pwd1==0){
+			msg="비밀번호를 입력하세요.";
+			$('#check').css('color','red');
+		}else if(pwd1<5){
+			msg="비밀번호는 5자 이상으로 설정해야합니다."
+			$('#check').css('color','red');
+		}
+		$('#check').html(msg);
+	})
+})
  */
+ 
 function execPostCode() {/* 주소 검색 부분 */
     new daum.Postcode({
         oncomplete: function(data) {
@@ -88,19 +98,19 @@ function execPostCode() {/* 주소 검색 부분 */
 			<tr height="40px">
 				<td>우편번호</td>
 				<td><form:input path="addr1" value="${sessionScope.loginUser.addr1}" readonly="true"/> <font color="red">
-				<form:errors path="nickname" /></font></td>
+				<form:errors path="addr1" /></font></td>
 			    <td><button type="button" class="btn btn-default" onclick="execPostCode()"><i class="fa fa-search"></i> 우편번호 찾기</button></td>
 			</tr>
 			<tr height="40px">
 				<td>주소</td>
-				<td><form:input path="addr2" value="${sessionScope.loginUser.addr2}"/> <font color="red">
-				<form:errors path="nickname" /></font></td>
+				<td><form:input path="addr2" value="${sessionScope.loginUser.addr2}" readonly="true"/> <font color="red">
+				<form:errors path="addr2" /></font></td>
 				
 			</tr>
 			<tr height="40px">
 				<td>상세주소</td>
 				<td><form:input path="addr3" value="${sessionScope.loginUser.addr3}"/> <font color="red">
-				<form:errors path="nickname" /></font></td>
+				<form:errors path="addr3" /></font></td>
 			</tr>
 			<tr height="40px">
 				<td>기존 비밀번호</td>
@@ -109,8 +119,8 @@ function execPostCode() {/* 주소 검색 부분 */
 			</tr>
 			<tr height="40px"> 
 				<td>변경할 비밀번호</td>
-				<td><form:password path="password1" class="pass" id="password1"/> <font color="red">
-				<form:errors path="password" /></font></td>
+				<td><form:password path="password1" class="pass" id="password1"/> <font id="check" color="red">
+				<form:errors path="password1" /></font></td>
 			</tr>
 			<tr height="40px">
 				<td colspan="2" align="center"><input type="submit" value="수정">

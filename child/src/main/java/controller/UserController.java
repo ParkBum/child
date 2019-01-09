@@ -179,7 +179,10 @@ public class UserController {
 				service.userUpdate(user);
 				mav.addObject("user", user);
 				session.invalidate();
-				mav.setViewName("redirect:../user/loginForm.child");
+				mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
+				mav.addObject("url","../user/loginForm.child");
+//				mav.setViewName("redirect:../user/loginForm.child");
+				mav.setViewName("alert");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
