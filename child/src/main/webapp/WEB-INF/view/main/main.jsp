@@ -154,7 +154,7 @@ var pie = d3.layout.pie()
 	return d.value;
 }); */
 	//사용가능한 차트
-/* 	var svg = d3.select("svg"),
+ 	var svg = d3.select("svg"),
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height"),
 	    radius = Math.min(width, height) / 2,
@@ -196,7 +196,7 @@ var pie = d3.layout.pie()
 	      .attr("font-size", "15px")
 	      .attr("dy", "0.35em")
 	      .text(function(d) { return d.data.gu;});
-	}); */
+	}); 
 	
 	
 })
