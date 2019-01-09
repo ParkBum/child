@@ -35,11 +35,8 @@ body {
 }
 /* 상단 바 */
 .menu-bar {
-
   display: inline-block;
   color : black;
- /*  width: 90%;
-  margin : 0 5%; */
   width:100%;
   height : 140px;
 }
@@ -54,7 +51,7 @@ body {
   float:right;
   list-style:none;
   position: relative;
-  margin : auto 0;
+  margin : 40px 0px 10px 0px;
 }
 .menu a {
   background-color: #F6A5BC;
@@ -112,24 +109,6 @@ z-index:200;
    margin : 0 auto;
    height : 80px;
 }
-.card2 {
-   background-position : center;
-   background-size :cover;
-   width: 100%;
-   height: 75px;
-   text-align: center;
-   
-}
-.image2 {
-   background-color: white;
-   display: inline-block;
-   height: 46px;
-   margin: 5px 2px;
-   width: 14%;
-   border:solid 2px silver;
-   padding : 1px;
-   margin : 10px 10px 0px 10px;
-}
 </style>
 </head>
 <body>
@@ -143,13 +122,13 @@ z-index:200;
       <li class="left">
          <a href="${path}/main/main2.child" style="background-color:white;"><img src="../decorator/logo.png" 
                            style="width:130px; height:100px; margin: 0 0 3% 15%;"></a></li>
-      <c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">로그아웃</a></li></c:if>
+      <c:if test="${!empty sessionScope.loginUser}"><li class="right" style="margin-right:50px;"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">로그아웃</a></li></c:if>
       <c:if test="${!empty sessionScope.loginUser}"><li class="right">
          <c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
          <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원정보</a></c:if>
          <c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
          <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원관리</a></c:if></li></c:if>
-      <c:if test="${empty sessionScope.loginUser}"><li class="right">
+      <c:if test="${empty sessionScope.loginUser}"><li class="right" style="margin-right:50px;">
                         <a href="${path}/user/loginForm.child" style="border-radius: 0 20px 20px 0;">로그인</a></li></c:if>
       <c:if test="${empty sessionScope.loginUser}"><li class="right">
                         <a href="${path}/user/userForm.child">회원가입</a></li></c:if>
@@ -177,23 +156,5 @@ z-index:200;
 		어린이 집마련 프로젝트팀<br>
 		서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
 	</div>
-	<div class="card2" style="background-color: #F6A5BC;">
-         <div class="image2">
-            <a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
-               height="40px"></a>
-         </div>
-   	</div>
 </body>
 </html>
