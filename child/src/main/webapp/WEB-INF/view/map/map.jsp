@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +131,6 @@ option {
 
 		var map = new daum.maps.Map(container, options);
 		</script>
-		
 		<script type="text/javascript">
 		<%--ÁÂÇ¥ ÁöÁ¤ --%>
 		var geocoder = new daum.maps.services.Geocoder();
@@ -140,10 +140,12 @@ option {
 		        console.log(result);
 		    }
 		};
-		<c:forEach var="addrs" items="${addr}">
-		geocoder.addressSearch(${addrs}, callback);
-		</c:forEach>
 		</script>
+		<c:forEach var="addrs" items="${addr}">
+		<script>
+		geocoder.addressSearch(${addrs}, callback);
+		</script>
+		</c:forEach>
 	</div>
 </div>
 </body>
