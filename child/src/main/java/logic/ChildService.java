@@ -146,11 +146,21 @@ public class ChildService {
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
 	}
+	
+	
+	public void commentUpdate(Integer cnum) {
+		commentDao.update(cnum);
+	}
 
 	public List<Daycare> daycareList() {
 		// TODO Auto-generated method stub
 		return mapDao.daycareList();
 
+	}
+
+	public List<String> getpoint(String gu, String type, String bus) {
+		
+		return mapDao.getpoints(gu, type, bus);
 	}
 	
 	

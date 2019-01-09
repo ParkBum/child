@@ -155,7 +155,7 @@ public class BoardController {
 
 	@RequestMapping(value = "board/addRed")
 	public ModelAndView addRed(Integer mnum) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView(); 
 		service.addRed(mnum);
 		return mav;
 	}

@@ -35,7 +35,7 @@ public class MapController {
 	}
 	
 	@RequestMapping("map/search")
-	public ModelAndView search(String gu,String type,String bus, String word) {
+	public ModelAndView search(String gu,String type,String bus) {
 		ModelAndView mav = new ModelAndView();
 		if(type=="") {
 			type=null;
@@ -43,10 +43,7 @@ public class MapController {
 		if(bus=="") {
 			bus=null;
 		}
-		if(word=="") {
-			word=null;
-		}
-		List<String> addr = service.getpoint(gu,type,bus,word);
+		List<String> addr = service.getpoint(gu,type,bus);
 		mav.addObject("addr",addr);
 		mav.setViewName("map/map");
 		return mav;
