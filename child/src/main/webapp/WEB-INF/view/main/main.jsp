@@ -168,7 +168,7 @@ var pie = d3.layout.pie()
 	    .value(function(d) { return d.total; });
 
 	var path = d3.arc()
-	    .outerRadius(radius - 10)
+	    .outerRadius(radius - 10) 
 	    .innerRadius(0);
 
 	var label = d3.arc()
