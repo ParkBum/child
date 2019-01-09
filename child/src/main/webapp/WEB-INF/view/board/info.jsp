@@ -60,6 +60,7 @@ function commentDelete(bnum, cnum){
 	$(document).ready(function() {
 		$('#addred').hide()
 		
+		
 		var btype = $('input[name=bType]').val();
 		var score = $('input[name=score]').val();
 
@@ -128,8 +129,9 @@ function commentDelete(bnum, cnum){
 				})
 			}
 			$('#siren').hide()
-			$('#addred').show()
+			$('#addred') 
 		})
+
 	});
 </script>
 </head>
@@ -237,7 +239,7 @@ function commentDelete(bnum, cnum){
 			<tr>   
 				<td colspan="2">
 			<c:if test="${commentList != null}">
-				<c:forEach var="c" items="${commentList}">
+				<c:forEach var="c" items="${commentList}" varStatus="stat">
 					→${c.cnum}<br>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
@@ -250,21 +252,29 @@ function commentDelete(bnum, cnum){
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
 						</c:choose>)
-						<br>  
-					&nbsp;${c.recomment}<br>
-					<c:if test=""></c:if> 
+						<!-- 댓글 작업중! ${stat.index}는 뭘까-->
+						<div id="recontent${stat.index}">					
+				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
+				 	       <!-- 수정버튼 눌리고 댓글수정창 나옴-->
+				 	       <div id="recommentupd${stat.index}" style="display: none">
+				 	         <form:form action="commentUpdate.child" method="Post" modelAttribute="comment">
+				 	          <input type="hidden" name="bnum" value="${c.bnum}">
+				 	          <input type="hidden" name="cnum" value="${c.cnum}">
+				 	           <form:input path="recomment" value="${c.recomment}" />
+				 	          <input type="submit" value="수정">
+				 	          </form:form>
+				 	       </div>
+				 	   </div>
 					<a href="#">[답글] </a> 
-						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
+					<!-- 댓글수정버튼 -->
+				  	<input type="button" id="commentUpdate" value="댓글수정" 
+				  	       onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+				  	<input type="button" id="x" value="수정취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
 				</c:if>  
-				<form:form action="commentUpdate.child" method="Post">
-					<input type="hidden" name="cnum" value="${c.cnum}"> 
-					<input type="hidden" name="bnum" value="${c.bnum}"> 
-					<input type="text" value="${c.recomment}">
-					<input type="submit" value="수정">
-				</form:form>
 				<hr>
-					</c:forEach></c:if></td>
+				</c:forEach></c:if></td>
 			</tr>
 	</table>
 </body>
