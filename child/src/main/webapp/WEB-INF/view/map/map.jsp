@@ -293,19 +293,18 @@ $("#searchs").click(
             			function(result,status,data){
             				//정상적 검색 시
             				if(status == daum.maps.services.Status.OK){
+
             					var coords = new daum.maps.LatLng(
             					result[0].y,result[0].x		
             					);
-            					
             					var marker = new daum.maps.Marker({
             						map:map,
             						position:coords
             					});
-            					
             					marker.setMap(map);
             					
-            					var content = '<div class="labelWish" style="opacity:0.7;"><span class="leftWish"></span><span class="centerWish">'
-            									+'주소:'+result[0].address_name+'<br>전화번호:'+tel+'<br>홈페이지:<a href="'+homepage+'">'+homepage+'</a></span><span class="rightWish"></span></div>',
+            					var content = '<div class="labelWish" style="opacity:0.7; width:400px;"><span class="leftWish"></span><span class="centerWish">'
+            									+'주소:'+result[0].address_name+'<br>전화번호:'+result[0].phone+'<br>주소:'+result[0].address_name+'</span><span class="rightWish"></span></div>',
             						iwRemoveable = true;
             								
             					var infowindow = new daum.maps.InfoWindow({
