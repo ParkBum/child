@@ -112,24 +112,6 @@ z-index:200;
    margin : 0 auto;
    height : 80px;
 }
-.card2 {
-   background-position : center;
-   background-size :cover;
-   width: 100%;
-   height: 75px;
-   text-align: center;
-   
-}
-.image2 {
-   background-color: white;
-   display: inline-block;
-   height: 46px;
-   margin: 5px 2px;
-   width: 14%;
-   border:solid 2px silver;
-   padding : 1px;
-   margin : 10px 10px 0px 10px;
-}
 </style>
 </head>
 <body>
@@ -177,23 +159,5 @@ z-index:200;
 		어린이 집마련 프로젝트팀<br>
 		서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
 	</div>
-	<div class="card2" style="background-color: #F6A5BC;">
-         <div class="image2">
-            <a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
-               height="40px"></a>
-         </div>
-         <div class="image2">
-            <a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
-               height="40px"></a>
-         </div>
-   	</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,8 @@
 			pause : 5000,
 			autoDelay : 0,
 			slideWidth : 1200,
-			speed : 3000,
+			speed : 1000,
+			infiniteLoop : true,
 			stopAutoOnclick : true
 		});
 
@@ -126,14 +128,24 @@
 			<div class="maineslider">
 				<div class="bxslider">
 					<div>
-						<a href="#"><img
-							src="https://www.idolbom.go.kr/image/main/vis_img01_01_on.gif"
-							alt="" title="아이돌보미" style="width:1200px;height: 500px;"></a>
+						<a href="http://iseoul.seoul.go.kr/portal/shinmungo/counselInfo.do" target="_blank">
+						<img src="${path}/decorator/20181112114717166.png" alt="아동인권상담전화"
+							title="아동인권상담전화" style="width: 1200px; height: 500px;"></a>
 					</div>
 					<div>
-						<a href="#"><img
-							src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
-							alt="" title="통합정보공시" style="width:1200px;height: 500px;"></a>
+						<a href="http://iseoul.seoul.go.kr/portal/mainCall.do" target="_blank">
+						<img src="${path}/decorator/new-img_visual01.png" alt="보육특별시서울"
+							title="보육특별시서울" style="width: 1200px; height: 500px;"></a>
+					</div>
+					<div>
+						<a href="https://seoul.childcare.go.kr/ccef/main.jsp" target="_blank">
+						<img src="${path}/decorator/new-img_visual03.png" alt="육아도움지원센터"
+							title="육아도움지원센터" style="width: 1200px; height: 500px;"></a>
+					</div>
+					<div>
+						<a href="http://info.childcare.go.kr/info/main.jsp" target="_blank">
+						<img src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
+							alt="통합정보공시" title="통합정보공시" style="width: 1200px; height: 500px;"></a>
 					</div>
 				</div>
 			</div>
