@@ -128,11 +128,6 @@
 			<div class="maineslider">
 				<div class="bxslider">
 					<div>
-						<a href="http://iseoul.seoul.go.kr/portal/shinmungo/counselInfo.do" target="_blank">
-						<img src="${path}/decorator/20181112114717166.png" alt="아동인권상담전화"
-							title="아동인권상담전화" style="width: 1200px; height: 500px;"></a>
-					</div>
-					<div>
 						<a href="http://iseoul.seoul.go.kr/portal/mainCall.do" target="_blank">
 						<img src="${path}/decorator/new-img_visual01.png" alt="보육특별시서울"
 							title="보육특별시서울" style="width: 1200px; height: 500px;"></a>
