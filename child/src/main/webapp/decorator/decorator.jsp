@@ -35,11 +35,8 @@ body {
 }
 /* 상단 바 */
 .menu-bar {
-
   display: inline-block;
   color : black;
- /*  width: 90%;
-  margin : 0 5%; */
   width:100%;
   height : 140px;
 }
@@ -54,7 +51,7 @@ body {
   float:right;
   list-style:none;
   position: relative;
-  margin : auto 0;
+  margin : 40px 0px 10px 0px;
 }
 .menu a {
   background-color: #F6A5BC;
@@ -125,13 +122,13 @@ z-index:200;
       <li class="left">
          <a href="${path}/main/main2.child" style="background-color:white;"><img src="../decorator/logo.png" 
                            style="width:130px; height:100px; margin: 0 0 3% 15%;"></a></li>
-      <c:if test="${!empty sessionScope.loginUser}"><li class="right"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">로그아웃</a></li></c:if>
+      <c:if test="${!empty sessionScope.loginUser}"><li class="right" style="margin-right:50px;"><a href="${path}/user/logout.child" style="border-radius: 0 20px 20px 0;">로그아웃</a></li></c:if>
       <c:if test="${!empty sessionScope.loginUser}"><li class="right">
          <c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
          <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원정보</a></c:if>
          <c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
          <a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}">회원관리</a></c:if></li></c:if>
-      <c:if test="${empty sessionScope.loginUser}"><li class="right">
+      <c:if test="${empty sessionScope.loginUser}"><li class="right" style="margin-right:50px;">
                         <a href="${path}/user/loginForm.child" style="border-radius: 0 20px 20px 0;">로그인</a></li></c:if>
       <c:if test="${empty sessionScope.loginUser}"><li class="right">
                         <a href="${path}/user/userForm.child">회원가입</a></li></c:if>
