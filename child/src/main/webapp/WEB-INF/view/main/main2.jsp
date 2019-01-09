@@ -48,7 +48,6 @@
 
 		$(".bx-start").hide(); //onload½Ã ½ÃÀÛ¹öÆ° ¼û±è.
 	});
->>>>>>> branch 'map_bs' of https://github.com/ParkBum/child
 </script>
 <style type="text/css">
 .maineslider {
@@ -130,7 +129,6 @@
 </style>
 </head>
 <body>
-
 	<div align="center">
 		<div id="wrap">
 			<div class="maineslider" style="margin-bottom:70px;">
