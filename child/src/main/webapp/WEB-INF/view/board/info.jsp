@@ -60,7 +60,6 @@ function commentDelete(bnum, cnum){
 	$(document).ready(function() {
 		$('#addred').hide()
 		
-		
 		var btype = $('input[name=bType]').val();
 		var score = $('input[name=score]').val();
 
@@ -131,6 +130,7 @@ function commentDelete(bnum, cnum){
 			$('#siren').hide()
 			$('#addred') 
 		})
+
 
 	});
 </script>
@@ -252,9 +252,11 @@ function commentDelete(bnum, cnum){
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
 						</c:choose>)
+						
 						<!-- 댓글 작업중! ${stat.index}는 뭘까-->
 						<div id="recontent${stat.index}">					
 				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
+				 	       
 				 	       <!-- 수정버튼 눌리고 댓글수정창 나옴-->
 				 	       <div id="recommentupd${stat.index}" style="display: none">
 				 	         <form:form action="commentUpdate.child" method="Post" modelAttribute="comment">
@@ -262,16 +264,16 @@ function commentDelete(bnum, cnum){
 				 	          <input type="hidden" name="cnum" value="${c.cnum}">
 				 	           <form:input path="recomment" value="${c.recomment}" />
 				 	          <input type="submit" value="수정">
+				  		<input type="button" id="x" value="수정취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
 				 	          </form:form>
 				 	       </div>
 				 	   </div>
-					<a href="#">[답글] </a> 
+				<input type="button" id="re" value="답글" onclick="#">
 				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
 					<!-- 댓글수정버튼 -->
-				  	<input type="button" id="commentUpdate" value="댓글수정" 
+				  	<input type="button" id="commentUpdate" value="수정" 
 				  	       onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
-				  	<input type="button" id="x" value="수정취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+					<input type="button" id="commentDelete" value="삭제" onclick="commentDelete(${c.bnum},${c.cnum})">
 				</c:if>  
 				<hr>
 				</c:forEach></c:if></td>
