@@ -11,6 +11,7 @@
 
 <script type="text/javascript">
 $(function() {
+	//사용 가능한 차트
 	/* $(document).ready(function(){
 		// create the svg
 		var svg = d3.select("svg"),
@@ -152,8 +153,8 @@ var pie = d3.layout.pie()
 .value(function(d) {
 	return d.value;
 }); */
-
-	var svg = d3.select("svg"),
+	//사용가능한 차트
+/* 	var svg = d3.select("svg"),
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height"),
 	    radius = Math.min(width, height) / 2,
@@ -195,7 +196,9 @@ var pie = d3.layout.pie()
 	      .attr("font-size", "15px")
 	      .attr("dy", "0.35em")
 	      .text(function(d) { return d.data.gu;});
-	});
+	}); */
+	
+	
 })
 </script>
 <style type="text/css">

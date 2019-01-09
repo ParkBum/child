@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript">
+
+</script>
 <style type="text/css">
 .canvas-holder {
 	width: 1200px;
@@ -20,13 +25,16 @@
 .image1-1 {
 	float:left;
 }
+
+
 </style>
 </head>
 <body>
 <div align="center">
 	<div id="wrap">
-		<div class="canvas-holder">
-		</div>
+		 <div class="canvas-holder">
+		</div> 
+
 		<div class="menus">
 			<div class="card1">
 				<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
