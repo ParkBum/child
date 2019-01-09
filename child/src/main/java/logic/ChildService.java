@@ -147,9 +147,11 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 
-
 	public List<Daycare> search(String gu, String type, String bus) {
 		return mapDao.daycareList(gu,type,bus);
+	}
+	public void commentUpdate(Comment comment) {
+		commentDao.update(comment);
 	}
 	
 	

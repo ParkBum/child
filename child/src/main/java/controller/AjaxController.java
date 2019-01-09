@@ -1,14 +1,17 @@
 package controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import logic.ChildService;
+import logic.Daycare;
 
 @Controller
 public class AjaxController {
@@ -50,6 +53,17 @@ public class AjaxController {
 		map.put("msge", msg);
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("map/search")
+	public String search(String gu, String type, String bus,/*, String word*/Model model){
+		List<Daycare> daycarelist = service.search(gu,type,bus);
+		System.out.println(daycarelist);
+		model.addAttribute("daycarelist",daycarelist);
+		return "maker";
+	}
+	
+	
 }
 	
 	
