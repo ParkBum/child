@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import logic.Daycare;
+
 @Repository
 public class MapDao {
 	@Autowired
@@ -34,6 +36,12 @@ public class MapDao {
 		map.put("bus", bus);
 		map.put("word", word);
 		return sqlSession.selectList(NS+"getpoints",map);
+	}
+
+
+
+	public List<Daycare> daycareList() {
+		return sqlSession.selectList(NS+"list");
 	}
 	
 	

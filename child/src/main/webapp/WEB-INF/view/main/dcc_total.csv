@@ -1,12 +1,12 @@
-gu,public,welfare,corporate,private,home,parental,Job
+gu,public,welfare,corporate,private,home,parental,job
 gangdong,53,1,2,108,117,0,3
 songpa,57,1,5,146,195,2,15
 gangnam,53,0,0,71,81,1,25
 seocho,61,0,1,44,79,2,19
 gwanak,66,4,6,93,106,0,5
 dongjak,53,3,2,74,90,1,7
-Yeongdeungpo,54,2,1,77,99,0,30
-Geumcheon,45,1,13,54,53,1,7
+yeongdeungpo,54,2,1,77,99,0,30
+geumcheon,45,1,13,54,53,1,7
 guro,60,3,8,97,158,6,9
 gangseo,70,2,3,145,212,1,8
 yangcheon,66,0,3,86,169,1,6
@@ -24,4 +24,5 @@ seongdong,70,0,3,40,70,0,7
 yongsan,28,2,9,28,51,1,9
 jung,21,0,7,7,14,0,18
 jongro,28,2,3,11,5,0,26
+,,,,,,,
 ,,,,,,,

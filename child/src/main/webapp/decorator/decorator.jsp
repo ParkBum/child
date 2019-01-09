@@ -32,6 +32,7 @@ body {
    display :block;
    margin: 0 auto;
    font-family: 'Noto Sans KR', sans-serif;
+   height : 100%;
 }
 /* 상단 바 */
 .menu-bar {
@@ -41,7 +42,7 @@ body {
  /*  width: 90%;
   margin : 0 5%; */
   width:100%;
-  height : 140px;
+  height : 180px;
 }
 .menu { padding: 0 auto; }
 .menu .left {
@@ -98,11 +99,16 @@ z-index:200;
      
 /* main */
 .main {
+<<<<<<< HEAD
    margin-bottom: 5%;
    padding: 10px;
+   margin-bottom: 10%;
+   padding: 10px;
+   height: 1000px;
    align: center;
-   width:100%;
-   height:100%;
+
+
+
 }
 /*하단 footer */
 .footer {
