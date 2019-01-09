@@ -1,6 +1,7 @@
-	<%@ page language="java" contentType="text/html; charset=EUC-KR"
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ include file="/WEB-INF/view/jspHeader.jsp" %>
+<%@ include file="/WEB-INF/view/jspHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,37 +10,13 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>어린이집 검색</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script>
 $(function() {
-           $("#searchs").click(
-                 function() {
-                    var gu = $("#gu").val();
-                    alert("gu"+gu)
-                    
-                    var type = $("#type").val();
-                    var bus = $("#bus").val();
-                    var data = {
-                       "gu" : gu,
-                       "type" : type,
-                       "bus" : bus
-                       }
-                    $.ajax({ 
-                       url : "search.child",
-                       type : "post",
-                       data : data,
-                       dataType : "html", // ajax 통신으로 받는 타입
-                       success : function(data) {
-                    	   alert(data);
-                    	   $("#a").html(data); 
-                       },
-                       error : function(xhr, status, error) { //서버응답 실패
-                          alert("서버오류 : " + xhr.status + ", error : "
-                                + error + ", status : " + status);
-                       }
-                    })
-                 })
+           
         })
 </script>
 <style type="text/css">
@@ -86,72 +63,78 @@ option {
 	<div id="L" align="center">
 		<div id="SearchAndMap">
 			<!-- <form action="search.child" method="post"> -->
-				<div id="search">
-					<div style="margin: 0 auto;  vertical-align: middle; width: 100%; display: inline-block;">
-						<div style="width: 100%; height: 30px; margin: 5px auto;">
-							<div style="width: 33%; float: left;">
-								구를 선택해주세요&nbsp;&nbsp; <select name="gu" id="gu">
-									<option>강남구</option>
-									<option>강동구</option>
-									<option>강북구</option>
-									<option>강서구</option>
-									<option>관악구</option>
-									<option>광진구</option>
-									<option>구로구</option>
-									<option>금천구</option>
-									<option>노원구</option>
-									<option>도봉구</option>
-									<option>동대문구</option>
-									<option>동작구</option>
-									<option>마포구</option>
-									<option>서대문구</option>
-									<option>서초구</option>
-									<option>성동구</option>
-									<option>성북구</option>
-									<option>송파구</option>
-									<option>양천구</option>
-									<option>영등포구</option>
-									<option>용산구</option>
-									<option>은평구</option>
-									<option>종로구</option>
-									<option>중구</option>
-									<option>중랑구</option>
-									<option></option>
-								</select>
-							</div>
-							<div style="width: 33%; float: left;">
-								어린이집 유형&nbsp;&nbsp; <select name="type" id="type">
-									<option value="">선택하세요</option>
-									<option>가정</option>
-									<option>국공립</option>
-									<option>민간</option>
-									<option>법인·단체등</option>
-									<option>사회복지법인</option>
-									<option>협동</option>
-									<option></option>
-								</select>
-							</div>
-							<div style="width: 33%; float: left;">
-								통원 버스 유무&nbsp;&nbsp; <select name="bus" id="bus">
-									<option value="">선택하세요</option>
-									<option>운영</option>
-									<option>미운영</option>
-									<option></option>
-								</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
-							</div>
+			<div id="search">
+				<div
+					style="margin: 0 auto; vertical-align: middle; width: 100%; display: inline-block;">
+					<div style="width: 100%; height: 30px; margin: 5px auto;">
+						<div style="width: 33%; float: left;">
+							구를 선택해주세요&nbsp;&nbsp; <select name="gu" id="gu">
+								<option>강남구</option>
+								<option>강동구</option>
+								<option>강북구</option>
+								<option>강서구</option>
+								<option>관악구</option>
+								<option>광진구</option>
+								<option>구로구</option>
+								<option>금천구</option>
+								<option>노원구</option>
+								<option>도봉구</option>
+								<option>동대문구</option>
+								<option>동작구</option>
+								<option>마포구</option>
+								<option>서대문구</option>
+								<option>서초구</option>
+								<option>성동구</option>
+								<option>성북구</option>
+								<option>송파구</option>
+								<option>양천구</option>
+								<option>영등포구</option>
+								<option>용산구</option>
+								<option>은평구</option>
+								<option>종로구</option>
+								<option>중구</option>
+								<option>중랑구</option>
+								<option></option>
+							</select>
+						</div>
+						<div style="width: 33%; float: left;">
+							어린이집 유형&nbsp;&nbsp; <select name="type" id="type">
+								<option value="">선택하세요</option>
+								<option>가정</option>
+								<option>국공립</option>
+								<option>민간</option>
+								<option>법인·단체등</option>
+								<option>사회복지법인</option>
+								<option>협동</option>
+								<option></option>
+							</select>
+						</div>
+						<div style="width: 33%; float: left;">
+							통원 버스 유무&nbsp;&nbsp; <select name="bus" id="bus">
+								<option value="">선택하세요</option>
+								<option>운영</option>
+								<option>미운영</option>
+								<option></option>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs"
+								value="조회">
 						</div>
 					</div>
 				</div>
+			</div>
 			<!-- </form> -->
 			<div id="map_wrap" align="center" class="map_wrap">
-				<div id="map" style="width: 100%; height: 100%; margin: 15px auto; padding: 10px;" align="center"></div>
-			</div><!-- map_wrap의 끝 -->
-		</div><!-- SearchAndMap -->
+				<div id="map"
+					style="width: 100%; height: 100%; margin: 15px auto; padding: 10px;"
+					align="center"></div>
+			</div>
+			<!-- map_wrap의 끝 -->
+		</div>
+		<!-- SearchAndMap -->
 	</div>
-			
 
-<%-- 지도를 생성을 합니다. --%>
-<script type="text/javascript">	
+
+	<%-- 지도를 생성을 합니다. --%>
+	<script type="text/javascript">	
 		
 		var mapContainer = document.getElementById('map');	
 		
@@ -190,17 +173,9 @@ option {
 		        
 		    displayMarker(locPosition, message);
 		}
-		<%-- 현재 나의 위치를 찍는 구간 --%>
-		
-		
-		
-		
-		
-		
-		
-		
 
-
+		
+		
 		<%--좌표 지정 --%>
 		var geocoder = new daum.maps.services.Geocoder();
 		
@@ -242,21 +217,40 @@ option {
 		          daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		      }
 		   };
-</script>
-
-<div id="a">
- <c:forEach items="${daycarelist}" var="daycare">
-      <script type="text/javascript">
-         var content = {
-               content: '<div>${daycare.name}</div>', 
-               latlng: new daum.maps.LatLng("${daycare.lat}", "${daycare.lon}")
-         }
-         positions.push(content);
-      </script>
-</c:forEach>
-</div>
-<script>
-
+		   
+		   
+		   $("#searchs").click(
+	                 function() {
+	                    var gu = $("#gu").val();
+	                    alert("gu"+gu)
+	                    
+	                    var type = $("#type").val();
+	                    var bus = $("#bus").val();
+	                    var data = {
+	                       "gu" : gu,
+	                       "type" : type,
+	                       "bus" : bus
+	                       }
+	                    $.ajax({ 
+	                       url : "search.child",
+	                       type : "post",
+	                       data : data,
+	                       dataType : "html", // ajax 통신으로 받는 타입
+	                       success : function(data) {
+	                           for(var i=0; i<data.length; i++){
+	 	                    	    content = {
+	                                   content: data[i].name, 
+	                                   latlng: new daum.maps.LatLng(data[i].lat, data[i].lon)
+	                             }
+	                             positions.push(content);
+	                           }
+	                       },
+	                       error : function(xhr, status, error) { //서버응답 실패
+	                          alert("서버오류 : " + xhr.status + ", error : "
+	                                + error + ", status : " + status);
+	                       }
+	                    })
+	                 })
 
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다 
