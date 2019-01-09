@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.scenario.effect.impl.prism.PrImage;
+
 import logic.ChildService;
 import logic.Daycare;
 
@@ -56,13 +58,13 @@ public class AjaxController {
 	
 	@ResponseBody
 	@RequestMapping("map/search")
-	public String search(String gu, String type, String bus,/*, String word*/Model model){
+	public Object search(String gu, String type, String bus/*, String word*/){
 		List<Daycare> daycarelist = service.search(gu,type,bus);
-		System.out.println(daycarelist);
-		model.addAttribute("daycarelist",daycarelist);
-		return "maker";
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("daycarelist",daycarelist);
+//		return map.get("daycarelist");
+		return map;
 	}
-	
 	
 }
 	

@@ -12,7 +12,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script>
-$(function() {
+/* $(function() {
            $("#searchs").click(
                  function() {
                     var gu = $("#gu").val();
@@ -40,7 +40,7 @@ $(function() {
                        }
                     })
                  })
-        })
+        }) */
 </script>
 <style type="text/css">
 #SearchAndMap {
@@ -156,7 +156,7 @@ option {
 		var mapContainer = document.getElementById('map');	
 		
 		var mapOptions = {									<%-- 지도의  기본 위치와 확대정도를 나타냄 --%>			
-			center: new daum.maps.LatLng(33.450701, 126.570667),
+			center: new daum.maps.LatLng(35.575, 126.570667),
 			level: 3
 		};
 
@@ -242,7 +242,7 @@ option {
 		          daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		      }
 		   };
-</script>
+<%-- </script>
 
 <div id="a">
  <c:forEach items="${daycarelist}" var="daycare">
@@ -255,12 +255,43 @@ option {
       </script>
 </c:forEach>
 </div>
-<script>
-
+<script> --%>
+$("#searchs").click(
+        function() {
+           var gu = $("#gu").val();
+           var type = $("#type").val();
+           var bus = $("#bus").val();
+           var data = {
+              "gu" : gu,
+              "type" : type,
+              "bus" : bus
+              }
+           $.ajax({ 
+              url : "search.child",
+              type : "post",
+              data : data,
+              dataType : "json", // ajax 통신으로 받는 타입
+              success : function(data) {
+                  for(var i=0; i<data.daycarelist.length; i++){
+                	  searchMarker(data.daycarelist[i].lat,data.daycarelist[i].lon,i);
+                	  /* var content = {
+                      content: data.daycarelist[i].name, 
+                      latlng: new daum.maps.LatLng(data.daycarelist[i].lat, data.daycarelist[i].lon)
+                }
+                positions.push(content);
+              }
+              displayMarker(locPosition, message) */
+              }
+              },
+              error : function(xhr, status, error) { //서버응답 실패
+                 alert("서버오류 : " + xhr.status + ", error : "
+                       + error + ", status : " + status);
+              }
+           })
+        })
 
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다 
-// 단순히 마커를 표시하는 메서드
 function displayMarker(locPosition, message) {
 
     // 마커를 생성합니다
@@ -277,13 +308,33 @@ function displayMarker(locPosition, message) {
         content : iwContent,
         removable : iwRemoveable
     });
-    
-    // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
-    
-    // 지도 중심좌표를 접속위치로 변경합니다
-    map.setCenter(locPosition);      
+ 
 }    
+function removeMarker(){
+	
+}
+
+function searchMarker(lat,lon,i){
+	  var locPosition = new daum.maps.LatLng(lat, lon)
+		
+	  var marker[i] = new daum.maps.Marker({
+          position: locPosition
+      });
+	  
+      marker.setMap(map);
+
+     /*  //인포 윈도우
+      daum.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+              var infowindow = new daum.maps.InfoWindow({
+                  content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + locations[i] + '</p>',
+                  removable : true
+              });
+            infowindow.open(map, marker);
+          }
+      })(marker, i)); */
+
+}
 </script>
 
 </body>
