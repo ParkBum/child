@@ -144,6 +144,8 @@ option {
 		<c:forEach var="addrs" items="${addr}">
 		<script>
 		geocoder.addressSearch(${addrs}, callback);
+		
+		
 		</script>
 		</c:forEach>
 	</div>
