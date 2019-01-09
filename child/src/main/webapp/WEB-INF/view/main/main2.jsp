@@ -14,7 +14,7 @@
 }
 
 .menus {
-	margin: 30px;
+	margin: 40px;
 	width: 1200px;
 	height: 350px;
 }
@@ -22,18 +22,25 @@
 .mainimage1 {
 	float: left;
 	padding: 30px 0 0 30px;
-	width: 610px;
+	width: 600px;
 }
 
 .mainimage2 {
 	float: right;
-	padding: 30px;
-	width: 350px;
+	padding: 10px;
+	width: 400px;
 	list-style: none;
 }
 
-.image2 a {
-	text-decoration: none;
+.mainimage3 {
+	float: right;
+	padding: 10px 10px 10px 25px;
+	width: 400px;
+	text-align: left;
+}
+
+.tit {
+	margin-left: 40px;
 }
 
 .a1 {
@@ -42,15 +49,11 @@
 		no-repeat;
 	color: #7c5348;
 	display: table-cell;
-	padding-bottom: 2px;
 	width: 350px;
 	height: 63px;
 	vertical-align: middle;
 	text-align: left;
-}
-
-.tit {
-	margin-left: 40px;
+	text-decoration: none;
 }
 
 .a2 {
@@ -59,11 +62,11 @@
 		no-repeat;
 	color: #7c5348;
 	display: table-cell;
-	padding-bottom: 2px;
 	width: 350px;
 	height: 63px;
 	vertical-align: middle;
 	text-align: left;
+	text-decoration: none;
 }
 
 .a3 {
@@ -72,11 +75,11 @@
 		no-repeat;
 	color: #7c5348;
 	display: table-cell;
-	padding-bottom: 2px;
 	width: 350px;
 	height: 63px;
 	vertical-align: middle;
 	text-align: left;
+	text-decoration: none;
 }
 </style>
 </head>
@@ -87,7 +90,8 @@
 			<div class="menus">
 				<div class="card1">
 					<div class="mainimage1">
-						<a href="../map/map.child"><img src="../decorator/seoulsearch.png" alt="어린이집 검색"></a>
+						<a href="../map/map.child"><img
+							src="../decorator/seoulsearch.png" alt="어린이집 검색" style="width:750px; height:445px;"></a>
 					</div>
 					<ul class="mainimage2">
 						<li><a class="a1" href="../board/list.child?bType=1"><span
@@ -97,6 +101,13 @@
 						<li><a class="a3" href="../board/list.child?bType=3"><span
 								class="tit">거래게시판</span></a></li>
 					</ul>
+					<div class="mainimage3">
+						<iframe style="height: 200px;"
+							src="https://www.youtube.com/embed/SY6zhxH4UEo?autohide=1&loop=1&vq=hd720&controls=2&showinfo=0&rel=0&volume=1"
+							frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
