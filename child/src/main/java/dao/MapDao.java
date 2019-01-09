@@ -28,7 +28,7 @@ public class MapDao {
 		return sqlSession.selectList(NS+"list");
 	}
 
-
+/*
 	public List<String> getpoints(String gu, String type, String bus, String word) {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("gu", gu);
@@ -36,12 +36,16 @@ public class MapDao {
 		map.put("bus", bus);
 		map.put("word", word);
 		return sqlSession.selectList(NS+"getpoints",map);
-	}
+	}*/
 
 
 
-	public List<Daycare> daycareList() {
-		return sqlSession.selectList(NS+"list");
+	public List<Daycare> daycareList(String gu, String type, String bus/*, String word*/) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("gu", gu);
+		map.put("type", type);
+		map.put("bus", bus);
+		return sqlSession.selectList(NS+"list",map);
 	}
 	
 	

@@ -8,19 +8,19 @@
 	<select id="lists" resultType="Integer">
 		select count(gu) from seoul2 group by gu
 	</select>
-	<select id="getpoints" resultType="String" parameterType="map">
-		select addr from seoul2 where gu = "${gu}"
-		<if test="type != null">
+	<select id="list" resultType="Daycare" parameterType="map">
+		select * from seoul2 where gu = "${gu}"
+		<if test="type != null or type != ''">
 			and type = "${type}"
 		</if>
-		<if test="bus != null">
+		<if test="bus != null or bus != ''">
 			and bus = "${bus}"
 		</if>
-		<if test="word != null">
+		<!-- <if test="word != null && word != ''">
 			and name like "%${word}%"
-		</if>
+		</if> -->
 	</select>
-	<select id="list" resultType="Daycare">
+	<!-- <select id="list" resultType="Daycare">
 		select * from seoul2
-	</select>
+	</select> -->
 </mapper>

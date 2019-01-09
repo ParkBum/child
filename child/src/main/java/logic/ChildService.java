@@ -147,10 +147,9 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 
-	public List<Daycare> daycareList() {
-		// TODO Auto-generated method stub
-		return mapDao.daycareList();
 
+	public List<Daycare> search(String gu, String type, String bus) {
+		return mapDao.daycareList(gu,type,bus);
 	}
 	
 	

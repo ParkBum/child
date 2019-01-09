@@ -148,7 +148,7 @@ public class BoardController {
 	@RequestMapping(value="board/commentUpdate", method=RequestMethod.POST)
 	public ModelAndView commentUpdate(Integer bnum, Integer cnum) {
 		ModelAndView mav = new ModelAndView();
-		service.commentUpdate(cnum);
+//		service.commentUpdate(cnum);
 		mav.setViewName("redirect:/board/info.child?bnum=" + bnum);
 		return mav;
 	}
