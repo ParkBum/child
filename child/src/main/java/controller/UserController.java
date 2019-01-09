@@ -164,23 +164,30 @@ public class UserController {
 
 	@RequestMapping("user/update")
 	public ModelAndView update(@Valid User user, BindingResult bindResult, Integer mnum, HttpSession session) {
-		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회 /user는 새 정보
+		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회 
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
+		service.changePass(user);
 		// 비밀번호 검증
 		if (user.getPassword().equals(user2.getPassword())) { // 비밀번호 일치
 			try {
+				//변경할 비밀번호를 기존비밀번호에 넣기
+				user.setPassword(user.getPassword1());
 				service.userUpdate(user);
 				mav.addObject("user", user);
-				mav.setViewName("redirect:../admin/list.child?mnum=" + mnum);
+				session.invalidate();
+				mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
+				mav.addObject("url","../user/loginForm.child");
+//				mav.setViewName("redirect:../user/loginForm.child");
+				mav.setViewName("alert");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
 				mav.setViewName("user/updateForm");
-			}
+			}	
 		} else { // 비밀번호 불일치
 			bindResult.reject("error.login.password");
 			mav.getModel().putAll(bindResult.getModel());

@@ -317,9 +317,10 @@ function removeMarker(){
 function searchMarker(lat,lon,i){
 	  var locPosition = new daum.maps.LatLng(lat, lon)
 		
-	  var marker[i] = new daum.maps.Marker({
+	  var marker = new daum.maps.Marker({
           position: locPosition
       });
+	  
 	  
       marker.setMap(map);
 

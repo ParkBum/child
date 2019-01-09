@@ -24,7 +24,9 @@ public interface CommentMapper {
 	@Delete("delete from comment where cnum = #{cnum}")
 	void delete(Integer cnum);
 
+
 	@Update("update comment set recomment = #{recomment} where cnum=#{cnum}")
 	void update(Comment comment);
+
 	
 }

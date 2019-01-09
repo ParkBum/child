@@ -69,6 +69,10 @@ public class UserDao {
 	public void addRed(Integer mnum) {
 		sqlsession.getMapper(UserMapper.class).addRed(mnum);
 	}
+
+	public void changePass(User user) {
+		sqlsession.getMapper(UserMapper.class).changePass(user);
+	}
 }
 
 
