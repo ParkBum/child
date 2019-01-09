@@ -95,8 +95,7 @@ z-index:200;
      
 /* main */
 .main {
-   margin-bottom: 5%;
-   padding: 10px;
+   padding-bottom: 60px;
    align: center;
    width:100%;
    height:100%;
@@ -112,6 +111,7 @@ z-index:200;
 </style>
 </head>
 <body>
+<div style="overflow:auto;overflow-y:hidden;">
 <%-- 원래 메뉴 --%>
  <c:if test="${!empty sessionScope.loginUser}">
    <font size="2" style="float:right; margin:3px 300px 0 0;">${sessionScope.loginUser.nickname}님 환영합니다.</font>
@@ -156,5 +156,6 @@ z-index:200;
 		어린이 집마련 프로젝트팀<br>
 		서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
 	</div>
+</div>
 </body>
 </html>
