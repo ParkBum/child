@@ -164,6 +164,10 @@ public class ChildService {
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
+
+	public void changePass(User user) {
+		userDao.changePass(user);
+	}
 	
 	
 	
