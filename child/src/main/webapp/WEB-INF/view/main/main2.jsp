@@ -6,8 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var main = $('.bxslider').bxSlider({
+			mode : 'horizontal',
+			auto : true, //자동으로 슬라이드  
+			controls : true, //좌우 화살표     
+			autoControls : true, //stop,play  
+			pager : true, //페이징  
+			pause : 5000,
+			autoDelay : 0,
+			slideWidth : 1200,
+			speed : 3000,
+			stopAutoOnclick : true
+		});
+
+		$(".bx-stop").click(function() { // 중지버튼 눌렀을때  
+			main.stopAuto();
+			$(".bx-stop").hide();
+			$(".bx-start").show();
+			return false;
+		});
+
+		$(".bx-start").click(function() { //시작버튼 눌렀을때  
+			main.startAuto();
+			$(".bx-start").hide();
+			$(".bx-stop").show();
+			return false;
+		});
+
+		$(".bx-start").hide(); //onload시 시작버튼 숨김.
+	});
+</script>
 <style type="text/css">
-.canvas-holder {
+.maineslider {
 	width: 1200px;
 	height: 500px;
 	border: solid 2px silver;
@@ -86,12 +123,26 @@
 <body>
 	<div align="center">
 		<div id="wrap">
-			<div class="canvas-holder"></div>
+			<div class="maineslider">
+				<div class="bxslider">
+					<div>
+						<a href="#"><img
+							src="https://www.idolbom.go.kr/image/main/vis_img01_01_on.gif"
+							alt="" title="아이돌보미" style="width:1200px;height: 500px;"></a>
+					</div>
+					<div>
+						<a href="#"><img
+							src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
+							alt="" title="통합정보공시" style="width:1200px;height: 500px;"></a>
+					</div>
+				</div>
+			</div>
 			<div class="menus">
 				<div class="card1">
 					<div class="mainimage1">
 						<a href="../map/map.child"><img
-							src="../decorator/seoulsearch.png" alt="어린이집 검색" style="width:750px; height:445px;"></a>
+							src="../decorator/seoulsearch.png" alt="어린이집 검색"
+							style="width: 750px; height: 445px;"></a>
 					</div>
 					<ul class="mainimage2">
 						<li><a class="a1" href="../board/list.child?bType=1"><span
