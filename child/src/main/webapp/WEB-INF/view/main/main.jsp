@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-
 <script type="text/javascript">
+
 $(function() {
 	$(document).ready(function(){
 		// create the svg
@@ -130,45 +130,51 @@ $(function() {
 		    .attr("font-size", "15px")
 		    .attr("font-weight", "bold");
 	})
+
 })
 </script>
 <style type="text/css">
+
+svg{
+	font : 10px;
+	width: 1200px;
+	height: 550px;
+ 	border : solid 2px silver;
+ 	}
+ 	
+body{
+	text-align: center;
+
+}
+/* #wrap{
+	text-align: center;
+} */
+/*차트영역*/
 svg{
 	font : 10px;
 	width: 1200px;
 	height: 550px;
  	border : solid 2px silver;
 }
+  .axis .domain {
+    display: none;
+  }
 
 .menus {
-	margin-top: 25px;
+	text-align:center;
+	margin-top: 50px;
+	margin : 0 auto;
 	width: 1200px;
-	height: 180px;
+	height: 150px;
 }
-/* .public {
-	margin-top: 20px;
-	width: 100%;
-	height: 95px;
-} */
 .card1 {
-	background-position : center;
-	background-size :cover;
+
 	margin: 25px 0;
 	width: 100%;
-	height: 250px;
-	text-align: center;
-/* 	background :  linear-gradient(to right, rgba(000,000,102, 0.7),  rgba(000, 000, 204, 0.7)),url("../decorator/samples.png"); */
+	height: 150px;
 }
 
-/* .card2 {
-	background-position : center;
-	background-size :cover;
-	margin: 8px 0;
-	width: 100%;
-	height: 75px;
-	text-align: center;
-	
-} */
+
 
 .image1-1,.image1-2,.image1-3 {
 	display: inline-block;
@@ -188,14 +194,6 @@ svg{
 	background-color: #A9D0F5; 
 }
 
-/* .image2 {
-	display: inline-block;
-	height: 66px;
-	margin: 5px 2px;
-	width: 24%;
-	border:solid 2px silver;
-	padding : 1px;
-} */
 
 .main-a {
 	text-decoration: none;
@@ -215,9 +213,13 @@ svg{
 </head>
 <body>
 	<div id="wrap">
+
 	<div>
-		  <svg>
-		 </svg> 
+
+	<svg width="1200" height="500">
+
+	</svg>
+
 	</div>
 <div class="menus">
 		<div class="card1">
@@ -236,26 +238,6 @@ svg{
 		</div>
 	</div>
 	</div>
- 	<!-- <div class="public">
-		<div class="card2">
-			<div class="image2">
-				<a class="main-b" href="https://www.seoulchildrensmuseum.org/"><img src="https://www.seoulchildrensmuseum.org/z00_images/common/logo.png" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://seoul.childcare.go.kr/ccef/main.jsp"><img src="http://seoul.childcare.go.kr/images/ccef/common/logo_seoul.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.childcare.go.kr"><img src="http://www.childcare.go.kr/images/cpin/common/h1_logo_s.gif" width="100%"
-					height="58px"></a>
-			</div>
-			<div class="image2">
-				<a class="main-b" href="http://www.korea1391.go.kr/new/"><img src="http://korea1391.go.kr/new/theme/custom/images/common/logo_big.jpg" width="100%"
-					height="58px"></a>
-			</div>
-		</div>
-	</div> -->
 	<input type="hidden" value="${result}">
 </body>
 </html>
