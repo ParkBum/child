@@ -125,7 +125,7 @@
 <body>
 	<div align="center">
 		<div id="wrap">
-			<div class="maineslider">
+			<div class="maineslider" style="margin-bottom:70px;">
 				<div class="bxslider">
 					<div>
 						<a href="http://iseoul.seoul.go.kr/portal/mainCall.do" target="_blank">
@@ -144,6 +144,7 @@
 					</div>
 				</div>
 			</div>
+		   <div style="background-color:#FFF1F5; height:500px; margin:10px;">
 			<div class="menus">
 				<div class="card1">
 					<div class="mainimage1">
@@ -168,7 +169,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		   </div>
+		 </div>
 		<input type="hidden" value="${result}">
 	</div>
 </body>
