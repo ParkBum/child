@@ -8,7 +8,6 @@
 <title>main</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-
 <script type="text/javascript">
 $(function() {
 	//사용 가능한 차트
@@ -154,7 +153,7 @@ var pie = d3.layout.pie()
 	return d.value;
 }); */
 	//사용가능한 차트
- 	var svg = d3.select("svg"),
+	  	var svg = d3.select("svg"),
 	    width = +svg.attr("width"),
 	    height = +svg.attr("height"),
 	    radius = Math.min(width, height) / 2,
@@ -197,10 +196,11 @@ var pie = d3.layout.pie()
 	      .attr("dy", "0.35em")
 	      .text(function(d) { return d.data.gu;});
 	}); 
-	
-	
+	 
+
 })
 </script>
+
 <style type="text/css">
 body {
 text-align: center;
@@ -295,13 +295,30 @@ text-align: center;
 .axis .domain {
   display: none;
 }
+/*multi line graph */
+		.line {
+			fill: none;
+			stroke-width: 1px;
+		}
 
+		.axis path {
+			stroke: black;
+			stroke-width: 1px;
+			fill: none;
+			shape-rendering: crispEdges;
+		}
+
+		.tick line {
+			stroke: black;
+			stroke-width: 1px;
+		}
 </style>
 </head>
 <body>
 	<div id="wrap">
 	<div>
-		  <svg width="960" height="500">
+
+<		  <svg width="960" height="500">
 		 </svg> 
 	</div>
 <div class="menus">
