@@ -108,21 +108,18 @@ option {
 							<option>운영</option>
 							<option>미운영</option>
 					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="조회">	
 					</div>
 				</div>
-				<div style="width:100%; height : 30px; margin : 5px auto;">
-				<input type="text" name="word" placeholder="검색할 단어를 입력해주세요">
-				<input type="submit" value="검색">			
-				</div>
+				<!-- <div style="width:100%; height : 30px; margin : 5px auto;">
+ 				<input type="text" name="word" placeholder="검색할 단어를 입력해주세요"> 
+				</div> -->
 			</div>
 		</div>
 
 		</form>
 		<div id="wmap" align="center">
 				<div id="map" style="width: 95%; height: 95%; margin: 15px auto;  padding:10px;"align="center"></div>
-
-		
-		
 		</div>
 		<script type="text/javascript">
 		<%-- 지도 생성 --%>
@@ -272,7 +269,7 @@ option {
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    키워드 : <input type="text"  id="keyword" size="15" placeholder="검색할 단어를 입력해주세요"> 
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -281,7 +278,7 @@ option {
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
-</div>
+</div> 
 	
 	<script>
 // 마커를 담을 배열입니다
@@ -499,12 +496,6 @@ function removeAllChildNods(el) {
 }
 </script>
 
-
-
-
-
-
->>>>>>> branch 'map' of https://github.com/ParkBum/child
 	</div>
 </div>
 </body>
