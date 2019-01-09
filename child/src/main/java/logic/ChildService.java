@@ -161,8 +161,8 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 
-	public void commentUpdate(Integer cnum) {
-		commentDao.update(cnum);
+	public void commentUpdate(Comment comment) {
+		commentDao.update(comment);
 	}
 	
 	

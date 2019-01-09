@@ -11,8 +11,8 @@ import logic.Comment;
 
 public interface CommentMapper {
 
-	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate)" + 
-			" values (#{cnum},#{bnum},#{mnum},#{recomment},now())")
+	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate,ref,reflevel,refstep)" + 
+			" values (#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref}, #{reflevel}, #{refstep})")
 	void insert(Comment comment);
 
 	@Select("select * from comment where bnum = #{bnum}")
@@ -24,7 +24,7 @@ public interface CommentMapper {
 	@Delete("delete from comment where cnum = #{cnum}")
 	void delete(Integer cnum);
 
-	@Update("update set comment recomment = #{recomment}, comdate = now()")
-	void update(Integer cnum);
+	@Update("update comment set recomment = #{recomment} where cnum=#{cnum}")
+	void update(Comment comment);
 	
 }
