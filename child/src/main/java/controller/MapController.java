@@ -14,7 +14,7 @@ public class MapController {
 	@Autowired
 	ChildService service;
 	
-	@RequestMapping("main/main2")
+	@RequestMapping("main/main")
 	public ModelAndView main2() {
 		ModelAndView mav = new ModelAndView();
 		
