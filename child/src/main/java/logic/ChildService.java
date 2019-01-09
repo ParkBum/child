@@ -113,21 +113,6 @@ public class ChildService {
 		userDao.userUpdate(user);
 	}
 
-
-	public List<String> gusort() {
-		return mapDao.gusort();
-	}
-
-	public List<Integer> cntsort() {
-		return mapDao.cntsort();
-	}
-
-	public List<String> getpoint(String gu, String type, String bus, String word) {
-		
-		return mapDao.getpoints(gu,type,bus,word);
-
-	}
-
 	public void userDelete(Integer mnum) {
 		userDao.userDelete(mnum);
 	}
@@ -157,8 +142,16 @@ public class ChildService {
 		userDao.addRed(mnum);		
 	}
 
+
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
+	}
+
+	public List<Daycare> search(String gu, String type, String bus) {
+		return mapDao.daycareList(gu,type,bus);
+	}
+	public void commentUpdate(Comment comment) {
+		commentDao.update(comment);
 	}
 	
 	

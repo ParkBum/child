@@ -75,6 +75,9 @@ public class BoardController {
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
 		Comment comment = new Comment();
+		//댓글 10개 넘어가면 다음페이지로 넘기기
+		int limit = 10;
+		
 		
 		/*
 		 * boardcnt : 조회수 증가 필요
@@ -125,7 +128,6 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/info");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
-			System.out.println(bindingResult.getModel());
 			return mav;
 		}
 		User user = (User) session.getAttribute("loginUser");// 현재 유저 정보
@@ -139,6 +141,19 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		service.commentDelete(cnum);
 		mav.setViewName("redirect:/board/info.child?bnum="+bnum);
+		return mav;
+	}
+	
+	@RequestMapping(value="board/commentUpdate", method=RequestMethod.POST)
+	public ModelAndView commentUpdate(@Valid Comment comment, BindingResult bindingResult) {
+		ModelAndView mav = new ModelAndView("board/info");
+		System.out.println(comment.getRecomment());
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			return mav;
+		}
+		service.commentUpdate(comment);
+		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
 	}
 

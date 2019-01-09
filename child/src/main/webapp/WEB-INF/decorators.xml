@@ -5,5 +5,7 @@
 	</decorator>
 	<!-- layout 제외시키기 -->
 	<excludes>
+		<pattern>*search.child*</pattern>
+		<pattern>*maker.*</pattern>
 	</excludes>
 </decorators>

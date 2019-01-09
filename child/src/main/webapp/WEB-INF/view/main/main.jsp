@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script type="text/javascript">
+
 $(function() {
 	//사용 가능한 차트
 	/* $(document).ready(function(){
@@ -129,6 +131,7 @@ $(function() {
 		    .style("text-anchor", "middle")
 		    .attr("font-size", "15px")
 		    .attr("font-weight", "bold");
+<<<<<<< HEAD
 	}) */
 	
 	//pie chart
@@ -197,16 +200,39 @@ var pie = d3.layout.pie()
 	      .text(function(d) { return d.data.gu;});
 	}); 
 	 
+=======
+	})
+>>>>>>> branch 'map_bs' of https://github.com/ParkBum/child
 
 })
 </script>
 
 <style type="text/css">
+<<<<<<< HEAD
 body {
 text-align: center;
 
 }
 /* svg{
+=======
+
+svg{
+	font : 10px;
+	width: 1200px;
+	height: 550px;
+ 	border : solid 2px silver;
+ 	}
+ 	
+body{
+	text-align: center;
+
+}
+/* #wrap{
+	text-align: center;
+} */
+/*차트영역*/
+svg{
+>>>>>>> branch 'map_bs' of https://github.com/ParkBum/child
 	font : 10px;
 	width: 1200px;
 	height: 550px;
@@ -215,6 +241,9 @@ text-align: center;
  svg {
  	border : solid 1px silver;
 }
+  .axis .domain {
+    display: none;
+  }
 
 .arc text {
   font: 10px sans-serif;
@@ -225,35 +254,25 @@ text-align: center;
   stroke: #fff;
 }
 .menus {
-	margin-top: 25px;
+	text-align:center;
+	margin-top: 50px;
+	margin : 0 auto;
 	width: 1200px;
+<<<<<<< HEAD
 	height: 180px;
 	margin : 0 auto;
+=======
+	height: 150px;
+>>>>>>> branch 'map_bs' of https://github.com/ParkBum/child
 }
-/* .public {
-	margin-top: 20px;
-	width: 100%;
-	height: 95px;
-} */
 .card1 {
-	background-position : center;
-	background-size :cover;
+
 	margin: 25px 0;
 	width: 100%;
-	height: 250px;
-	text-align: center;
-/* 	background :  linear-gradient(to right, rgba(000,000,102, 0.7),  rgba(000, 000, 204, 0.7)),url("../decorator/samples.png"); */
+	height: 150px;
 }
 
-/* .card2 {
-	background-position : center;
-	background-size :cover;
-	margin: 8px 0;
-	width: 100%;
-	height: 75px;
-	text-align: center;
-	
-} */
+
 
 .image1-1,.image1-2,.image1-3 {
 	display: inline-block;
@@ -273,14 +292,6 @@ text-align: center;
 	background-color: #A9D0F5; 
 }
 
-/* .image2 {
-	display: inline-block;
-	height: 66px;
-	margin: 5px 2px;
-	width: 24%;
-	border:solid 2px silver;
-	padding : 1px;
-} */
 
 .main-a {
 	text-decoration: none;
@@ -316,10 +327,14 @@ text-align: center;
 </head>
 <body>
 	<div id="wrap">
+
 	<div>
 
-<		  <svg width="960" height="500">
+
+		  <svg width="960" height="500">
 		 </svg> 
+
+
 	</div>
 <div class="menus">
 		<div class="card1">
