@@ -156,7 +156,7 @@ option {
 		var mapContainer = document.getElementById('map');	
 		
 		var mapOptions = {									<%-- 지도의  기본 위치와 확대정도를 나타냄 --%>			
-			center: new daum.maps.LatLng(35.575, 126.570667),
+			center: new daum.maps.LatLng(37.477885, 126.878985),
 			level: 3
 		};
 
@@ -185,7 +185,7 @@ option {
 		    
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 		    
-		    var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
+		    var locPosition = new daum.maps.LatLng(37.477885, 126.878985),    
 		        message = 'geolocation을 사용할수 없어요..'
 		        
 		    displayMarker(locPosition, message);
