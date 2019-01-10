@@ -303,14 +303,10 @@ function commentDelete(bnum, cnum){
 		<tr>
 			<td colspan="2"> 
 				<c:forEach var="c" items="${commentList}" varStatus="stat">
-						<c:choose>
-							<c:when test="${c.refstep > 0}">
-								¦¦${c.refstep}ÀÇ ´ë´ñ±Û${stat.count}
-							</c:when>
-							<c:otherwise>
-								¡æ${stat.count}
-							</c:otherwise>
-						</c:choose>
+							<c:if test="${c.refstep > 0}">
+								¦¦${c.ref}ÀÇ ´ë´ñ±Û<%-- ${stat.count} --%> 
+							</c:if>
+							
 						<c:if test="${c.refstep == 0}">
 					<input type="button" id="recom" value="´ä±Û"
 								onclick="$('#comm${stat.index}').show();"></c:if>

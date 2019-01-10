@@ -123,9 +123,9 @@
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height:100px;" size="5">게시판</font></li>
-				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
+				<li class="menu2"><a href="../board/list.child?bType=1">자유게시판</a></li>
 				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<li class="active"><a href="../board/list.child?bType=3">거래게시판</a></li>
 			</ul>
 		</div>
 		<div class="board">

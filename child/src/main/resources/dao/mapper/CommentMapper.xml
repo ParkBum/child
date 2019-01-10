@@ -6,7 +6,7 @@
 		select * from comment
 		<if test="bnum != null">
 			where bnum = #{bnum}
-		</if>
-		order by ref, refstep desc
+		</if> 
+		order by ref, refstep
 	</select>
 </mapper>
