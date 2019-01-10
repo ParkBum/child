@@ -40,7 +40,7 @@
 .cmain {
 	clear: both;
 	width: 1200px;
-	margin: 0 auto;
+	margin: 0 315px 0 315px;
 }
 
 .subMenu {
