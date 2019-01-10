@@ -16,9 +16,7 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js">
-	
-</script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
 <style type="text/css">
 html {
 	overflow: auto;
@@ -30,20 +28,20 @@ html {
 }
 
 body {
-   /* max-width: 1200px; */
-   display :block;
-   margin: 0 auto;
-   font-family: 'Noto Sans KR', sans-serif;
-   height : 100%;
+	/* max-width: 1200px; */
+	display: block;
+	margin: 0 auto;
+	font-family: 'Noto Sans KR', sans-serif;
+	height: 100%;
 	/* max-width: 1200px; */
 	font-family: 'Noto Sans KR', sans-serif;
 }
 /* 상단 바 */
 .menu-bar {
-  display: inline-block;
-  color : black;
-  width:100%;
-  height : 180px;
+	display: inline-block;
+	color: black;
+	width: 100%;
+	height: 180px;
 	height: 140px;
 }
 
@@ -77,28 +75,12 @@ body {
 	color: white;
 }
 
-/* main */
-.main {
-   margin-bottom: 5%;
-   padding: 10px;
-   margin-bottom: 10%;
-   padding: 10px;
-   height: 1000px;
-   align: center;
-
-
-
-	padding-bottom: 60px;
-	align: center;
-	width: 100%;
-	height: 100%;
-}
 /*하단 footer */
 .footer {
 	color: black;
 	margin: 10px auto 30px auto;
 	height: 80px;
-	width: 550px; 
+	width: 550px;
 	text-align: left;
 }
 
@@ -121,6 +103,25 @@ body {
 .nav {
 	padding-left: 400px;
 }
+
+.right ul {
+	display: none; /* 평상시에는 서브메뉴가 안보이게 하기 */
+	float: left;
+	padding: 20px;
+	padding-left: 10px;
+	border: 0px;
+	position: absolute;
+	width: auto;
+}
+
+.right ul a {
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.menu-bar .right:hover ul {
+	display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+}
 </style>
 </head>
 <body>
@@ -134,29 +135,46 @@ body {
 			<div style="height: 40px;">
 				<ul class="menu">
 					<li class="left"><a href="${path}/main/main2.child"
-						style="background-color: white;"><img src="../decorator/logo.png" 
-															style="width: 130px; height: 100px; margin: 0 0 4px 20px;"></a></li>
-					<li class="right nav"><a href="${path}/map/map.child" style="border-radius: 20px 0 0 20px;">어린이집 검색</a></li>
-					<li class="right"><a href="${path}/board/list.child?bType=1" style="margin-left: -4px;">커뮤니티</a>
-					<li class="right"><a href="${path}/board/list.child?bType=3">중고장터</a></li>
-				<c:if test="${empty sessionScope.loginUser}">
-					<li class="right"><a href="${path}/user/userForm.child" style="margin-left: -4px;">회원가입</a></li>
-				</c:if>
-				<c:if test="${empty sessionScope.loginUser}">
-					<li class="right" style="margin-right: 50px;"><a href="${path}/user/loginForm.child"
-							style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그인</a></li>
-				</c:if>
-				<c:if test="${!empty sessionScope.loginUser}">
-					<li class="right"><c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
-						<a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="margin-left: -4px;">회원정보</a>
-						</c:if><c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
-						<a href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}" style="margin-left: -4px;">회원관리</a>
-						</c:if></li>
-					<c:if test="${!empty sessionScope.loginUser}">
-						<li class="right" style="margin-right: 50px;"><a href="${path}/user/logout.child"
-							style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그아웃</a></li>
+						style="background-color: white;"><img
+							src="../decorator/logo.png"
+							style="width: 130px; height: 100px; margin: 0 0 4px 20px;"></a></li>
+					<li class="right nav"><a href="${path}/map/map.child"
+						style="border-radius: 20px 0 0 20px;">어린이집 검색</a></li>
+					<li class="right"><a href="${path}/board/list.child?bType=1"
+						style="margin-left: -4px;">커뮤니티</a>
+						<ul>
+							<li><a href="${path}/board/list.child?bType=1" style="background:white; color:#AAAAAA;" onmouseover="this.style.color='#CE5B7C'" onmouseout="this.style.color='#AAAAAA'">자유게시판</a>
+							<a href="${path}/board/list.child?bType=2" style="background:white; color:#AAAAAA;" onmouseover="this.style.color='#CE5B7C'" onmouseout="this.style.color='#AAAAAA'">후기게시판</a></li>
+						</ul></li>
+					<li class="right"><a href="${path}/board/list.child?bType=3"
+						style="margin-left: -4px;">중고장터</a></li>
+					<c:if test="${empty sessionScope.loginUser}">
+						<li class="right"><a href="${path}/user/userForm.child"
+							style="margin-left: -4px;">회원가입</a></li>
 					</c:if>
-				</c:if>
+					<c:if test="${empty sessionScope.loginUser}">
+						<li class="right" style="margin-right: 50px;"><a
+							href="${path}/user/loginForm.child"
+							style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그인</a></li>
+					</c:if>
+					<c:if test="${!empty sessionScope.loginUser}">
+						<li class="right"><c:if
+								test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
+								<a
+									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
+									style="margin-left: -4px;">회원정보</a>
+							</c:if>
+							<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+								<a
+									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
+									style="margin-left: -4px;">회원관리</a>
+							</c:if></li>
+						<c:if test="${!empty sessionScope.loginUser}">
+							<li class="right" style="margin-right: 50px;"><a
+								href="${path}/user/logout.child"
+								style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그아웃</a></li>
+						</c:if>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -164,12 +182,13 @@ body {
 		<div class="main">
 			<decorator:body />
 		</div>
-		
+		<br>
 		<hr>
 		<div class="footer" align="center">
 			<img src="../decorator/logo1.png"
-				style="width: 55px; height: 70px; float: left; margin-top: 5px"> <br>어린이 집마련 프로젝트팀<br>
-			서울시 금천구 가산디지털2로 115, 509호, 811호(가산동, 대륭테크노타운3차)
+				style="width: 55px; height: 70px; float: left; margin-top: 5px">
+			<br>어린이 집마련 프로젝트팀<br> 서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
+			대륭테크노타운3차)
 		</div>
 	</div>
 </body>
