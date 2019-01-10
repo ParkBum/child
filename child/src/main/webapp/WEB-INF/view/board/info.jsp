@@ -128,7 +128,7 @@ function commentDelete(bnum, cnum){
 				})
 			}
 			$('#siren').hide()
-			$('#addred') 
+			$('#addred').show()
 		})
 
 
@@ -230,9 +230,8 @@ function commentDelete(bnum, cnum){
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
 					<input type="hidden" name="mnum" value="${loginUser.mnum}">
 							댓글 작성자 : ${sessionScope.loginUser.nickname}
-					<form:textarea path="recomment"
-						style="width:100%;height:100px;border:0;resize:none;"
-						placeholder="댓글 입력"></form:textarea>
+					<form:textarea path="recomment" id="comm" style="width:100%;height:100px;border:0;resize:none;"
+						placeholder="댓글을 입력하세요."></form:textarea>
 					<input type="submit" value="등록">
 				</form:form></td>
 		</tr>
@@ -240,7 +239,7 @@ function commentDelete(bnum, cnum){
 				<td colspan="2">
 			<c:if test="${commentList != null}">
 				<c:forEach var="c" items="${commentList}" varStatus="stat">
-					→${c.cnum}<br>
+					→${stat.count}<br>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 					<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
@@ -253,7 +252,7 @@ function commentDelete(bnum, cnum){
 							</c:otherwise>
 						</c:choose>)
 						
-						<!-- 댓글 작업중! ${stat.index}는 뭘까-->
+						<!-- 댓글 작업중! ${stat.index}는 뭘까 => 0부터 순서-->
 						<div id="recontent${stat.index}">					
 				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
 				 	       
@@ -268,7 +267,7 @@ function commentDelete(bnum, cnum){
 				 	          </form:form>
 				 	       </div>
 				 	   </div>
-				<input type="button" id="re" value="답글" onclick="#">
+				<input type="button" id="re" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
 				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 					<!-- 댓글수정버튼 -->
 				  	<input type="button" id="commentUpdate" value="수정" 
