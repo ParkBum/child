@@ -42,12 +42,12 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).update(comment);
 	}
 
-	public Comment recomment(Comment comment) {
-		return sqlSession.getMapper(CommentMapper.class).reinsert(comment);
+	public Comment getSelect(int cnum) {
+		return sqlSession.getMapper(CommentMapper.class).select(cnum);
 	}
 
-	public Comment select(int cnum) {
-		return sqlSession.getMapper(CommentMapper.class).select(cnum);
+	public int getRefstep(Comment com) {
+		return sqlSession.getMapper(CommentMapper.class).getRefstep(com);
 	}
 	
 }
