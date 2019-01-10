@@ -14,6 +14,10 @@ public interface CommentMapper {
 	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate,ref,refstep)" + 
 			" values(#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref},#{refstep})")
 	void insert(Comment comment);
+	
+	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate,ref,refstep)" + 
+			" values(#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref},#{refstep})")
+	Comment reinsert(Comment comment);
 
 	@Select("select * from comment where bnum = #{bnum}")
 	List<Comment> selectComment(Integer bnum);
@@ -27,5 +31,8 @@ public interface CommentMapper {
 
 	@Update("update comment set recomment = #{recomment} where cnum=#{cnum}")
 	void update(Comment comment);
+
+	@Select("select * from comment where cnum=#{cnum}")
+	Comment select(int cnum);
 
 }

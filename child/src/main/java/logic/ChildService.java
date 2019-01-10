@@ -131,6 +131,7 @@ public class ChildService {
 
 	public void commentWrite(Comment comment) {
 		comment.setCnum(commentDao.maxCnum() + 1);
+		comment.setRef(comment.getCnum());
 		commentDao.commentWrite(comment);
 	}
 
@@ -160,12 +161,13 @@ public class ChildService {
 	}
 
 
-	public void recomment(Comment comment) {
+	public Comment recomment(Comment comment) {
 		//원댓글 정보 가져옴.
+		Comment com = commentDao.select(comment.getCnum());
 		comment.setCnum(commentDao.maxCnum() + 1); //cnum증가
-		comment.setRef(comment.getCnum()); // ref : 어떤댓글인지
-		comment.setRefstep(comment.getRefstep() + 1); //1번댓의 몇번째 대댓인지
-		commentDao.recomment(comment);
+		comment.setRef(com.getCnum()); // ref : 어떤댓글인지
+		comment.setRefstep(com.getRefstep() + 1); //1번댓의 몇번째 대댓인지
+		return commentDao.recomment(comment);
 	} 
 	
 

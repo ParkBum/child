@@ -319,8 +319,9 @@ function commentDelete(bnum, cnum){
 						<c:otherwise> --%>
 						<!-- 그냥 댓글인 경우 -->
 						→${stat.count}
+						<c:if test="${c.refstep == 0}">
 					<input type="button" id="recom" value="답글"
-								onclick="$('#comm${stat.index}').show();">
+								onclick="$('#comm${stat.index}').show();"></c:if>
 							<c:if
 								test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 								<!-- 댓글수정버튼 -->
@@ -364,7 +365,7 @@ function commentDelete(bnum, cnum){
 							<div id="rere${stat.index}">
 						<div id="comm2${stat.index}" style="display: block">
 							<c:if test="${c.refstep > 0}">
-								→${c.cnum}
+								→${c.ref}
 								${c.recomment}
 							</c:if>
 						</div>
@@ -383,14 +384,11 @@ function commentDelete(bnum, cnum){
 								<div align="right">
 									<input type="submit" value="등록"> 
 									<input type="button" id="x" value="취소" 
-										onclick="$('#comm2${stat.index}').hide();$('#comm${stat.index}').hide();">
-								<%-- <input type="button" id="commentUpdate" value="수정"
-									onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();"> --%>
+										onclick="$('#comm2${stat.index}').show();$('#comm${stat.index}').hide();">
 								</div> 
 							</form:form>
 						</div>
 					</div>
-							
 						<%-- </c:otherwise>
 					</c:choose> --%>
 					<!--대댓글 -->

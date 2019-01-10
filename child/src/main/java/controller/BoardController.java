@@ -163,7 +163,8 @@ public class BoardController {
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
 			return mav;
 		}
-		service.recomment(comment);
+		Comment com = service.recomment(comment);
+		mav.addObject("comment",com);
 		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
 	}

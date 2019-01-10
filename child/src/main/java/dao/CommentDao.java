@@ -42,8 +42,12 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).update(comment);
 	}
 
-	public void recomment(Comment comment) {
-		sqlSession.getMapper(CommentMapper.class).insert(comment);
+	public Comment recomment(Comment comment) {
+		return sqlSession.getMapper(CommentMapper.class).reinsert(comment);
+	}
+
+	public Comment select(int cnum) {
+		return sqlSession.getMapper(CommentMapper.class).select(cnum);
 	}
 	
 }
