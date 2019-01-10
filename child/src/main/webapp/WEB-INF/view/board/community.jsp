@@ -8,10 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>자유게시판</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
-	function searchList(pageNum) {
+	function list(pageNum) {
 		var searchType = document.searchForm.searchType.value;
 		if (searchType == null || searchType.length == 0) {
 			document.searchForm.searchContent.value = "";
@@ -32,6 +33,10 @@
 		$('#review').click(function() {
 			location.href = "list.child?bType=2";
 		});
+		
+		$('#writebtn').click(function() {
+			location.href = "writeForm.child?bType=1";
+		})
 	})
 </script>
 <script type="text/javascript"
@@ -50,12 +55,13 @@
 	float: left;
 	width: 200px;
 	margin: 0 auto;
-	margin-bottom: 500px;
+	margin-bottom: 300px;
 	border-bottom: 2px solid #dddddd;
 }
 
 .subMenu ul, li {
 	margin: 0;
+	margin-bottom: 1px;
 	padding: 0;
 	list-style: none;
 }
@@ -112,6 +118,11 @@
 
 .filter {
 	text-align: left;
+	margin-bottom: 5px;
+}
+
+.btns {
+	margin: 20px;
 }
 </style>
 </head>
@@ -130,11 +141,13 @@
 				<h4>자유 게시판</h4>
 			</div>
 			<div class="search">
-				<form action="list.child" method="post" name="searchform"
-					onsubmit="return searchList(1)">
-					<input type="hidden" name="pageNum" value="1"> <select
-						name="searchType" id="searchType">
-						<option value="subject" selected="selected">제목</option>
+				<form action="list.child" method="post" name="searchForm"
+					onsubmit="return list(1)">
+					<input type="hidden" name="pageNum" value="1">
+					<input type="hidden" name="bType" value="1">
+					<select name="searchType" id="searchType">
+						<option value="0">선택</option>
+						<option value="subject">제목</option>
 						<option value="nickname">글쓴이</option>
 						<option value="content">내용</option>
 					</select>&nbsp;
@@ -152,7 +165,7 @@
 				<form action="list.child" method="post" name="filterForm">
 					<input type="hidden" name="bType" value="1"> <input
 						type="hidden" name="pageNum" value="1"> <select
-						name="filterType" id="filterType" onchange="this.form.submit();">
+						name="filterType" id="filterType" onchange="this.form.submit();" class="w3-border">
 						<option value="">전체</option>
 						<option value="1">육아꿀팁</option>
 						<option value="2">추천장소</option>
@@ -166,55 +179,57 @@
 				</form>
 			</div>
 			<div>
-				<table border="1" style="border-collapse: collapse; width: 100%;">
+				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<c:if test="${listcount > 0}">
-						<tr align="center" valign="middle" bordercolor="#212121">
-							<th width="8%" height="26">번호</th>
-							<th width="50%" height="26">제목</th>
-							<th width="14%" height="26">글쓴이</th>
-							<th width="17%" height="26">날짜</th>
-							<th width="11%" height="26">조회</th>
+						<tr>
+							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="50%" height="26" style="text-align:center">제목</th>
+							<th width="14%" height="26" style="text-align:center">글쓴이</th>
+							<th width="17%" height="26" style="text-align:center">날짜</th>
+							<th width="11%" height="26" style="text-align:center">조회</th>
 						</tr>
 						<c:forEach items="${boardlist}" var="board">
 							<tr align="center" valign="middle" bordercolor="#333333"
-								onmouseover="this.style.backgroundColor='#FFF5C7'"
+								onmouseover="this.style.backgroundColor='#FFF1F5'"
 								onmouseout="this.style.backgroundColor=''">
-								<td height="23">${boardcnt}</td>
+								<td height="23" style="text-align:center">${boardcnt}</td>
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
-								<td style="text-align: left;"><a
+								<td><a
 									href="info.child?bnum=${board.bnum}"
 									style="text-decoration: none;">&nbsp;[${(board.head==1)?"육아꿀팁":"시설추천"}]&nbsp;${board.subject}</a></td>
-								<td align="left">${board.nickname}</td>
-								<td align="center"><fmt:formatDate value="${board.regdate}"
+								<td style="text-align:center">${board.nickname}</td>
+								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
 										pattern="YYYY-MM-dd" /></td>
-								<td align="right">${board.readcnt}</td>
+								<td style="text-align:center">${board.readcnt}</td>
 							</tr>
 						</c:forEach>
-
-						<tr align="center" height="26">
-							<td colspan="5"><c:if test="${pageNum > 1}">
-									<a href="javascript:list(${pageNum - 1})">이전</a>
-								</c:if> <c:if test="${pageNum <= 1}">이전</c:if> <c:forEach var="a"
-									begin="${startpage}" end="${endpage}">
-									<c:if test="${a==pageNum}">${a}</c:if>
-									<c:if test="${a!=pageNum}">
-										<a href="javascript:list(${a})">${a}</a>
-									</c:if>
-								</c:forEach> <c:if test="${pageNum < maxpage}">
-									<a href="javascript:list(${pageNum + 1})">다음</a>
-								</c:if> <c:if test="${pageNum >= maxpage}">다음</c:if></td>
-						</tr>
-
 					</c:if>
 					<c:if test="${listcount == 0}">
+						<tr>
+							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="50%" height="26" style="text-align:center">제목</th>
+							<th width="14%" height="26" style="text-align:center">글쓴이</th>
+							<th width="17%" height="26" style="text-align:center">날짜</th>
+							<th width="11%" height="26" style="text-align:center">조회</th>
+						</tr>
 						<tr>
 							<td colspan="5">등록된 게시물이 없습니다.</td>
 						</tr>
 					</c:if>
-					<tr>
-						<td colspan="5" align="right"><a
-							href="writeForm.child?bType=1">글쓰기</a></td>
 				</table>
+				<div class="btns">
+					<c:if test="${pageNum > 1}">
+					<a href="javascript:list(${pageNum - 1})"><i class="material-icons" style="vertical-align: middle;">arrow_back</i></a>&nbsp;
+					</c:if>
+					<c:forEach var="a" begin="${startpage}" end="${endpage}">
+						<c:if test="${a==pageNum}"><font size="4">${a}</font>&nbsp;</c:if>
+						<c:if test="${a!=pageNum}"><a href="javascript:list(${a})"><font size="4">${a}</font></a>&nbsp;</c:if>
+					</c:forEach>
+					<c:if test="${pageNum < maxpage}">
+					&nbsp;<a href="javascript:list(${pageNum + 1})"><i class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
+					</c:if>
+					<input type="button" value="글쓰기" id="writebtn" style="float:right;">
+				</div>
 			</div>
 		</div>
 	</div>
