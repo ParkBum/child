@@ -19,10 +19,8 @@
 			and bus = "${bus}"
 		</if>
 	</select>
-		<!-- <if test="word != null && word != ''">
-			and name like "%${word}%"
-		</if> -->
-	<!-- <select id="list" resultType="Daycare">
-		select * from seoul2
-	</select> -->
+	
+	<select id="one" resultType="Daycare" parameterType="map">
+		select * from seoul2 where code = #{code}
+	</select>
 </mapper>

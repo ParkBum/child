@@ -186,6 +186,10 @@ public class ChildService {
 		return mapDao.daycareList(gu,type,bus);
 	}
 
+	public Daycare selectOne(int code) {
+		return mapDao.selectOne(code);
+	}
+
 	}
 
 	 

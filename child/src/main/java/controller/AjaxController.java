@@ -66,6 +66,15 @@ public class AjaxController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping("map/graph")
+	public Object graph(int code) {
+		Daycare daycare = service.selectOne(code);
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("daycare",daycare);
+		return map;
+	}
+	
 }
 	
 	

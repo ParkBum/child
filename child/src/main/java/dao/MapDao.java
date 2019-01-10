@@ -47,6 +47,13 @@ public class MapDao {
 		map.put("bus", bus);
 		return sqlSession.selectList(NS+"list",map);
 	}
+
+
+	public Daycare selectOne(int code) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("code", code);
+		return sqlSession.selectOne(NS+"one",map);
+	}
 	
 	
 }

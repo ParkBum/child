@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
@@ -14,53 +13,24 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
-<script>
-	/* $(function() {
-	 $("#searchs").click(
-	 function() {
-	 var gu = $("#gu").val();
-	 alert("gu"+gu)
-	
-	 var type = $("#type").val();
-	 var bus = $("#bus").val();
-	 var data = {
-	 "gu" : gu,
-	 "type" : type,
-	 "bus" : bus
-	 }
-	 $.ajax({ 
-	 url : "search.child",
-	 type : "post",
-	 data : data,
-	 dataType : "html", // ajax 통신으로 받는 타입
-	 success : function(data) {
-	 alert(data);
-	 $("#a").html(data); 
-	 },
-	 error : function(xhr, status, error) { //서버응답 실패
-	 alert("서버오류 : " + xhr.status + ", error : "
-	 + error + ", status : " + status);
-	 }
-	 })
-	 })
-	 }) */
-</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <style type="text/css">
 #main {
 	width: 1600px;
 	margin-left: 150px;
-}
+} 
 
 #SearchAndMap {
-	width: 800px;
+	width: 100%;
 	height: 800px;
 	/* text-align: center; */
+	display: table;
+/* 	border : solid 1px black; */
 }
 
 #search {
 	width: 100%;
 	height: 80px;
-	background-color: white;
 	vertical-align: middle;
 }
 
@@ -84,18 +54,28 @@
 option {
 	font-size: large;
 }
+<%-- 반반 --%>
+.half{
+ float: left;
+  width: 50%;
+  padding: 15px;
+}
+.bar {
+ /* 	border : solid 1px black; */
+  padding: 15px;
+}
 </style>
 </head>
 <body>
 	<div id="main">
 		<div id="SearchAndMap">
 			<!-- <form action="search.child" method="post"> -->
+			<div class="half">
 			<div id="search">
-				<div
-					style="text-align: center; width: 100%; height: 100%; display: inline-block; background: #FFF3F6;">
-					<div style="width: 100%; height: 100%; margin-top: 20px;">
-						<div style="width: 33%; float: left;">
-							구를 선택해주세요&nbsp;&nbsp; <select name="gu" id="gu">
+				<div style="text-align: center; width: 100%; height: 80px; background: #FFF3F6;">
+					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
+						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
+							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
 								<option value="">선택하세요</option>
 								<option onselect="">강남구</option>
 								<option>강동구</option>
@@ -124,8 +104,8 @@ option {
 								<option>중랑구</option>
 							</select>
 						</div>
-						<div style="width: 33%; float: left;">
-							어린이집 유형&nbsp;&nbsp; <select name="type" id="type">
+						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
+							<font style="margin-top: 4px;">어린이집 유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
 								<option value="">선택하세요</option>
 								<option>가정</option>
 								<option>국공립</option>
@@ -136,14 +116,16 @@ option {
 								<option>직장</option>
 							</select>
 						</div>
-						<div style="width: 33%; float: left;">
-							통원 버스 유무&nbsp;&nbsp; <select name="bus" id="bus">
+						<div style="width: 39%; height:36px; margin : 2px 0; float: left;">
+							<font style="margin-top: 4px;">통원 버스 유무&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
 								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs"
-								value="조회">
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
 						</div>
+					</div>
+					<div style="width: 100%; height: 40px;">
+					<button onclick="hideMarkers()">지도 초기화</button>
 					</div>
 				</div>
 			</div>
@@ -152,9 +134,20 @@ option {
 				<div id="map" style="width: 100%; height: 100%; margin: 10px 0"
 					align="center"></div>
 			</div>
+			</div>
 			<!-- map_wrap의 끝 -->
+			<div class="half" style="display: block;">
+			<div class="bar" style="height:70%;">
+			<svg style="width: 750; height:450; border:solid 1px black;"></svg> 
+			</div>
+			<div class="bar" style="height:30%;">
+				<div style="width:750px; height : 270px; border:solid 1px black;"></div> 
+			</div>
+			</div>
 		</div>
 		<!-- SearchAndMap -->
+		<!-- right side  시작-->
+		<!-- <div id="rightside"><svg style="width:800; height:500; border:solid 1px black; float: right; "></svg></div> -->
 	</div>
 
 
@@ -164,7 +157,7 @@ option {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-			level : 3, // 지도의 확대 레벨
+			level : 2, // 지도의 확대 레벨
 			mapTypeId : daum.maps.MapTypeId.ROADMAP
 		// 지도종류
 		};
@@ -177,7 +170,8 @@ option {
 
 		// 지도의 우측에 확대 축소 컨트롤을 추가한다
 		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-		
+		//생성된 마커 객체들을 실을 배열 객체
+		var markers = [];
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -198,16 +192,15 @@ option {
 					}
 					for (var i = 0; i < data.daycarelist.length; i++) {
 						var Map = map;
-						alert(data.daycarelist[i].code)
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
 							
 						var imageSrc = '';
 						if(data.daycarelist[i].bus == '운영')
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/1706/PNG/128/3986695-bus-school_112262.png';	
+							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
 						else	 
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/1750/PNG/128/015location_113739.png'; // 마커이미지의 주소입니다 	
+							 imageSrc = 'https://cdn.icon-icons.com/icons2/469/PNG/128/Christmas_2015-32_44374.png'; // 마커이미지의 주소입니다 	
 							 
 					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
 					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -218,38 +211,75 @@ option {
     						image : markerImage 
     					});
     					marker.setMap(map);
+    					markers.push(marker);
+
     					var content = '<div class="labelWish" style="opacity:0.5; width:400px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'<br>전화번호: '+data.daycarelist[i].tel+'<br>주소: '+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>',
-							iwRemoveable = true;
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" value='+data.daycarelist[i].code+'>비교하기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content
 							}); 
-        				map.setCenter(coords);	
-        				
+        				 map.setCenter(coords);	 
         			    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-        			    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        			    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+/*         			    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        			    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));  */
+        			    (function(marker, infowindow) {
+        			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        			        daum.maps.event.addListener(marker, 'mouseover', function() {
+        			            infowindow.open(map, marker);
+        			        });
+
+        			        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+        			        daum.maps.event.addListener(marker, 'click', function() {
+        			            infowindow.close();
+        			        });
+        			    })(marker, infowindow);
+
 					}
 					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-					function makeOverListener(map, marker, infowindow) {
+					function makeOverListener( map, marker, infowindow) { 
 					    return function() {
 					        infowindow.open(map, marker);
 					    };
 					}
-
+					
 					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
 					function makeOutListener(infowindow) {
 					    return function() {
 					        infowindow.close();
 					    };
 					}
+
+
 				}
 			});
-		})	
-	</script>
+		})
+//띄운 마커 감추기
+function hideMarkers() {
+	 for (var i = 0; i < markers.length; i++) {
+	      markers[i].setMap(null);
+   	}    
+	 
+}
+<%-- 그래프 비교  ajax --%>
+$("#compare").click(function() {
+	var code = $("#compare").val();
+	var data = {
+		"code" : code
+	}
+	$.ajax({
+		url : "graph.child",
+		type : "post",
+		data : data,
+		dataType : "json", // ajax 통신으로 받는 타입
+		success : function(data) {
+			alert(data);
+		}});
+  });
+
+</script>
 
 </body>
 </html>
