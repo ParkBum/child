@@ -70,7 +70,7 @@
 				</tr>
 			</table>
 			<div class="btns">
-			 <a href="">회원정보수정</a>&nbsp;
+			 <a href="../user/updateForm.child">회원정보수정</a>&nbsp;
 			 <c:if test="${sessionScope.loginUser.mnum != 1}">
 			 	<a href="">회원탈퇴</a>
 			 </c:if>
