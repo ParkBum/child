@@ -15,9 +15,9 @@ public interface CommentMapper {
 			" values(#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref},#{refstep})")
 	void insert(Comment comment);
 
-	@Select("select * from comment where bnum = #{bnum} order by ref , refstep")
+/*	@Select("select * from comment where bnum = #{bnum} order by ref desc, refstep")
 	List<Comment> selectComment(Integer bnum);
-
+*/
 	@Select("select ifnull(max(cnum), 0) from comment")
 	int maxBnum();
 
