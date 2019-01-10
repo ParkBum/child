@@ -27,7 +27,7 @@
 	}
 	$('document').ready(function() {
 		$('#writebtn').click(function() {
-			location.href = "writeForm.child?bType=1";
+			location.href = "writeForm.child?bType=2";
 		})
 	})
 </script>
