@@ -206,13 +206,13 @@ th {
 			<div style="margin-bottom: 30px; text-align: left;">
 				<c:choose>
 					<c:when test="${board.bType == 1}">
-						<h4>자유 게시판</h4>
+						<h3>자유 게시판</h3>
 					</c:when>
 					<c:when test="${board.bType == 2}">
-						<h4>후기 게시판</h4>
+						<h3>후기 게시판</h3>
 					</c:when>
 					<c:when test="${board.bType == 3}">
-						<h4>거래 게시판</h4>
+						<h3>거래 게시판</h3>
 					</c:when>
 				</c:choose>
 			</div>
