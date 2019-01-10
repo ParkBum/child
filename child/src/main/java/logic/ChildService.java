@@ -164,7 +164,7 @@ public class ChildService {
 		comment.setRef(comment.getCnum()); // ref : 어떤댓글인지
 		comment.setRefstep(comment.getRefstep() + 1); //1번댓의 몇번째 대댓인지
 		commentDao.recomment(comment);
-	}
+	} 
 	
 	
 	

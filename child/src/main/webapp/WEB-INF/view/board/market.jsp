@@ -8,7 +8,7 @@
 <title>거래 게시판</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
-	function searchList(pageNum) {
+	function list(pageNum) {
 		var searchType = document.searchForm.searchType.value;
 		if(searchType == null || searchType.length == 0) {
 			document.searchForm.searchContent.value = "";
@@ -51,7 +51,7 @@
 		<h4>거래 게시판</h4>
 	</div>
 	<div class="search">
-	<form action="list.child" method="post" name="searchform" onsubmit="return searchList(1)">
+	<form action="list.child" method="post" name="searchForm" onsubmit="return list(1)">
 		<input type="hidden" name="pageNum" value="1">
 		<select name="searchType" id="searchType">
 			<option value="subject" selected="selected">제목</option>
