@@ -26,14 +26,6 @@
 		return false;
 	}
 	$('document').ready(function() {
-		$('#community').click(function() {
-			location.href = "list.child?bType=1";
-		});
-
-		$('#review').click(function() {
-			location.href = "list.child?bType=2";
-		});
-		
 		$('#writebtn').click(function() {
 			location.href = "writeForm.child?bType=1";
 		})
