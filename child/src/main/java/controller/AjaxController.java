@@ -71,7 +71,7 @@ public class AjaxController {
 		List<Daycare> daycarelist = service.search(gu,type,bus);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("daycarelist",daycarelist);
-//		return map.get("daycarelist");
+/*		return map.get("daycarelist");*/
 		return map;
 	}
 	
