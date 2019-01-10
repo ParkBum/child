@@ -7,8 +7,75 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>게시물 상세 보기</title>
 <style type="text/css">
+.cmain {
+	clear: both;
+	width: 1200px;
+	margin: 0 315px 0 315px;
+}
+
+.subMenu {
+	float: left;
+	width: 200px;
+	margin: 0 auto;
+	margin-bottom: 300px;
+	border-bottom: 2px solid #dddddd;
+}
+
+.subMenu ul, li {
+	margin: 0;
+	margin-bottom: 1px;
+	padding: 0;
+	list-style: none;
+}
+
+.subMenu a {
+	text-decoration: none;
+}
+
+.menu1 {
+	height: 100px;
+	background: #F6A5BC;
+	color: white;
+}
+
+.active {
+	display: block;
+	height: 40px;
+	background-color: #CE5B7C;
+	color: white;
+}
+.active a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.menu2 {
+	height: 40px;
+	background: #f7f7f7;
+}
+
+.menu2 a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.board {
+	float: right;
+	width: 1000px;
+	padding-left: 50px;
+}
+
+.btns {
+	margin: 20px;
+}
+
 td {
 	text-align: left;
 }
@@ -136,30 +203,23 @@ function commentDelete(bnum, cnum){
 </script>
 </head>
 <body>
-	<div align="center" style="margin-bottom: 30px;">
-		<c:choose>
-			<c:when test="${board.bType == 1}">
-				<input type="button" value="자유게시판"
-					class="w3-button w3-round-xxlarge"
-					style="background-color: #FFC322; color: black" id="community">
-			</c:when>
-			<c:when test="${board.bType == 2}">
-				<input type="button" value="후기게시판"
-					class="w3-button w3-round-xxlarge"
-					style="background-color: #FFC322; color: black" id="review">
-			</c:when>
-			<c:when test="${board.bType == 3}">
-				<input type="button" value="거래게시판"
-					class="w3-button w3-round-xxlarge"
-					style="background-color: #FFC322; color: black" id="market">
-			</c:when>
-		</c:choose>
-	</div>
+	<div class="cmain" align="center">
+		<div class="subMenu">
+			<ul>
+				<li class="menu1"><font style="line-height:100px;" size="5">게시판</font></li>
+				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
+				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
+				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+			</ul>
+		</div>
+		<div class="board">
+			<div style="margin-bottom: 30px; text-align: left;">
+				<h4>자유 게시판</h4>
+			</div>
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${board.mnum}">
 	<input type="hidden" name="score" value="${board.score}">
-	<table border="1" style="border-collapse: collapse; width: 60%;"
-		align="center">
+	<table style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 		<tr style="height: 30px;">
 			<td width="15%" style="text-align: center;">작성자</td>
 			<td width="90%">&nbsp;${board.nickname} <c:if
@@ -398,6 +458,8 @@ function commentDelete(bnum, cnum){
 			</td>
 		</tr>
 	</table>
+	</div>
+	</div>
 </body>
 </html>
 
