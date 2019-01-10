@@ -10,6 +10,7 @@
 	</select>
 	<select id="list" resultType="Daycare" parameterType="map">
 		select * from seoul2 where gu = "${gu}"
+
 		<if test="type != null or type != ''">
 			and type = "${type}"
 		</if>

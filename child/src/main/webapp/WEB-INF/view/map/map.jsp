@@ -90,7 +90,8 @@ option {
 						<div style="width: 100%; height: 100%; margin-top : 10px;">
 							<div style="width: 33%; float: left;">
 								구를 선택해주세요&nbsp;&nbsp; <select name="gu" id="gu">
-									<option>강남구</option>
+									<option value="">선택하세요</option>
+									<option onselect="">강남구</option>
 									<option>강동구</option>
 									<option>강북구</option>
 									<option>강서구</option>
@@ -284,16 +285,17 @@ $("#searchs").click(
                 
               	for (var i = 0; i < addrs.length; i++){ 
               		
-              		name = addrs[i].name;
+              		name = addrs[i].name; //i=0
               		tel = addrs[i].tel;
               		homepage = addrs[i].homepage;
               		code = addrs[i].code;
             		geocoder.addressSearch(
-            			addrs[i].address, //계속 돌아감
+            			addrs[i].address, //계속 돌아감 0~ addrs.length
             			function(result,status,data){
             				//정상적 검색 시
+          
             				if(status == daum.maps.services.Status.OK){
-
+            					console.log(result[0].y,result[0].x)
             					var coords = new daum.maps.LatLng(
             					result[0].y,result[0].x		
             					);
@@ -304,7 +306,7 @@ $("#searchs").click(
             					marker.setMap(map);
             					
             					var content = '<div class="labelWish" style="opacity:0.7; width:400px;"><span class="leftWish"></span><span class="centerWish">'
-            									+'주소:'+result[0].address_name+'<br>전화번호:'+result[0].phone+'<br>주소:'+result[0].address_name+'</span><span class="rightWish"></span></div>',
+            									+'주소:'+name+'<br>전화번호:'+tel+'<br>주소:'+result[0].address_name+'</span><span class="rightWish"></span></div>',
             						iwRemoveable = true;
             								
             					var infowindow = new daum.maps.InfoWindow({
