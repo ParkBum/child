@@ -148,10 +148,6 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 	
-
-	public List<Daycare> search(String gu, String type, String bus) {
-		return mapDao.daycareList(gu,type,bus);
-	}
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
@@ -172,7 +168,18 @@ public class ChildService {
 		commentDao.commentWrite(comment);
 	} 
 	
-
+	public List<Daycare> search(String gu, String type, String bus) {
+		if(gu == null || gu.equals("")) {
+			gu = null;
+		}
+		if(type == null || type.equals("")) {
+			type = null;
+		}
+		if(bus == null || bus.equals("")) {
+			bus = null;
+		}
+		return mapDao.daycareList(gu,type,bus);
+	}
 	 
 
 /*	public List<Comment> commentlist(Integer bnum) {

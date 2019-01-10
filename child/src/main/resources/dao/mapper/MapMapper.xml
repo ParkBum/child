@@ -13,7 +13,6 @@
 		select * from seoul2 where gu = "${gu}"
 
 		<if test="type != null or type != ''">
-
 			and type = "${type}"
 		</if>
 		<if test="bus != null or bus != ''">

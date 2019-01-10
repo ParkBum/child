@@ -59,15 +59,6 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("map/search")
 	public Object search(String gu, String type, String bus/*, String word*/){
-		if(gu == null || gu.equals("")) {
-			gu = "";
-		}
-		if(type == null || type.equals("")) {
-			type = "";
-		}
-		if(bus == null || bus.equals("")) {
-			bus = "";
-		}
 		List<Daycare> daycarelist = service.search(gu,type,bus);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("daycarelist",daycarelist);
