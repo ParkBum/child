@@ -34,11 +34,24 @@ public class MapController {
 		return mav;
 	}
 	
+
 	/*@RequestMapping("map/search")
 	public ModelAndView search(String gu,String type,String bus, String word) {
+>>>>>>> refs/heads/master
 		ModelAndView mav = new ModelAndView();
+<<<<<<< HEAD
+		if(type=="") {
+			type=null;
+		}
+		if(bus=="") {
+			bus=null;
+		}
+		List<String> addr = service.getpoint(gu,type,bus);
+		mav.addObject("addr",addr);
+=======
 		List<Daycare> daycarelist = service.search(gu,type,bus);
 		mav.addObject("daycarelist",daycarelist);
+>>>>>>> refs/heads/master
 		mav.setViewName("map/map");
 		return mav;
 	}*/
