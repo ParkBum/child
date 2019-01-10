@@ -27,6 +27,9 @@ public interface BoardMapper {
 	void boardUpdate(Board board);
 */
 
+	@Update("update board set readcnt = readcnt + 1 where bnum = #{bnum}")
+	void readcntAdd(Integer bnum);
+
 }
 
 

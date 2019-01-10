@@ -59,6 +59,10 @@ public class BoardDao {
 		sqlSession.getMapper(BoardMapper.class).boardDelete(bnum);
 	}
 
+	public void readcntAdd(Integer bnum) {
+		sqlSession.getMapper(BoardMapper.class).readcntAdd(bnum);
+	}
+
 /*	public void boardUpdate(Board board) {
 		sqlSession.getMapper(BoardMapper.class).boardUpdate(board);
 	}*/

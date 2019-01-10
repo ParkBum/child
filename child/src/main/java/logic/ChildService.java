@@ -75,6 +75,10 @@ public class ChildService {
 		return board;
 	}
 
+	public void readcntAdd(Integer bnum) {
+		boardDao.readcntAdd(bnum);
+	} 	
+
 	public String getNickName(int mnum) {
 		return userDao.nickName(mnum);
 	}
@@ -170,8 +174,7 @@ public class ChildService {
 		comment.setRef(com.getRef()); 
 		comment.setRefstep(refstep+1); //1번댓의 몇번째 대댓인지
 		commentDao.commentWrite(comment);
-	} 
-	
+	}
 
 	 
 
