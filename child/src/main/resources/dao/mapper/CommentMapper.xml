@@ -7,6 +7,6 @@
 		<if test="bnum != null">
 			where bnum = #{bnum}
 		</if>
-		order by ref, refstep
+		order by ref, refstep 
 	</select>
 </mapper>
