@@ -24,7 +24,10 @@ public class CommentDao {
 	}
 
 	public List<Comment> commentSelect(Integer bnum) {
-		return sqlSession.getMapper(CommentMapper.class).selectComment(bnum);
+//		return sqlSession.getMapper(CommentMapper.class).selectComment(bnum);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("bnum", bnum);
+		return sqlSession.selectList(NS + "list", map);
 	}
 
 	public int maxCnum() {
@@ -42,8 +45,12 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).update(comment);
 	}
 
-	public void recomment(Comment comment) {
-		sqlSession.getMapper(CommentMapper.class).insert(comment);
+	public Comment getSelect(int cnum) {
+		return sqlSession.getMapper(CommentMapper.class).select(cnum);
+	}
+
+	public int getRefstep(Comment com) {
+		return sqlSession.getMapper(CommentMapper.class).getRefstep(com);
 	}
 	
 }

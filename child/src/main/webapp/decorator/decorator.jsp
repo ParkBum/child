@@ -97,7 +97,7 @@ body {
 
 .menu {
 	width: 1300px;
-	margin: 0 auto;
+	margin: 0 -384px 0 300px;
 	padding-top: 20px;
 }
 

@@ -71,4 +71,11 @@ public class Comment {
 		this.comdate = comdate;
 	}
 
+	@Override
+	public String toString() {
+		return "Comment [cnum=" + cnum + ", bnum=" + bnum + ", mnum=" + mnum + ", recomment=" + recomment + ", comdate="
+				+ comdate + ", ref=" + ref + ", refstep=" + refstep + "]";
+	}
+	
+
 }

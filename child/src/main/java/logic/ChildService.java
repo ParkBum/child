@@ -131,6 +131,7 @@ public class ChildService {
 
 	public void commentWrite(Comment comment) {
 		comment.setCnum(commentDao.maxCnum() + 1);
+		comment.setRef(comment.getCnum());
 		commentDao.commentWrite(comment);
 	}
 
@@ -159,22 +160,20 @@ public class ChildService {
 		userDao.changePass(user);
 	}
 
-
-	public void recomment(Comment comment) {
+	public void reWrite(Comment comment) {
 		//원댓글 정보 가져옴.
+		Comment com = commentDao.getSelect(comment.getCnum());
+		int refstep = com.getRefstep();
+		System.out.println(com);
+		commentDao.getRefstep(com);  //기존 레코드 step 변경 메서드
 		comment.setCnum(commentDao.maxCnum() + 1); //cnum증가
-		comment.setRef(comment.getCnum()); // ref : 어떤댓글인지
-		comment.setRefstep(comment.getRefstep() + 1); //1번댓의 몇번째 대댓인지
-		commentDao.recomment(comment);
-	}
+		comment.setRef(com.getRef()); 
+		comment.setRefstep(refstep+1); //1번댓의 몇번째 대댓인지
+		commentDao.commentWrite(comment);
+	} 
 	
 
-	
-	
-	
-	
-	
-	
+	 
 
 /*	public List<Comment> commentlist(Integer bnum) {
 		return commentDao.commentwrite(bnum);
