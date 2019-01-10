@@ -148,9 +148,9 @@ public class ChildService {
 	}
 	
 	
-	public void commentUpdate(Integer cnum) {
+/*	public void commentUpdate(Integer cnum) {
 		commentDao.update(cnum);
-	}
+	}*/
 
 	public List<Daycare> search(String gu, String type, String bus) {
 		return mapDao.daycareList(gu,type,bus);
@@ -163,11 +163,7 @@ public class ChildService {
 		userDao.changePass(user);
 	}
 
-	public List<String> getpoint(String gu, String type, String bus) {
-		
-		return mapDao.getpoints(gu, type, bus);
-	}
-	
+
 	
 	
 	

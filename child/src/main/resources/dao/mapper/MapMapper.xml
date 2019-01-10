@@ -18,7 +18,7 @@
 		<if test="bus != null or bus != ''">
 			and bus = "${bus}"
 		</if>
-
+	</select>
 		<!-- <if test="word != null && word != ''">
 			and name like "%${word}%"
 		</if> -->
