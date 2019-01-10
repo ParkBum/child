@@ -120,7 +120,7 @@ body {
 }
 
 .menu-bar .right:hover ul {
-	display:block;   /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+	display: block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 }
 </style>
 </head>
@@ -137,42 +137,49 @@ body {
 					<li class="left"><a href="${path}/main/main2.child"
 						style="background-color: white;"><img
 							src="../decorator/logo.png"
-							style="width: 130px; height: 100px; margin: 0 0 4px 20px;"></a></li>
+							style="width: 130px; height: 100px; margin: 0 0 4px 20px;" title="홈바로가기"></a></li>
 					<li class="right nav"><a href="${path}/map/map.child"
-						style="border-radius: 20px 0 0 20px;">어린이집 검색</a></li>
+						style="border-radius: 20px 0 0 20px;" title="어린이집검색">어린이집 검색</a></li>
 					<li class="right"><a href="${path}/board/list.child?bType=1"
-						style="margin-left: -4px;">커뮤니티</a>
+						style="margin-left: -4px;" title="커뮤니티">커뮤니티</a>
 						<ul>
-							<li><a href="${path}/board/list.child?bType=1" style="background:white; color:#AAAAAA;" onmouseover="this.style.color='#CE5B7C'" onmouseout="this.style.color='#AAAAAA'">자유게시판</a>
-							<a href="${path}/board/list.child?bType=2" style="background:white; color:#AAAAAA;" onmouseover="this.style.color='#CE5B7C'" onmouseout="this.style.color='#AAAAAA'">후기게시판</a></li>
+							<li><a href="${path}/board/list.child?bType=1"
+								style="background: white; color: #AAAAAA;"
+								onmouseover="this.style.color='#CE5B7C'"
+								onmouseout="this.style.color='#AAAAAA'" title="자유게시판">자유게시판</a>
+								<a href="${path}/board/list.child?bType=2"
+								style="background: white; color: #AAAAAA;"
+								onmouseover="this.style.color='#CE5B7C'"
+								onmouseout="this.style.color='#AAAAAA'" title="후기게시판">후기게시판</a></li>
 						</ul></li>
 					<li class="right"><a href="${path}/board/list.child?bType=3"
-						style="margin-left: -4px;">중고장터</a></li>
+						style="margin-left: -4px;" title="거래게시판">중고장터</a></li>
 					<c:if test="${empty sessionScope.loginUser}">
 						<li class="right"><a href="${path}/user/userForm.child"
-							style="margin-left: -4px;">회원가입</a></li>
+							style="margin-left: -4px;" title="회원가입">회원가입</a></li>
 					</c:if>
 					<c:if test="${empty sessionScope.loginUser}">
 						<li class="right" style="margin-right: 50px;"><a
 							href="${path}/user/loginForm.child"
-							style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그인</a></li>
+							style="border-radius: 0 20px 20px 0; margin-left: -4px;"
+							title="로그인">로그인</a></li>
 					</c:if>
 					<c:if test="${!empty sessionScope.loginUser}">
 						<li class="right"><c:if
 								test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
 								<a
 									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
-									style="margin-left: -4px;">회원정보</a>
-							</c:if>
-							<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+									style="margin-left: -4px;" title="회원정보">회원정보</a>
+							</c:if> <c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 								<a
 									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
-									style="margin-left: -4px;">회원관리</a>
+									style="margin-left: -4px;" title="회원관리">회원관리</a>
 							</c:if></li>
 						<c:if test="${!empty sessionScope.loginUser}">
 							<li class="right" style="margin-right: 50px;"><a
 								href="${path}/user/logout.child"
-								style="border-radius: 0 20px 20px 0; margin-left: -4px;">로그아웃</a></li>
+								style="border-radius: 0 20px 20px 0; margin-left: -4px;"
+								title="로그아웃">로그아웃</a></li>
 						</c:if>
 					</c:if>
 				</ul>
