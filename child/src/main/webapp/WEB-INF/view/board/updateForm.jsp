@@ -195,8 +195,8 @@ th {
 			$('#tr2').show();
 		});
 
-		$('#list').click(function() {
-			location.href = "list.child?bType=" + $('input[name=bType]').val();
+		$('#cancel').click(function() {
+			location.href = "info.child?bnum=" + $('input[name=bnum]').val();
 		});
 		$('form').submit(function() {
 			var check = confirm('등록하시겠습니까?');
@@ -223,28 +223,29 @@ th {
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height: 100px;" size="5">게시판</font></li>
-				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<c:if test="${board.bType == 1}"><li class="active"></c:if><c:if test="${board.bType != 1}"><li class="menu2"></c:if><a href="../board/list.child?bType=1">자유게시판</a></li>
+				<c:if test="${board.bType == 2}"><li class="active"></c:if><c:if test="${board.bType != 2}"><li class="menu2"></c:if><a href="../board/list.child?bType=2">후기게시판</a></li>
+				<c:if test="${board.bType == 3}"><li class="active"></c:if><c:if test="${board.bType != 3}"><li class="menu2"></c:if><a href="../board/list.child?bType=3">거래게시판</a></li>
 			</ul>
 		</div>
 		<div class="board">
 			<div style="margin-bottom: 30px; text-align: left;">
 				<c:choose>
 					<c:when test="${board.bType == 1}">
-						<h4>자유 게시판</h4>
+						<h3>자유 게시판</h3>
 					</c:when>
 					<c:when test="${board.bType == 2}">
-						<h4>후기 게시판</h4>
+						<h3>후기 게시판</h3>
 					</c:when>
 					<c:when test="${board.bType == 3}">
-						<h4>거래 게시판</h4>
+						<h3>거래 게시판</h3>
 					</c:when>
 				</c:choose>
 			</div>
 			<form:form modelAttribute="board" action="update.child"
 				enctype="multipart/form-data" name="f" method="post">
 				<input type="hidden" name="bType" value="${board.bType}">
+				<input type="hidden" name="bnum" value="${board.bnum}">
 				<input type="hidden" name="mnum"
 					value="${sessionScope.loginUser.mnum}">
 				<input type="hidden" name="score" id="score" value="0">
@@ -362,8 +363,8 @@ th {
 					</c:if>
 					<tr style="height: 30px;">
 						<td colspan="2" style="text-align: center;"><input
-							type="submit" value="등록"><input type="button" id="list"
-							value="목록"></td>
+							type="submit" value="등록"><input type="button" id="cancel"
+							value="취소"></td>
 					</tr>
 				</table>
 			</form:form>

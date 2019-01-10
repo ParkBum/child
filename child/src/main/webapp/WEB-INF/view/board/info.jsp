@@ -206,15 +206,25 @@ function commentDelete(bnum, cnum){
 	<div class="cmain" align="center">
 		<div class="subMenu">
 			<ul>
-				<li class="menu1"><font style="line-height:100px;" size="5">게시판</font></li>
-				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<li class="menu1"><font style="line-height: 100px;" size="5">게시판</font></li>
+				<c:if test="${board.bType == 1}"><li class="active"></c:if><c:if test="${board.bType != 1}"><li class="menu2"></c:if><a href="../board/list.child?bType=1">자유게시판</a></li>
+				<c:if test="${board.bType == 2}"><li class="active"></c:if><c:if test="${board.bType != 2}"><li class="menu2"></c:if><a href="../board/list.child?bType=2">후기게시판</a></li>
+				<c:if test="${board.bType == 3}"><li class="active"></c:if><c:if test="${board.bType != 3}"><li class="menu2"></c:if><a href="../board/list.child?bType=3">거래게시판</a></li>
 			</ul>
 		</div>
 		<div class="board">
 			<div style="margin-bottom: 30px; text-align: left;">
-				<h4>자유 게시판</h4>
+				<c:choose>
+					<c:when test="${board.bType == 1}">
+						<h3>자유 게시판</h3>
+					</c:when>
+					<c:when test="${board.bType == 2}">
+						<h3>후기 게시판</h3>
+					</c:when>
+					<c:when test="${board.bType == 3}">
+						<h3>거래 게시판</h3>
+					</c:when>
+				</c:choose>
 			</div>
 	<input type="hidden" name="bType" value="${board.bType}">
 	<input type="hidden" name="mnum" value="${board.mnum}">
@@ -304,7 +314,7 @@ function commentDelete(bnum, cnum){
 			<td colspan="2"> 
 				<c:forEach var="c" items="${commentList}" varStatus="stat">
 							<c:if test="${c.refstep > 0}">
-								└${c.ref}의 대댓글<%-- ${stat.count} --%> 
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ>${c.ref}의 대댓글<%-- ${stat.count} --%>  
 							</c:if>
 							
 						<c:if test="${c.refstep == 0}">
@@ -319,7 +329,9 @@ function commentDelete(bnum, cnum){
 									onclick="commentDelete(${c.bnum},${c.cnum})">
 							</c:if>
 							<br>
-							
+							<c:if test="${c.refstep>0}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</c:if>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
@@ -333,8 +345,12 @@ function commentDelete(bnum, cnum){
 							</c:choose>)
 						
 						<!-- 댓글 출력--> 
+						
+						
 						<div id="recontent${stat.index}">
 								<div id="recomment${stat.index}" style="display: block">
+								<c:if test="${c.refstep>0}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>  
 									&nbsp;${c.recomment}<br>
 								</div>
 							</div>
