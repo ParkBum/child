@@ -252,6 +252,9 @@ function commentDelete(bnum, cnum){
 							</c:otherwise>
 						</c:choose>)
 						
+						
+						<!-- <input type="button" id="re" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();"> -->
+						
 						<!-- 댓글 작업중! ${stat.index}는 뭘까 => 0부터 순서-->
 						<div id="recontent${stat.index}">					
 				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
@@ -267,13 +270,31 @@ function commentDelete(bnum, cnum){
 				 	          </form:form>
 				 	       </div>
 				 	   </div>
-				<input type="button" id="re" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+				 	   
+				 	   <!-- 버튼부분 -->
+				<input type="button" id="recom" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
 				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 					<!-- 댓글수정버튼 -->
 				  	<input type="button" id="commentUpdate" value="수정" 
 				  	       onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
 					<input type="button" id="commentDelete" value="삭제" onclick="commentDelete(${c.bnum},${c.cnum})">
-				</c:if>  
+				</c:if>
+				<!--대댓글 -->
+						<div id="rere${stat.index}"style="border:1px solid black">				 	
+				 	       <div id="recomment${stat.index}" style="display: block"></div>
+				 	       <!-- 답글버튼 눌리고 대댓글창 나옴-->
+				 	       <div id="recommentupd${stat.index}" style="display: none">
+				 	         <form:form action="recomment.child" method="Post" modelAttribute="comment">
+				 	          <input type="hidden" name="bnum" value="${c.bnum}">
+				 	          <input type="hidden" name="cnum" value="${c.cnum}">
+				 	          <input type="hidden" name="cnum" value="${c.mnum}">
+				 	          		댓글 작성자 : ${sessionScope.loginUser.nickname}
+				 	           <form:input path="recomment" value="${c.recomment}" />
+				 	          <input type="submit" value="등록">
+				  		<input type="button" id="x" value="등록취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+				 	          </form:form>
+				 	       </div>
+				 	   </div>
 				<hr>
 				</c:forEach></c:if></td>
 			</tr>
