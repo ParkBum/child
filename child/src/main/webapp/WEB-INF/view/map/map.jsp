@@ -208,7 +208,6 @@ option {
     					var content = '<div class="labelWish" style="opacity:0.7; width:400px;"><span class="leftWish"></span><span class="centerWish">'
 							+"어린이집 이름:"+data.daycarelist[i].name+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>',
 							iwRemoveable = true;
-							alert(coords);
 			var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content/* ,
