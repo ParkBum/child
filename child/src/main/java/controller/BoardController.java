@@ -147,12 +147,23 @@ public class BoardController {
 	@RequestMapping(value="board/commentUpdate", method=RequestMethod.POST)
 	public ModelAndView commentUpdate(@Valid Comment comment, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView("board/info");
-		System.out.println(comment.getRecomment());
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
 			return mav;
 		}
 		service.commentUpdate(comment);
+		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
+		return mav;
+	}
+	
+	@RequestMapping(value = "board/recomment", method=RequestMethod.POST)
+	public ModelAndView recomment(@Valid Comment comment, BindingResult bindingResult) {
+		ModelAndView mav = new ModelAndView();
+		if (bindingResult.hasErrors()) { // 에러 발생한 경우
+			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			return mav;
+		}
+		service.recomment(comment);
 		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
 	}
