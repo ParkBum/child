@@ -11,57 +11,28 @@
 <title>어린이집 검색</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
-<script>
-/* $(function() {
-           $("#searchs").click(
-                 function() {
-                    var gu = $("#gu").val();
-                    alert("gu"+gu)
-                    
-                    var type = $("#type").val();
-                    var bus = $("#bus").val();
-                    var data = {
-                       "gu" : gu,
-                       "type" : type,
-                       "bus" : bus
-                       }
-                    $.ajax({ 
-                       url : "search.child",
-                       type : "post",
-                       data : data,
-                       dataType : "html", // ajax 통신으로 받는 타입
-                       success : function(data) {
-                    	   alert(data);
-                    	   $("#a").html(data); 
-                       },
-                       error : function(xhr, status, error) { //서버응답 실패
-                          alert("서버오류 : " + xhr.status + ", error : "
-                                + error + ", status : " + status);
-                       }
-                    })
-                 })
-        }) */
-</script>
 <style type="text/css">
+
+<%-- 큰 메인 --%> 
 #SearchAndMap {
+margin-top : 0 auto;
 	width: 800px;
 	height: 800px;
 	text-align: center;
+	border:solid 1px black;
 }
 
 #search {
 	width: 100%;
 	height: 80px;
 	background-color: white;
-	margin: 0 10px;
 	vertical-align: middle;
 }
 
 #map_wrap {
 	width: 100%;
-	height: 700px;
-	margin: 0 10px;
-
+	height: 715px;  
+ 
 }
 
 #map .buttons {
@@ -76,13 +47,14 @@
 	margin: 0 5px 5px 0;
 }
 
+
 option {
 	font-size: large;
 }
 </style>
 </head>
 <body>
-	<div id="L" align="center">
+	<div id="L" align="center" style="border:solid 1px black;">
 		<div id="SearchAndMap">
 			<!-- <form action="search.child" method="post"> -->
 				<div id="search">
@@ -146,6 +118,13 @@ option {
 				<div id="map" style="width: 100%; height: 100%; margin: 0 auto; padding: 10px;" align="center"></div>
 			</div><!-- map_wrap의 끝 -->
 		</div><!-- SearchAndMap -->
+		<div id="content">
+			<div id="chart">
+		
+			</div>
+			<div id="reviewboard">
+			</div>
+		</div>
 	</div>
 			
 
@@ -227,7 +206,7 @@ option {
 		var positions = new Array();
 
 		//신주소 객체 저장 
-		var addrs = [];
+		
 /* 		   window.onload = function() {
 		      for (var i = 0; i < positions.length; i ++) {
 		          // 마커를 생성합니다
@@ -262,6 +241,7 @@ option {
 </c:forEach>
 </div>
 <script> --%>
+var addrs = [];
 $("#searchs").click(
         function() {
            var gu = $("#gu").val();
@@ -318,7 +298,7 @@ $("#searchs").click(
             					      // 마커 위에 인포윈도우를 표시합니다
             					      infowindow.open(map, marker);  
             					});
-            					infowindow.open(map, marker); 
+            					/* infowindow.open(map, marker);  */
             	            	map.setCenter(coords);	
             				}
             			}
