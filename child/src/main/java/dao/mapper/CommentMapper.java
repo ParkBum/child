@@ -31,6 +31,6 @@ public interface CommentMapper {
 	Comment select(int cnum);
 
 	@Update("update comment set refstep = refstep+1 where ref=#{ref} and refstep > 0")
-	int getRefstep(Comment com);
+	int chgRefstep(Comment com);
 
 }

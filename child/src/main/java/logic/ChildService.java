@@ -169,7 +169,7 @@ public class ChildService {
 		Comment com = commentDao.getSelect(comment.getCnum());
 		int refstep = com.getRefstep();
 		System.out.println(com);
-		commentDao.getRefstep(com);  //기존 레코드 step 변경 메서드
+		commentDao.chgRefstep(com);  //기존 레코드 step 변경 메서드
 		comment.setCnum(commentDao.maxCnum() + 1); //cnum증가
 		comment.setRef(com.getRef()); 
 		comment.setRefstep(refstep+1); //1번댓의 몇번째 대댓인지
