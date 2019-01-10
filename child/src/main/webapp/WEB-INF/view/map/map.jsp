@@ -198,13 +198,17 @@ option {
 					}
 					for (var i = 0; i < data.daycarelist.length; i++) {
 						var Map = map;
-						var code = data.daycarelist[i].code;
-
+						alert(data.daycarelist[i].code)
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
-						
-						var imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/128/1497620001-jd22_85165.png'; // 마커이미지의 주소입니다    
+							
+						var imageSrc = '';
+						if(data.daycarelist[i].bus == '운영')
+							 imageSrc = 'https://cdn.icon-icons.com/icons2/1706/PNG/128/3986695-bus-school_112262.png';	
+						else	 
+							 imageSrc = 'https://cdn.icon-icons.com/icons2/1750/PNG/128/015location_113739.png'; // 마커이미지의 주소입니다 	
+							 
 					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
 					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);

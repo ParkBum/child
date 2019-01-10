@@ -6,6 +6,8 @@ public class Daycare {
 	private String sido;
 	private String gu;
 	private String name;
+	private int    score;
+	private int	   code;
 	private String type;
 	private String nows;
 	private String postno;
@@ -20,11 +22,8 @@ public class Daycare {
 	private int nowchild;
 	private String lat;
 	private String lon;
+	private String bus;
 	private String homepage;
-	private Date permitdate;
-	private String restartdate;
-	private String restenddate;
-	private String closedate;
 	public String getSido() {
 		return sido;
 	}
@@ -42,6 +41,18 @@ public class Daycare {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
 	}
 	public String getType() {
 		return type;
@@ -127,43 +138,26 @@ public class Daycare {
 	public void setLon(String lon) {
 		this.lon = lon;
 	}
+	public String getBus() {
+		return bus;
+	}
+	public void setBus(String bus) {
+		this.bus = bus;
+	}
 	public String getHomepage() {
 		return homepage;
 	}
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
 	}
-	public Date getPermitdate() {
-		return permitdate;
-	}
-	public void setPermitdate(Date permitdate) {
-		this.permitdate = permitdate;
-	}
-	public String getRestartdate() {
-		return restartdate;
-	}
-	public void setRestartdate(String restartdate) {
-		this.restartdate = restartdate;
-	}
-	public String getRestenddate() {
-		return restenddate;
-	}
-	public void setRestenddate(String restenddate) {
-		this.restenddate = restenddate;
-	}
-	public String getClosedate() {
-		return closedate;
-	}
-	public void setClosedate(String closedate) {
-		this.closedate = closedate;
-	}
 	@Override
 	public String toString() {
-		return "Daycare [sido=" + sido + ", gu=" + gu + ", name=" + name + ", type=" + type + ", nows=" + nows + ", postno="
-				+ postno + ", addr=" + addr + ", tel=" + tel + ", fax=" + fax + ", classcnt=" + classcnt + ", square="
-				+ square + ", playcnt=" + playcnt + ", teachercnt=" + teachercnt + ", maxchild=" + maxchild
-				+ ", nowchild=" + nowchild + ", lat=" + lat + ", lon=" + lon + ", homepage=" + homepage
-				+ ", permitdate=" + permitdate + ", restartdate=" + restartdate + ", restenddate=" + restenddate
-				+ ", closedate=" + closedate + "]";
+		return "Daycare [sido=" + sido + ", gu=" + gu + ", name=" + name + ", score=" + score + ", code=" + code
+				+ ", type=" + type + ", nows=" + nows + ", postno=" + postno + ", addr=" + addr + ", tel=" + tel
+				+ ", fax=" + fax + ", classcnt=" + classcnt + ", square=" + square + ", playcnt=" + playcnt
+				+ ", teachercnt=" + teachercnt + ", maxchild=" + maxchild + ", nowchild=" + nowchild + ", lat=" + lat
+				+ ", lon=" + lon + ", bus=" + bus + ", homepage=" + homepage + "]";
 	}
+
+	
 }
