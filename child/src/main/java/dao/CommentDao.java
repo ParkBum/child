@@ -42,6 +42,9 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).update(comment);
 	}
 
+	public void recomment(Comment comment) {
+		sqlSession.getMapper(CommentMapper.class).insert(comment);
+	}
 	
 }
 

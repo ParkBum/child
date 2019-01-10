@@ -11,9 +11,8 @@ public class Comment {
 	@NotEmpty(message = "내용을 입력하세요")
 	private String recomment;
 	private Date comdate;
-/*	private int ref;
+	private int ref;
 	private int refstep;
-	private int reflevel;
 	
 
 	public int getRef() {
@@ -32,14 +31,6 @@ public class Comment {
 		this.refstep = refstep;
 	}
 
-	public int getReflevel() {
-		return reflevel;
-	}
-
-	public void setReflevel(int reflevel) {
-		this.reflevel = reflevel;
-	}
-*/
 	public int getCnum() {
 		return cnum;
 	}
