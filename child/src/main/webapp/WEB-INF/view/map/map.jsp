@@ -44,8 +44,8 @@
 </script>
 <style type="text/css">
 #SearchAndMap {
-	width: 60%;
-	height: 780px;
+	width: 800px;
+	height: 800px;
 	text-align: center;
 }
 
@@ -54,15 +54,14 @@
 	height: 80px;
 	background-color: white;
 	margin: 0 10px;
-	/* 	border: solid 1px black; */
 	vertical-align: middle;
 }
 
 #map_wrap {
 	width: 100%;
 	height: 700px;
-	border: solid 1px black;
 	margin: 0 10px;
+
 }
 
 #map .buttons {
@@ -87,11 +86,12 @@ option {
 		<div id="SearchAndMap">
 			<!-- <form action="search.child" method="post"> -->
 				<div id="search">
-					<div style="margin: 0 auto;  vertical-align: middle; width: 100%; display: inline-block;">
-						<div style="width: 100%; height: 30px; margin: 5px auto;">
+					<div style="margin: 0 auto;  vertical-align: middle; width: 100%; height:100%; padding : 0 auto;display: inline-block; background: #FFCCCC;">
+						<div style="width: 100%; height: 100%; margin-top : 10px;">
 							<div style="width: 33%; float: left;">
 								구를 선택해주세요&nbsp;&nbsp; <select name="gu" id="gu">
-									<option>강남구</option>
+									<option value="">선택하세요</option>
+									<option onselect="">강남구</option>
 									<option>강동구</option>
 									<option>강북구</option>
 									<option>강서구</option>
@@ -116,7 +116,6 @@ option {
 									<option>종로구</option>
 									<option>중구</option>
 									<option>중랑구</option>
-									<option></option>
 								</select>
 							</div>
 							<div style="width: 33%; float: left;">
@@ -128,7 +127,7 @@ option {
 									<option>법인·단체등</option>
 									<option>사회복지법인</option>
 									<option>협동</option>
-									<option></option>
+									<option>직장</option>
 								</select>
 							</div>
 							<div style="width: 33%; float: left;">
@@ -136,15 +135,15 @@ option {
 									<option value="">선택하세요</option>
 									<option>운영</option>
 									<option>미운영</option>
-									<option></option>
 								</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
 							</div>
+							<p id="result"></p>
 						</div>
 					</div>
 				</div>
 			<!-- </form> -->
 			<div id="map_wrap" align="center" class="map_wrap">
-				<div id="map" style="width: 100%; height: 100%; margin: 15px auto; padding: 10px;" align="center"></div>
+				<div id="map" style="width: 100%; height: 100%; margin: 0 auto; padding: 10px;" align="center"></div>
 			</div><!-- map_wrap의 끝 -->
 		</div><!-- SearchAndMap -->
 	</div>
@@ -159,10 +158,26 @@ option {
 			center: new daum.maps.LatLng(37.477885, 126.878985),
 			level: 3
 		};
-
-		<%-- 맵객체 정의 --%>
-		var map = new daum.maps.Map(mapContainer, mapOptions);		
 		
+		<%-- 맵객체 정의 --%>
+		var map = new daum.maps.Map(mapContainer, mapOptions);
+		// 줌 컨트롤바 
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		// 지도에 클릭 이벤트를 등록합니다
+		// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+		daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+		    
+		    // 클릭한 위도, 경도 정보를 가져옵니다 
+		    var latlng = mouseEvent.latLng;
+		    
+		    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+		    message += '경도는 ' + latlng.getLng() + ' 입니다';
+		    
+		    var resultDiv = document.getElementById('result'); 
+		    resultDiv.innerHTML = message;
+		    
+		});
 		
 		
 		<%-- 현재 나의 위치를 찍는 구간 --%>
@@ -179,7 +194,7 @@ option {
 		            message = '<div style="padding:5px;">현재 위치 입니다.</div>'; // 인포윈도우에 표시될 내용입니다
 		        
 		        // 마커와 인포윈도우를 표시합니다
-		        displayMarker(locPosition, message);
+		     /*    displayMarker(locPosition, message); */
 		            
 		      });
 		    
@@ -188,21 +203,10 @@ option {
 		    var locPosition = new daum.maps.LatLng(37.477885, 126.878985),    
 		        message = 'geolocation을 사용할수 없어요..'
 		        
-		    displayMarker(locPosition, message);
+		    /* displayMarker(locPosition, message); */
 		}
-		<%-- 현재 나의 위치를 찍는 구간 --%>
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-		<%--좌표 지정 --%>
-		var geocoder = new daum.maps.services.Geocoder();
+			<%--좌표 지정 --%>
+			var geocoder = new daum.maps.services.Geocoder();
 		
 		
 		   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
@@ -221,8 +225,10 @@ option {
 		
 		// 마커표시
 		var positions = new Array();
-		   
-		   window.onload = function() {
+
+		//신주소 객체 저장 
+		var addrs = [];
+/* 		   window.onload = function() {
 		      for (var i = 0; i < positions.length; i ++) {
 		          // 마커를 생성합니다
 		          var marker = new daum.maps.Marker({
@@ -241,7 +247,7 @@ option {
 		          daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 		          daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		      }
-		   };
+		   }; */
 <%-- </script>
 
 <div id="a">
@@ -272,16 +278,54 @@ $("#searchs").click(
               data : data,
               dataType : "json", // ajax 통신으로 받는 타입
               success : function(data) {
-                  for(var i=0; i<data.daycarelist.length; i++){
-                	  searchMarker(data.daycarelist[i].lat,data.daycarelist[i].lon,i);
-                	  /* var content = {
-                      content: data.daycarelist[i].name, 
-                      latlng: new daum.maps.LatLng(data.daycarelist[i].lat, data.daycarelist[i].lon)
-                }
-                positions.push(content);
-              }
-              displayMarker(locPosition, message) */
-              }
+                  for(var i=0; i<data.daycarelist.length; i++){              	  
+                	  addrs.push({"address":data.daycarelist[i].addr,"name":data.daycarelist[i].name,"tel":data.daycarelist[i].tel,"code":data.daycarelist[i].code,"score":data.daycarelist[i].score,"type":data.daycarelist[i].type,"nows":data.daycarelist[i].nows,"bus":data.daycarelist[i].bus,"classcnt":data.daycarelist[i].classcnt,"homepage":data.daycarelist[i].homepage});
+                	  /* alert(addrs[i].address) */
+              	}
+                
+              	for (var i = 0; i < addrs.length; i++){ 
+              		
+              		name = addrs[i].name; //i=0
+              		tel = addrs[i].tel;
+              		homepage = addrs[i].homepage;
+              		code = addrs[i].code;
+            		geocoder.addressSearch(
+            			addrs[i].address, //계속 돌아감 0~ addrs.length
+            			function(result,status,data){
+            				//정상적 검색 시
+          
+            				if(status == daum.maps.services.Status.OK){
+            					console.log(result[0].y,result[0].x)
+            					var coords = new daum.maps.LatLng(
+            					result[0].y,result[0].x		
+            					);
+            					var marker = new daum.maps.Marker({
+            						map:map,
+            						position:coords
+            					});
+            					marker.setMap(map);
+            					
+            					var content = '<div class="labelWish" style="opacity:0.7; width:400px;"><span class="leftWish"></span><span class="centerWish">'
+            									+'주소:'+name+'<br>전화번호:'+tel+'<br>주소:'+result[0].address_name+'</span><span class="rightWish"></span></div>',
+            						iwRemoveable = true;
+            								
+            					var infowindow = new daum.maps.InfoWindow({
+            									    position : coords, 
+            									    content : content,
+            									    removable : iwRemoveable
+            									});
+            					daum.maps.event.addListener(marker, 'click', function() {
+            					      // 마커 위에 인포윈도우를 표시합니다
+            					      infowindow.open(map, marker);  
+            					});
+            					infowindow.open(map, marker); 
+            	            	map.setCenter(coords);	
+            				}
+            			}
+            			);
+            		
+            	}
+                  
               },
               error : function(xhr, status, error) { //서버응답 실패
                  alert("서버오류 : " + xhr.status + ", error : "
@@ -289,10 +333,18 @@ $("#searchs").click(
               }
            })
         })
-
-
+                	  /*  searchMarker(data.daycarelist[i].lat,data.daycarelist[i].lon,i); */
+                	  /* var content = {
+                      content: data.daycarelist[i].name, 
+                      latlng: new daum.maps.LatLng(data.daycarelist[i].lat, data.daycarelist[i].lon)
+                }
+                positions.push(content);
+              }
+              displayMarker(locPosition, message) */        
+ 
+              
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다 
-function displayMarker(locPosition, message) {
+/* function displayMarker(locPosition, message) {
 
     // 마커를 생성합니다
     var marker = new daum.maps.Marker({  
@@ -309,22 +361,21 @@ function displayMarker(locPosition, message) {
         removable : iwRemoveable
     });
  
-}    
-function removeMarker(){
-	
-}
+}  */   
 
-function searchMarker(lat,lon,i){
+
+/* function searchMarker(lat,lon,i){
 	  var locPosition = new daum.maps.LatLng(lat, lon)
 		
 	  var marker = new daum.maps.Marker({
           position: locPosition
+          
       });
 	  
 	  
       marker.setMap(map);
 
-     /*  //인포 윈도우
+      //인포 윈도우
       daum.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
               var infowindow = new daum.maps.InfoWindow({
@@ -333,9 +384,9 @@ function searchMarker(lat,lon,i){
               });
             infowindow.open(map, marker);
           }
-      })(marker, i)); */
+      })(marker, i)); 
 
-}
+} */
 </script>
 
 </body>
