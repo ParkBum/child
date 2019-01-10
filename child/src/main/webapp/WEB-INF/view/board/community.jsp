@@ -129,8 +129,9 @@
 			</ul>
 		</div>
 		<div class="board">
-			<div style="margin-bottom: 30px; text-align: left;">
-				<h4>자유 게시판</h4>
+			<img src="${path}/decorator/2visual.png" title="게시판">
+			<div style="margin-top: 30px; margin-bottom: 30px; text-align: left;">
+				<h3>자유 게시판</h3>
 			</div>
 			<div class="search">
 				<form action="list.child" method="post" name="searchForm"
