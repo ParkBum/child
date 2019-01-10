@@ -49,8 +49,8 @@ public class CommentDao {
 		return sqlSession.getMapper(CommentMapper.class).select(cnum);
 	}
 
-	public int getRefstep(Comment com) {
-		return sqlSession.getMapper(CommentMapper.class).getRefstep(com);
+	public int chgRefstep(Comment com) {
+		return sqlSession.getMapper(CommentMapper.class).chgRefstep(com);
 	}
 	
 }
