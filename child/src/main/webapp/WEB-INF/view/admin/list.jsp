@@ -13,6 +13,11 @@
 	width: 1200px;
 	margin: 0 315px 315px 315px;
 }
+
+.btns {
+	margin: 30px;
+	text-align: right;
+}
 </style>
 <script type="text/javascript">
 	function allchkbox(chk) {
@@ -64,6 +69,12 @@
 					</td>
 				</tr>
 			</table>
+			<div class="btns">
+			 <a href="">회원정보수정</a>&nbsp;
+			 <c:if test="${sessionScope.loginUser.mnum != 1}">
+			 	<a href="">회원탈퇴</a>
+			 </c:if>
+			</div>
 		</form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
