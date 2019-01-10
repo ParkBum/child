@@ -304,7 +304,7 @@ function commentDelete(bnum, cnum){
 			<td colspan="2"> 
 				<c:forEach var="c" items="${commentList}" varStatus="stat">
 							<c:if test="${c.refstep > 0}">
-								└${c.ref}의 대댓글<%-- ${stat.count} --%> 
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ>${c.ref}의 대댓글<%-- ${stat.count} --%>  
 							</c:if>
 							
 						<c:if test="${c.refstep == 0}">
@@ -319,7 +319,9 @@ function commentDelete(bnum, cnum){
 									onclick="commentDelete(${c.bnum},${c.cnum})">
 							</c:if>
 							<br>
-							
+							<c:if test="${c.refstep>0}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</c:if>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
@@ -333,8 +335,12 @@ function commentDelete(bnum, cnum){
 							</c:choose>)
 						
 						<!-- 댓글 출력--> 
+						
+						
 						<div id="recontent${stat.index}">
 								<div id="recomment${stat.index}" style="display: block">
+								<c:if test="${c.refstep>0}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>  
 									&nbsp;${c.recomment}<br>
 								</div>
 							</div>
