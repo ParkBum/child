@@ -152,10 +152,15 @@ public class ChildService {
 		commentDao.update(cnum);
 	}
 
-	public List<Daycare> daycareList() {
-		// TODO Auto-generated method stub
-		return mapDao.daycareList();
+	public List<Daycare> search(String gu, String type, String bus) {
+		return mapDao.daycareList(gu,type,bus);
+	}
+	public void commentUpdate(Comment comment) {
+		commentDao.update(comment);
+	}
 
+	public void changePass(User user) {
+		userDao.changePass(user);
 	}
 
 	public List<String> getpoint(String gu, String type, String bus) {

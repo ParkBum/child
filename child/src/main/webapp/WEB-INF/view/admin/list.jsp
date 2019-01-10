@@ -99,7 +99,7 @@ td.title {
 					<td>${user.mnum}</td>
 					<td>${user.email}</td>
 					<td>${user.nickname}</td>
-					<td> </td>
+					<td>${user.red}</td>
 					<td><a href="javascript:admindelete(${user.mnum})">°­Α¦Ε»Επ</a></td>
 				</tr>
 			</c:forEach>

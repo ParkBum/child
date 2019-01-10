@@ -130,6 +130,8 @@ function commentDelete(bnum, cnum){
 			$('#siren').hide()
 			$('#addred').show()
 		})
+
+
 	});
 </script>
 </head>
@@ -228,17 +230,16 @@ function commentDelete(bnum, cnum){
 					<input type="hidden" name="bnum" value="${board.bnum}"> 
 					<input type="hidden" name="mnum" value="${loginUser.mnum}">
 							댓글 작성자 : ${sessionScope.loginUser.nickname}
-					<form:textarea path="recomment"
-						style="width:100%;height:100px;border:0;resize:none;"
-						placeholder="댓글 입력"></form:textarea>
+					<form:textarea path="recomment" id="comm" style="width:100%;height:100px;border:0;resize:none;"
+						placeholder="댓글을 입력하세요."></form:textarea>
 					<input type="submit" value="등록">
 				</form:form></td>
 		</tr>
 			<tr>   
 				<td colspan="2">
 			<c:if test="${commentList != null}">
-				<c:forEach var="c" items="${commentList}">
-					→${c.cnum}<br>
+				<c:forEach var="c" items="${commentList}" varStatus="stat">
+					→${stat.count}<br>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
 					<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
@@ -250,21 +251,52 @@ function commentDelete(bnum, cnum){
 								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
 							</c:otherwise>
 						</c:choose>)
-						<br>  
-					&nbsp;${c.recomment}<br>
-					<c:if test=""></c:if> 
-					<a href="#">[답글] </a> 
-						 <c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<a href="javascript:commentDelete(${c.bnum},${c.cnum})">[삭제]</a>
-				</c:if>  
-				<form:form action="commentUpdate.child" method="Post">
-					<input type="hidden" name="cnum" value="${c.cnum}"> 
-					<input type="hidden" name="bnum" value="${c.bnum}"> 
-					<input type="text" value="${c.recomment}">
-					<input type="submit" value="수정">
-				</form:form>
+						
+						
+						<!-- <input type="button" id="re" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();"> -->
+						
+						<!-- 댓글 작업중! ${stat.index}는 뭘까 => 0부터 순서-->
+						<div id="recontent${stat.index}">					
+				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
+				 	       
+				 	       <!-- 수정버튼 눌리고 댓글수정창 나옴-->
+				 	       <div id="recommentupd${stat.index}" style="display: none">
+				 	         <form:form action="commentUpdate.child" method="Post" modelAttribute="comment">
+				 	          <input type="hidden" name="bnum" value="${c.bnum}">
+				 	          <input type="hidden" name="cnum" value="${c.cnum}">
+				 	           <form:input path="recomment" value="${c.recomment}" />
+				 	          <input type="submit" value="수정">
+				  		<input type="button" id="x" value="수정취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+				 	          </form:form>
+				 	       </div>
+				 	   </div>
+				 	   
+				 	   <!-- 버튼부분 -->
+				<input type="button" id="recom" value="답글" onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+					<!-- 댓글수정버튼 -->
+				  	<input type="button" id="commentUpdate" value="수정" 
+				  	       onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+					<input type="button" id="commentDelete" value="삭제" onclick="commentDelete(${c.bnum},${c.cnum})">
+				</c:if>
+				<!--대댓글 -->
+						<div id="rere${stat.index}"style="border:1px solid black">				 	
+				 	       <div id="recomment${stat.index}" style="display: block"></div>
+				 	       <!-- 답글버튼 눌리고 대댓글창 나옴-->
+				 	       <div id="recommentupd${stat.index}" style="display: none">
+				 	         <form:form action="recomment.child" method="Post" modelAttribute="comment">
+				 	          <input type="hidden" name="bnum" value="${c.bnum}">
+				 	          <input type="hidden" name="cnum" value="${c.cnum}">
+				 	          <input type="hidden" name="cnum" value="${c.mnum}">
+				 	          		댓글 작성자 : ${sessionScope.loginUser.nickname}
+				 	           <form:input path="recomment" value="${c.recomment}" />
+				 	          <input type="submit" value="등록">
+				  		<input type="button" id="x" value="등록취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+				 	          </form:form>
+				 	       </div>
+				 	   </div>
 				<hr>
-					</c:forEach></c:if></td>
+				</c:forEach></c:if></td>
 			</tr>
 	</table>
 </body>
