@@ -197,9 +197,9 @@ th {
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height: 100px;" size="5">게시판</font></li>
-				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<c:if test="${board.bType == 1}"><li class="active"></c:if><c:if test="${board.bType != 1}"><li class="menu2"></c:if><a href="../board/list.child?bType=1">자유게시판</a></li>
+				<c:if test="${board.bType == 2}"><li class="active"></c:if><c:if test="${board.bType != 2}"><li class="menu2"></c:if><a href="../board/list.child?bType=2">후기게시판</a></li>
+				<c:if test="${board.bType == 3}"><li class="active"></c:if><c:if test="${board.bType != 3}"><li class="menu2"></c:if><a href="../board/list.child?bType=3">거래게시판</a></li>
 			</ul>
 		</div>
 		<div class="board">
