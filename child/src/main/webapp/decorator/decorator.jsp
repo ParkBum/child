@@ -79,8 +79,6 @@ body {
 
 /* main */
 .main {
-<<<<<<< HEAD
-<<<<<<< HEAD
    margin-bottom: 5%;
    padding: 10px;
    margin-bottom: 10%;
@@ -90,12 +88,10 @@ body {
 
 
 
-=======
 	padding-bottom: 60px;
 	align: center;
 	width: 100%;
 	height: 100%;
->>>>>>> branch 'master' of https://github.com/ParkBum/child/
 }
 /*го╢э footer */
 .footer {
