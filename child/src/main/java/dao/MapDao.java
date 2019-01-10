@@ -30,11 +30,11 @@ public class MapDao {
 
 /*
 	public List<String> getpoints(String gu, String type, String bus, String word) {
+>>>>>>> refs/heads/master
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("gu", gu);
 		map.put("type", type);
 		map.put("bus", bus);
-		map.put("word", word);
 		return sqlSession.selectList(NS+"getpoints",map);
 	}*/
 

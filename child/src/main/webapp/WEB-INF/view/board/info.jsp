@@ -164,7 +164,8 @@ function commentDelete(bnum, cnum){
 			<td width="15%" style="text-align: center;">작성자</td>
 			<td width="90%">&nbsp;${board.nickname} <c:if
 					test="${board.bType == 3}">
-				&nbsp;<img src="${path}/decorator/siren.png" id="siren"><font id="addred" size="1" color="red"><b>신고완료</b></font>
+				&nbsp;<img src="${path}/decorator/siren.png" id="siren">
+					<font id="addred" size="1" color="red"><b>신고완료</b></font>
 				</c:if></td>
 		</tr>
 		<tr style="height: 30px;">
@@ -222,98 +223,182 @@ function commentDelete(bnum, cnum){
 					<input type="button" id="delete" value="삭제">
 				</c:if> <input type="button" id="list" value="목록"></td>
 		</tr>
-		<!-- 댓글 -->
+		<!-- 댓글작성 -->
 		<tr style="height: 30px;">
 			<td style="text-align: center;">댓글</td>
-			<td>
-				<form:form action="commentWrite.child" method="Post" modelAttribute="comment">
-					<input type="hidden" name="bnum" value="${board.bnum}"> 
+			<td><form:form action="commentWrite.child" method="Post"
+					modelAttribute="comment">
+					<input type="hidden" name="bnum" value="${board.bnum}">
 					<input type="hidden" name="mnum" value="${loginUser.mnum}">
 							댓글 작성자 : ${sessionScope.loginUser.nickname}
-					<form:textarea path="recomment" style="width:100%;height:100px;border:0;resize:none;"
+					<form:textarea path="recomment"
+						style="width:100%;height:100px;border:0;resize:none;"
 						placeholder="댓글을 입력하세요."></form:textarea>
-						<div align="right">
-					<input type="submit" value="등록"></div>
+					<div align="right">
+						<input type="submit" value="등록">
+					</div>
 				</form:form></td>
 		</tr>
-			<tr>   
-				<td colspan="2">
-			<%-- <c:if test="${commentList != null}"> --%>
-				<c:forEach var="c" items="${commentList}" varStatus="stat"> 
-				<c:choose> 
-					<c:when test="${c.refstep>0}">
-						└${stat.count}</c:when>
-					<c:otherwise>→${stat.count}</c:otherwise>	
-				</c:choose>
-				
-					<input type="button" id="recom" value="답글" onclick="$('#comm${stat.index}').show();">
-				<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-					<!-- 댓글수정버튼 -->
-				  	<input type="button" id="commentUpdate" value="수정" 
-				  	       onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
-					<input type="button" id="commentDelete" value="삭제" onclick="commentDelete(${c.bnum},${c.cnum})">
-				</c:if> 
-				<br>
-					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
+		<!-- --------------------------------------------------------------------------------------------------------- -->
+		<tr>
+			<td colspan="2"> 
+				<c:forEach var="c" items="${commentList}" varStatus="stat">
+				<%-- 	<c:choose>
+					대댓글인 경우
+						<c:when test="${c.refstep>0}">
+						&nbsp;&nbsp;└${stat.count}
+						<!-- 버튼 위에 놓으려고 여기에 작성함 -->
+						<input type="button" id="recom" value="답글" onclick="$('#comm${stat.index}').show();">
+						<!-- 작성자나 관리자인경우에만 수정,삭제 가능 -->
+							<c:if test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+								<!-- 댓글수정버튼  -->
+								<input type="button" id="commentUpdate" value="수정"
+									onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+								<input type="button" id="commentDelete" value="삭제"
+									onclick="commentDelete(${c.bnum},${c.cnum})">
+							</c:if>
+							<br>
+					&nbsp;&nbsp;&nbsp;회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-					<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-						<c:choose>
-							<c:when test="${t==c1}">
-								<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-							</c:when>
-							<c:otherwise>
-								<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-							</c:otherwise>
-						</c:choose>)
+							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
+							<c:choose>
+								<c:when test="${t==c1}">
+									<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+								</c:when>
+								<c:otherwise>
+									<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
+								</c:otherwise>
+							</c:choose>)
 						
 						<!-- 댓글 출력-->
-						<div id="recontent${stat.index}">					
-				 	       <div id="recomment${stat.index}" style="display: block">&nbsp;${c.recomment}<br></div>
-				 	       		<c:if test="${c.cnum == c.ref}">
-				 	       		<div>
-				 	       			&nbsp;${c.recomment}</div>
-				 	       		</c:if>
-				 	      
-				 	       <!-- 수정버튼 눌리고 댓글수정창 나옴-->
-				 	       <div id="recommentupd${stat.index}" style="display: none">
-				 	         <form:form action="commentUpdate.child" method="Post" modelAttribute="comment">
-				 	          <input type="hidden" name="bnum" value="${c.bnum}">
-				 	          <input type="hidden" name="cnum" value="${c.cnum}">
-				 	           <form:input path="recomment" value="${c.recomment}" />
-				 	          <input type="submit" value="수정">
-				  		<input type="button" id="x" value="수정취소" onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
-				 	          </form:form>
-				 	       </div>
-				 	   </div>
-				 	   
-				 	   <!-- 버튼부분 -->
-				
-				
-				<!--대댓글 --> 
-						<div id="rere${stat.index}">				 	
-				 	       <div id="comm2${stat.index}" style="display: block"></div>
-				 	       <!-- 답글버튼 눌리고 대댓글창 나옴-->  
-				 	         <!-- 수정버튼 눌리고 댓글수정창 나옴--> 
-				 	       <div id="comm${stat.index}" style="display: none">
-				 	       <form:form action="recomment.child" method="Post" modelAttribute="comment" 
-				 	       			style="border:1px solid black; background-color:#f7f7f7;">
-				 	          <input type="hidden" name="bnum" value="${c.bnum}"> 
-				 	          <input type="hidden" name="cnum" value="${c.cnum}"> 
-							  <input type="hidden" name="mnum" value="${loginUser.mnum}">
+							<div id="recontent${stat.index}">
+								<div id="recomment${stat.index}" style="display: block">
+									&nbsp;&nbsp;&nbsp;${c.recomment}<br>
+								</div>
+							
+								<!-- 수정버튼 눌리고 댓글수정창 나옴-->
+								<div id="recommentupd${stat.index}" style="display: none">
+									<form:form action="commentUpdate.child" method="Post"
+										modelAttribute="comment">
+										<input type="hidden" name="bnum" value="${c.bnum}"> 
+										<input type="hidden" name="cnum" value="${c.cnum}">
+										&nbsp;&nbsp;&nbsp;<form:input path="recomment" value="${c.recomment}" />
+										<input type="submit" value="수정">
+										<input type="button" id="x" value="수정취소"
+											onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+									</form:form>
+								</div>
+							</div>
+							<div id="rere${stat.index}">
+						<div id="comm2${stat.index}" style="display: block">
+						
+						</div>
+						<!-- 답글버튼 눌리고 대댓글창 나옴-->
+						<div id="comm${stat.index}" style="display: none">
+							<form:form action="recomment.child" method="Post" modelAttribute="comment"
+								style="border:1px solid black; background-color:#f7f7f7;">
+								<input type="hidden" name="bnum" value="${c.bnum}">
+								<input type="hidden" name="cnum" value="${c.cnum}">
+								<input type="hidden" name="mnum" value="${loginUser.mnum}">
+									&nbsp;&nbsp;&nbsp;&nbsp;댓글 작성자 : ${sessionScope.loginUser.nickname}<br>
+							 		&nbsp;&nbsp;&nbsp;&nbsp;<form:textarea path="recomment"
+									style="width:80%;height:100px;border:0;resize:none;"
+									placeholder="댓글을 입력하세요."></form:textarea>
+								<div align="right">
+									<input type="submit" value="등록"> 
+									<input type="button" id="x" value="취소" onclick="$('#comm${stat.index}').show();$('#comm${stat.index}').hide();">
+								<input type="button" id="commentUpdate" value="수정"
+									onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+								</div>
+							</form:form>
+						</div>
+					</div>
+							
+						</c:when> 
+						---------------------------------------------------------------------------------------------------------  
+						<c:otherwise> --%>
+						<!-- 그냥 댓글인 경우 -->
+						→${stat.count}
+					<input type="button" id="recom" value="답글"
+								onclick="$('#comm${stat.index}').show();">
+							<c:if
+								test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+								<!-- 댓글수정버튼 -->
+								<input type="button" id="commentUpdate" value="수정"
+									onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+								<input type="button" id="commentDelete" value="삭제"
+									onclick="commentDelete(${c.bnum},${c.cnum})">
+							</c:if>
+							<br>
+							
+					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
+					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
+							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
+							<c:choose>
+								<c:when test="${t==c1}">
+									<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+								</c:when>
+								<c:otherwise>
+									<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
+								</c:otherwise>
+							</c:choose>)
+						
+						<!-- 댓글 출력-->
+							<div id="recontent${stat.index}">
+								<div id="recomment${stat.index}" style="display: block">
+									&nbsp;${c.recomment}<br>
+								</div>
+						</div>
+								<!-- 수정버튼 눌리고 댓글수정창 나옴-->
+								<div id="recommentupd${stat.index}" style="display: none">
+									<form:form action="commentUpdate.child" method="Post"
+										modelAttribute="comment">
+										<input type="hidden" name="bnum" value="${c.bnum}">
+										<input type="hidden" name="cnum" value="${c.cnum}">
+										<form:input path="recomment" value="${c.recomment}" />
+										<input type="submit" value="수정">
+										<input type="button" id="x" value="수정취소"
+											onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+									</form:form>
+								</div>
+							<div id="rere${stat.index}">
+						<div id="comm2${stat.index}" style="display: block">
+							<c:if test="${c.refstep > 0}">
+								→${c.cnum}
+								${c.recomment}
+							</c:if>
+						</div>
+						
+						<!-- 답글버튼 눌리고 대댓글창 나옴--> 
+						<div id="comm${stat.index}" style="display: none">
+							<form:form action="recomment.child" method="Post" modelAttribute="comment"
+								style="border:1px solid black; background-color:#f7f7f7;">
+								<input type="hidden" name="bnum" value="${c.bnum}">
+								<input type="hidden" name="cnum" value="${c.cnum}">
+								<input type="hidden" name="mnum" value="${loginUser.mnum}">
 									댓글 작성자 : ${sessionScope.loginUser.nickname}<br>
-							 └<form:textarea path="recomment" style="width:80%;height:100px;border:0;resize:none;"
-										placeholder="댓글을 입력하세요."></form:textarea>
-							<div align="right">
-							 <input type="submit" value="등록">
-				  				<input type="button" id="x" value="취소" 
-				  				onclick="$('#comm${stat.index}').hide();"></div>
-				 	          </form:form>
-				 	       </div>
-				 	   </div>
-				 	   
-				<hr>
-				</c:forEach></td>
-			</tr>
+							 		<form:textarea path="recomment" 
+									style="width:80%;height:100px;border:0;resize:none;"
+									placeholder="댓글을 입력하세요."></form:textarea>
+								<div align="right">
+									<input type="submit" value="등록"> 
+									<input type="button" id="x" value="취소" 
+										onclick="$('#comm2${stat.index}').hide();$('#comm${stat.index}').hide();">
+								<%-- <input type="button" id="commentUpdate" value="수정"
+									onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();"> --%>
+								</div> 
+							</form:form>
+						</div>
+					</div>
+							
+						<%-- </c:otherwise>
+					</c:choose> --%>
+					<!--대댓글 -->
+					
+					<hr>
+				</c:forEach>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

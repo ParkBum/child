@@ -146,6 +146,7 @@ public class ChildService {
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
 	}
+	
 
 	public List<Daycare> search(String gu, String type, String bus) {
 		return mapDao.daycareList(gu,type,bus);
@@ -158,14 +159,16 @@ public class ChildService {
 		userDao.changePass(user);
 	}
 
+
 	public void recomment(Comment comment) {
 		//원댓글 정보 가져옴.
 		comment.setCnum(commentDao.maxCnum() + 1); //cnum증가
 		comment.setRef(comment.getCnum()); // ref : 어떤댓글인지
 		comment.setRefstep(comment.getRefstep() + 1); //1번댓의 몇번째 대댓인지
 		commentDao.recomment(comment);
-	}
+	} 
 	
+
 	
 	
 	
