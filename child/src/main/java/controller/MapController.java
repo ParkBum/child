@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.ChildService;
+import logic.Daycare;
 
 @Controller
 public class MapController {
@@ -29,26 +30,16 @@ public class MapController {
 	@RequestMapping("map/map")
 	public ModelAndView map() {
 		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 	
-	@RequestMapping("map/search")
+	/*@RequestMapping("map/search")
 	public ModelAndView search(String gu,String type,String bus, String word) {
 		ModelAndView mav = new ModelAndView();
-		if(type=="") {
-			type=null;
-		}
-		if(bus=="") {
-			bus=null;
-		}
-		if(word=="") {
-			word=null;
-		}
-		List<String> addr = service.getpoint(gu,type,bus,word);
-		mav.addObject("addr",addr);
+		List<Daycare> daycarelist = service.search(gu,type,bus);
+		mav.addObject("daycarelist",daycarelist);
 		mav.setViewName("map/map");
 		return mav;
-	}
-	
-	
+	}*/
 }
