@@ -56,11 +56,6 @@ public class BoardController {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
-		
-		
-//		service.getBoard(bnum);
-//		int cnumCount = service.cnumCnt(com);
-
 	
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
