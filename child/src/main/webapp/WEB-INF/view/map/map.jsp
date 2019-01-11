@@ -24,9 +24,7 @@
 #SearchAndMap {
 	width: 100%;
 	height: 800px;
-	/* text-align: center; */
 	display: table;
-/* 	border : solid 1px black; */
 }
 
 #search {
@@ -62,7 +60,7 @@ option {
   padding: 15px;
 } 
 .bar {
- border : solid 1px black;
+ 
 }
 <%-- 차트 관련 css--%>
 .axis path,
@@ -161,7 +159,7 @@ svg.tooltip {
 			</div>
 			<!-- map_wrap의 끝 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px;" id="chart">
+			<div class="bar" style="height:470px; background-color: rgba(255, 243, 246, 0.5);	" id="chart">
 				<svg></svg>
 			</div>
 			<div class="bar" style="height:320px;">
@@ -332,7 +330,7 @@ function graph(a){
 	
 		  
 		var color = d3.scale.ordinal()
-		    .range(["#FDD88F","#00A168" ,"#C461FF"]);
+		    .range(["#FFC321","#7FD100" ,"#0B77E8"]);
 
 		var svg = d3.select('#chart').select('svg')
 		    .attr("width", width + margin.left + margin.right)
