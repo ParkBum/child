@@ -127,7 +127,7 @@ svg.tooltip {
 						</div>
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">어린이집 유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
-								<option value=null>선택하세요</option>
+								<option value="">선택하세요</option>
 								<option>가정</option>
 								<option>국공립</option>
 								<option>민간</option>
@@ -139,7 +139,7 @@ svg.tooltip {
 						</div>
 						<div style="width: 39%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">통원 버스 유무&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
-								<option value=null>선택하세요</option>
+								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
 							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
