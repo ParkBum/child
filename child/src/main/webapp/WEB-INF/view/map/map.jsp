@@ -14,6 +14,7 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <style type="text/css">
 #main {
 	width: 1600px;
@@ -60,6 +61,9 @@ option {
   width: 50%;
   padding: 15px;
 } 
+.bar {
+ border : solid 1px black;
+}
 <%-- 차트 관련 css--%>
 .axis path,
 .axis line {
@@ -71,6 +75,19 @@ option {
 .x.axis path {
   display: none;
 } 
+
+svg.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
 </style>
 </head>
 <body>
@@ -84,7 +101,7 @@ option {
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
 								<option value="">선택하세요</option>
-								<option onselect="">강남구</option>
+								<option>강남구</option>
 								<option>강동구</option>
 								<option>강북구</option>
 								<option>강서구</option>
@@ -113,7 +130,7 @@ option {
 						</div>
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">어린이집 유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
-								<option value="">선택하세요</option>
+								<option value=null>선택하세요</option>
 								<option>가정</option>
 								<option>국공립</option>
 								<option>민간</option>
@@ -125,7 +142,7 @@ option {
 						</div>
 						<div style="width: 39%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">통원 버스 유무&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
-								<option value="">선택하세요</option>
+								<option value=null>선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
 							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
@@ -144,11 +161,11 @@ option {
 			</div>
 			<!-- map_wrap의 끝 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:70%;">
-			<svg style="width: 750; height:450; border:solid 1px black;"></svg> 
+			<div class="bar" style="height:470px;" id="chart">
+				<svg></svg>
 			</div>
-			<div class="bar" style="height:30%;">
-				<div style="width:750px; height : 270px; border:solid 1px black;"></div> 
+			<div class="bar" style="height:320px;">
+				<div style="width:750px; height : 270px; border:solid 1px black; margin : 23px auto;"></div> 
 			</div>
 			</div>
 		</div>
@@ -240,7 +257,7 @@ option {
 
         			        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
         			        daum.maps.event.addListener(marker, 'click', function() {
-        			            infowindow.close();
+        			            infowindow.close(); 
         			        });
         			    })(marker, infowindow);
 
@@ -282,12 +299,19 @@ function graph(a){
 		type : "post",
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
-		success : function(data) {
-			alert(data.daycare);
-		dataset.push({"name":data.daycare.name},"values":[{"value":data.daycare.teachercnt,"column":"teacher"},{"value":data.daycare.maxchild,"column":"maxchild"},{"value":data.daycare.nowchild,"column":"nowchild"}]);
+		success : function(data) { 
+		d3.selectAll("svg > *").remove();	
+		dataset.push(
+				{"name":data.daycare.name,
+			"values":[
+				{"value":data.daycare.teachercnt,"column":"교사 수"},
+				{"value":data.daycare.maxchild,"column":"정원"},
+				{"value":data.daycare.nowchild,"column":"현원"}
+				]
+				});
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
-		    width = svg.attr("width") - margin.left - margin.right,
-		    height = svg.attr("height") - margin.top - margin.bottom;
+		    width = 750 - margin.left - margin.right,
+		    height = 450 - margin.top - margin.bottom;
 
 		var x0 = d3.scale.ordinal()
 		    .rangeRoundBands([0, width], .1);
@@ -299,32 +323,35 @@ function graph(a){
 
 		var xAxis = d3.svg.axis()
 		    .scale(x0)
-		    .tickSize(0)
+		    .tickSize(0)										
 		    .orient("bottom");
 
 		var yAxis = d3.svg.axis()
 		    .scale(y)
 		    .orient("left");
-
+	
+		  
 		var color = d3.scale.ordinal()
-		    .range(["#ca0020","#f4a582"/* ,"#d5d5d5","#92c5de","#0571b0" */]);
+		    .range(["#FDD88F","#00A168" ,"#C461FF"]);
 
-		var svg = d3.select('body').append("svg")
+		var svg = d3.select('#chart').select('svg')
 		    .attr("width", width + margin.left + margin.right)
 		    .attr("height", height + margin.top + margin.bottom)
 		  .append("g")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+		  
 	      // data 주는 부분	
 	      var data = dataset;
 	      
 		  var categoriesNames = data.map(function(d) { return d.name; });
 		  var rateNames = data[0].values.map(function(d) { return d.column; });
+		  
 
+		  
 		  x0.domain(categoriesNames);
 		  x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
-		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]);
-
+		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+		  
 		  svg.append("g")
 		      .attr("class", "x axis")
 		      .attr("transform", "translate(0," + height + ")")
@@ -393,7 +420,7 @@ function graph(a){
 		      .style("text-anchor", "end")
 		      .text(function(d) {return d; });
 
-		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1"); 
 
 		}});
 	
