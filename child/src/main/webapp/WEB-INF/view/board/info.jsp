@@ -314,7 +314,7 @@ function commentDelete(bnum, cnum){
 			<td colspan="2"> 
 				<c:forEach var="c" items="${commentList}" varStatus="stat">
 							<c:if test="${c.refstep > 0}">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¤¤>${c.ref}ÀÇ ´ë´ñ±Û<%-- ${stat.count} --%>  
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¦¦>${c.ref}ÀÇ ´ë´ñ±Û<%-- ${stat.count} --%>  
 							</c:if>
 							
 						<c:if test="${c.refstep == 0}">

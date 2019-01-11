@@ -176,6 +176,10 @@ public class ChildService {
 		commentDao.commentWrite(comment);
 	}
 
+	/*public int cnumCnt(Comment com) {
+		return commentDao.cnumCnt(com);
+	}
+*/
 	 
 
 /*	public List<Comment> commentlist(Integer bnum) {
