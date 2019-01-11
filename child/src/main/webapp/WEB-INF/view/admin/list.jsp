@@ -92,7 +92,7 @@ onclick="document.getElementById('id01').style.display='block'">회원정보 수정하�
 </div>
 			<!-- 회원정보 -->	
 			<div class="btns">
-			 <a href="../user/updateForm.child">회원정보수정</a>&nbsp;
+			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
 			 <c:if test="${sessionScope.loginUser.mnum != 1}">
 			 	<a href="">회원탈퇴</a>
 			 </c:if>
