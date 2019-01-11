@@ -52,7 +52,7 @@ public class CommentDao {
 	public int chgRefstep(Comment com) {
 		return sqlSession.getMapper(CommentMapper.class).chgRefstep(com);
 	}
-	
+
 }
 
 
