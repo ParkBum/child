@@ -26,7 +26,7 @@
 	height: 800px;
 	display: table;
 }
-
+ 
 #search {
 	width: 100%;
 	height: 80px;
@@ -78,9 +78,9 @@ svg.tooltip {
     position: absolute;			
     text-align: center;			
     width: 60px;					
-    height: 28px;					
+    height: 34px;					
     padding: 2px;				
-    font: 12px sans-serif;		
+    font: 12px sans-serif;		 
     background: lightsteelblue;	
     border: 0px;		
     border-radius: 8px;			
@@ -91,7 +91,6 @@ svg.tooltip {
 <body>
 	<div id="main">
 		<div id="SearchAndMap">
-			<!-- <form action="search.child" method="post"> -->
 			<div class="half">
 			<div id="search">
 				<div style="text-align: center; width: 100%; height: 80px; background: #FFF3F6;">
@@ -147,7 +146,7 @@ svg.tooltip {
 						</div>
 					</div>
 					<div style="width: 100%; height: 40px;">
-					<button onclick="hideMarkers()">지도 초기화</button>
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="hideMarkers()">지도 초기화</button>
 					</div>
 				</div>
 			</div>
@@ -158,6 +157,7 @@ svg.tooltip {
 			</div>
 			</div>
 			<!-- map_wrap의 끝 -->
+			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
 			<div class="bar" style="height:470px; background-color: rgba(255, 243, 246, 0.5);	" id="chart">
 				<svg></svg>
@@ -168,10 +168,10 @@ svg.tooltip {
 			</div>
 		</div>
 		<!-- SearchAndMap -->
-		<!-- right side  시작-->
-		<!-- <div id="rightside"><svg style="width:800; height:500; border:solid 1px black; float: right; "></svg></div> -->
 	</div>
-
+<div id="tooltip" class="hidden">
+	<p> 인원 수 : <b id="value"></b>명</p>
+</div>
 
 	<%-- 지도를 생성을 합니다. --%>
 <script type="text/javascript">
@@ -194,6 +194,7 @@ svg.tooltip {
 		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 		//생성된 마커 객체들을 실을 배열 객체
 		var markers = [];
+		var infos = [];
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -235,28 +236,25 @@ svg.tooltip {
     					marker.setMap(map);
     					markers.push(marker);
 
-    					var content = '<div class="labelWish" style="opacity:0.5; width:400px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">[비교하기]</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px;"><span class="leftWish"></span><span class="centerWish">'
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button><button id="review" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
-							    content : content
+							    content : content,
+							    removable:true
 							}); 
+						infos.push(infowindow);
         				 map.setCenter(coords);	 
-        			    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+   
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-/*         			    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        			    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));  */
-        			    (function(marker, infowindow) {
+        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
+        			    (function(marker, infowindow) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-        			        daum.maps.event.addListener(marker, 'mouseover', function() {
+        			        daum.maps.event.addListener(marker, 'click', function() {
         			            infowindow.open(map, marker);
         			        });
 
-        			        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-        			        daum.maps.event.addListener(marker, 'click', function() {
-        			            infowindow.close(); 
-        			        });
         			    })(marker, infowindow);
 
 					}
@@ -278,10 +276,11 @@ svg.tooltip {
 				}
 			});
 		})
-//띄운 마커 감추기
+//띄운 마커, 인포윈도우 감추기
 function hideMarkers() {
 	 for (var i = 0; i < markers.length; i++) {
 	      markers[i].setMap(null);
+	      infos[i].close();
    	}    
 	 
 }
@@ -298,14 +297,14 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-		d3.selectAll("svg > *").remove();	
+		d3.selectAll("svg > *").remove();
 		dataset.push(
-				{"name":data.daycare.name,
-			"values":[
-				{"value":data.daycare.teachercnt,"column":"교사 수"},
-				{"value":data.daycare.maxchild,"column":"정원"},
-				{"value":data.daycare.nowchild,"column":"현원"}
-				]
+			{"name":data.daycare.name,
+             "values":[
+						{"value":data.daycare.teachercnt,"column":"교사 수"},
+						{"value":data.daycare.maxchild,"column":"정원"},
+						{"value":data.daycare.nowchild,"column":"현원"}
+					  ]
 				});
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
@@ -341,13 +340,11 @@ function graph(a){
 	      // data 주는 부분	
 	      var data = dataset;
 	      
-		  var categoriesNames = data.map(function(d) { return d.name; });
-		  var rateNames = data[0].values.map(function(d) { return d.column; });
+		  var Names = data.map(function(d) { return d.name; });
+		  var columnNames = data[0].values.map(function(d) { return d.column; });
 		  
-
-		  
-		  x0.domain(categoriesNames);
-		  x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
+		  x0.domain(Names);
+		  x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
 		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
 		  
 		  svg.append("g")
@@ -360,15 +357,19 @@ function graph(a){
 		      .style('opacity','0')
 		      .call(yAxis)
 		  .append("text")
-		      .attr("transform", "rotate(-90)")
+		  	  .attr("x",50)
 		      .attr("y", 6)
 		      .attr("dy", ".71em")
 		      .style("text-anchor", "end")
 		      .style('font-weight','bold')
-		      .text("Value");
+		      .text("인원 수");
 
 		  svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
-
+		  
+		  var div = d3.select("svg").append("div")	
+		    .attr("class", "tooltip")				
+		    .style("opacity", 0);
+		  
 		  var slice = svg.selectAll(".slice")
 		      .data(data)
 		      .enter().append("g")
@@ -384,12 +385,15 @@ function graph(a){
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
 		      .on("mouseover", function(d) {
-		          d3.select(this).style("fill", d3.rgb(color(d.column)).darker(2));
+		          d3.select(this).style("fill", d3.rgb(color(d.column)).brighter(1));
 		      })
 		      .on("mouseout", function(d) {
-		          d3.select(this).style("fill", color(d.column));
+		    	 	
+		          d3.select(this).style("fill", color(d.column)); 
 		      });
 
+		  
+		  
 		  slice.selectAll("rect")
 		      .transition()
 		      .delay(function (d) {return Math.random()*1000;})

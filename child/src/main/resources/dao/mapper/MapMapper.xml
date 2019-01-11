@@ -10,14 +10,18 @@
 	</select>
 
 	<select id="list" resultType="Daycare" parameterType="map">
-		select * from seoul2 where gu = "${gu}"
-
+		select * from seoul2 
+	<trim prefix="where" prefixOverrides="AND">
+		<if test="gu !=null or gu != ''">
+			and gu = "${gu}"
+		</if>
 		<if test="type != null or type != ''">
 			and type = "${type}"
 		</if>
 		<if test="bus != null or bus != ''">
 			and bus = "${bus}"
 		</if>
+	</trim>
 	</select>
 	
 	<select id="one" resultType="Daycare" parameterType="map">
