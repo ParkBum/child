@@ -168,7 +168,6 @@ public class ChildService {
 		//원댓글 정보 가져옴.
 		Comment com = commentDao.getSelect(comment.getCnum());
 		int refstep = com.getRefstep();
-		System.out.println(com);
 		commentDao.chgRefstep(com);  //기존 레코드 step 변경 메서드
 		comment.setCnum(commentDao.maxCnum() + 1); //cnum증가
 		comment.setRef(com.getRef()); 
