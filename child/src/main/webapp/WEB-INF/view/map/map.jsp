@@ -13,7 +13,7 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
 #main {
 	width: 1600px;
@@ -54,16 +54,23 @@
 option {
 	font-size: large;
 }
-<%-- 반반 --%>
+<%-- 지도 영역, 내용 출력 영역 나누기 --%>
 .half{
  float: left;
   width: 50%;
   padding: 15px;
+} 
+<%-- 차트 관련 css--%>
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
-.bar {
- /* 	border : solid 1px black; */
-  padding: 15px;
-}
+
+.x.axis path {
+  display: none;
+} 
 </style>
 </head>
 <body>
@@ -214,7 +221,7 @@ option {
     					markers.push(marker);
 
     					var content = '<div class="labelWish" style="opacity:0.5; width:400px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick='+data.daycarelist[i].code+'>[비교하기]</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">[비교하기]</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content
@@ -264,8 +271,9 @@ function hideMarkers() {
 	 
 }
 <%-- 그래프 비교  ajax --%>
-$("#compare").click(function() {
-	var code = $("#compare").val();
+var dataset = [];
+function graph(a){
+	var code = a;
 	var data = {
 		"code" : code
 	}
@@ -275,11 +283,121 @@ $("#compare").click(function() {
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) {
-			alert(data);
-			
-		}});
-  });
+			alert(data.daycare);
+		dataset.push({"name":data.daycare.name},"values":[{"value":data.daycare.teachercnt,"column":"teacher"},{"value":data.daycare.maxchild,"column":"maxchild"},{"value":data.daycare.nowchild,"column":"nowchild"}]);
+		var margin = {top: 20, right: 20, bottom: 30, left: 40},
+		    width = svg.attr("width") - margin.left - margin.right,
+		    height = svg.attr("height") - margin.top - margin.bottom;
 
+		var x0 = d3.scale.ordinal()
+		    .rangeRoundBands([0, width], .1);
+
+		var x1 = d3.scale.ordinal();
+
+		var y = d3.scale.linear()
+		    .range([height, 0]);
+
+		var xAxis = d3.svg.axis()
+		    .scale(x0)
+		    .tickSize(0)
+		    .orient("bottom");
+
+		var yAxis = d3.svg.axis()
+		    .scale(y)
+		    .orient("left");
+
+		var color = d3.scale.ordinal()
+		    .range(["#ca0020","#f4a582"/* ,"#d5d5d5","#92c5de","#0571b0" */]);
+
+		var svg = d3.select('body').append("svg")
+		    .attr("width", width + margin.left + margin.right)
+		    .attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	      // data 주는 부분	
+	      var data = dataset;
+	      
+		  var categoriesNames = data.map(function(d) { return d.name; });
+		  var rateNames = data[0].values.map(function(d) { return d.column; });
+
+		  x0.domain(categoriesNames);
+		  x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
+		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]);
+
+		  svg.append("g")
+		      .attr("class", "x axis")
+		      .attr("transform", "translate(0," + height + ")")
+		      .call(xAxis);
+
+		  svg.append("g")
+		      .attr("class", "y axis")
+		      .style('opacity','0')
+		      .call(yAxis)
+		  .append("text")
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", 6)
+		      .attr("dy", ".71em")
+		      .style("text-anchor", "end")
+		      .style('font-weight','bold')
+		      .text("Value");
+
+		  svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
+
+		  var slice = svg.selectAll(".slice")
+		      .data(data)
+		      .enter().append("g")
+		      .attr("class", "g")
+		      .attr("transform",function(d) { return "translate(" + x0(d.name) + ",0)"; });
+
+		  slice.selectAll("rect")
+		      .data(function(d) { return d.values; })
+		  .enter().append("rect")
+		      .attr("width", x1.rangeBand())
+		      .attr("x", function(d) { return x1(d.column); })
+		      .style("fill", function(d) { return color(d.column) })
+		      .attr("y", function(d) { return y(0); })
+		      .attr("height", function(d) { return height - y(0); })
+		      .on("mouseover", function(d) {
+		          d3.select(this).style("fill", d3.rgb(color(d.column)).darker(2));
+		      })
+		      .on("mouseout", function(d) {
+		          d3.select(this).style("fill", color(d.column));
+		      });
+
+		  slice.selectAll("rect")
+		      .transition()
+		      .delay(function (d) {return Math.random()*1000;})
+		      .duration(1000)
+		      .attr("y", function(d) { return y(d.value); })
+		      .attr("height", function(d) { return height - y(d.value); });
+
+		  //Legend
+		  var legend = svg.selectAll(".legend")
+		      .data(data[0].values.map(function(d) { return d.column; }).reverse())
+		  .enter().append("g")
+		      .attr("class", "legend")
+		      .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+		      .style("opacity","0");
+
+		  legend.append("rect")
+		      .attr("x", width - 18)
+		      .attr("width", 18)
+		      .attr("height", 18)
+		      .style("fill", function(d) { return color(d); });
+
+		  legend.append("text")
+		      .attr("x", width - 24)
+		      .attr("y", 9)
+		      .attr("dy", ".35em")
+		      .style("text-anchor", "end")
+		      .text(function(d) {return d; });
+
+		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+
+		}});
+	
+}
 </script>
 
 </body>
