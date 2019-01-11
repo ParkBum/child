@@ -152,10 +152,6 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 	
-
-	public List<Daycare> search(String gu, String type, String bus) {
-		return mapDao.daycareList(gu,type,bus);
-	}
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
@@ -173,6 +169,22 @@ public class ChildService {
 		comment.setRef(com.getRef()); 
 		comment.setRefstep(refstep+1); //1번댓의 몇번째 대댓인지
 		commentDao.commentWrite(comment);
+
+	} 
+	
+	public List<Daycare> search(String gu, String type, String bus) {
+		if(gu == null || gu.equals("")) {
+			gu = null;
+		}
+		if(type == null || type.equals("")) {
+			type = null;
+		}
+		if(bus == null || bus.equals("")) {
+			bus = null;
+		}
+		return mapDao.daycareList(gu,type,bus);
+	}
+
 	}
 
 
@@ -195,7 +207,7 @@ public class ChildService {
 		}
 		boardDao.boardUpdate(board);
 	}*/
-}
+
 
 
 

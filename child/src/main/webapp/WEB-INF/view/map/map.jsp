@@ -54,7 +54,6 @@
 #SearchAndMap {
 	width: 800px;
 	height: 800px;
-	border: solid 1px black;
 	/* text-align: center; */
 }
 
@@ -194,31 +193,54 @@ option {
 				data : data,
 				dataType : "json", // ajax 통신으로 받는 타입
 				success : function(data) {
+					if (data.daycarelist.length == 0){
+						alert("조건에 일치하는 어린이집이 없습니다.")
+					}
 					for (var i = 0; i < data.daycarelist.length; i++) {
 						var Map = map;
-						
+						var code = data.daycarelist[i].code;
+
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
+						
+						var imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/128/1497620001-jd22_85165.png'; // 마커이미지의 주소입니다    
+					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
+					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
 						var marker = new daum.maps.Marker({
     						map:Map,
-    						position:coords
+    						position:coords,
+    						image : markerImage 
     					});
     					marker.setMap(map);
-    					var content = '<div class="labelWish" style="opacity:0.7; width:400px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름:"+data.daycarelist[i].name+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>',
+    					var content = '<div class="labelWish" style="opacity:0.5; width:400px;"><span class="leftWish"></span><span class="centerWish">'
+							+"어린이집 이름: "+data.daycarelist[i].name+'<br>전화번호: '+data.daycarelist[i].tel+'<br>주소: '+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>',
 							iwRemoveable = true;
-			var infowindow = new daum.maps.InfoWindow({
+						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
-							    content : content/* ,
- 							    removable : iwRemoveable */
-							});
-			daum.maps.event.addListener(marker, 'click', function() {
-			      // 마커 위에 인포윈도우를 표시합니다
-			      infowindow.open(map, marker);  
-			});
-			 infowindow.open(map, marker);  
-        	map.setCenter(coords);	
+							    content : content
+							}); 
+        				map.setCenter(coords);	
+        				
+        			    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        			    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        			    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					}
+					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
 					}
 				}
 			});
