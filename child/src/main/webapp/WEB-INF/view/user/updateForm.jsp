@@ -10,24 +10,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-/* 
-
-$(function(){
-	$("#password1").keyup(function(){
-		var pwd1 = $("#password1").val();
-		var msg = "";
-		if(pwd1==0){
-			msg="비밀번호를 입력하세요.";
-			$('#check').css('color','red');
-		}else if(pwd1<5){
-			msg="비밀번호는 5자 이상으로 설정해야합니다."
-			$('#check').css('color','red');
-		}
-		$('#check').html(msg);
-	})
-})
- */
- 
 function execPostCode() {/* 주소 검색 부분 */
     new daum.Postcode({
         oncomplete: function(data) {
@@ -73,7 +55,7 @@ function execPostCode() {/* 주소 검색 부분 */
 </script>
 </head>
 <body>
-<h2>사용자 수정</h2>
+<h2 align="center">사용자 수정</h2>
 	<form:form modelAttribute="user" method="post" action="update.child?mnum=${sessionScope.loginUser.mnum}">
 		<%--입력정보 문제 에러메세지 여기서 찍음. --%>
 		<spring:hasBindErrors name="user">
@@ -84,7 +66,7 @@ function execPostCode() {/* 주소 검색 부분 */
 			</font>
 		</spring:hasBindErrors>
 		
-		<table>
+		<table align="center">
 			<tr height="40px">
 				<td>이메일</td>
 				<td><form:input path="email" value="${sessionScope.loginUser.email}" readonly="true" /> <font color="red">

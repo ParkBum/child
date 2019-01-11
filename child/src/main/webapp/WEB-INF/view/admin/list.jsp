@@ -69,6 +69,28 @@
 					</td>
 				</tr>
 			</table>
+
+<a href="javascript:void(0)"
+onclick="document.getElementById('id01').style.display='block'">회원정보 수정하기</a>
+
+<!-- 모달 내용 -->
+<div id="id01" class="w3-modal" style="z-index:4"> 
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-padding" style="background-color:#FFF1F5;">
+      <h2>비밀번호 확인</h2>
+    </div>
+    <div class="w3-panel">
+      <label>비밀번호 입력</label>
+      <input class="w3-input w3-border w3-margin-bottom" type="text">
+      <div class="w3-section">
+        <a class="w3-button" style="background-color:#FFF1F5;" onclick="document.getElementById('id01').style.display='none'">닫기<i class="fa fa-remove"></i></a>
+        <a href="../user/updateForm.child" class="w3-button w3-light-grey w3-right" 
+        	onclick="document.getElementById('id01').style.display='none'">정보수정하러 가기<i class="fa fa-paper-plane"></i></a> 
+      </div>    
+    </div>
+  </div>
+</div>
+			<!-- 회원정보 -->	
 			<div class="btns">
 			 <a href="../user/updateForm.child">회원정보수정</a>&nbsp;
 			 <c:if test="${sessionScope.loginUser.mnum != 1}">
