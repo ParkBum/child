@@ -45,6 +45,11 @@ public class MapDao {
 		map.put("gu", gu);
 		return sqlSession.selectList(NS+"listBygu",map);
 	}
+
+
+	public List<Daycare> dcclist() {
+		return sqlSession.selectList(NS+"listBygu");
+	}
 	
 	
 }

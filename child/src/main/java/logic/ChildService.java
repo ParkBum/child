@@ -199,6 +199,10 @@ public class ChildService {
 		return mapDao.listBygu(gu);
 	}
 
+	public List<Daycare> dcclist() {
+		return mapDao.dcclist();
+	}
+
 	}
 
 	 

@@ -6,7 +6,10 @@
 		select gu from seoul2 group by gu
 	</select>
 	<select id="listBygu" resultType="Daycare" parameterType="map">
-		select * from seoul2 where gu = '${gu}'
+		select * from seoul2 
+		<if test="gu != null or gu !=''">
+		where gu = '${gu}' order by name asc
+		</if>
 	</select>
 
 	<select id="list" resultType="Daycare" parameterType="map">

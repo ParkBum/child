@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import logic.Board;
 import logic.ChildService;
 import logic.Comment;
+import logic.Daycare;
 import logic.User;
 
 @Controller
@@ -56,7 +57,10 @@ public class BoardController {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
-
+		if(bType == 2) {
+			List<Daycare> dcc_list = service.dcclist();
+			mav.addObject("dcc_list",dcc_list);
+		}
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);
