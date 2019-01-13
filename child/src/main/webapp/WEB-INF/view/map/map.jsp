@@ -428,9 +428,8 @@ function review(code){
 		    	if ( data.fourlists.length > 0){
 		        board  += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr>";
 			for(var i = 0; i < data.fourlists.length; i++){     
-				alert(data.fourlists[i].bnum+","+data.fourlists[i].subject)
 				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor='#FFF1F5'' onmouseout='this.style.backgroundColor='''>";
-                board += "<td height='23' style='text-align:center'><a href='info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td></tr>";
+                board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td></tr>";
                }
 			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
 		     }else{

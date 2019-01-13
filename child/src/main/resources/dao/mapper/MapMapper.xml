@@ -34,7 +34,7 @@
 		select * from seoul2 where code = #{code}
 	</select>
 	
-	<select id="threelists" resultType="Daycare" parameterType="map">
+	<select id="threelists" resultType="board" parameterType="map">
 		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,4
 	</select>
 
