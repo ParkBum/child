@@ -87,7 +87,7 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("map/reviews")
 	public Object reviews(Integer code) {
-		List<Board> fourlists = service.threelists(code);
+		List<Board> fourlists = service.fourlists(code);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("fourlists",fourlists);
 		return map;

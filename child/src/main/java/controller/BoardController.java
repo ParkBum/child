@@ -182,8 +182,8 @@ public class BoardController {
 		List<String> gulist = null;
 		if(board.getbType() == 2) { //후기게시판 
 		  gulist = service.gulist();
+		  mav.addObject("gulist",gulist);
 		}
-		mav.addObject("gulist",gulist);
 		mav.addObject("board", board);
 		return mav;
 	}

@@ -35,8 +35,7 @@ public class MapDao {
 	}
 
 
-	public List<String> gulist() {
-		
+	public List<String> gulist() {	
 		return sqlSession.selectList(NS+"gulist");
 	}
 
@@ -53,7 +52,7 @@ public class MapDao {
 	}
 
 
-	public List<Board> threelists(Integer code) {
+	public List<Board> fourlists(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
 		return sqlSession.selectList(NS+"threelists",map);

@@ -203,9 +203,9 @@ public class ChildService {
 		return mapDao.dcclist();
 	}
 
-	public List<Board> threelists(Integer code) {
+	public List<Board> fourlists(Integer code) {
 		
-		return mapDao.threelists(code);
+		return mapDao.fourlists(code);
 	}
 
 	}
