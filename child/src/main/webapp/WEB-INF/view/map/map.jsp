@@ -14,7 +14,9 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
 <style type="text/css">
 #main {
 	width: 1600px;
@@ -74,18 +76,6 @@ option {
   display: none;
 } 
 
-svg.tooltip {	
-    position: absolute;			
-    text-align: center;			
-    width: 60px;					
-    height: 34px;					
-    padding: 2px;				
-    font: 12px sans-serif;		 
-    background: lightsteelblue;	
-    border: 0px;		
-    border-radius: 8px;			
-    pointer-events: none;			
-}
 </style>
 </head>
 <body>
@@ -163,15 +153,12 @@ svg.tooltip {
 				<svg></svg>
 			</div>
 			<div class="bar" style="height:320px;">
-				<div style="width:750px; height : 270px; border:solid 1px black; margin : 23px auto;"></div> 
+				<div id="reviews" style="width:750px; height : 270px; border:solid 1px black; margin : 23px auto;"></div> 
 			</div>
 			</div>
 		</div>
 		<!-- SearchAndMap -->
 	</div>
-<div id="tooltip" class="hidden">
-	<p> 인원 수 : <b id="value"></b>명</p>
-</div>
 
 	<%-- 지도를 생성을 합니다. --%>
 <script type="text/javascript">
@@ -366,9 +353,6 @@ function graph(a){
 
 		  svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
 		  
-		  var div = d3.select("svg").append("div")	
-		    .attr("class", "tooltip")				
-		    .style("opacity", 0);
 		  
 		  var slice = svg.selectAll(".slice")
 		      .data(data)
@@ -385,7 +369,7 @@ function graph(a){
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
 		      .on("mouseover", function(d) {
-		          d3.select(this).style("fill", d3.rgb(color(d.column)).brighter(1));
+		          d3.select(this).style("fill", d3.rgb(color(d.column)).brighter(1)); 
 		      })
 		      .on("mouseout", function(d) {
 		    	 	
@@ -426,6 +410,32 @@ function graph(a){
 
 		}});
 	
+}
+
+function review(code){
+	var data = {
+		"bType" : 2,
+		"code" : code
+	}
+	$.ajax({
+		url : "reviews.child",
+		type : "post",
+		data : data,
+		dataType : "json", // ajax 통신으로 받는 타입
+		success : function(data) { 
+			alert(data.listcnt+","+data.threelists.length);
+		    $('#reviews').empty();
+		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%;' class='w3-table w3-border w3-bordered'>";
+		    	board += "<c:if test='"+${data.listcnt > 0}+"'>";
+		        board  += "<tr><th width='70%' height='26' style='text-align:center'>제목</th><th width='30%' height='26' style='text-align:center'>글쓴이</th></tr>";
+			for(var i = 0; i < data.threelists.length; i++){       
+				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor='''>";
+                board += "<td height='23' style='text-align:center'><a href='info.child?bnum="+data.threelists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.threelists[i].subject+"</a></td><td style='text-align:center'>"+data.threelists[i].nickname+"</td></tr>";
+            }
+			board += "<tr><td colspan='2' style='text-align:right'><a href='list.child?bType=2'>더보기</a></td></tr></c:if>";
+			board += "<c:if test='${"+${data.listcnt == 0}+"}'><tr><th width='70%' height='26' style='text-align:center'>제목</th><th width='30%' height='26' style='text-align:center'>글쓴이</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr></c:if></table>";
+			$('#reviews').append(board);
+		}});
 }
 </script>
 

@@ -50,6 +50,20 @@ public class MapDao {
 	public List<Daycare> dcclist() {
 		return sqlSession.selectList(NS+"alllist");
 	}
+
+
+	public List<Daycare> threelists(Integer code) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("code", code);
+		return sqlSession.selectList(NS+"threelists",map);
+	}
+
+
+	public int listcnt(Integer bType) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bType", bType);
+		return sqlSession.selectOne(NS+"cnt",map);
+	}
 	
 	
 }

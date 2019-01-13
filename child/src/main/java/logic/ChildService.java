@@ -203,6 +203,15 @@ public class ChildService {
 		return mapDao.dcclist();
 	}
 
+	public List<Daycare> threelists(Integer code) {
+		
+		return mapDao.threelists(code);
+	}
+
+	public int listcnt(Integer code) {
+		return mapDao.listcnt(code);
+	}
+
 	}
 
 	 

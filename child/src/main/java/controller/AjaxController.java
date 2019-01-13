@@ -82,6 +82,17 @@ public class AjaxController {
 		map.put("daycareList",daycareList);
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("map/reviews")
+	public Object reviews(Integer code) {
+		int listcnt = service.listcnt(code);
+		List<Daycare> threelists = service.threelists(code);
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("listcnt",listcnt);
+		map.put("threelists",threelists);
+		return map;
+	}
 }
 	
 	

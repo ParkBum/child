@@ -174,10 +174,10 @@
 								<td height="23" style="text-align:center">${boardcnt}</td>
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
 								<td><a href="info.child?bnum=${board.bnum}" style="text-decoration: none;">
-								<c:forEach items="${dcc_list}" var="dcclist" begin="0" end="2"><%-- 후기 게시판 제목에 게시물 작성 시 선택한 어린이집명 표시--%>
-						<%--<c:if test="${dcclist.code != board.code}">[${dcclist.name}]</c:if> --%>
-								${dcclist.name}
-								</c:forEach>&nbsp;${board.subject}</a></td>
+								<c:forEach items="${dcc_list}" var="dcclist"><%-- 후기 게시판 제목에 게시물 작성 시 선택한 어린이집명 표시--%>
+								<c:if test="${dcclist.code == board.code}">[${dcclist.name}]</c:if>	
+								</c:forEach>
+								&nbsp;${board.subject}</a></td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
 										pattern="YYYY-MM-dd" /></td>
