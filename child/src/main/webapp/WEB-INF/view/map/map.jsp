@@ -40,18 +40,22 @@
 	height: 700px;
 }
 
-#map .buttons {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	padding: 5px;
-}
+select {
+	border : 0;
+	outline: 0;
 
-#map .buttons .control-btn {
-	margin: 0 5px 5px 0;
 }
-
+.buttons {
+	border : 0;
+	outline: 0;
+	background-color:#F58B97; 
+	color:white;
+	
+}
+.buttons:hover{
+	background-color : white;
+	color : #F58B97;
+}
 option {
 	font-size: large;
 }
@@ -132,11 +136,11 @@ option {
 								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="searchs" value="조회">
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
 						</div>
 					</div>
 					<div style="width: 100%; height: 40px;">
-					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="hideMarkers()">지도 초기화</button>
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" onclick="hideMarkers()">지도 초기화</button>&nbsp;&nbsp;&nbsp;<button id="remove" class="buttons">차트 초기화</button>&nbsp;&nbsp;&nbsp;<button id="removeboard" class="buttons">후기게시판 초기화</button>
 					</div>
 				</div>
 			</div>
@@ -153,7 +157,7 @@ option {
 				<svg></svg>
 			</div>
 			<div class="bar" style="height:320px;">
-				<div id="reviews" style="width:750px; height : 270px; border:solid 1px black; margin : 23px auto;"></div> 
+				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
 			</div>
 			</div>
 		</div>
@@ -210,7 +214,7 @@ option {
 						if(data.daycarelist[i].bus == '운영')
 							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
 						else	 
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/469/PNG/128/Christmas_2015-32_44374.png'; // 마커이미지의 주소입니다 	
+							 imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/512/1497619936-jd21_85172.png'; // 마커이미지의 주소입니다 	
 							 
 					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
 					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -375,8 +379,6 @@ function graph(a){
 		    	 	
 		          d3.select(this).style("fill", color(d.column)); 
 		      });
-
-		  
 		  
 		  slice.selectAll("rect")
 		      .transition()
@@ -385,7 +387,7 @@ function graph(a){
 		      .attr("y", function(d) { return y(d.value); })
 		      .attr("height", function(d) { return height - y(d.value); });
 
-		  //Legend
+		  //범례
 		  var legend = svg.selectAll(".legend")
 		      .data(data[0].values.map(function(d) { return d.column; }).reverse())
 		  .enter().append("g")
@@ -406,12 +408,13 @@ function graph(a){
 		      .style("text-anchor", "end")
 		      .text(function(d) {return d; });
 
-		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1"); 
-
+		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+		  //버튼 클릭 시 차트 초기화
+		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove();});
 		}});
 	
 }
-
+//해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
 	var data = {
 		"code" : code
@@ -422,9 +425,13 @@ function review(code){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) {
-			console.log(data)
+			//버튼 클릭시 초기화
+			$('#removeboard').click(function(){
+				$('#reviews').empty();
+			})
+			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성
 		    $('#reviews').empty();
-		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%;' class='w3-table w3-border w3-bordered'>";
+		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
 		    	if ( data.fourlists.length > 0){
 		        board  += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr>";
 			for(var i = 0; i < data.fourlists.length; i++){     
