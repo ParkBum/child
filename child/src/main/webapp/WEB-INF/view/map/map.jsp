@@ -414,7 +414,6 @@ function graph(a){
 
 function review(code){
 	var data = {
-		"bType" : 2,
 		"code" : code
 	}
 	$.ajax({
@@ -422,22 +421,25 @@ function review(code){
 		type : "post",
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
-		success : function(data) { 
-			alert(data.listcnt+","+data.threelists.length);
+		success : function(data) {
+			console.log(data)
 		    $('#reviews').empty();
 		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%;' class='w3-table w3-border w3-bordered'>";
-		    	board += "<c:if test='"+${data.listcnt > 0}+"'>";
-		        board  += "<tr><th width='70%' height='26' style='text-align:center'>제목</th><th width='30%' height='26' style='text-align:center'>글쓴이</th></tr>";
-			for(var i = 0; i < data.threelists.length; i++){       
-				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor='''>";
-                board += "<td height='23' style='text-align:center'><a href='info.child?bnum="+data.threelists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.threelists[i].subject+"</a></td><td style='text-align:center'>"+data.threelists[i].nickname+"</td></tr>";
-            }
-			board += "<tr><td colspan='2' style='text-align:right'><a href='list.child?bType=2'>더보기</a></td></tr></c:if>";
-			board += "<c:if test='${"+${data.listcnt == 0}+"}'><tr><th width='70%' height='26' style='text-align:center'>제목</th><th width='30%' height='26' style='text-align:center'>글쓴이</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr></c:if></table>";
+		    	if ( data.fourlists.length > 0){
+		        board  += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr>";
+			for(var i = 0; i < data.fourlists.length; i++){     
+				alert(data.fourlists[i].bnum+","+data.fourlists[i].subject)
+				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor='#FFF1F5'' onmouseout='this.style.backgroundColor='''>";
+                board += "<td height='23' style='text-align:center'><a href='info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td></tr>";
+               }
+			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
+		     }else{
+			board += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr><tr><td>등록된 게시물이 없습니다.</td></tr>";
+			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
+		     }
 			$('#reviews').append(board);
 		}});
 }
 </script>
-
 </body>
 </html>

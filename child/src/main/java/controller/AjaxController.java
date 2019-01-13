@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.scenario.effect.impl.prism.PrImage;
 
+import logic.Board;
 import logic.ChildService;
 import logic.Daycare;
 
@@ -86,11 +87,9 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("map/reviews")
 	public Object reviews(Integer code) {
-		int listcnt = service.listcnt(code);
-		List<Daycare> threelists = service.threelists(code);
+		List<Board> fourlists = service.threelists(code);
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("listcnt",listcnt);
-		map.put("threelists",threelists);
+		map.put("fourlists",fourlists);
 		return map;
 	}
 }

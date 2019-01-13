@@ -35,11 +35,7 @@
 	</select>
 	
 	<select id="threelists" resultType="Daycare" parameterType="map">
-		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,3
-	</select>
-	
-	<select id="cnt" resultType="Integer" parameterType="map">
-		select count(*) from board where code = #{code} and btype = 2
+		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,4
 	</select>
 
 </mapper>

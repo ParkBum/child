@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import logic.Board;
 import logic.Daycare;
 
 @Repository
@@ -52,18 +53,11 @@ public class MapDao {
 	}
 
 
-	public List<Daycare> threelists(Integer code) {
+	public List<Board> threelists(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
 		return sqlSession.selectList(NS+"threelists",map);
 	}
 
-
-	public int listcnt(Integer bType) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("bType", bType);
-		return sqlSession.selectOne(NS+"cnt",map);
-	}
-	
 	
 }
