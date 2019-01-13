@@ -26,7 +26,10 @@
 		</if>
 	</trim>
 	</select>
-	
+	<!-- 후기 게시판 제목 앞쪽에 어린이집 붙이기 -->
+	<select id="alllist" resultType="Daycare">
+		select * from seoul2 
+	</select>
 	<select id="one" resultType="Daycare" parameterType="map">
 		select * from seoul2 where code = #{code}
 	</select>

@@ -48,7 +48,7 @@ public class MapDao {
 
 
 	public List<Daycare> dcclist() {
-		return sqlSession.selectList(NS+"listBygu");
+		return sqlSession.selectList(NS+"alllist");
 	}
 	
 	
