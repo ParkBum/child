@@ -190,6 +190,24 @@ th {
 			}
 		});
 	});
+// ajaxController 단으로 간다.
+function nextselect(){
+	var data = {
+			"gu" : $('select[name=gu]').val()
+	}
+	$.ajax({
+		url : "selectname.child",
+		type : "post",
+		data : data,
+		dataType : "json",
+		success : function(data){
+			for(var i = 0; i < data.daycareList.length; i++){                
+                var option = $("<option>"+data.daycareList[i].name+"</option>");
+                $('#name').append(option);
+            }
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -238,7 +256,18 @@ th {
 										<option value="2">팝니다</option>
 									</c:if>
 								</select>
-							</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;"
+							</c:if>
+							<c:if test="${board.bType == 2 }">
+							<select name="gu" id = "gu" onchange="javascript:nextselect()">
+								<c:forEach items="${gulist}" var = "gulist">
+								<option>${gulist}</option>
+								</c:forEach>
+							</select>
+							<select name="name" id="name">
+								<option></option>
+							</select>
+							</c:if>
+							&nbsp;<form:input path="subject" style="width:77%;border:0;"
 								placeholder="제목을 입력하세요" /> <font color="red"><form:errors
 									path="subject" /></font>
 					</tr>

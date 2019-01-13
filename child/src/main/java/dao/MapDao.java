@@ -32,6 +32,19 @@ public class MapDao {
 		map.put("code", code);
 		return sqlSession.selectOne(NS+"one",map);
 	}
+
+
+	public List<String> gulist() {
+		
+		return sqlSession.selectList(NS+"gulist");
+	}
+
+
+	public List<Daycare> listBygu(String gu) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("gu", gu);
+		return sqlSession.selectList(NS+"listBygu",map);
+	}
 	
 	
 }

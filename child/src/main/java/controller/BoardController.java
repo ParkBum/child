@@ -173,8 +173,13 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board, Comment comment) {
+	public ModelAndView boardAll(Integer bType,Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
+		List<String> gulist = null;
+		if(bType == 2) {
+		  gulist = service.gulist();
+		}
+		mav.addObject("gulist",gulist);
 		mav.addObject("board", board);
 		return mav;
 	}

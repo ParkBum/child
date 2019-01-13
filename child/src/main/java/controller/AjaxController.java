@@ -74,7 +74,14 @@ public class AjaxController {
 		map.put("daycare",daycare);
 		return map;
 	}
-	
+	@ResponseBody
+	@RequestMapping("board/selectname")
+	public Object selectname(String gu) {
+		List<Daycare> daycareList = service.listBygu(gu); 
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("daycareList",daycareList);
+		return map;
+	}
 }
 	
 	
