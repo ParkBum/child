@@ -274,8 +274,8 @@ function nextselect(){
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">
 								<option value="">±∏º±≈√</option>
-								<c:forEach items="${gulist}" var="gulist">
-								<option value="${gulist.name}">${gulist.name}</option>
+								<c:forEach items="${gulist}" var = "guname">
+								<option value="${guname}">${guname}</option>
 								</c:forEach>
 							</select>
 							<select name="code" id="code" style="width:120px;">
