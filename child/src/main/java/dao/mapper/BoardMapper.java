@@ -22,7 +22,7 @@ public interface BoardMapper {
 	@Delete("delete from board where bnum = #{bnum}")
 	void delete(Integer bnum);
 
-	@Update("Update board set code=#{code}, head=#{head}, subject=#{subject}, content=#{content}, score=#{score}"
+	@Update("Update board set code=#{code}, head=#{head}, subject=#{subject}, content=#{content}, score=#{score},"
 				+ " file1=#{file1}, file2=#{file2}, file3=#{file3}, dcname=#{dcname} where bnum=#{bnum}")
 	void update(Board board);
 

@@ -128,36 +128,16 @@ th {
 		var score = $('#score').val();
 		
 		switch (score) {
-		case 0.5 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 1.0 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 1.5 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 2.0 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 2.5 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 3.0 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 3.5 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 4.0 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 4.5 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
-		case 5.0 : 
-			$('#left1').parent().children('span').removeClass('on');
-			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case "0.5" : $('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case "1.0" : $('#right1').addClass('on').prevAll('span').addClass('on'); break;
+		case "1.5" : $('#left2').addClass('on').prevAll('span').addClass('on'); break;
+		case "2.0" : $('#right2').addClass('on').prevAll('span').addClass('on'); break;
+		case "2.5" : $('#left3').addClass('on').prevAll('span').addClass('on'); break;
+		case "3.0" : $('#right3').addClass('on').prevAll('span').addClass('on'); break;
+		case "3.5" : $('#left4').addClass('on').prevAll('span').addClass('on'); break;
+		case "4.0" : $('#right4').addClass('on').prevAll('span').addClass('on'); break;
+		case "4.5" : $('#left5').addClass('on').prevAll('span').addClass('on'); break;
+		case "5.0" : $('#right5').addClass('on').prevAll('span').addClass('on'); break;
 		}
 
 		if (file2.length == 0 || file2 == "") {
@@ -238,9 +218,17 @@ th {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
 			var head = $('select[name=head]').val();
+			var gu = $('#gu').val();
+			var code = $('#code').val();
+			
 			if (check) {
 				if (btype == 2) {
-					return check_submit;
+					if(gu.length == 0 || code.length == 0) {
+						alert("어린이집을 선택하세요");
+						return false;
+					} else {
+						return true;
+					}
 				} else {
 					if (head.length == 0) {
 						alert("말머리를 선택하세요");
@@ -250,6 +238,7 @@ th {
 					}
 				}
 			}
+			return false;
 		});
 		
 	});
@@ -361,14 +350,14 @@ th {
 								</select>
 							</c:if>
 							<c:if test="${board.bType == 2 }">
-							<select name="gu" id = "gu" onchange="javascript:nextselect()">
-								<option>구선택</option>
-								<c:forEach items="${gulist}" var = "gulist">
-								<option>${gulist}</option>
+							<select name="gu" id="gu" onchange="javascript:nextselect()">
+								<option value="">구선택</option>
+								<c:forEach items="${gulist}" var = "guname">
+								<option value="${guname}">${guname}</option>
 								</c:forEach>
 							</select>
 							<select name="code" id="code" style="width:120px;">
-								<option>어린이집선택</option>
+								<option value="">어린이집선택</option>
 							</select>
 							</c:if>
 							&nbsp;<form:input path="subject" style="width:77%;border:0;"

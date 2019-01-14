@@ -90,6 +90,8 @@ public class ChildService {
 			uploadFileCreate(board.getMulti3(), request, "file"); // file3의 내용을 파일로 저장
 			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
 		}
+		Daycare dc = mapDao.selectOne(board.getCode());
+		board.setDcname(dc.getName());
 		boardDao.update(board);
 	}
 
@@ -174,8 +176,8 @@ public class ChildService {
 		commentDao.update(comment);
 	}
 
-	public void changePass(User user) {
-		userDao.changePass(user);
+	public void changePass(String newpass1, Integer mnum) {
+		userDao.changePass(newpass1,mnum);
 	}
 
 	public void reWrite(Comment comment) {
