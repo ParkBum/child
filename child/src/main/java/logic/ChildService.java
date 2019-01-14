@@ -189,6 +189,24 @@ public class ChildService {
 		return mapDao.selectOne(code);
 	}
 
+	public List<String> gulist() {
+		
+		return mapDao.gulist();
+	}
+
+	public List<Daycare> listBygu(String gu) {
+		return mapDao.listBygu(gu);
+	}
+
+	public List<Daycare> dcclist() {
+		return mapDao.dcclist();
+	}
+
+	public List<Board> fourlists(Integer code) {
+		
+		return mapDao.fourlists(code);
+	}
+
 	}
 
 

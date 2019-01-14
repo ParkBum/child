@@ -1,5 +1,4 @@
 ﻿CREATE TABLE IF NOT EXISTS `seoul2` (
-  `sido` varchar(50) DEFAULT NULL,
   `gu` varchar(50) DEFAULT NULL,
   `code` int(11) NOT NULL,
   `score` int(11) DEFAULT NULL,
