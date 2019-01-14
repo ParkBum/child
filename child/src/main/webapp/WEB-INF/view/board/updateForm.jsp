@@ -84,6 +84,7 @@ td {
 
 th {
 	background-color: #eeeeee;
+	width: 200px;
 }
 
 .starR1 {
