@@ -38,4 +38,33 @@ public class AdminController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("admin/passConfirm")
+	public ModelAndView confirm(User user, String password, Integer mnum) {
+		ModelAndView mav = new ModelAndView();
+		User dbuser = service.userInfo(mnum); //기존정보
+		if(user.getPassword().equals(dbuser.getPassword())) {
+			mav.addObject("user",user);
+			mav.setViewName("../user/updateForm.child?mnum="+mnum); 
+		} else {
+			mav.setViewName("redirect:../admin/list.child?mnum="+mnum);
+		}
+		return mav;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
