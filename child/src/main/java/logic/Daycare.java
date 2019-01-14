@@ -1,7 +1,7 @@
 package logic;
 
 public class Daycare {
-	private String sido; //빼버릴 예정
+
 	private String gu;
 	private String name;
 	private int    score;
@@ -22,12 +22,6 @@ public class Daycare {
 	private String lon;
 	private String bus;
 	private String homepage;
-	public String getSido() {
-		return sido;
-	}
-	public void setSido(String sido) {
-		this.sido = sido;
-	}
 	public String getGu() {
 		return gu;
 	}
@@ -150,7 +144,7 @@ public class Daycare {
 	}
 	@Override
 	public String toString() {
-		return "Daycare [sido=" + sido + ", gu=" + gu + ", name=" + name + ", score=" + score + ", code=" + code
+		return "Daycare [gu=" + gu + ", name=" + name + ", score=" + score + ", code=" + code
 				+ ", type=" + type + ", nows=" + nows + ", postno=" + postno + ", addr=" + addr + ", tel=" + tel
 				+ ", fax=" + fax + ", classcnt=" + classcnt + ", square=" + square + ", playcnt=" + playcnt
 				+ ", teachercnt=" + teachercnt + ", maxchild=" + maxchild + ", nowchild=" + nowchild + ", lat=" + lat
