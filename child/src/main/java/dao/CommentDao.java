@@ -58,6 +58,10 @@ public class CommentDao {
 		return sqlSession.getMapper(CommentMapper.class).chgRefstep(com);
 	}
 
+	public void userCommentDelete(Integer mnum) {
+		sqlSession.getMapper(CommentMapper.class).deleteComment(mnum);
+	}
+
 	
 
 }

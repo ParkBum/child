@@ -163,15 +163,24 @@ public class ChildService {
 	public void addRed(Integer mnum) {
 		userDao.addRed(mnum);
 	}
-
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
 	}
 
+// 머리쓰기 싫어서 여러개 만들었어요 죗옹해요. 이름 구리면 변경할게요 알려주세요ㅠㅠ
+	//게시글 삭제 위해서 댓글 삭제
 	public void commentDeleteList(Integer bnum) {
 		commentDao.deleteList(bnum);
 	}
+	//회원탈퇴하려고 다 삭제
+	public void userCommentDelete(Integer mnum) {
+		commentDao.userCommentDelete(mnum);
+	}
 
+	public void userBoardDelete(Integer mnum) {
+		boardDao.userBoardDelete(mnum);
+	}
+//	
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
@@ -223,6 +232,7 @@ public class ChildService {
 
 		return mapDao.fourlists(code);
 	}
+
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
