@@ -72,12 +72,19 @@ public class AjaxController {
 	@RequestMapping("map/graph")
 	public Object graph(Integer code) {
 		Daycare daycare = service.selectOne(code);
-		daycare.setChild_per_teacher(Math.round(daycare.getNowchild()/daycare.getTeachercnt()));
-		Daycare_total daytotal = service.getTotal();
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("daycare",daycare);
-		map.put("daytotal", daytotal);
-		return map;
+		
+			int teachcnt = 0;
+			if(daycare.getTeachercnt() == 0) {
+				teachcnt = 1;
+			}else {
+				teachcnt = daycare.getTeachercnt();
+			}
+			daycare.setChild_per_teacher(Math.round(daycare.getNowchild()/teachcnt));
+			Daycare_total daytotal = service.getTotal();
+			Map<Object, Object> map = new HashMap<Object, Object>();
+			map.put("daycare",daycare);
+			map.put("daytotal", daytotal);
+			return map;
 	}
 	@ResponseBody
 	@RequestMapping("board/selectname")

@@ -80,9 +80,6 @@ option {
 .x.axis path {
   display: none;
 } 
-
-<%-- 차트2 --%>
-
   .tooltip {
       position: absolute;
       display: none;
@@ -96,6 +93,18 @@ option {
       padding: 5px;
       text-align: center;
   } 
+<%--별점 평균--%>
+.column {
+  float: left;
+  width: 375;
+  height : 50;
+  border:solid 1px black;
+}
+.row:after {
+	display: table;
+	clear: both;
+}
+
 </style>
 </head>
 <body>
@@ -171,7 +180,11 @@ option {
 			<div class="half" style="display: block;">
 			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
 			<div class="tooltip"></div>
-				<svg></svg> <!--  append 형식 높이 그대로 폭 1/3 -->
+				<svg class="svg1"></svg>
+			<!-- <div style="display: table;">
+				<svg class="svg2"></svg>
+				<svg class="svg3"></svg>
+			</div> -->
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -259,6 +272,7 @@ option {
         			    (function(marker, infowindow) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
+        			        	AnotherMarkers();
         			            infowindow.open(map, marker);
         			        });
 
@@ -267,7 +281,7 @@ option {
 					}
 					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 					function makeOverListener( map, marker, infowindow) { 
-					    return function() {
+						return function() {
 					        infowindow.open(map, marker);
 					    };
 					}
@@ -290,6 +304,12 @@ function hideMarkers() {
 	      infos[i].close();
    	}    
 	 
+}
+//클릭한 인포 외에 다른 마커를 지우기
+function AnotherMarkers(){
+	 for (var i = 0; i < markers.length; i++) {
+	      infos[i].close();
+  	}    
 }
 <%-- 그래프 비교  ajax --%>
 var dataset = []; // 초기 서울 통계 평균 dataset에 저장
@@ -361,7 +381,7 @@ function graph(a){
 		var color = d3.scale.ordinal()
 		    .range(["#FFC321","#7FD100" ,"#0B77E8","#FF6336"]);
 
-		var svg = d3.select('#chart').select('svg')
+		var svg = d3.select('#chart').select('.svg1')
 		    .attr("width", width + margin.left + margin.right)
 		    .attr("height", height + margin.top + margin.bottom)
 		  .append("g")
@@ -447,13 +467,13 @@ function graph(a){
 		      .style("opacity","0");
 
 		  legend.append("rect")
-		      .attr("x", width - 18)
+		      .attr("x", width)
 		      .attr("width", 18)
 		      .attr("height", 18)
 		      .style("fill", function(d) { return color(d); });
 
 		  legend.append("text")
-		      .attr("x", width - 24)
+		      .attr("x", width - 6)
 		      .attr("y", 9)
 		      .attr("dy", ".35em")
 		      .style("text-anchor", "end")
@@ -497,6 +517,8 @@ function review(code){
 			$('#reviews').append(board);
 		}});
 }
+
+
 </script>
 </body>
 </html>
