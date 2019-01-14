@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import logic.Board;
 import logic.Daycare;
+import logic.Daycare_total;
 
 @Repository
 public class MapDao {
@@ -28,7 +29,7 @@ public class MapDao {
 	}
 
 
-	public Daycare selectOne(int code) {
+	public Daycare selectOne(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
 		return sqlSession.selectOne(NS+"one",map);
@@ -51,6 +52,11 @@ public class MapDao {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
 		return sqlSession.selectList(NS+"threelists",map);
+	}
+
+
+	public Daycare_total getTotal() {
+		return sqlSession.selectOne(NS+"getTotal");
 	}
 
 	
