@@ -109,7 +109,7 @@ public class BoardController {
 	public ModelAndView delete(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
 		service.boardDelete(bnum);
-		mav.setViewName("redirect:/board/list.child?bType=3");
+		mav.setViewName("redirect:/board/list.child?bType=3"); //이거 btype 수정해야함
 		return mav;
 	}
 
