@@ -2,26 +2,26 @@ package logic;
 
 public class Daycare {
 
-	private String gu;
-	private String name;
-	private int    score;
-	private int	   code;
-	private String type;
-	private String nows;
-	private String postno;
-	private String addr;
-	private String tel;
-	private String fax;
-	private int classcnt;
-	private int square;
-	private int playcnt;
-	private int teachercnt;
-	private int maxchild;
-	private int nowchild;
-	private String lat;
-	private String lon;
-	private String bus;
-	private String homepage;
+	private String gu;		//구 		ex)강남구
+	private String name;	//어린이집 이름
+	private int    score;	//평점
+	private int	   code;	//고유 번호
+	private String type;	//유형 (국공립, 가정... 등등)
+	private String nows;	//운영 현황
+	private String postno;	//우편번호
+	private String addr;	//주소 
+	private String tel;		//전화번호
+	private String fax;		//팩스번호
+	private int classcnt;	//학생수
+	private int square;		//면적
+	private int playcnt;	//놀이터수
+	private int teachercnt;	//교사 수
+	private int maxchild;	//정원
+	private int nowchild;	//현재 어린이 인원, 현원
+	private String lat;		//위도
+	private String lon;		//경도
+	private String bus;		//버스 운행 여부
+	private String homepage;// 홈페이지 주소
 	public String getGu() {
 		return gu;
 	}
