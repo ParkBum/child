@@ -179,9 +179,17 @@ th {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
 			var head = $('select[name=head]').val();
+			var gu = $('#gu').val();
+			var code = $('#code').val();
+			
 			if (check) {
 				if (btype == 2) {
-					return check_submit;
+					if(gu.length == 0 || code.length == 0) {
+						alert("어린이집을 선택하세요");
+						return false;
+					} else {
+						return true;
+					}
 				} else {
 					if (head.length == 0) {
 						alert("말머리를 선택하세요");
@@ -191,6 +199,7 @@ th {
 					}
 				}
 			}
+			return false;
 		});
 	});
 	
@@ -244,7 +253,7 @@ function nextselect(){
 				<input type="hidden" name="bType" value="${board.bType}">
 				<input type="hidden" name="mnum"
 					value="${sessionScope.loginUser.mnum}">
-				<input type="hidden" name="score" id="score" value="0">
+				<input type="hidden" name="score" id="score" value="3">
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">제목</th>
@@ -264,13 +273,13 @@ function nextselect(){
 							</c:if>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">
-								<option>구선택</option>
-								<c:forEach items="${gulist}" var = "gulist">
-								<option>${gulist}</option>
+								<option value="">구선택</option>
+								<c:forEach items="${gulist}" var = "guname">
+								<option value="${guname}">${guname}</option>
 								</c:forEach>
 							</select>
 							<select name="code" id="code" style="width:120px;">
-								<option>어린이집선택</option>
+								<option value="">어린이집선택</option>
 							</select>
 							</c:if>
 							&nbsp;<form:input path="subject" style="width:500px;border:0;"

@@ -114,15 +114,21 @@ public class BoardController {
 	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
+		List<String> gulist = null;
+		if(board.getbType() == 2) { 
+		  gulist = service.gulist();
+		  mav.addObject("gulist",gulist);
+		}
 		mav.addObject("board", board);
 		return mav;
 	}
 
 	@RequestMapping(value = "board/update", method = RequestMethod.POST)
 	public ModelAndView update(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("board/updateForm");
 		service.boardUpdate(board, request);
 		mav.addObject("board", board);
+		mav.setViewName("redirect:/board/info.child");
 		return mav;
 	}
 
@@ -183,7 +189,7 @@ public class BoardController {
 	public ModelAndView boardAll(/*Integer bType,*/Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		List<String> gulist = null;
-		if(board.getbType() == 2) { //후기게시판 
+		if(board.getbType() == 2) { 
 		  gulist = service.gulist();
 		  mav.addObject("gulist",gulist);
 		}
