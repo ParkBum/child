@@ -190,7 +190,7 @@
 								<td><a href="info.child?bnum=${board.bnum}"
 									style="text-decoration: none;">
 									&nbsp;[${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}]
-									&nbsp;${board.subject}</a></td>
+									&nbsp;${board.subject}</a>&nbsp;[${commentCnt}]</td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
 										pattern="YYYY-MM-dd" /></td>

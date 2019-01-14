@@ -62,6 +62,10 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).deleteComment(mnum);
 	}
 
+	public int commentCnt(int bnum) {
+		return sqlSession.getMapper(CommentMapper.class).commentCount(bnum);
+	}
+
 	
 
 }

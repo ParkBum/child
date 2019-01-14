@@ -39,5 +39,8 @@ public interface CommentMapper {
 	@Delete("delete from comment where mnum=#{mnum}")
 	void deleteComment(Integer mnum);
 
+	@Select("select count(*) from comment where bnum=#{bnum}")
+	int commentCount(int bnum);
+
 
 }
