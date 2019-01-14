@@ -24,6 +24,7 @@ public class Board {
 	private MultipartFile multi3; // 첨부파일 원본3
 	private int red; // 신고 수
 	private double score;
+	private int code;
 
 	public int getBnum() {
 		return bnum;
@@ -161,4 +162,12 @@ public class Board {
 		this.score = score;
 	}
 
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
 }
