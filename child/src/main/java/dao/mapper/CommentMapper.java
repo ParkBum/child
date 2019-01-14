@@ -36,5 +36,8 @@ public interface CommentMapper {
 	@Update("update comment set refstep = refstep+1 where ref=#{ref} and refstep > 0")
 	int chgRefstep(Comment com);
 
+	@Delete("delete from comment where mnum=#{mnum}")
+	void deleteComment(Integer mnum);
+
 
 }

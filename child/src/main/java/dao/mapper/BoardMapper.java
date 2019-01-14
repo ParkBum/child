@@ -30,6 +30,9 @@ public interface BoardMapper {
 	@Update("update board set readcnt = readcnt + 1 where bnum = #{bnum}")
 	void readcntAdd(Integer bnum);
 
+	@Delete("delete from board where mnum=#{mnum}")
+	void userBoardDelete(Integer mnum);
+
 }
 
 
