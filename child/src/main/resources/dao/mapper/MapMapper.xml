@@ -3,10 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.mapper.MapMapper">
 	<select id="gulist" resultType="String">
-		select gu from seoul2 group by gu
+		select gu from seoul2 where code > 0 group by gu
 	</select>
+	
 	<select id="listBygu" resultType="Daycare" parameterType="map">
-		select * from seoul2 
+		select * from seoul2
 		<if test="gu != null or gu !=''">
 		where gu = '${gu}' order by name asc
 		</if>
@@ -26,10 +27,7 @@
 		</if>
 	</trim>
 	</select>
-	<!-- 후기 게시판 제목 앞쪽에 어린이집 붙이기 -->
-	<select id="alllist" resultType="Daycare">
-		select * from seoul2 
-	</select>
+	
 	<select id="one" resultType="Daycare" parameterType="map">
 		select * from seoul2 where code = #{code}
 	</select>
