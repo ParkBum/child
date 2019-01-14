@@ -154,7 +154,7 @@ option {
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
 			<div class="bar" style="height:470px; background-color: #FFF1F5;	" id="chart">
-				<svg></svg>
+				<svg></svg> <!--  append 형식 높이 그대로 폭 1/3 -->
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -210,7 +210,7 @@ option {
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
 							
-					 	var imageSrc = '';
+					 	/* var imageSrc = '';
 						if(data.daycarelist[i].bus == '운영')
 							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
 						else	 
@@ -218,17 +218,15 @@ option {
 							  
 					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
 					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
+					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption); */
 						var marker = new daum.maps.Marker({
     						map:Map,
-    						position:coords,
-    						image : markerImage 
+    						position:coords
     					});
     					marker.setMap(map);
     					markers.push(marker);
 
-
-    					var content = '<div class="labelWish" style="opacity:0.5; width:500px;"><span class="leftWish"></span><span class="centerWish">'
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
 							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
@@ -276,7 +274,7 @@ function hideMarkers() {
 	 
 }
 <%-- 그래프 비교  ajax --%>
-var dataset = [];
+var dataset = []; // 초기 서울 통계 평균 dataset에 저장
 function graph(a){
 	var code = a;
 	var data = {
