@@ -152,6 +152,10 @@ public class ChildService {
 		commentDao.delete(cnum);
 	}
 	
+	public void commentDeleteList(Integer bnum) {
+		commentDao.deleteList(bnum);
+	}
+	
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
@@ -207,6 +211,11 @@ public class ChildService {
 		return mapDao.fourlists(code);
 	}
 
+
+/*	public Comment commentSelect(Integer bnum) {
+		return commentDao.commentSelect(bnum);
+	}
+*/
 	}
 
 
