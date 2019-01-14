@@ -410,7 +410,7 @@ function graph(a){
 
 		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
 		  //버튼 클릭 시 차트 초기화
-		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove();});
+		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove(); data=[];});
 		}});
 	
 }
