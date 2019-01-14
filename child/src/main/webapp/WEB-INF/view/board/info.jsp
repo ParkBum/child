@@ -241,7 +241,7 @@ function commentDelete(bnum, cnum){
 		</tr>
 		<tr style="height: 30px;">
 			<td style="text-align: center;">Á¦¸ñ</td>
-			<td>&nbsp;[<c:if test="${board.btype != 2}">${board.head}</c:if><c:if test="${board.btype == 2}">${board.dcname}</c:if>]
+			<td>&nbsp;[<c:if test="${board.bType != 2}">${board.head}</c:if><c:if test="${board.bType == 2}">${board.dcname}</c:if>]
 			${board.subject}</td>
 		</tr>
 		<c:if test="${board.bType == 2}">
