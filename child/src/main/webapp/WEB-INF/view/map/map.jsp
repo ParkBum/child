@@ -410,7 +410,7 @@ function graph(a){
 		      .style("fill", function(d) { return color(d.column) })
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
-		      .on("mouseover", function(d) {
+		      .on("mouseover", function(d) { 
 		    	    divTooltip.style("left", d3.event.pageX + 10 + "px")
 	                divTooltip.style("top", d3.event.pageY - 25 + "px")
 	                divTooltip.style("display", "inline-block")
