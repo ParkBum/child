@@ -210,12 +210,12 @@ option {
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
 							
-						var imageSrc = '';
+					 	var imageSrc = '';
 						if(data.daycarelist[i].bus == '운영')
 							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
 						else	 
 							 imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/512/1497619936-jd21_85172.png'; // 마커이미지의 주소입니다 	
-							 
+							  
 					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
 					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -229,7 +229,7 @@ option {
 
 
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button><button id="review" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
