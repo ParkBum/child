@@ -243,8 +243,8 @@ option {
     					marker.setMap(map);
     					markers.push(marker);
 
-    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px; border:0; outline: 0;"><span class="leftWish"></span><span class="centerWish">'
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">비교하기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
@@ -297,7 +297,7 @@ dataset.push({"name":"서울시 평균",
 		{"value":${daytotal.teacher_avg} ,"column":"교사 수"},
 		{"value":${daytotal.maxchild_avg},"column":"정원"},
 		{"value":${daytotal.nowchild_avg},"column":"현원"},
-		{"value":${daytotal.child_per_teacher},"column":"교사 1명당 영아 수"}
+		{"value":${daytotal.child_per_teacher},"column":"교사 1명당 담당 수"}
 	  ]
 });
 //첫번재 차트
@@ -320,7 +320,7 @@ function graph(a){
 								{"value":data.daycare.teachercnt,"column":"교사 수"},
 								{"value":data.daycare.maxchild,"column":"정원"},
 								{"value":data.daycare.nowchild,"column":"현원"},
-								{"value":data.daycare.child_per_teacher,"column":"교사 1명당 영아 수"}
+								{"value":data.daycare.child_per_teacher,"column":"교사 1명당 담당 수"}
 							  ]
 						});	
 		}else{
@@ -331,7 +331,7 @@ function graph(a){
 							{"value":data.daycare.teachercnt,"column":"교사 수"},
 							{"value":data.daycare.maxchild,"column":"정원"},
 							{"value":data.daycare.nowchild,"column":"현원"},
-							{"value":data.daycare.child_per_teacher,"column":"교사 1명당 영아 수"}
+							{"value":data.daycare.child_per_teacher,"column":"교사 1명당 담당 수"}
 						  ]
 					});	
 		}
@@ -410,8 +410,7 @@ function graph(a){
 		      .style("fill", function(d) { return color(d.column) })
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
-
-		      .on("mouseover", function(d) { 
+		      .on("mouseover", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
 		    	    divTooltip.style("left", d3.event.pageX + 10 + "px")
 	                divTooltip.style("top", d3.event.pageY - 25 + "px")
 	                divTooltip.style("display", "inline-block")
@@ -486,15 +485,15 @@ function review(code){
 		    $('#reviews').empty();
 		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
 		    	if ( data.fourlists.length > 0){
-		        board  += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr>";
+		        board  += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr>";
 			for(var i = 0; i < data.fourlists.length; i++){     
 				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor=white'>";
-                board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td></tr>";
+                board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td><td height='23' style='text-align:center'>"+data.fourlists[i].score+"</td></tr>";
                }
-			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
+			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
 		     }else{
-			board += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr><tr><td>등록된 게시물이 없습니다.</td></tr>";
-			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
+			board += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr>";
+			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
 		     }
 			$('#reviews').append(board);
 		}});

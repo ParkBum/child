@@ -37,7 +37,7 @@
 	<select id="threelists" resultType="board" parameterType="map">
 		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,4
 	</select>
-	
+	<!-- 서울 평군  -->	
 	<select id="getTotal" resultType="Daycare_total">
 		select * from seoul2_avg
 	</select>
