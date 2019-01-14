@@ -353,12 +353,11 @@ th {
 							<select name="gu" id="gu" onchange="javascript:nextselect()">
 								<option value="">구선택</option>
 								<c:forEach items="${gulist}" var="gulist">
-								 <c:if test="${gulist.code == board.code}"><option value="${gulist.name}" selected="selected">${gulist.name}</option></c:if>
-								 <c:if test="${gulist.code != board.code}"><option value="${gulist.name}">${gulist.name}</option></c:if>
+								<option value="${gulist.gu}">${gulist.gu}</option>
 								</c:forEach>
 							</select>
 							<select name="code" id="code" style="width:120px;">
-								<option value="">어린이집선택</option>
+								<option value="${board.code}">${board.dcname}</option>
 							</select>
 							</c:if>
 							&nbsp;<form:input path="subject" style="width:77%;border:0;"
