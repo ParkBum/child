@@ -48,13 +48,13 @@ select {
 .buttons {
 	border : 0;
 	outline: 0;
-	background-color:#F58B97; 
+	background-color:#F6A5BC; 
 	color:white;
 	
 }
 .buttons:hover{
-	background-color : white;
-	color : #F58B97;
+	background-color : #CE5B7C;
+	color : white;
 }
 option {
 	font-size: large;
@@ -87,7 +87,7 @@ option {
 		<div id="SearchAndMap">
 			<div class="half">
 			<div id="search">
-				<div style="text-align: center; width: 100%; height: 80px; background: #FFF3F6;">
+				<div style="text-align: center; width: 100%; height: 80px; background: #F6A5BC; color:white;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
@@ -153,7 +153,7 @@ option {
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px; background-color: rgba(255, 243, 246, 0.5);	" id="chart">
+			<div class="bar" style="height:470px; background-color: #FFF1F5;	" id="chart">
 				<svg></svg>
 			</div>
 			<div class="bar" style="height:320px;">
