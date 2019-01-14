@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -229,7 +230,8 @@ th {
 			</ul>
 		</div>
 		<div class="board">
-			<div style="margin-bottom: 30px; text-align: left;">
+			<img src="${path}/decorator/visual_05.gif" title="게시판">
+			<div style="margin-top: 30px; margin-bottom: 30px; text-align: left;">
 				<c:choose>
 					<c:when test="${board.bType == 1}">
 						<h3>자유 게시판</h3>
@@ -246,9 +248,9 @@ th {
 				enctype="multipart/form-data" name="f" method="post">
 				<input type="hidden" name="bType" value="${board.bType}">
 				<input type="hidden" name="bnum" value="${board.bnum}">
-				<input type="hidden" name="mnum"
-					value="${sessionScope.loginUser.mnum}">
+				<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 				<input type="hidden" name="score" id="score" value="0">
+				<input type="hidden" name=""
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">제목</th>
@@ -305,7 +307,6 @@ th {
 								placeholder="내용을 입력하세요" /> <font color="red"><form:errors
 									path="content" /></font>
 					</tr>
-
 					<c:if test="${!empty board.file1}">
 						<tr style="height: 30px;">
 							<th style="text-align: right;"><a href="#"> <i
@@ -328,7 +329,6 @@ th {
 								href="javascript:file_delete2()">[첨부파일삭제]</a></td>
 						</tr>
 					</c:if>
-
 					<c:if test=" ${!empty board.file3} ">
 						<tr id="tr2" style="height: 30px;">
 							<th style="text-align: right;">첨부파일3&nbsp;</th>

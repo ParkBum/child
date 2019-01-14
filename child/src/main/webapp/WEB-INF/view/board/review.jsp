@@ -130,7 +130,7 @@
 			</ul>
 		</div>
 		<div class="board">
-			<img src="${path}/decorator/2visual.png" title="게시판">
+			<img src="${path}/decorator/visual_02.gif" title="게시판">
 			<div style="margin-top: 30px; margin-bottom: 30px; text-align: left;">
 				<h3>후기 게시판</h3>
 			</div>
