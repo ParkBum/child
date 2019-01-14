@@ -156,7 +156,7 @@ option {
 						</div>
 					</div>
 					<div style="width: 100%; height: 40px;">
-					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" onclick="hideMarkers()">지도 초기화</button><!-- &nbsp;&nbsp;&nbsp;<button id="remove" class="buttons">차트 초기화</button>&nbsp;&nbsp;&nbsp;<button id="removeboard" class="buttons">후기게시판 초기화</button> -->
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button class="buttons" onclick="hideMarkers()">지도 초기화</button> --><!-- &nbsp;&nbsp;&nbsp;<button id="remove" class="buttons">차트 초기화</button>&nbsp;&nbsp;&nbsp;<button id="removeboard" class="buttons">후기게시판 초기화</button> -->
 					</div>
 				</div>
 			</div>
@@ -169,7 +169,7 @@ option {
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px; background-color: #FFF1F5;	" id="chart">
+			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
 			<div class="tooltip"></div>
 				<svg></svg> <!--  append 형식 높이 그대로 폭 1/3 -->
 			</div>
@@ -221,6 +221,7 @@ option {
 					if (data.daycarelist.length == 0){
 						alert("조건에 일치하는 어린이집이 없습니다.")
 					}
+					hideMarkers();
 					for (var i = 0; i < data.daycarelist.length; i++) {
 						var Map = map;
 						var coords = new daum.maps.LatLng(
@@ -297,7 +298,7 @@ dataset.push({"name":"서울시 평균",
 		{"value":${daytotal.teacher_avg} ,"column":"교사 수"},
 		{"value":${daytotal.maxchild_avg},"column":"정원"},
 		{"value":${daytotal.nowchild_avg},"column":"현원"},
-		{"value":${daytotal.child_per_teacher},"column":"교사 1명당 담당 수"}
+		{"value":${daytotal.child_per_teacher},"column":"교사 당 원아 수"}
 	  ]
 });
 //첫번재 차트
@@ -320,7 +321,7 @@ function graph(a){
 								{"value":data.daycare.teachercnt,"column":"교사 수"},
 								{"value":data.daycare.maxchild,"column":"정원"},
 								{"value":data.daycare.nowchild,"column":"현원"},
-								{"value":data.daycare.child_per_teacher,"column":"교사 1명당 담당 수"}
+								{"value":data.daycare.child_per_teacher,"column":"교사 당 원아 수"}
 							  ]
 						});	
 		}else{
@@ -331,7 +332,7 @@ function graph(a){
 							{"value":data.daycare.teachercnt,"column":"교사 수"},
 							{"value":data.daycare.maxchild,"column":"정원"},
 							{"value":data.daycare.nowchild,"column":"현원"},
-							{"value":data.daycare.child_per_teacher,"column":"교사 1명당 담당 수"}
+							{"value":data.daycare.child_per_teacher,"column":"교사 당 원아 수"}
 						  ]
 					});	
 		}
@@ -464,8 +465,6 @@ function graph(a){
 		}});
 	
 }
-
-	  
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
 	var data = {
