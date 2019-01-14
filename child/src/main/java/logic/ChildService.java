@@ -218,7 +218,7 @@ public class ChildService {
 		return mapDao.selectOne(code);
 	}
 
-	public List<String> gulist() {
+	public List<Daycare> gulist() {
 
 		return mapDao.gulist();
 	}
