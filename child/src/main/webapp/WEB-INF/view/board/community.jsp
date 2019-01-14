@@ -191,7 +191,7 @@
 									<c:if test="${!empty sessionScope.loginUser}">
 									<a href="info.child?bnum=${board.bnum}" style="text-decoration: none;">
 									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></c:if>
-									<c:if test="${!empty sessionScope.loginUser}">
+									<c:if test="${empty sessionScope.loginUser}">
 									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</c:if></td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
