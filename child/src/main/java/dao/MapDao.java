@@ -36,7 +36,7 @@ public class MapDao {
 	}
 
 
-	public List<String> gulist() {	
+	public List<Daycare> gulist() {	
 		return sqlSession.selectList(NS+"gulist");
 	}
 

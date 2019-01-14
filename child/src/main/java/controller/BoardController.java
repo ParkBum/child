@@ -57,6 +57,11 @@ public class BoardController {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
+		
+		Board board = new Board();
+		int commentCnt = service.commentCount(board.getBnum());
+		
+		mav.addObject("commentCnt",commentCnt);
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);
@@ -77,6 +82,7 @@ public class BoardController {
 		Comment comment = new Comment();
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
 		int limit = 10;
+		
 		service.readcntAdd(bnum);
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
@@ -114,7 +120,7 @@ public class BoardController {
 	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
-		List<String> gulist = null;
+		List<Daycare> gulist = null;
 		if(board.getbType() == 2) { 
 		  gulist = service.gulist();
 		  mav.addObject("gulist",gulist);
@@ -188,7 +194,7 @@ public class BoardController {
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(/*Integer bType,*/Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
-		List<String> gulist = null;
+		List<Daycare> gulist = null;
 		if(board.getbType() == 2) { 
 		  gulist = service.gulist();
 		  mav.addObject("gulist",gulist);

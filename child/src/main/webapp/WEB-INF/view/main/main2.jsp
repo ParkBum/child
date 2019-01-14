@@ -46,18 +46,18 @@
 	});
 </script>
 <style type="text/css">
-#wrap {
-	margin-left: 300px;
-}
 
 .maineslider {
 	width: 1200px;
 	height: 500px;
 	border: solid 2px silver;
+	margin-left: 320px;
+	margin-bottom: 70px;
 }
 
 .menus {
 	margin: 40px;
+	margin-left: 320px;
 	width: 1200px;
 	height: 350px;
 }
@@ -128,7 +128,7 @@
 </head>
 <body>
 		<div id="wrap">
-			<div class="maineslider" style="margin-bottom: 70px;">
+			<div class="maineslider">
 <!-- 				<a href="../map/map.child"><img
 					src="../decorator/seoulsearch.png" alt="어린이집 검색"
 					style="width: 750px; height: 445px;"></a>

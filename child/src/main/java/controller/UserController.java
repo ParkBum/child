@@ -208,9 +208,10 @@ public class UserController {
 	public ModelAndView userdelete(String password, HttpSession session, Integer mnum) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
-		System.out.println(dbUser.getPassword());
 		if (password.equals(dbUser.getPassword())) {
 			try {
+				service.userCommentDelete(mnum);
+				service.userBoardDelete(mnum);
 				service.userDelete(mnum);
 				session.invalidate();
 				mav.setViewName("redirect:../main/main2.child");
