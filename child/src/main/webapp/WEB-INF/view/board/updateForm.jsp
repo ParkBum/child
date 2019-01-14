@@ -250,7 +250,7 @@ th {
 				<input type="hidden" name="bnum" value="${board.bnum}">
 				<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 				<input type="hidden" name="score" id="score" value="0">
-				<input type="hidden" name=""
+				<input type="hidden" name="">
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">Á¦¸ñ</th>
