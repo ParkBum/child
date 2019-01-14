@@ -8,9 +8,10 @@
 <title>회원 탈퇴 확인</title>
 <script type="text/javascript">
 	function userdelete(mnum){
+		var password = document.f.password.value;
 		var del = confirm("탈퇴하시겠습니까?");
 		if(del){
-			location.href = "userdelete.child?mnum="+mnum;
+			location.href = "userdelete.child?mnum=" + mnum+"&password="+password;
 		}
 		return false;
 	}
@@ -45,12 +46,12 @@ td.title {
 </head>
 <body>
 <h4>탈퇴하시려면 비밀번호를 입력하세요.</h4>
-<form action="userdelete.child?mnum=${user.mnum}" method="post" name="delete">
+<form name="f">
 	<input type="hidden" name="email" value="${param.email}">
 	비밀번호<input type="password" name="password" size="12"><br>
 	<br>
 	<a href="javascript:userdelete(${user.mnum})">[회원탈퇴]</a>
-	<br><a href="../main/main.child">[메인화면으로 돌아가기]</a>
+	<br><a href="../main/main2.child">[메인화면으로 돌아가기]</a>
 </form>
 </body>
 </html>

@@ -57,10 +57,6 @@ public class BoardController {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
-		if(bType == 2) {//어린이집 명을 제목에 출력하기 위해 사용
-			List<Daycare> dcc_list = service.dcclist();
-			mav.addObject("dcc_list",dcc_list);
-		}
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);
@@ -119,8 +115,14 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		mav.addObject("board", board);
-		// board.setFile1(file1);
-		// service.boardUpdate(board,request);
+		return mav;
+	}
+
+	@RequestMapping(value = "board/update", method = RequestMethod.POST)
+	public ModelAndView update(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		service.boardUpdate(board, request);
+		mav.addObject("board", board);
 		return mav;
 	}
 

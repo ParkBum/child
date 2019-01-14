@@ -9,7 +9,7 @@ public class Board {
 	private int mnum; // 작성자 회원번호
 	private int code; // seoul2 어린이집코드
 	private String dcname; // seoul2 어린이집명
-	private String nickname; // 닉네임
+	private String nickname; // 닉네임(db엔 없고 여기만 추가)
 	private int bType; // 게시판 종류
 	private int head; // 말머리
 	@NotEmpty(message = "제목을 선택하세요")
@@ -24,7 +24,6 @@ public class Board {
 	private MultipartFile multi1; // 첨부파일 원본1
 	private MultipartFile multi2; // 첨부파일 원본2
 	private MultipartFile multi3; // 첨부파일 원본3
-	private int red; // 신고 수
 	private double score;
 
 	public int getBnum() {
@@ -161,14 +160,6 @@ public class Board {
 
 	public void setMulti3(MultipartFile multi3) {
 		this.multi3 = multi3;
-	}
-
-	public int getRed() {
-		return red;
-	}
-
-	public void setRed(int red) {
-		this.red = red;
 	}
 
 	public double getScore() {

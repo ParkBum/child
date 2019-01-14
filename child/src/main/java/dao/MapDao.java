@@ -48,11 +48,6 @@ public class MapDao {
 	}
 
 
-	public List<Daycare> dcclist() {
-		return sqlSession.selectList(NS+"alllist");
-	}
-
-
 	public List<Board> fourlists(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);

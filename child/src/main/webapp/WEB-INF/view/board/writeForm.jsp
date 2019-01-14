@@ -84,6 +84,7 @@ td {
 
 th {
 	background-color: #eeeeee;
+	width: 200px;
 }
 
 .starR1 {
@@ -122,8 +123,8 @@ th {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#tr1').hide();
 		$('#tr2').hide();
+		$('#tr3').hide();
 		$('.starRev span').click(function() {
 			var starRevId = $(this).attr('id');
 			$(this).parent().children('span').removeClass('on');
@@ -164,15 +165,16 @@ th {
 		});
 
 		$('#box1').click(function() {
-			$('#tr1').show();
+			$('#tr2').show();
 		});
 		$('#box2').click(function() {
-			$('#tr2').show();
+			$('#tr3').show();
 		});
 
 		$('#list').click(function() {
 			location.href = "list.child?bType=" + $('input[name=bType]').val();
 		});
+		
 		$('form').submit(function() {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
@@ -260,19 +262,20 @@ function nextselect(){
 									</c:if>
 								</select>
 							</c:if>
-							<%-- 후기 게시판일 경우 구 및 어린이집 선택 --%>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">
+								<option>구선택</option>
 								<c:forEach items="${gulist}" var = "gulist">
 								<option>${gulist}</option>
 								</c:forEach>
 							</select>
-							<select name="code" id="code">
+							<select name="code" id="code" style="width:120px;">
+								<option>어린이집선택</option>
 							</select>
 							</c:if>
-							&nbsp;<form:input path="subject" style="width:77%;border:0;"
+							&nbsp;<form:input path="subject" style="width:500px;border:0;"
 								placeholder="제목을 입력하세요" /> <font color="red"><form:errors
-									path="subject" /></font>
+									path="subject" /></font></td>
 					</tr>
 					<c:if test="${board.bType == 2}">
 						<tr style="height: 30px;">
@@ -298,19 +301,19 @@ function nextselect(){
 								placeholder="내용을 입력하세요" /> <font color="red"><form:errors
 									path="content" /></font>
 					</tr>
-					<tr style="height: 30px;">
+					<tr id="tr1" style="height: 30px;">
 						<th style="text-align: right;"><a href="#"><i
 								class="material-icons"
 								style="vertical-align: middle; float: left;" id="box1">add_box</i></a>첨부파일1&nbsp;</th>
 						<td><input type="file" name="multi1"></td>
 					</tr>
-					<tr id="tr1" style="height: 30px;">
+					<tr id="tr2" style="height: 30px;">
 						<th style="text-align: right;"><a href="#"><i
 								class="material-icons"
 								style="vertical-align: middle; float: left;" id="box2">add_box</i></a>첨부파일2&nbsp;</th>
 						<td><input type="file" name="multi2"></td>
 					</tr>
-					<tr id="tr2" style="height: 30px;">
+					<tr id="tr3" style="height: 30px;">
 						<th style="text-align: right;">첨부파일3&nbsp;</th>
 						<td><input type="file" name="multi3"></td>
 					</tr>

@@ -4,11 +4,12 @@
 <mapper namespace="dao.mapper.MapMapper">
 	<!-- 후기게시판 구 선택  select -->
 	<select id="gulist" resultType="String">
-		select gu from seoul2 group by gu
+		select gu from seoul2 where code > 0 group by gu
 	</select>
 	<!-- 후기게시판 구 선택시 해당 어린이집 select -->
+
 	<select id="listBygu" resultType="Daycare" parameterType="map">
-		select * from seoul2 
+		select * from seoul2
 		<if test="gu != null or gu !=''">
 		where gu = '${gu}' order by name asc
 		</if>
@@ -28,10 +29,7 @@
 		</if>
 	</trim>
 	</select>
-	<!-- 후기 게시판 제목 앞쪽에 어린이집 붙이기 -->
-	<select id="alllist" resultType="Daycare">
-		select * from seoul2 
-	</select>
+	
 	<select id="one" resultType="Daycare" parameterType="map">
 		select * from seoul2 where code = #{code}
 	</select>
