@@ -77,6 +77,7 @@ public class BoardController {
 		Comment comment = new Comment();
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
 		int limit = 10;
+		
 		service.readcntAdd(bnum);
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
