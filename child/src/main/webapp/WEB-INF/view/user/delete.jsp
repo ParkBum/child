@@ -10,7 +10,7 @@
 	function userdelete(mnum){
 		var del = confirm("탈퇴하시겠습니까?");
 		if(del){
-			location.href = "userdelete.child?mnum="+mnum;
+			location.href = "userdelete.child?mnum=" + mnum;
 		}
 		return false;
 	}
@@ -50,7 +50,7 @@ td.title {
 	비밀번호<input type="password" name="password" size="12"><br>
 	<br>
 	<a href="javascript:userdelete(${user.mnum})">[회원탈퇴]</a>
-	<br><a href="../main/main.child">[메인화면으로 돌아가기]</a>
+	<br><a href="../main/main2.child">[메인화면으로 돌아가기]</a>
 </form>
 </body>
 </html>

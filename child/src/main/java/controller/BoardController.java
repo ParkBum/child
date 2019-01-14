@@ -119,8 +119,14 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		mav.addObject("board", board);
-		// board.setFile1(file1);
-		// service.boardUpdate(board,request);
+		return mav;
+	}
+
+	@RequestMapping(value = "board/update", method = RequestMethod.POST)
+	public ModelAndView update(@Valid Board board, BindingResult bindingResult, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		service.boardUpdate(board, request);
+		mav.addObject("board", board);
 		return mav;
 	}
 

@@ -196,7 +196,6 @@ public class UserController {
 		return mav;
 	}
 
-
 	@RequestMapping("user/userdelete")
 	public ModelAndView userdelete(User user, HttpSession session, Integer mnum) {
 		ModelAndView mav = new ModelAndView();

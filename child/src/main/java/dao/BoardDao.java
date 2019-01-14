@@ -53,19 +53,19 @@ public class BoardDao {
 		return sqlSession.getMapper(BoardMapper.class).maxBnum();
 	}
 
-	public void boardDelete(Integer bnum) {
+	public void delete(Integer bnum) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("bnum", bnum);
-		sqlSession.getMapper(BoardMapper.class).boardDelete(bnum);
+		sqlSession.getMapper(BoardMapper.class).delete(bnum);
 	}
 
 	public void readcntAdd(Integer bnum) {
 		sqlSession.getMapper(BoardMapper.class).readcntAdd(bnum);
 	}
 
-/*	public void boardUpdate(Board board) {
-		sqlSession.getMapper(BoardMapper.class).boardUpdate(board);
-	}*/
+	public void update(Board board) {
+		sqlSession.getMapper(BoardMapper.class).update(board);
+	}
 }
 
 

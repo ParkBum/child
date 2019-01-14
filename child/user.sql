@@ -4,6 +4,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS board;
+DROP TABLE IF EXISTS seoul2;
 DROP TABLE IF EXISTS user;
 
 
@@ -13,24 +14,22 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE board
 (
-   `bnum` INT(11) NOT NULL,
-   `mnum` INT(11) NOT NULL,
-   `btype` INT(11) NOT NULL,
-   `head` INT(11) NULL DEFAULT NULL,
-   `subject` VARCHAR(100) NULL DEFAULT NULL,
-   `content` VARCHAR(500) NULL DEFAULT NULL,
-   `regdate` DATETIME NULL DEFAULT NULL,
-   `readcnt` INT(11) NULL DEFAULT NULL,
-   `file1` VARCHAR(200) NULL DEFAULT NULL,
-   `file2` VARCHAR(200) NULL DEFAULT NULL,
-   `file3` VARCHAR(200) NULL DEFAULT NULL,
-   `red` INT(11) NULL DEFAULT NULL,
-   `score` DOUBLE NULL DEFAULT NULL,
-   PRIMARY KEY (`bnum`),
-   INDEX `mnum` (`mnum`),
-   CONSTRAINT `board_ibfk_1` FOREIGN KEY (`mnum`) REFERENCES `user` (`mnum`)
-)
-
+	bnum int(11) NOT NULL,
+	mnum int(11) NOT NULL,
+	code int(11) NOT NULL,
+	btype int(11) NOT NULL,
+	head int(11) NOT NULL,
+	subject varchar(100),
+	content varchar(500),
+	regdate datetime,
+	readcnt int(11),
+	file1 varchar(200),
+	file2 varchar(200),
+	file3 varchar(200),
+	score double,
+	dcname varchar(100),
+	PRIMARY KEY (bnum)
+);
 
 
 CREATE TABLE comment
@@ -38,23 +37,52 @@ CREATE TABLE comment
 	cnum int(11) NOT NULL,
 	bnum int(11) NOT NULL,
 	mnum int(11) NOT NULL,
-	comment varchar(200) COMMENT '
+	recomment varchar(200) COMMENT '
 ',
 	comdate datetime,
+	ref int(11),
+	refstep int(11),
 	PRIMARY KEY (cnum)
+);
+
+
+CREATE TABLE seoul2
+(
+	code int(11) NOT NULL,
+	gu varchar(50),
+	score int(11),
+	name varchar(100),
+	type varchar(50),
+	nows varchar(50),
+	postno varchar(50),
+	addr varchar(500),
+	tel varchar(100),
+	fax varchar(100),
+	classcnt int(11),
+	square int(11),
+	playcnt int(11),
+	teachercnt int(11),
+	maxchild int(11),
+	nowchild int(11),
+	bus varchar(50),
+	lat varchar(50),
+	lon varchar(50),
+	homepage varchar(300),
+	PRIMARY KEY (code)
 );
 
 
 CREATE TABLE user
 (
 	mnum int(11) NOT NULL,
-	id varchar(50) NOT NULL,
+	id varchar(50),
 	email varchar(100) NOT NULL,
 	nickname varchar(50) NOT NULL,
-	password varchar(100) NOT NULL,
-	addr1 varchar(10),
-	addr2 varchar(100),
-	addr3 varchar(50),
+	password varchar(100),
+	addr1 varchar(10) NOT NULL,
+	addr2 varchar(100) NOT NULL,
+	addr3 varchar(50) NOT NULL,
+	red int(11),
 	PRIMARY KEY (mnum)
 );
 
@@ -65,6 +93,14 @@ CREATE TABLE user
 ALTER TABLE comment
 	ADD FOREIGN KEY (bnum)
 	REFERENCES board (bnum)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE board
+	ADD FOREIGN KEY (code)
+	REFERENCES seoul2 (code)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
