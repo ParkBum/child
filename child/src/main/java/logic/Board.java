@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class Board {
 	private int bnum; // 게시글번호
 	private int mnum; // 작성자 회원번호
+	private int code; // seoul2 어린이집코드
+	private String dcname; // seoul2 어린이집명
 	private String nickname; // 닉네임
 	private int bType; // 게시판 종류
 	private int head; // 말머리
@@ -24,7 +26,6 @@ public class Board {
 	private MultipartFile multi3; // 첨부파일 원본3
 	private int red; // 신고 수
 	private double score;
-	private int code;
 
 	public int getBnum() {
 		return bnum;
@@ -40,6 +41,22 @@ public class Board {
 
 	public void setMnum(int mnum) {
 		this.mnum = mnum;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public String getDcname() {
+		return dcname;
+	}
+
+	public void setDcname(String dcname) {
+		this.dcname = dcname;
 	}
 
 	public String getNickname() {
@@ -161,13 +178,4 @@ public class Board {
 	public void setScore(double score) {
 		this.score = score;
 	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
-	}
-	
 }
