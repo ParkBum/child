@@ -182,7 +182,6 @@ public class UserController {
 				session.invalidate();
 				mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
 				mav.addObject("url","../user/loginForm.child");
-//				mav.setViewName("redirect:../user/loginForm.child");
 				mav.setViewName("alert");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
@@ -217,13 +216,13 @@ public class UserController {
 		return mav;
 	}
 	
-
+ 
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
 	public ModelAndView confirm(String password, Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		if(password.equals(dbUser.getPassword())) {
-			mav.setViewName("user/updateForm.child?mnum="+ mnum); 
+			mav.setViewName("redirect:../user/updateForm.child?mnum="+ mnum); 
 		} else {
 			mav.setViewName("redirect:../admin/list.child?mnum="+ mnum);
 		}

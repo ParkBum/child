@@ -107,7 +107,6 @@
  -->
 			<!-- 모달 내용 -->
 			<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post">
-			<input type="hidden" name="password" value="${user.password}"> 
 			<div id="id01" class="w3-modal" style="z-index: 4">
 				<div class="w3-modal-content w3-animate-zoom">
 					<div class="w3-container w3-padding"
@@ -116,7 +115,7 @@
 					</div>
 					<div class="w3-panel">
 						<label>비밀번호 입력 : </label> 
-						<input type="password" id="password">
+						<input type="password" id="password" name="password">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id01').style.display='none'">
