@@ -46,6 +46,10 @@
 	});
 </script>
 <style type="text/css">
+#wrap {
+	margin-left: 300px;
+}
+
 .maineslider {
 	width: 1200px;
 	height: 500px;
@@ -123,7 +127,6 @@
 </style>
 </head>
 <body>
-	<div align="center">
 		<div id="wrap">
 			<div class="maineslider" style="margin-bottom: 70px;">
 <!-- 				<a href="../map/map.child"><img
@@ -176,6 +179,5 @@
 			</div>
 		</div>
 		<input type="hidden" value="${result}">
-	</div>
 </body>
 </html>
