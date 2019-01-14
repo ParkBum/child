@@ -156,6 +156,7 @@
 				</form>
 			</div>
 			<div class="filter">
+				<font size="2">Total ${listcount}건 ${pageNum}페이지</font>
 			</div>
 			<div>
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
