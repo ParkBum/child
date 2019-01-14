@@ -70,7 +70,16 @@
 				</tr>
 			</table>
 
-			<a href="javascript:void(0)" align="right"
+			
+			<!-- 회원정보 -->
+			<div class="btns">
+				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
+				<c:if test="${sessionScope.loginUser.mnum != 1}">
+					<a href="../user/delete.child?mnum=${user.mnum}">회원탈퇴</a>
+				</c:if>
+			</div>
+		</form>
+		<a href="javascript:void(0)" align="right"
 				onclick="document.getElementById('id01').style.display='block'">회원정보
 				수정하기</a>
 
@@ -96,9 +105,8 @@
 
 <a href="../admin/passConfirm.child?mnum=${user.mnum}"> 
  -->
-
 			<!-- 모달 내용 -->
-			<form:form modelAttribute="user" action="../admin/passConfirm.child?mnum=${user.mnum}" method="Post">
+			<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post">
 			<div id="id01" class="w3-modal" style="z-index: 4">
 				<div class="w3-modal-content w3-animate-zoom">
 					<div class="w3-container w3-padding"
@@ -106,11 +114,13 @@
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						<label>비밀번호 입력 : </label> <input type="password" id="password">
+						<label>비밀번호 입력 : </label> 
+						<input type="password" id="password" name="password">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id01').style.display='none'">
 								닫기<i class="fa fa-remove"></i></a> 
+								
 								<input type="submit" onclick="document.getElementById('id01').style.display='none'" 
 									class="w3-button w3-light-grey w3-right" value="확인" >
 									 <i class="fa fa-paper-plane"></i>
@@ -118,17 +128,7 @@
 					</div>
 				</div>
 			</div>
-			</form:form>
-
-			<!-- 회원정보 -->
-			<div class="btns">
-				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-				<c:if test="${sessionScope.loginUser.mnum != 1}">
-					<a href="../user/delete.child?mnum=${user.mnum}">회원탈퇴</a>
-				</c:if>
-			</div>
-		</form>
-		
+			</form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">

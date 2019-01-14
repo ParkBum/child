@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.ChildService;
@@ -39,18 +40,6 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping("admin/passConfirm")
-	public ModelAndView confirm(User user, String password, Integer mnum) {
-		ModelAndView mav = new ModelAndView();
-		User dbuser = service.userInfo(mnum); //기존정보
-		if(user.getPassword().equals(dbuser.getPassword())) {
-			mav.addObject("user",user);
-			mav.setViewName("../user/updateForm.child?mnum="+mnum); 
-		} else {
-			mav.setViewName("redirect:../admin/list.child?mnum="+mnum);
-		}
-		return mav;
-	}
 }
 
 

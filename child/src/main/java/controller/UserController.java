@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -181,7 +182,6 @@ public class UserController {
 				session.invalidate();
 				mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
 				mav.addObject("url","../user/loginForm.child");
-//				mav.setViewName("redirect:../user/loginForm.child");
 				mav.setViewName("alert");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
@@ -196,11 +196,12 @@ public class UserController {
 		return mav;
 	}
 
-	@RequestMapping("user/userdelete")
-	public ModelAndView userdelete(User user, HttpSession session, Integer mnum) {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "user/userdelete")
+	public ModelAndView userdelete(String password, HttpSession session, Integer mnum) {
+		ModelAndView mav = new ModelAndView("user/delete");
 		User dbUser = (User) session.getAttribute("loginUser");
-		if (user.getPassword().equals(dbUser.getPassword())) {
+		System.out.println(dbUser.getPassword());
+		if (password.equals(dbUser.getPassword())) {
 			try {
 				service.userDelete(mnum);
 				session.invalidate();
@@ -214,6 +215,35 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+ 
+	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
+	public ModelAndView confirm(String password, Integer mnum, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User dbUser = (User) session.getAttribute("loginUser");
+		if(password.equals(dbUser.getPassword())) {
+			mav.setViewName("redirect:../user/updateForm.child?mnum="+ mnum); 
+		} else {
+			mav.setViewName("redirect:../admin/list.child?mnum="+ mnum);
+		}
+		return mav;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

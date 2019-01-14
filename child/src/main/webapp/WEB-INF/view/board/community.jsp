@@ -124,8 +124,10 @@
 			<ul>
 				<li class="menu1"><font style="line-height:100px;" size="5">게시판</font></li>
 				<li class="active"><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<c:if test="${!empty sessionScope.loginUser}"><li class="menu2"><a href="../board/list.child?bType=2">후기게시판</a></li></c:if>
+				<c:if test="${empty sessionScope.loginUser}"><li class="menu2"><a href="../user/loginForm.child">후기게시판</a></li></c:if>
+				<c:if test="${!empty sessionScope.loginUser}"><li class="menu2"><a href="../board/list.child?bType=3">거래게시판</a></li></c:if>
+				<c:if test="${empty sessionScope.loginUser}"><li class="menu2"><a href="../user/loginForm.child">거래게시판</a></li></c:if>
 			</ul>
 		</div>
 		<div class="board">
@@ -191,7 +193,7 @@
 									<c:if test="${!empty sessionScope.loginUser}">
 									<a href="info.child?bnum=${board.bnum}" style="text-decoration: none;">
 									&nbsp;[${(board.head==1)?"육아꿀팁":"시설추천"}]&nbsp;${board.subject}</a></c:if>
-									<c:if test="${!empty sessionScope.loginUser}">
+									<c:if test="${empty sessionScope.loginUser}">
 									&nbsp;[${(board.head==1)?"육아꿀팁":"시설추천"}]&nbsp;${board.subject}</c:if></td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"

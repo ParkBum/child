@@ -125,6 +125,40 @@ th {
 	$(document).ready(function() {
 		var file2 = $('input[name=file2]').val();
 		var file3 = $('input[name=file3]').val();
+		var score = $('#score').val();
+		
+		switch (score) {
+		case 0.5 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 1.0 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 1.5 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 2.0 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 2.5 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 3.0 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 3.5 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 4.0 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 4.5 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		case 5.0 : 
+			$('#left1').parent().children('span').removeClass('on');
+			$('#left1').addClass('on').prevAll('span').addClass('on'); break;
+		}
 
 		if (file2.length == 0 || file2 == "") {
 			$('#tr2').hide();
@@ -292,7 +326,7 @@ th {
 				<input type="hidden" name="bnum" value="${board.bnum}">
 				<input type="hidden" name="mnum"
 					value="${sessionScope.loginUser.mnum}">
-				<input type="hidden" name="score" id="score" value="0">
+				<input type="hidden" name="score" id="score" value="${board.score}">
 				<input type="hidden" name="file1" value="${board.file1}">
 				<input type="hidden" name="file2" value="${board.file2}">
 				<input type="hidden" name="file3" value="${board.file3}">
@@ -345,12 +379,12 @@ th {
 						<tr style="height: 30px;">
 							<th style="text-align: center;">별점</th>
 							<td><div class="starRev">
-									<span class="starR1 on" id="left1">별1_왼쪽</span> <span
-										class="starR2 on" id="right1">별1_오른쪽</span> <span
-										class="starR1 on" id="left2">별2_왼쪽</span> <span
-										class="starR2 on" id="right2">별2_오른쪽</span> <span
-										class="starR1 on" id="left3">별3_왼쪽</span> <span
-										class="starR2 on" id="right3">별3_오른쪽</span> <span
+									<span class="starR1" id="left1">별1_왼쪽</span> <span
+										class="starR2" id="right1">별1_오른쪽</span> <span
+										class="starR1" id="left2">별2_왼쪽</span> <span
+										class="starR2" id="right2">별2_오른쪽</span> <span
+										class="starR1" id="left3">별3_왼쪽</span> <span
+										class="starR2" id="right3">별3_오른쪽</span> <span
 										class="starR1" id="left4">별4_왼쪽</span> <span class="starR2"
 										id="right4">별4_오른쪽</span> <span class="starR1" id="left5">별5_왼쪽</span>
 									<span class="starR2" id="right5">별5_오른쪽</span>
