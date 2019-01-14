@@ -61,7 +61,7 @@
 .mainimage1 {
 	float: left;
 	padding: 30px 0 0 30px;
-	width: 600px;
+	width: 800px;
 }
 
 .mainimage2 {
@@ -125,52 +125,56 @@
 <body>
 	<div align="center">
 		<div id="wrap">
-			<div class="maineslider" style="margin-bottom:70px;">
-				<div class="bxslider">
-					<div>
-						<a href="http://iseoul.seoul.go.kr/portal/mainCall.do" target="_blank">
-						<img src="${path}/decorator/new-img_visual01.png" alt="보육특별시서울"
-							title="보육특별시서울" style="width: 1200px; height: 500px;"></a>
-					</div>
-					<div>
-						<a href="https://seoul.childcare.go.kr/ccef/main.jsp" target="_blank">
-						<img src="${path}/decorator/new-img_visual03.png" alt="육아도움지원센터"
-							title="육아도움지원센터" style="width: 1200px; height: 500px;"></a>
-					</div>
-					<div>
-						<a href="http://info.childcare.go.kr/info/main.jsp" target="_blank">
-						<img src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
-							alt="통합정보공시" title="통합정보공시" style="width: 1200px; height: 500px;"></a>
+			<div class="maineslider" style="margin-bottom: 70px;">
+<!-- 				<a href="../map/map.child"><img
+					src="../decorator/seoulsearch.png" alt="어린이집 검색"
+					style="width: 750px; height: 445px;"></a>
+ -->
+			</div>
+			<div style="background-color: #FFF1F5; height: 500px; margin: 10px;">
+				<div class="menus">
+					<div class="card1">
+						<div class="mainimage1">
+							<div class="bxslider">
+								<div>
+									<a href="http://iseoul.seoul.go.kr/portal/mainCall.do"
+										target="_blank"> <img
+										src="${path}/decorator/new-img_visual01.png" alt="보육특별시서울"
+										title="보육특별시서울" style="width: 800px; height: 400px;"></a>
+								</div>
+								<div>
+									<a href="https://seoul.childcare.go.kr/ccef/main.jsp"
+										target="_blank"> <img
+										src="${path}/decorator/new-img_visual03.png" alt="육아도움지원센터"
+										title="육아도움지원센터" style="width: 800px; height: 400px;"></a>
+								</div>
+								<div>
+									<a href="http://info.childcare.go.kr/info/main.jsp"
+										target="_blank"> <img
+										src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
+										alt="통합정보공시" title="통합정보공시" style="width: 800px; height: 400px;"></a>
+								</div>
+							</div>
+						</div>
+						<ul class="mainimage2">
+							<li><a class="a1" href="../board/list.child?bType=1"><span
+									class="tit">자유게시판</span></a></li>
+							<li><a class="a2" href="../board/list.child?bType=2"><span
+									class="tit">후기게시판</span></a></li>
+							<li><a class="a3" href="../board/list.child?bType=3"><span
+									class="tit">거래게시판</span></a></li>
+						</ul>
+						<div class="mainimage3">
+							<iframe style="height: 200px;"
+								src="https://www.youtube.com/embed/SY6zhxH4UEo?autohide=1&loop=1&vq=hd720&controls=2&showinfo=0&rel=0&volume=1"
+								frameborder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen></iframe>
+						</div>
 					</div>
 				</div>
 			</div>
-		   <div style="background-color:#FFF1F5; height:500px; margin:10px;">
-			<div class="menus">
-				<div class="card1">
-					<div class="mainimage1">
-						<a href="../map/map.child"><img
-							src="../decorator/seoulsearch.png" alt="어린이집 검색"
-							style="width: 750px; height: 445px;"></a>
-					</div>
-					<ul class="mainimage2">
-						<li><a class="a1" href="../board/list.child?bType=1"><span
-								class="tit">자유게시판</span></a></li>
-						<li><a class="a2" href="../board/list.child?bType=2"><span
-								class="tit">후기게시판</span></a></li>
-						<li><a class="a3" href="../board/list.child?bType=3"><span
-								class="tit">거래게시판</span></a></li>
-					</ul>
-					<div class="mainimage3">
-						<iframe style="height: 200px;"
-							src="https://www.youtube.com/embed/SY6zhxH4UEo?autohide=1&loop=1&vq=hd720&controls=2&showinfo=0&rel=0&volume=1"
-							frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
-					</div>
-				</div>
-			</div>
-		   </div>
-		 </div>
+		</div>
 		<input type="hidden" value="${result}">
 	</div>
 </body>
