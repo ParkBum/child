@@ -190,7 +190,7 @@ th {
 			}
 		});
 	});
-// ajaxController 단으로 간다.
+	
 function nextselect(){
 	var data = {
 			"gu" : $('select[name=gu]').val()
