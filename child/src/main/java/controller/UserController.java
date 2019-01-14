@@ -171,12 +171,12 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-		service.changePass(user);
+//		service.changePass(user);
 		// 비밀번호 검증
-		if (user.getPassword().equals(user2.getPassword())) { // 비밀번호 일치
+		 // 비밀번호 일치
 			try {
 				//변경할 비밀번호를 기존비밀번호에 넣기
-				user.setPassword(user.getPassword1());
+		//		user.setPassword(user.getPassword1());
 				service.userUpdate(user);
 				mav.addObject("user", user);
 				session.invalidate();
@@ -188,17 +188,20 @@ public class UserController {
 				mav.getModel().putAll(bindResult.getModel());
 				mav.setViewName("user/updateForm");
 			}	
-		} else { // 비밀번호 불일치
-			bindResult.reject("error.login.password");
-			mav.getModel().putAll(bindResult.getModel());
-			mav.setViewName("user/updateForm");
-		}
+	
+		return mav;
+	}
+	
+	@RequestMapping(value = "user/chgPass", method = RequestMethod.POST)
+	public ModelAndView chgPass() {
+		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 
 	@RequestMapping(value = "user/userdelete")
 	public ModelAndView userdelete(String password, HttpSession session, Integer mnum) {
-		ModelAndView mav = new ModelAndView("user/delete");
+		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		System.out.println(dbUser.getPassword());
 		if (password.equals(dbUser.getPassword())) {

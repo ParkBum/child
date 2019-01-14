@@ -372,7 +372,7 @@ function graph(a){
 		      .style("fill", function(d) { return color(d.column) })
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
-		      .on("mouseover", function(d) {
+		      .on("mouseover", function(d) { //마우스이벤트시 해당 수치 출력.
 		          d3.select(this).style("fill", d3.rgb(color(d.column)).brighter(1)); 
 		      })
 		      .on("mouseout", function(d) {
@@ -409,8 +409,8 @@ function graph(a){
 		      .text(function(d) {return d; });
 
 		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
-		  //버튼 클릭 시 차트 초기화
-		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove(); data=[];});
+		/*   //버튼 클릭 시 차트 초기화
+		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove(); data=[];}); */
 		}});
 	
 }
@@ -435,7 +435,7 @@ function review(code){
 		    	if ( data.fourlists.length > 0){
 		        board  += "<tr><th width='100%' height='26' style='text-align:center'>제목</th></tr>";
 			for(var i = 0; i < data.fourlists.length; i++){     
-				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor='#FFF1F5'' onmouseout='this.style.backgroundColor='''>";
+				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor=white'>";
                 board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td></tr>";
                }
 			board += "<tr><td style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
