@@ -193,9 +193,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/chgPass", method = RequestMethod.POST)
-	public ModelAndView chgPass() {
+	public ModelAndView chgPass(Integer mnum, String newpass1, String newpass2) {
 		ModelAndView mav = new ModelAndView();
-		
+		if(newpass1.equals(newpass2)) {
+			service.changePass(newpass1,mnum);
+			mav.addObject("msg","비밀번호 변경이 완료되었습니다.");
+			mav.addObject("url","../user/updateForm.child?mnum="+mnum);
+			mav.setViewName("alert");
+		}
 		return mav;
 	}
 
