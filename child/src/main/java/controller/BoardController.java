@@ -114,7 +114,7 @@ public class BoardController {
 	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
-		List<String> gulist = null;
+		List<Daycare> gulist = null;
 		if(board.getbType() == 2) { 
 		  gulist = service.gulist();
 		  mav.addObject("gulist",gulist);
@@ -188,7 +188,7 @@ public class BoardController {
 	@RequestMapping(value = "board/*")
 	public ModelAndView boardAll(/*Integer bType,*/Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
-		List<String> gulist = null;
+		List<Daycare> gulist = null;
 		if(board.getbType() == 2) { 
 		  gulist = service.gulist();
 		  mav.addObject("gulist",gulist);
