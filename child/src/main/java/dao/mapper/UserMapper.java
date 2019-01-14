@@ -21,7 +21,7 @@ public interface UserMapper {
 	@Select("select * from user where mnum = #{mnum}")
 	User infoSelect(Integer mnum);
 
-	@Update("update user set addr1=#{addr1}, addr2=#{addr2}, addr3=#{addr3}, password=#{password} where mnum = #{mnum}")
+	@Update("update user set addr1=#{addr1}, addr2=#{addr2}, addr3=#{addr3} where mnum = #{mnum}")
 	void userUpdate(User user);
 
 	@Delete("Delete from user where mnum = #{mnum}")
@@ -30,7 +30,7 @@ public interface UserMapper {
 	@Insert("update user set red = ifnull(red, 0) + 1 where mnum = #{mnum}")
 	void addRed(Integer mnum);
 
-	@Update("update user set password1=#{password1} where mnum = #{mnum}")
+/*	@Update("update user set password1=#{password1} where mnum = #{mnum}")
 	void changePass(User user);
-
+*/
 }
