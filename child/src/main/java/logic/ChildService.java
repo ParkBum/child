@@ -189,7 +189,7 @@ public class ChildService {
 		return mapDao.daycareList(gu,type,bus);
 	}
 
-	public Daycare selectOne(int code) {
+	public Daycare selectOne(Integer code) {
 		return mapDao.selectOne(code);
 	}
 
@@ -209,6 +209,11 @@ public class ChildService {
 	public List<Board> fourlists(Integer code) {
 		
 		return mapDao.fourlists(code);
+	}
+
+	public Daycare_total getTotal() {
+		
+		return mapDao.getTotal();
 	}
 
 

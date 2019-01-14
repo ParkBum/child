@@ -2,16 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.mapper.MapMapper">
+	<!-- 후기게시판 구 선택  select -->
 	<select id="gulist" resultType="String">
 		select gu from seoul2 group by gu
 	</select>
+	<!-- 후기게시판 구 선택시 해당 어린이집 select -->
 	<select id="listBygu" resultType="Daycare" parameterType="map">
 		select * from seoul2 
 		<if test="gu != null or gu !=''">
 		where gu = '${gu}' order by name asc
 		</if>
 	</select>
-
+	<!-- 지도 검색 조건 설정 부분 -->
 	<select id="list" resultType="Daycare" parameterType="map">
 		select * from seoul2 
 	<trim prefix="where" prefixOverrides="AND">
@@ -33,9 +35,13 @@
 	<select id="one" resultType="Daycare" parameterType="map">
 		select * from seoul2 where code = #{code}
 	</select>
-	
+	<!-- 지도 검색 페이지에 후기 게시물 4개 보여주기 -->
 	<select id="threelists" resultType="board" parameterType="map">
 		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,4
+	</select>
+	
+	<select id="getTotal" resultType="Daycare_total">
+		select * from seoul2_avg
 	</select>
 
 </mapper>

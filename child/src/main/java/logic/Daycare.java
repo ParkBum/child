@@ -22,6 +22,7 @@ public class Daycare {
 	private String lon;		//경도
 	private String bus;		//버스 운행 여부
 	private String homepage;// 홈페이지 주소
+	private double child_per_teacher;//어린이집 교사 1명당 담당 영아 수
 	public String getGu() {
 		return gu;
 	}
@@ -141,6 +142,12 @@ public class Daycare {
 	}
 	public void setHomepage(String homepage) {
 		this.homepage = homepage;
+	}
+	public double getChild_per_teacher() {
+		return child_per_teacher;
+	}
+	public void setChild_per_teacher(double child_per_teacher) {
+		this.child_per_teacher = child_per_teacher;
 	}
 	@Override
 	public String toString() {
