@@ -1,9 +1,7 @@
 package logic;
 
-import java.util.Date;
-
 public class Daycare {
-	private String sido;
+	private String sido; //빼버릴 예정
 	private String gu;
 	private String name;
 	private int    score;
