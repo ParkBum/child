@@ -187,9 +187,12 @@
 								onmouseout="this.style.backgroundColor=''">
 								<td height="23" style="text-align:center">${boardcnt}</td>
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
-								<td><a
-									href="info.child?bnum=${board.bnum}"
-									style="text-decoration: none;">&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></td>
+								<td>
+									<c:if test="${!empty sessionScope.loginUser}">
+									<a href="info.child?bnum=${board.bnum}" style="text-decoration: none;">
+									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></c:if>
+									<c:if test="${!empty sessionScope.loginUser}">
+									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</c:if></td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
 										pattern="YYYY-MM-dd" /></td>
@@ -221,7 +224,9 @@
 					<c:if test="${pageNum < maxpage}">
 					&nbsp;<a href="javascript:list(${pageNum + 1})"><i class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
 					</c:if>
+					<c:if test="${!empty sessionScope.loginUser}">
 					<input type="button" value="±Û¾²±â" id="writebtn" style="float:right;">
+					</c:if>
 				</div>
 			</div>
 		</div>
