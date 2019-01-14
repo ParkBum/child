@@ -118,38 +118,21 @@ th {
 	background-position: -15px 0;
 }
 </style>
-<script type="text/javascript">
-	function file_delete1() {
-		document.f.file1.value = "";
-		file_desc.style.display = "none";
-	}
-	function file_delete2() {
-		document.f.file2.value = "";
-		file_desc.style.display = "none";
-	}
-	function file_delete3() {
-		document.f.file3.value = "";
-		file_desc.style.display = "none";
-	}
-	function file_delete1() {
-		document.f.file1.value = "";
-		file_desc.style.display = "none";
-	}
-	function file_delete2() {
-		document.f.file2.value = "";
-		file_desc.style.display = "none";
-	}
-	function file_delete3() {
-		document.f.file3.value = "";
-		file_desc.style.display = "none";
-	}
-</script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#tr1').hide();
-		$('#tr2').hide();
+		var file2 = $('input[name=file2]').val();
+		var file3 = $('input[name=file3]').val();
+
+		if (file2.length == 0 || file2 == "") {
+			$('#tr2').hide();
+		}
+		
+		if (file3.length == 0 || file2 == "") {
+			$('#tr3').hide();
+		}
+
 		$('.starRev span').click(function() {
 			var starRevId = $(this).attr('id');
 			$(this).parent().children('span').removeClass('on');
@@ -190,15 +173,32 @@ th {
 		});
 
 		$('#box1').click(function() {
-			$('#tr1').show();
-		});
-		$('#box2').click(function() {
 			$('#tr2').show();
+		});
+		
+		$('#box2').click(function() {
+			$('#tr3').show();
 		});
 
 		$('#cancel').click(function() {
 			location.href = "info.child?bnum=" + $('input[name=bnum]').val();
 		});
+		
+		$('#del1').click(function() {
+			$('input[name=file1]').val("");
+			$('#tdf1').html('<input type="file" name="multi1">');
+		});
+		
+		$('#del2').click(function() {
+			$('input[name=file2]').val("");
+			$('#tdf2').html('<input type="file" name="multi2">');
+		});
+		
+		$('#del3').click(function() {
+			$('input[name=file3]').val("");
+			$('#tdf3').html('<input type="file" name="multi3">');
+		});
+		
 		$('form').submit(function() {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
@@ -216,6 +216,7 @@ th {
 				}
 			}
 		});
+		
 	});
 </script>
 </head>
@@ -224,9 +225,30 @@ th {
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height: 100px;" size="5">게시판</font></li>
-				<c:if test="${board.bType == 1}"><li class="active"></c:if><c:if test="${board.bType != 1}"><li class="menu2"></c:if><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<c:if test="${board.bType == 2}"><li class="active"></c:if><c:if test="${board.bType != 2}"><li class="menu2"></c:if><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<c:if test="${board.bType == 3}"><li class="active"></c:if><c:if test="${board.bType != 3}"><li class="menu2"></c:if><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<c:if test="${board.bType == 1}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 1}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=1">자유게시판</a>
+				</li>
+				<c:if test="${board.bType == 2}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 2}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=2">후기게시판</a>
+				</li>
+				<c:if test="${board.bType == 3}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 3}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=3">거래게시판</a>
+				</li>
 			</ul>
 		</div>
 		<div class="board">
@@ -248,10 +270,14 @@ th {
 				enctype="multipart/form-data" name="f" method="post">
 				<input type="hidden" name="bType" value="${board.bType}">
 				<input type="hidden" name="bnum" value="${board.bnum}">
-				<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
+				<input type="hidden" name="mnum"
+					value="${sessionScope.loginUser.mnum}">
 				<input type="hidden" name="score" id="score" value="0">
-				<input type="hidden" name="">
-				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
+				<input type="hidden" name="file1" value="${board.file1}">
+				<input type="hidden" name="file2" value="${board.file2}">
+				<input type="hidden" name="file3" value="${board.file3}">
+				<table border="1" style="border-collapse: collapse; width: 100%;"
+					class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">제목</th>
 						<td style="vertical-align: middle;"><c:if
@@ -260,22 +286,22 @@ th {
 									<option value="">선택하세요</option>
 									<c:if test="${board.bType == 1}">
 										<c:if test="${board.head == 1}">
-										<option value="1" selected="selected">육아꿀팁</option>
-										<option value="2">시설추천</option>
+											<option value="1" selected="selected">육아꿀팁</option>
+											<option value="2">시설추천</option>
 										</c:if>
 										<c:if test="${board.head == 2}">
-										<option value="1">육아꿀팁</option>
-										<option value="2" selected="selected">시설추천</option>
+											<option value="1">육아꿀팁</option>
+											<option value="2" selected="selected">시설추천</option>
 										</c:if>
 									</c:if>
 									<c:if test="${board.bType == 3}">
 										<c:if test="${board.head == 1}">
-										<option value="1" selected="selected">삽니다</option>
-										<option value="2">팝니다</option>
+											<option value="1" selected="selected">삽니다</option>
+											<option value="2">팝니다</option>
 										</c:if>
 										<c:if test="${board.head == 2}">
-										<option value="1">삽니다</option>
-										<option value="2" selected="selected">팝니다</option>
+											<option value="1">삽니다</option>
+											<option value="2" selected="selected">팝니다</option>
 										</c:if>
 									</c:if>
 								</select>
@@ -307,60 +333,34 @@ th {
 								placeholder="내용을 입력하세요" /> <font color="red"><form:errors
 									path="content" /></font>
 					</tr>
-					<c:if test="${!empty board.file1}">
-						<tr style="height: 30px;">
-							<th style="text-align: right;"><a href="#"> <i
-									class="material-icons"
-									style="vertical-align: middle; float: left;" id="box1">add_box</i></a>
-								첨부파일1&nbsp;</th>
-							<td><a href="../file/${board.file1}">${board.file1}</a> <input
-								type="file" name="multi1"> <a
-								href="javascript:file_delete1()">[첨부파일삭제]</a></td>
-						</tr>
-					</c:if>
-					<c:if test="${!empty board.file2}">
-						<tr id="tr1" style="height: 30px;">
-							<th style="text-align: right;"><a href="#"> <i
-									class="material-icons"
-									style="vertical-align: middle; float: left;" id="box2">add_box</i></a>
-								첨부파일2&nbsp;</th>
-							<td><a href="../file/${board.file2}">${board.file2}</a> <input
-								type="file" name="multi2"> <a
-								href="javascript:file_delete2()">[첨부파일삭제]</a></td>
-						</tr>
-					</c:if>
-					<c:if test=" ${!empty board.file3} ">
-						<tr id="tr2" style="height: 30px;">
-							<th style="text-align: right;">첨부파일3&nbsp;</th>
-							<td><a href="../file/${board.file3}">${board.file3}</a> <input
-								type="file" name="multi3"> <a
-								href="javascript:file_delete3()">[첨부파일삭제]</a></td> 첨부파일1&nbsp;
-							</th>
-							<td><a href="../file/${board.file1}">${board.file1}</a> <input
-								type="file" name="multi1"> <a
-								href="javascript:file_delete1()">[첨부파일삭제]</a></td>
-						</tr>
-					</c:if>
-					<c:if test="${!empty board.file2}">
-						<tr id="tr1" style="height: 30px;">
-							<th style="text-align: right;"><a href="#"> <i
-									class="material-icons"
-									style="vertical-align: middle; float: left;" id="box2">add_box</i></a>
-								첨부파일2&nbsp;</th>
-							<td><a href="../file/${board.file2}">${board.file2}</a> <input
-								type="file" name="multi2"> <a
-								href="javascript:file_delete2()">[첨부파일삭제]</a></td>
-						</tr>
-					</c:if>
-
-					<c:if test=" ${!empty board.file3} ">
-						<tr id="tr2" style="height: 30px;">
-							<th style="text-align: right;">첨부파일3&nbsp;</th>
-							<td><a href="../file/${board.file3}">${board.file3}</a> <input
-								type="file" name="multi3"> <a
-								href="javascript:file_delete3()">[첨부파일삭제]</a></td>
-						</tr>
-					</c:if>
+					<tr id="tr1" style="height: 30px;">
+						<th style="text-align: right;">
+							<a href="#"><i class="material-icons" style="vertical-align: middle; float: left;" id="box1">add_box</i></a>
+							첨부파일1&nbsp;</th>
+						<td id="tdf1">
+							<c:if test="${!empty board.file1}"><a href="../file/${board.file1}">${board.file1}</a>&nbsp;
+								<input type="button" id="del1" value="첨부파일삭제"></c:if>
+							<c:if test="${empty board.file1}"><input type="file" name="multi1"></c:if>
+						</td>
+					</tr>
+					<tr id="tr2" style="height: 30px;">
+						<th style="text-align: right;">
+							<a href="#"><i class="material-icons" style="vertical-align: middle; float: left;" id="box2">add_box</i></a>
+							첨부파일2&nbsp;</th>
+						<td id="tdf2">
+							<c:if test="${!empty board.file2}"><a href="../file/${board.file2}">${board.file2}</a>&nbsp;
+								<input type="button" id="del2" value="첨부파일삭제"></c:if>
+							<c:if test="${empty board.file2}"><input type="file" name="multi2"></c:if>
+						</td>
+					</tr>
+					<tr id="tr3" style="height: 30px;">
+						<th style="text-align: right;">첨부파일3&nbsp;</th>
+						<td id="tdf3">
+							<c:if test="${!empty board.file3}"><a href="../file/${board.file3}">${board.file3}</a>&nbsp;
+								<input type="button" id="del3" value="첨부파일삭제"></c:if>
+							<c:if test="${empty board.file3}"><input type="file" name="multi3"></c:if>
+						</td>
+					</tr>
 					<tr style="height: 30px;">
 						<td colspan="2" style="text-align: center;"><input
 							type="submit" value="등록"><input type="button" id="cancel"
