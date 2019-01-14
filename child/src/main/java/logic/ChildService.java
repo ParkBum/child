@@ -238,6 +238,10 @@ public class ChildService {
 		return mapDao.getTotal();
 	}
 
+	public int commentCount(int bnum) {
+		return commentDao.commentCnt(bnum);
+	}
+
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
 	 * commentDao.commentSelect(bnum); }
