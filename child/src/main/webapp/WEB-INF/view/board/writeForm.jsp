@@ -262,19 +262,20 @@ function nextselect(){
 									</c:if>
 								</select>
 							</c:if>
-							<%-- 후기 게시판일 경우 구 및 어린이집 선택 --%>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">
+								<option>구선택</option>
 								<c:forEach items="${gulist}" var = "gulist">
 								<option>${gulist}</option>
 								</c:forEach>
 							</select>
-							<select name="code" id="code">
+							<select name="code" id="code" style="width:120px;">
+								<option>어린이집선택</option>
 							</select>
 							</c:if>
-							&nbsp;<form:input path="subject" style="width:77%;border:0;"
+							&nbsp;<form:input path="subject" style="width:500px;border:0;"
 								placeholder="제목을 입력하세요" /> <font color="red"><form:errors
-									path="subject" /></font>
+									path="subject" /></font></td>
 					</tr>
 					<c:if test="${board.bType == 2}">
 						<tr style="height: 30px;">

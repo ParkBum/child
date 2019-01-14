@@ -219,6 +219,25 @@ th {
 		});
 		
 	});
+	
+	function nextselect() {
+		var data = {
+				"gu" : $('select[name=gu]').val()
+		}
+		$.ajax({
+			url : "selectname.child",
+			type : "post",
+			data : data,
+			dataType : "json",
+			success : function(data){
+				    $('#code').empty();
+				for(var i = 0; i < data.daycareList.length; i++){                
+	                var option = $("<option value='"+data.daycareList[i].code+"'>"+data.daycareList[i].name+"</option>");
+	                $('#code').append(option);
+	            }
+			}
+		})
+	}
 </script>
 </head>
 <body>
@@ -281,8 +300,8 @@ th {
 					class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">제목</th>
-						<td style="vertical-align: middle;"><c:if
-								test="${board.bType != 2 }">
+						<td style="vertical-align: middle;">
+							<c:if test="${board.bType != 2 }">
 								<select name="head" style="width: 20%;">
 									<option value="">선택하세요</option>
 									<c:if test="${board.bType == 1}">
@@ -306,7 +325,19 @@ th {
 										</c:if>
 									</c:if>
 								</select>
-							</c:if>&nbsp;<form:input path="subject" style="width:77%;border:0;"
+							</c:if>
+							<c:if test="${board.bType == 2 }">
+							<select name="gu" id = "gu" onchange="javascript:nextselect()">
+								<option>구선택</option>
+								<c:forEach items="${gulist}" var = "gulist">
+								<option>${gulist}</option>
+								</c:forEach>
+							</select>
+							<select name="code" id="code" style="width:120px;">
+								<option>어린이집선택</option>
+							</select>
+							</c:if>
+							&nbsp;<form:input path="subject" style="width:77%;border:0;"
 								value="${board.subject}" /> <font color="red"><form:errors
 									path="subject" /></font>
 					</tr>
