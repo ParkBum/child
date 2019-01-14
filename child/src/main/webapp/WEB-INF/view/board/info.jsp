@@ -213,7 +213,8 @@ function commentDelete(bnum, cnum){
 			</ul>
 		</div>
 		<div class="board">
-			<div style="margin-bottom: 30px; text-align: left;">
+			<img src="${path}/decorator/visual_05.gif" title="게시판">
+			<div style="margin-top: 30px; margin-bottom: 30px; text-align: left;">
 				<c:choose>
 					<c:when test="${board.bType == 1}">
 						<h3>자유 게시판</h3>

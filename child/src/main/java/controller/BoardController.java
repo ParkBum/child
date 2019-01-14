@@ -108,8 +108,9 @@ public class BoardController {
 	@RequestMapping(value = "board/delete")
 	public ModelAndView delete(Integer bnum) {
 		ModelAndView mav = new ModelAndView();
+		service.commentDeleteList(bnum); //게시글 삭제할때 댓글삭제 한번에 하기
 		service.boardDelete(bnum);
-		mav.setViewName("redirect:/board/list.child?bType=3");
+		mav.setViewName("redirect:/board/list.child?bType=3"); //이거 btype 수정해야함
 		return mav;
 	}
 

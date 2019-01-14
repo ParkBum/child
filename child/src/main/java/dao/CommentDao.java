@@ -39,7 +39,12 @@ public class CommentDao {
 		map.put("cnum", cnum);
 		sqlSession.getMapper(CommentMapper.class).delete(cnum);
 	}
-
+	
+	public void deleteList(Integer bnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("bnum", bnum);
+		sqlSession.getMapper(CommentMapper.class).deleteList(bnum);
+	}
 
 	public void update(Comment comment) {
 		sqlSession.getMapper(CommentMapper.class).update(comment);
@@ -52,6 +57,8 @@ public class CommentDao {
 	public int chgRefstep(Comment com) {
 		return sqlSession.getMapper(CommentMapper.class).chgRefstep(com);
 	}
+
+	
 
 }
 
