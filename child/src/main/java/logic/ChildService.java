@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
 import dao.CommentDao;
-import dao.MapDao;
+import dao.MapDao; 
 import dao.UserDao;
 
 @Service
@@ -149,7 +149,7 @@ public class ChildService {
 		boolean b = Pattern.matches("[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", email.trim());
 		return b;
 	}
-
+ 
 	public void commentWrite(Comment comment) {
 		comment.setCnum(commentDao.maxCnum() + 1);
 		comment.setRef(comment.getCnum());
@@ -214,7 +214,7 @@ public class ChildService {
 		return mapDao.daycareList(gu, type, bus);
 	}
 
-	public Daycare selectOne(int code) {
+	public Daycare selectOne(Integer code) {
 		return mapDao.selectOne(code);
 	}
 
@@ -233,6 +233,10 @@ public class ChildService {
 		return mapDao.fourlists(code);
 	}
 
+	public Daycare_total getTotal() {
+		
+		return mapDao.getTotal();
+	}
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return

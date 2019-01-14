@@ -15,6 +15,7 @@ import com.sun.scenario.effect.impl.prism.PrImage;
 import logic.Board;
 import logic.ChildService;
 import logic.Daycare;
+import logic.Daycare_total;
 
 @Controller
 public class AjaxController {
@@ -69,16 +70,19 @@ public class AjaxController {
 	
 	@ResponseBody
 	@RequestMapping("map/graph")
-	public Object graph(int code) {
+	public Object graph(Integer code) {
 		Daycare daycare = service.selectOne(code);
+		daycare.setChild_per_teacher(Math.round(daycare.getNowchild()/daycare.getTeachercnt()));
+		Daycare_total daytotal = service.getTotal();
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("daycare",daycare);
+		map.put("daytotal", daytotal);
 		return map;
 	}
 	@ResponseBody
 	@RequestMapping("board/selectname")
 	public Object selectname(String gu) {
-		List<Daycare> daycareList = service.listBygu(gu); 
+		List<Daycare> daycareList = service.listBygu(gu);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("daycareList",daycareList);
 		return map;
