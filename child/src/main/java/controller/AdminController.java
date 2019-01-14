@@ -40,18 +40,6 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "admin/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(User user, String password, Integer mnum, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		User dbUser = (User) session.getAttribute("loginUser");
-		if(user.getPassword().equals(dbUser.getPassword())) {
-			mav.addObject("user",user);
-			mav.setViewName("../user/updateForm.child?mnum="+mnum); 
-		} else {
-			mav.setViewName("redirect:../admin/list.child?mnum="+mnum);
-		}
-		return mav;
-	}
 }
 
 
