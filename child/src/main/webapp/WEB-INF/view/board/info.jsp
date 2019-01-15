@@ -47,6 +47,7 @@
 	background-color: #CE5B7C;
 	color: white;
 }
+
 .active a {
 	display: block;
 	height: 100%;
@@ -207,9 +208,30 @@ function commentDelete(bnum, cnum){
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height: 100px;" size="5">게시판</font></li>
-				<c:if test="${board.bType == 1}"><li class="active"></c:if><c:if test="${board.bType != 1}"><li class="menu2"></c:if><a href="../board/list.child?bType=1">자유게시판</a></li>
-				<c:if test="${board.bType == 2}"><li class="active"></c:if><c:if test="${board.bType != 2}"><li class="menu2"></c:if><a href="../board/list.child?bType=2">후기게시판</a></li>
-				<c:if test="${board.bType == 3}"><li class="active"></c:if><c:if test="${board.bType != 3}"><li class="menu2"></c:if><a href="../board/list.child?bType=3">거래게시판</a></li>
+				<c:if test="${board.bType == 1}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 1}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=1">자유게시판</a>
+				</li>
+				<c:if test="${board.bType == 2}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 2}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=2">후기게시판</a>
+				</li>
+				<c:if test="${board.bType == 3}">
+					<li class="active">
+				</c:if>
+				<c:if test="${board.bType != 3}">
+					<li class="menu2">
+				</c:if>
+				<a href="../board/list.child?bType=3">거래게시판</a>
+				</li>
 			</ul>
 		</div>
 		<div class="board">
@@ -227,101 +249,105 @@ function commentDelete(bnum, cnum){
 					</c:when>
 				</c:choose>
 			</div>
-	<input type="hidden" name="bType" value="${board.bType}">
-	<input type="hidden" name="mnum" value="${board.mnum}">
-	<input type="hidden" name="score" value="${board.score}">
-	<table style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
-		<tr style="height: 30px;">
-			<td width="15%" style="text-align: center;">작성자</td>
-			<td width="90%">&nbsp;${board.nickname} <c:if
-					test="${board.bType == 3}">
+			<input type="hidden" name="bType" value="${board.bType}"> <input
+				type="hidden" name="mnum" value="${board.mnum}"> <input
+				type="hidden" name="score" value="${board.score}">
+			<table style="border-collapse: collapse; width: 100%;"
+				class="w3-table w3-border w3-bordered">
+				<tr style="height: 30px;">
+					<td width="15%" style="text-align: center;">작성자</td>
+					<td width="90%">&nbsp;${board.nickname} <c:if
+							test="${board.bType == 3}">
 				&nbsp;<img src="${path}/decorator/siren.png" id="siren">
-					<font id="addred" size="1" color="red"><b>신고완료</b></font>
-				</c:if></td>
-		</tr>
-		<tr style="height: 30px;">
-			<td style="text-align: center;">제목</td>
-			<td>&nbsp;[<c:if test="${board.bType != 2}">${(board.head==1)?"육아꿀팁":"시설추천"}</c:if><c:if test="${board.bType == 2}">${board.dcname}</c:if>]
-			${board.subject}</td>
-		</tr>
-		<c:if test="${board.bType == 2}">
-			<tr style="height: 30px;">
-				<th style="text-align: center;">별점</th>
-				<td style="padding-left: 5px;">
-					<div class="starRev">
-						<span class="starR1" id="left1">별1_왼쪽</span> <span class="starR2"
-							id="right1">별1_오른쪽</span> <span class="starR1" id="left2">별2_왼쪽</span>
-						<span class="starR2" id="right2">별2_오른쪽</span> <span
-							class="starR1" id="left3">별3_왼쪽</span> <span class="starR2"
-							id="right3">별3_오른쪽</span> <span class="starR1" id="left4">별4_왼쪽</span>
-						<span class="starR2" id="right4">별4_오른쪽</span> <span
-							class="starR1" id="left5">별5_왼쪽</span> <span class="starR2"
-							id="right5">별5_오른쪽</span>
-					</div>
-				</td>
-			</tr>
-		</c:if>
-		<tr>
-			<td style="text-align: center; height: 400px;">내용</td>
-			<td>
-				<table width="100%" height="100%">
-					<tr>
-						<td>&nbsp;${board.content}</td>
+							<font id="addred" size="1" color="red"><b>신고완료</b></font>
+						</c:if></td>
+				</tr>
+				<tr style="height: 30px;">
+					<td style="text-align: center;">제목</td>
+					<td>&nbsp;[<c:if test="${board.bType != 2}">${(board.head==1)?"육아꿀팁":"시설추천"}</c:if>
+						<c:if test="${board.bType == 2}">${board.dcname}</c:if>]
+						${board.subject}
+					</td>
+				</tr>
+				<c:if test="${board.bType == 2}">
+					<tr style="height: 30px;">
+						<th style="text-align: center;">별점</th>
+						<td style="padding-left: 5px;">
+							<div class="starRev">
+								<span class="starR1" id="left1">별1_왼쪽</span> <span
+									class="starR2" id="right1">별1_오른쪽</span> <span class="starR1"
+									id="left2">별2_왼쪽</span> <span class="starR2" id="right2">별2_오른쪽</span>
+								<span class="starR1" id="left3">별3_왼쪽</span> <span
+									class="starR2" id="right3">별3_오른쪽</span> <span class="starR1"
+									id="left4">별4_왼쪽</span> <span class="starR2" id="right4">별4_오른쪽</span>
+								<span class="starR1" id="left5">별5_왼쪽</span> <span
+									class="starR2" id="right5">별5_오른쪽</span>
+							</div>
+						</td>
 					</tr>
-				</table>
-			</td>
-		</tr>
-		<c:if
-			test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
-			<tr>
-				<td style="text-align: center;">첨부파일</td>
-				<td>&nbsp; <c:if test="${!empty board.file1}">
-						<img src="../file/${board.file1}"
-							style="width: 150px; height: 150px;">
-					</c:if>&nbsp; <c:if test="${!empty board.file2}">
-						<img src="../file/${board.file2}"
-							style="width: 150px; height: 150px;">
-					</c:if>&nbsp; <c:if test="${!empty board.file3}">
-						<img src="../file/${board.file3}"
-							style="width: 150px; height: 150px;">
-					</c:if>
-				</td>
-			</tr>
-		</c:if>
-		<tr>
-			<td colspan="2" style="text-align: center; height: 30px;"><c:if
-					test="${sessionScope.loginUser.mnum == board.mnum}">
-					<input type="button" id="update" value="수정">
-					<input type="button" id="delete" value="삭제">
-				</c:if> <input type="button" id="list" value="목록"></td>
-		</tr>
-		<!-- 댓글작성 -->
-		<tr style="height: 30px;">
-			<td style="text-align: center;">댓글</td>
-			<td><form:form action="commentWrite.child" method="Post"
-					modelAttribute="comment">
-					<input type="hidden" name="bnum" value="${board.bnum}">
-					<input type="hidden" name="mnum" value="${loginUser.mnum}">
+				</c:if>
+				<tr>
+					<td style="text-align: center; height: 400px;">내용</td>
+					<td>
+						<table width="100%" height="100%">
+							<tr>
+								<td>&nbsp;${board.content}</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<c:if
+					test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
+					<tr>
+						<td style="text-align: center;">첨부파일</td>
+						<td>&nbsp; <c:if test="${!empty board.file1}">
+								<img src="../file/${board.file1}"
+									style="width: 150px; height: 150px;">
+							</c:if>&nbsp; <c:if test="${!empty board.file2}">
+								<img src="../file/${board.file2}"
+									style="width: 150px; height: 150px;">
+							</c:if>&nbsp; <c:if test="${!empty board.file3}">
+								<img src="../file/${board.file3}"
+									style="width: 150px; height: 150px;">
+							</c:if>
+						</td>
+					</tr>
+				</c:if>
+				<tr>
+					<td colspan="2" style="text-align: center; height: 30px;"><c:if
+							test="${sessionScope.loginUser.mnum == board.mnum}">
+							<input type="button" id="update" value="수정">
+							<input type="button" id="delete" value="삭제">
+						</c:if> <input type="button" id="list" value="목록"></td>
+				</tr>
+				<!-- 댓글작성 -->
+				<tr style="height: 30px;">
+					<td style="text-align: center;">댓글</td>
+					<td><form:form action="commentWrite.child" method="Post"
+							modelAttribute="comment">
+							<input type="hidden" name="bnum" value="${board.bnum}">
+							<input type="hidden" name="mnum" value="${loginUser.mnum}">
 							댓글 작성자 : ${sessionScope.loginUser.nickname}
 					<form:textarea path="recomment"
-						style="width:100%;height:100px;border:0;resize:none;"
-						placeholder="댓글을 입력하세요."></form:textarea>
-					<div align="right">
-						<input type="submit" value="등록">
-					</div>
-				</form:form></td>
-		</tr>
-		<!-- --------------------------------------------------------------------------------------------------------- -->
-		<tr>
-			<td colspan="2"> 
-				<c:forEach var="c" items="${commentList}" varStatus="stat">
+								style="width:100%;height:100px;border:0;resize:none;"
+								placeholder="댓글을 입력하세요."></form:textarea>
+							<div align="right">
+								<input type="submit" value="등록">
+							</div>
+						</form:form></td>
+				</tr>
+				<!-- --------------------------------------------------------------------------------------------------------- -->
+				<tr>
+					<td colspan="2"><c:forEach var="c" items="${commentList}"
+							varStatus="stat">
 							<c:if test="${c.refstep > 0}">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└>${c.ref}의 대댓글<%-- ${stat.count} --%>  
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└>${c.ref}의 대댓글<%-- ${stat.count} --%>
 							</c:if>
-							
-						<c:if test="${c.refstep == 0}">
-					<input type="button" id="recom" value="답글"
-								onclick="$('#comm${stat.index}').show();"></c:if>
+
+							<c:if test="${c.refstep == 0}">
+								<input type="button" id="recom" value="답글"
+									onclick="$('#comm${stat.index}').show();">
+							</c:if>
 							<c:if
 								test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
 								<!-- 댓글수정버튼 -->
@@ -335,70 +361,70 @@ function commentDelete(bnum, cnum){
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</c:if>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
-					<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-							<c:choose>
-								<c:when test="${t==c1}">
-									<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-								</c:when>
-								<c:otherwise>
-									<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-								</c:otherwise>
+								<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
+								<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
+									<c:choose>
+										<c:when test="${t==c1}">
+											<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+										</c:when>
+									<c:otherwise>
+											<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
+									</c:otherwise>
 							</c:choose>)
 						
-						<!-- 댓글 출력--> 
-						
-						
-						<div id="recontent${stat.index}">
+						<!-- 댓글 출력-->
+
+
+							<div id="recontent${stat.index}">
 								<div id="recomment${stat.index}" style="display: block">
-								<c:if test="${c.refstep>0}">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>  
+									<c:if test="${c.refstep>0}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>
 									&nbsp;${c.recomment}<br>
 								</div>
 							</div>
-								<!-- 수정버튼 눌리고 댓글수정창 나옴-->
-								<div id="recommentupd${stat.index}" style="display: none">
-									<form:form action="commentUpdate.child" method="Post"
-										modelAttribute="comment">
+							<!-- 수정버튼 눌리고 댓글수정창 나옴-->
+							<div id="recommentupd${stat.index}" style="display: none">
+								<form:form action="commentUpdate.child" method="Post"
+									modelAttribute="comment">
+									<input type="hidden" name="bnum" value="${c.bnum}">
+									<input type="hidden" name="cnum" value="${c.cnum}">
+									<form:input path="recomment" value="${c.recomment}" />
+									<input type="submit" value="수정">
+									<input type="button" id="x" value="수정취소"
+										onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+								</form:form>
+							</div>
+							<div id="rere${stat.index}">
+
+								<!-- 답글버튼 눌리고 대댓글창 나옴-->
+								<div id="comm${stat.index}" style="display: none">
+									<form:form action="recomment.child" method="Post"
+										modelAttribute="comment"
+										style="border:1px solid black; background-color:#f7f7f7;">
 										<input type="hidden" name="bnum" value="${c.bnum}">
 										<input type="hidden" name="cnum" value="${c.cnum}">
-										<form:input path="recomment" value="${c.recomment}" />
-										<input type="submit" value="수정">
-										<input type="button" id="x" value="수정취소"
-											onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+										<input type="hidden" name="mnum" value="${loginUser.mnum}">
+									댓글 작성자 : ${sessionScope.loginUser.nickname}<br>
+										<form:textarea path="recomment"
+											style="width:80%;height:100px;border:0;resize:none;"
+											placeholder="댓글을 입력하세요."></form:textarea>
+										<div align="right">
+											<input type="submit" value="등록"> <input type="button"
+												id="x" value="취소"
+												onclick="$('#comm${stat.index}').show();$('#comm${stat.index}').hide();">
+										</div>
 									</form:form>
 								</div>
-							<div id="rere${stat.index}">
-						
-						<!-- 답글버튼 눌리고 대댓글창 나옴--> 
-						<div id="comm${stat.index}" style="display: none">
-							<form:form action="recomment.child" method="Post" modelAttribute="comment"
-								style="border:1px solid black; background-color:#f7f7f7;">
-								<input type="hidden" name="bnum" value="${c.bnum}">
-								<input type="hidden" name="cnum" value="${c.cnum}">
-								<input type="hidden" name="mnum" value="${loginUser.mnum}">
-									댓글 작성자 : ${sessionScope.loginUser.nickname}<br>
-							 		<form:textarea path="recomment" 
-									style="width:80%;height:100px;border:0;resize:none;"
-									placeholder="댓글을 입력하세요."></form:textarea>
-								<div align="right">
-									<input type="submit" value="등록"> 
-									<input type="button" id="x" value="취소" 
-										onclick="$('#comm2${stat.index}').show();$('#comm${stat.index}').hide();">
-								</div> 
-							</form:form>
-						</div>
-					</div>
-						<%-- </c:otherwise>
+							</div>
+							<%-- </c:otherwise>
 					</c:choose> --%>
-					<!--대댓글 -->
-					
-					<hr>
-				</c:forEach>
-			</td>
-		</tr>
-	</table>
-	</div>
+							<!--대댓글 -->
+
+							<hr>
+						</c:forEach></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
