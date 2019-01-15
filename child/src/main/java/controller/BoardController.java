@@ -58,10 +58,9 @@ public class BoardController {
 			endpage = maxpage;
 		int boardcnt = listcount - (pageNum - 1) * limit; // 화면에 보여지는 게시물 순서
 		
-		Board board = new Board();
-		int commentCnt = service.commentCount(board.getBnum());
-		
-		mav.addObject("commentCnt",commentCnt);
+		for(Board board : boardlist) { //댓글 수 추가아아아
+			board.setCommentcnt(service.commentCount(board.getBnum()));
+		}
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);
