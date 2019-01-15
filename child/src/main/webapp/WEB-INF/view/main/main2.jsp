@@ -45,40 +45,9 @@
 		$(".bx-start").hide(); //onload시 시작버튼 숨김.
 	});
 </script>
- <style>
-
-svg circle:hover {
-  fill: red;
-  stroke: #333;
-}
-svg .municipality {
-  pointer-events: none;
-}
-svg .municipality {
-  fill: #efefef;
-  stroke: #fff;
-}
-svg .municipality-label {
-  fill: #bbb;
-  font-size: 12px;
-  font-weight: 300;
-  text-anchor: middle;
-}
-svg #map text {
-  color: #333;
-  font-size: 10px;
-  text-anchor: middle;
-}
-svg #places text {
-  color: #777;
-  font: 10px sans-serif;
-  text-anchor: start;
-}
-    </style>
 <style type="text/css">
-
-.maineslider {
-	width: 1200px;
+.chart {
+	width: 900px;
 	height: 500px;
 	border: solid 2px silver;
 	margin-left: 320px;
@@ -155,9 +124,86 @@ svg #places text {
 	text-decoration: none;
 }
 </style>
+<style>
+
+svg .municipality {
+  pointer-events: none;
+}
+
+svg .municipality {
+  stroke: #fff; 
+}
+svg .municipality-label {
+  fill: #bbb;
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+}
+path {
+  fill:#efefef;
+}
+path:hover {
+  fill: red;
+}
+svg .municipality-label{
+  stroke: #333; 
+}
+
+</style>
 </head>
 <body>
 		<div id="wrap">
+		<div id="chart"></div>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script>
+        var width = 800,
+    height = 600;
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var projection = d3.geo.mercator()
+    .center([126.9895, 37.5651])
+    .scale(100000)
+    .translate([width/2, height/2]);
+
+var quantize = d3.scale.quantize()
+    .domain([0, 1000])
+    .range(d3.range(9).map(function(i) { return "p" + i; }));
+var popByName = d3.map();
+var path = d3.geo.path().projection(projection);
+
+
+var map = svg.append("g").attr("id", "map");
+    //places = svg.append("g").attr("id", "places");
+
+
+d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, data) {
+  var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
+  
+  map.selectAll("path")
+      .data(features)
+      .enter().append("path")
+      .attr("class", function(d) { 
+        console.log(); 
+        return "municipalityc" + d.properties.SIG_CD} 
+        )
+      .attr("d", path)
+      .attr("id",function(d){
+        return d.properties.SIG_CD
+      });
+      
+  map.selectAll("text")
+      .data(features)
+      .enter().append("text")
+      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .attr("class", "municipality-label")
+      .text(function(d) { return d.properties.SIG_KOR_NM; })
+});
+    </script>
 			<div class="maineslider">
 <!-- 				<a href="../map/map.child"><img
 					src="../decorator/seoulsearch.png" alt="어린이집 검색"
