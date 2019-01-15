@@ -60,11 +60,11 @@ public class MapDao {
 	}
 
 
-	public double getScore_avg(Integer code) {
+/*	public double getScore_avg(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
 		return sqlSession.selectOne(NS+"getScore_avg",map);
-	}
+	}*/
 
 	
 }

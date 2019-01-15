@@ -79,9 +79,9 @@ public class AjaxController {
 			}else {
 				teachcnt = daycare.getTeachercnt();
 			}
-			double score_avg = service.getScore_avg(code);
+/*			double score_avg = service.getScore_avg(code);*/
+/*			daycare.setScore_avg(score_avg);*/
 			daycare.setChild_per_teacher(Math.round(daycare.getNowchild()/teachcnt));
-			daycare.setScore_avg(score_avg);
 			Daycare_total daytotal = service.getTotal();
 			Map<Object, Object> map = new HashMap<Object, Object>();
 			map.put("daycare",daycare);

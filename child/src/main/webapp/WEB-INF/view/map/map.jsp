@@ -93,7 +93,7 @@ option {
       text-align: center;
   } 
 <%--º°Á¡ Æò±Õ--%>
-
+/* 
 .chart rect:first-of-type {
   color: #fff;
   stroke: #3994b6;
@@ -116,7 +116,7 @@ text:nth-of-type(2) {
   fill: #a8d4e4;
   font-family: sans-serif;
   font-size: 12px;
-}
+} */
 </style>
 </head>
 <body>
@@ -193,10 +193,10 @@ text:nth-of-type(2) {
 			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
 			<div class="tooltip"></div>
 				<svg class="svg1"></svg>
-			<div style="display: table;">
+<!-- 			<div style="display: table;">
 				<svg class="svg2"></svg>
 				<svg class="svg3"></svg>
-			</div>
+			</div> -->
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
