@@ -7,7 +7,6 @@
 		select gu, code from seoul2 where code > 0 group by gu
 	</select>
 	<!-- 후기게시판 구 선택시 해당 어린이집 select -->
-
 	<select id="listBygu" resultType="Daycare" parameterType="map">
 		select * from seoul2
 		<if test="gu != null or gu !=''">
