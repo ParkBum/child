@@ -336,7 +336,7 @@ th {
 											<option value="2" selected="selected">시설추천</option>
 										</c:if>
 									</c:if>
-									<c:if test="${board.bType == 3}">
+									<c:if test="${board.bType == 3}"> 
 										<c:if test="${board.head == 1}">
 											<option value="1" selected="selected">삽니다</option>
 											<option value="2">팝니다</option>
@@ -347,6 +347,34 @@ th {
 										</c:if>
 									</c:if>
 								</select>
+									<c:if test="${board.bType == 3}">
+								<select name="mkinds" style="width:20%">
+										<c:if test="${board.mkinds == 1}">
+											<option value="1" selected="selected">완구</option>
+											<option value="2">도서</option>
+											<option value="3">의류</option>
+											<option value="4">기타</option>
+										</c:if>
+										<c:if test="${board.mkinds == 2}">
+											<option value="1">완구</option>
+											<option value="2" selected="selected">도서</option>
+											<option value="3">의류</option>
+											<option value="4">기타</option>
+										</c:if>
+										<c:if test="${board.mkinds == 3}">
+											<option value="1">완구</option>
+											<option value="2">도서</option>
+											<option value="3" selected="selected">의류</option>
+											<option value="4">기타</option>
+										</c:if>
+										<c:if test="${board.mkinds == 4}">
+											<option value="1">완구</option>
+											<option value="2">도서</option>
+											<option value="3">의류</option>
+											<option value="4" selected="selected">기타</option>
+										</c:if>
+								</select>
+									</c:if>
 							</c:if>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id="gu" onchange="javascript:nextselect()">
