@@ -24,7 +24,8 @@ public class Board {
 	private MultipartFile multi1; // 첨부파일 원본1
 	private MultipartFile multi2; // 첨부파일 원본2
 	private MultipartFile multi3; // 첨부파일 원본3
-	private double score;
+	private double score; // 별점
+	private int commentcnt; // 댓글수(db엔 없고 여기만 추가)
 
 	public int getBnum() {
 		return bnum;
@@ -169,4 +170,13 @@ public class Board {
 	public void setScore(double score) {
 		this.score = score;
 	}
+
+	public int getCommentcnt() {
+		return commentcnt;
+	}
+
+	public void setCommentcnt(int commentcnt) {
+		this.commentcnt = commentcnt;
+	}
+
 }

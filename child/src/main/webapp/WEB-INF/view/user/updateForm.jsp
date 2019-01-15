@@ -108,25 +108,16 @@
 						value="${sessionScope.loginUser.addr3}" style="width:154%" /> <font
 					color="red"> <form:errors path="addr3" /></font></td>
 			</tr>
-			<%-- <tr height="40px">
-				<td>변경할 비밀번호</td>
-				<td><form:password path="password" class="pass" id="password" style="width:154%"/> <font color="red">
-				<form:errors path="password" /></font></td>
-			</tr>
-			<tr height="40px"> 
-				<td>변경할 비밀번호 재입력</td>
-				<td><form:password path="password1" class="pass" id="password1" style="width:154%"/> <font id="check" color="red">
-				<form:errors path="password1" /></font></td>
-			</tr> --%>
-
-
 			<tr height="40px">
-
-				<td colspan="2" align="center"><input type="submit" value="수정">
-					<input type="reset" value="초기화"> 
-					
-					<a href="javascript:void(0)" align="right"
-					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a> 
+				<td>비밀번호</td>
+				<td><input type="button" value="비밀번호 변경하기" name="pass" style="width:154%"
+						onclick="document.getElementById('id01').style.display='block'" /> 
+				</td>
+			</tr>
+			<tr>
+			<td>
+			<!-- <a href="javascript:void(0)" align="right"
+					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a>  -->
 					<!-- 모달 내용 -->
 					<form action="chgPass.child?mnum=${user.mnum}" method="Post">
 					<div id="id01" class="w3-modal" style="z-index: 4">
@@ -154,6 +145,10 @@
 						</div>
 					</div>
 					</form>
+					</td></tr>
+			<tr height="40px">
+				<td colspan="2" align="center"><input type="submit" value="확인">
+					<input type="reset" value="초기화">
 				</td>
 			</tr>
 		</table>

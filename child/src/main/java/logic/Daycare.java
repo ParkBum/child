@@ -23,6 +23,7 @@ public class Daycare {
 	private String bus;		//버스 운행 여부
 	private String homepage;// 홈페이지 주소
 	private double child_per_teacher;//어린이집 교사 1명당 담당 영아 수
+	private double score_avg;
 	public String getGu() {
 		return gu;
 	}
@@ -148,6 +149,12 @@ public class Daycare {
 	}
 	public void setChild_per_teacher(double child_per_teacher) {
 		this.child_per_teacher = child_per_teacher;
+	}
+	public double getScore_avg() {
+		return score_avg;
+	}
+	public void setScore_avg(double score_avg) {
+		this.score_avg = score_avg;
 	}
 	@Override
 	public String toString() {
