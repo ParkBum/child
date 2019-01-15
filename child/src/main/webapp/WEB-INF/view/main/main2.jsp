@@ -45,6 +45,36 @@
 		$(".bx-start").hide(); //onload½Ã ½ÃÀÛ¹öÆ° ¼û±è.
 	});
 </script>
+ <style>
+
+svg circle:hover {
+  fill: red;
+  stroke: #333;
+}
+svg .municipality {
+  pointer-events: none;
+}
+svg .municipality {
+  fill: #efefef;
+  stroke: #fff;
+}
+svg .municipality-label {
+  fill: #bbb;
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+}
+svg #map text {
+  color: #333;
+  font-size: 10px;
+  text-anchor: middle;
+}
+svg #places text {
+  color: #777;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+    </style>
 <style type="text/css">
 
 .maineslider {
