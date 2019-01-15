@@ -1,7 +1,8 @@
 package controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,7 +26,7 @@ import util.NaverLoginBO;
 public class UserController {
 	@Autowired
 	ChildService service;
-
+ 
 	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm(HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
@@ -178,32 +179,30 @@ public class UserController {
 				//변경할 비밀번호를 기존비밀번호에 넣기
 		//		user.setPassword(user.getPassword1());
 				service.userUpdate(user);
+				session.invalidate();
 				mav.addObject("user", user);
-		//		session.invalidate();
 		//		mav.addObject("msg","수정했습니다. 다시 로그인하세요.");		
 		//		mav.addObject("url","../user/loginForm.child");
 		//		mav.setViewName("alert");
-				mav.setViewName("redirect:../main/main2");
+				mav.setViewName("redirect:../main/main2.child");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
 				mav.setViewName("user/updateForm");
 			}	
-	
+	 
 		return mav;
 	}
 	
 	@RequestMapping(value = "user/chgPass", method = RequestMethod.POST)
-	public ModelAndView chgPass(Integer mnum, String newpass1, String newpass2) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView chgPass(Integer mnum, HttpServletRequest request, HttpSession session) {
+		ModelAndView mav = new ModelAndView("user/updateForm");
+		String newpass1 = request.getParameter("newpass1");
+		String newpass2 = request.getParameter("newpass2");
 		if(newpass1.equals(newpass2)) {
-			try {
 			service.changePass(newpass1,mnum);
-			mav.setViewName("redirect:../user/updateForm");
-			} catch(Exception e) {
-				e.printStackTrace();
-				mav.setViewName("user/updateForm");
-			}
+			session.invalidate();
+			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
 			mav.setViewName("user/updateForm");
 		}

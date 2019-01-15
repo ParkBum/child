@@ -108,10 +108,11 @@ public class BoardController {
 
 	@RequestMapping(value = "board/delete")
 	public ModelAndView delete(Integer bnum) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("board/info");
 		service.commentDeleteList(bnum); //게시글 삭제할때 댓글삭제 한번에 하기
+		Board board = service.getBoard(bnum);
 		service.boardDelete(bnum);
-		mav.setViewName("redirect:/board/list.child?bType=3"); //이거 btype 수정해야함
+		mav.setViewName("redirect:/board/list.child?bType=" + board.getbType()); //이거 btype 수정해야함
 		return mav;
 	}
 
@@ -133,7 +134,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/updateForm");
 		service.boardUpdate(board, request);
 		mav.addObject("board", board);
-		mav.setViewName("redirect:/board/info.child");
+		mav.setViewName("redirect:/board/info.child?bnum=" + board.getBnum());
 		return mav;
 	}
 
@@ -153,6 +154,7 @@ public class BoardController {
 	@RequestMapping(value = "board/commentDelete")
 	public ModelAndView commentDelete(Integer bnum, Integer cnum) {
 		ModelAndView mav = new ModelAndView();
+//		service.co
 		service.commentDelete(cnum);
 		mav.setViewName("redirect:/board/info.child?bnum=" + bnum);
 		return mav;

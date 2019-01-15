@@ -71,7 +71,10 @@ public class UserDao {
 	}
 
 	public void changePass(String newpass1, Integer mnum) {
-		sqlsession.getMapper(UserMapper.class).changePass(newpass1, mnum);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("newpass1", newpass1);
+		map.put("mnum", mnum);
+		sqlsession.getMapper(UserMapper.class).changePass(map);
 	}
 }
 
