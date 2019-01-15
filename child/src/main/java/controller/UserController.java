@@ -179,8 +179,8 @@ public class UserController {
 				//변경할 비밀번호를 기존비밀번호에 넣기
 		//		user.setPassword(user.getPassword1());
 				service.userUpdate(user);
+				session.invalidate();
 				mav.addObject("user", user);
-		//		session.invalidate();
 		//		mav.addObject("msg","수정했습니다. 다시 로그인하세요.");		
 		//		mav.addObject("url","../user/loginForm.child");
 		//		mav.setViewName("alert");
@@ -202,7 +202,7 @@ public class UserController {
 		if(newpass1.equals(newpass2)) {
 			service.changePass(newpass1,mnum);
 			session.invalidate();
-			mav.setViewName("user/loginForm");
+			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
 			mav.setViewName("user/updateForm");
 		}

@@ -1,5 +1,7 @@
 package dao.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -31,6 +33,6 @@ public interface UserMapper {
 	void addRed(Integer mnum);
 
 	@Update("update user set password=#{newpass1} where mnum = #{mnum}")
-	void changePass(String newpass1, Integer mnum);
+	void changePass(Map<String, Object> map);
 
 }
