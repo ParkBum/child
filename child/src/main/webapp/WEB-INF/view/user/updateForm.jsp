@@ -11,6 +11,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+$(function(){
+	$(".pass").keyup(function(){
+		var pass1 = $("#newpass1").val();
+		var pass2 = $("#newpass2").val();
+		var msg="";
+		if(pass1.length <= 4 || pass2.length <= 4){
+			msg = "비밀번호는 4자 이상만 설정가능합니다.";
+		}
+		if(pass1 == pass2) {
+			msg = "비밀번호 일치";
+			$("#check").css("color","green");
+		} else {
+			msg = "비밀번호 불일치"
+			$("#check").css("color","red");
+		}
+	})
+});
+	
 	function execPostCode() {/* 주소 검색 부분 */
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -135,11 +153,12 @@
 							</div>
 							<div class="w3-panel">
 								변경할 비밀번호 입력 : 
-								<input type="password" id="newpass1" name="newpass1"><br><br>
+								<input type="password" class="pass" id="newpass1" name="newpass1"><br><br>
 								변경할 비밀번호 확인 : 
-								<input type="password" id="newpass2" name="newpass2">
+								<input type="password" class="pass" id="newpass2" name="newpass2"><br>
+								<font id="check" size="3" color="red"></font> 
 								<div class="w3-section">
-								<input type="submit"
+								<input type="submit" id="change"
 									onclick="document.getElementById('id01').style.display='none'"
 										class="w3-button w3-light-grey w3-center" value="확인">
 									<i class="fa fa-paper-plane"></i>
