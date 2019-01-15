@@ -367,10 +367,10 @@ function commentDelete(bnum, cnum){
 										<c:when test="${t==c1}">
 											<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
 										</c:when>
-									<c:otherwise>
+										<c:otherwise>
 											<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-									</c:otherwise>
-							</c:choose>)
+										</c:otherwise>
+									</c:choose>)
 						
 						<!-- ´ñ±Û Ãâ·Â-->
 

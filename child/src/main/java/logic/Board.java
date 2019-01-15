@@ -26,6 +26,16 @@ public class Board {
 	private MultipartFile multi3; // 첨부파일 원본3
 	private double score; // 별점
 	private int commentcnt; // 댓글수(db엔 없고 여기만 추가)
+	private String mkinds;
+	
+
+	public String getMkinds() {
+		return mkinds;
+	}
+
+	public void setMkinds(String mkinds) {
+		this.mkinds = mkinds;
+	}
 
 	public int getBnum() {
 		return bnum;

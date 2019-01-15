@@ -97,6 +97,7 @@ public class BoardController {
 			return mav;
 		}
 		try {
+			
 			service.boardInsert(board, request);
 			mav.addObject("board", board);
 			mav.setViewName("redirect:/board/list.child?bType=" + board.getbType());
