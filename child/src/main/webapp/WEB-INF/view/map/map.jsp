@@ -79,7 +79,7 @@ option {
 .x.axis path {
   display: none;
 } 
-  .tooltip {
+  .tooltip1 {
       position: absolute;
       display: none;
       width: auto;
@@ -191,7 +191,7 @@ text:nth-of-type(2) {
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
 			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
-			<div class="tooltip"></div>
+			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
 <!-- 			<div style="display: table;">
 				<svg class="svg2"></svg>
@@ -372,7 +372,7 @@ function graph(a){
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
 		    height = 450 - margin.top - margin.bottom;
-		var divTooltip = d3.select(".tooltip");
+		var divTooltip = d3.select(".tooltip1");
 		var x0 = d3.scale.ordinal()
 		    .rangeRoundBands([0, width], .1);
 
