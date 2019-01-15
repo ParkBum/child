@@ -18,7 +18,7 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 public class DbWord2VecTest1 {
 
 	public static void main(String[] args) throws Exception {		
-		String filePath = new ClassPathResource("searchword/seoul_new.txt").getFile().getAbsolutePath();
+		String filePath = new ClassPathResource("searchword/daycare_2017_final.txt").getFile().getAbsolutePath();
 
 		SentenceIterator iter = new BasicLineIterator(filePath);
 		TokenizerFactory t = new DefaultTokenizerFactory();
