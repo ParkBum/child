@@ -270,6 +270,7 @@ function nextselect(){
 										<option value="2">ÆË´Ï´Ù</option>
 									</c:if>
 								</select>
+								
 							</c:if>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">

@@ -9,6 +9,7 @@
 <title>ÀÚÀ¯°Ô½ÃÆÇ</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -192,9 +193,13 @@
 								<td>
 									<c:if test="${!empty sessionScope.loginUser}">
 									<a href="info.child?bnum=${board.bnum}" style="text-decoration: none;">
-									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a></c:if>
+									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</a>
+									</c:if>
 									<c:if test="${empty sessionScope.loginUser}">
-									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</c:if></td>
+									&nbsp;[${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}]&nbsp;${board.subject}</c:if>
+									<c:if test="${board.commentcnt != 0}">
+										<i class="fa fa-comment-o w3-margin-left"><font size="1" color="red">${board.commentcnt}</font></i>
+									</c:if></td>
 								<td style="text-align:center">${board.nickname}</td>
 								<td style="text-align:center"><fmt:formatDate value="${board.regdate}"
 										pattern="YYYY-MM-dd" /></td>

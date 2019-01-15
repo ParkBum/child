@@ -154,7 +154,6 @@ public class BoardController {
 	@RequestMapping(value = "board/commentDelete")
 	public ModelAndView commentDelete(Integer bnum, Integer cnum) {
 		ModelAndView mav = new ModelAndView();
-//		service.co
 		service.commentDelete(cnum);
 		mav.setViewName("redirect:/board/info.child?bnum=" + bnum);
 		return mav;
