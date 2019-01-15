@@ -105,6 +105,8 @@ public class AjaxController {
 		map.put("fourlists",fourlists);
 		return map;
 	}
+	
+	
 }
 	
 	

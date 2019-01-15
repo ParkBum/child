@@ -485,7 +485,7 @@ function graph(a){
 		      .style("fill", function(d) { return color(d); });
 
 		  legend.append("text")
-		      .attr("x", width - 6)
+		      .attr("x", width - 2)
 		      .attr("y", 9)
 		      .attr("dy", ".35em")
 		      .style("text-anchor", "end")
