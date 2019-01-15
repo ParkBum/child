@@ -24,11 +24,6 @@ public class User {
 	private String id;
 	private int red;
 	
-	
-	
-	
-
-	
 	public int getRed() {
 		return red;
 	}

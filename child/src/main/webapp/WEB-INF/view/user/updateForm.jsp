@@ -114,19 +114,25 @@
 						onclick="document.getElementById('id01').style.display='block'" /> 
 				</td>
 			</tr>
-			<tr>
-			<td>
+			
+			<tr height="40px">
+				<td colspan="2" align="center"><input type="submit" value="확인">
+					<input type="reset" value="초기화">
+				</td>
+			</tr>
+		</table>
+	</form:form>
 			<!-- <a href="javascript:void(0)" align="right"
 					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a>  -->
 					<!-- 모달 내용 -->
-					<form action="chgPass.child?mnum=${user.mnum}" method="Post">
+					<form action="chgPass.child" method="Post" >
+					<input type="hidden" name="mnum" value="${user.mnum }">
 					<div id="id01" class="w3-modal" style="z-index: 4">
 						<div class="w3-modal-content w3-animate-zoom" style="width:20%">
 							<div class="w3-container w3-padding"
 								style="background-color: #FFF1F5;">
 								<h2>비밀번호 변경하기</h2>
 							</div>
-							
 							<div class="w3-panel">
 								변경할 비밀번호 입력 : 
 								<input type="password" id="newpass1" name="newpass1"><br><br>
@@ -145,14 +151,6 @@
 						</div>
 					</div>
 					</form>
-					</td></tr>
-			<tr height="40px">
-				<td colspan="2" align="center"><input type="submit" value="확인">
-					<input type="reset" value="초기화">
-				</td>
-			</tr>
-		</table>
-	</form:form>
 </body>
 </html>
 
