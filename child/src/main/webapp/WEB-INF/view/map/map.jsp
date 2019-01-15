@@ -11,10 +11,9 @@
 <title>어린이집 검색</title>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
-<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v2.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
@@ -94,17 +93,30 @@ option {
       text-align: center;
   } 
 <%--별점 평균--%>
-.column {
-  float: left;
-  width: 375;
-  height : 50;
-  border:solid 1px black;
-}
-.row:after {
-	display: table;
-	clear: both;
+
+.chart rect:first-of-type {
+  color: #fff;
+  stroke: #3994b6;
+  fill: white;
 }
 
+text:first-of-type {
+  fill: #3994b6;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.chart rect:nth-of-type(2) {
+  color: #fff;
+  stroke: transparent;
+  fill: #3994b6;
+}
+
+text:nth-of-type(2) {
+  fill: #a8d4e4;
+  font-family: sans-serif;
+  font-size: 12px;
+}
 </style>
 </head>
 <body>
@@ -181,10 +193,10 @@ option {
 			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
 			<div class="tooltip"></div>
 				<svg class="svg1"></svg>
-			<!-- <div style="display: table;">
+			<div style="display: table;">
 				<svg class="svg2"></svg>
 				<svg class="svg3"></svg>
-			</div> -->
+			</div>
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -356,6 +368,7 @@ function graph(a){
 						  ]
 					});	
 		}
+		 score(data.daycare.score_avg); 
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
 		    height = 450 - margin.top - margin.bottom;
@@ -484,6 +497,36 @@ function graph(a){
 		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove(); data=[];}); */
 		}});
 	
+}
+//score 평점 출력
+function score(avg){
+	 var data = [5, avg]; // here are the data values; v1 = total, v2 = current value
+	  
+	  var svg = d3.select(".svg2") // creating the svg object inside the container div
+	    .attr("width", 200) // bar has a fixed width
+	    .attr("height", 20 * data.length);
+	  
+	  var x = d3.scale.linear() // takes the fixed width and creates the percentage from the data values
+	    .domain([0, d3.max(data)])
+	    .range([0, 200]); 
+	  
+	  svg.selectAll("rect") // this is what actually creates the bars
+	    .data(data)
+	  .enter().append("rect")
+	    .attr("width", x)
+	    .attr("height", 40)
+	    .attr("rx", 5) // rounded corners
+	    .attr("ry", 5);
+	    
+	  svg.selectAll("text") // adding the text labels to the bar
+	    .data(data)
+	  .enter().append("text")
+	    .attr("x", x)
+	    .attr("y", 10) // y position of the text inside bar
+	    .attr("dx", -3) // padding-right
+	    .attr("dy", ".35em") // vertical-align: middle
+	    .attr("text-anchor", "end") // text-align: right
+	    .text(String);
 }
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){

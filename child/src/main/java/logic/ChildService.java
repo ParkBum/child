@@ -228,6 +228,11 @@ public class ChildService {
 		return mapDao.getTotal();
 	}
 
+	public double getScore_avg(Integer code) {
+		
+		return mapDao.getScore_avg(code);
+	}
+
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return

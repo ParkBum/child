@@ -41,5 +41,7 @@
 	<select id="getTotal" resultType="Daycare_total">
 		select * from seoul2_avg
 	</select>
-
+	<select id="getScore_avg" resultType="Double" parameterType="map">
+		select sum(b.score)/count(*) as boardscore_avg from (select * from board where code = #{code}) b
+	</select>
 </mapper>

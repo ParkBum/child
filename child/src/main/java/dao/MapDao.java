@@ -59,5 +59,12 @@ public class MapDao {
 		return sqlSession.selectOne(NS+"getTotal");
 	}
 
+
+	public double getScore_avg(Integer code) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("code", code);
+		return sqlSession.selectOne(NS+"getScore_avg",map);
+	}
+
 	
 }
