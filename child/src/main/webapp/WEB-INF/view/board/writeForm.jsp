@@ -270,16 +270,7 @@ function nextselect(){
 										<option value="2">팝니다</option>
 									</c:if>
 								</select>
-								<!-- 중고게시판 거래 분류 -->
-								<select name="mkinds">
-								<option value="">선택하세요</option> 
-									<c:if test="${board.bType == 3}">
-										<option value="1">완구</option>
-										<option value="2">도서</option>
-										<option value="3">의류</option>
-										<option value="4">기타</option>
-									</c:if>
-								</select>
+								
 							</c:if>
 							<c:if test="${board.bType == 2 }">
 							<select name="gu" id = "gu" onchange="javascript:nextselect()">
