@@ -345,7 +345,7 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-		d3.selectAll("svg > *").remove(); 
+		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
 			dataset.push(
 					{"name":data.daycare.name,
@@ -451,7 +451,6 @@ function graph(a){
 	                divTooltip.style("opacity", "0.9");
 	                var x = d3.event.pageX,
 	                    y = d3.event.pageY;
-	                var elements = document.querySelectorAll(":hover");
 	                divTooltip.html(d.column + "<br>" + d.value);
 	                d3.select(this)
 	                    .style("fill", d3.rgb(color(d.column)).brighter(1))
