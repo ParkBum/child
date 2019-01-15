@@ -13,7 +13,7 @@ public class User {
 	private String email;
 	@Size(min=3, message="닉네임은 3자 이상이어야 합니다.")
 	private String nickname;
-	@Size(min=4, message="패스워드는 4자 이상이어야 합니다.")
+	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
 	private String password;
 	private String password1;
 	@NotEmpty(message="주소를 입력해주세요")
