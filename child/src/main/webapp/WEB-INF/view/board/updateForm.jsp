@@ -313,8 +313,7 @@ th {
 				enctype="multipart/form-data" name="f" method="post">
 				<input type="hidden" name="bType" value="${board.bType}">
 				<input type="hidden" name="bnum" value="${board.bnum}">
-				<input type="hidden" name="mnum"
-					value="${sessionScope.loginUser.mnum}">
+				<input type="hidden" name="mnum" value="${board.mnum}">
 				<input type="hidden" name="score" id="score" value="${board.score}">
 				<input type="hidden" name="file1" value="${board.file1}">
 				<input type="hidden" name="file2" value="${board.file2}">
