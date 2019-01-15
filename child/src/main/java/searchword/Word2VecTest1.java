@@ -1,5 +1,7 @@
 package searchword;
 
+import java.util.Collection;
+
 import org.datavec.api.util.ClassPathResource;
 import org.deeplearning4j.models.embeddings.WeightLookupTable;
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable;
@@ -13,13 +15,7 @@ import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreproc
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
-
 public class Word2VecTest1 {
-	private static Logger log = LoggerFactory.getLogger(Word2VecTest1.class);
 
 	public static void main(String[] args) throws Exception {
 		String filePath = new ClassPathResource("searchword/seoul_new.txt").getFile().getAbsolutePath();
@@ -39,7 +35,7 @@ public class Word2VecTest1 {
 
 		WordVectorSerializer.writeFullModel(vec, "src/main/java/searchword/result.txt");
 		Collection<String> lst = vec.wordsNearest("소음", 5);
-		log.info("5 Words closest to '소음': {}", lst);
+		System.out.println("5 Words closest to '소음': " + lst);
 	}
 
 }
