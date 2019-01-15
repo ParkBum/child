@@ -223,7 +223,7 @@ th {
 			
 			if (check) {
 				if (btype == 2) {
-					if(gu.length == 0 || code.length == 0) {
+					if(code.length == 0 || code == 0) {
 						alert("어린이집을 선택하세요");
 						return false;
 					} else {
