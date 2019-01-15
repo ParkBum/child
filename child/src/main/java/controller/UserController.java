@@ -179,10 +179,11 @@ public class UserController {
 		//		user.setPassword(user.getPassword1());
 				service.userUpdate(user);
 				mav.addObject("user", user);
-				session.invalidate();
-				mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
-				mav.addObject("url","../user/loginForm.child");
-				mav.setViewName("alert");
+		//		session.invalidate();
+		//		mav.addObject("msg","수정했습니다. 다시 로그인하세요.");		
+		//		mav.addObject("url","../user/loginForm.child");
+		//		mav.setViewName("alert");
+				mav.setViewName("redirect:../main/main2");
 			} catch (Exception e) {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
@@ -196,10 +197,15 @@ public class UserController {
 	public ModelAndView chgPass(Integer mnum, String newpass1, String newpass2) {
 		ModelAndView mav = new ModelAndView();
 		if(newpass1.equals(newpass2)) {
+			try {
 			service.changePass(newpass1,mnum);
-			mav.addObject("msg","비밀번호 변경이 완료되었습니다.");
-			mav.addObject("url","../user/updateForm.child?mnum="+mnum);
-			mav.setViewName("alert");
+			mav.setViewName("redirect:../user/updateForm");
+			} catch(Exception e) {
+				e.printStackTrace();
+				mav.setViewName("user/updateForm");
+			}
+		} else {
+			mav.setViewName("user/updateForm");
 		}
 		return mav;
 	}
