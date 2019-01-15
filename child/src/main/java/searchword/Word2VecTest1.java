@@ -37,7 +37,7 @@ public class Word2VecTest1 {
 
 		vec.fit(); // 학습하기
 
-		WordVectorSerializer.writeFullModel(vec, "word2vectest1result.txt");
+		WordVectorSerializer.writeFullModel(vec, "src/main/java/searchword/result.txt");
 		Collection<String> lst = vec.wordsNearest("소음", 5);
 		log.info("5 Words closest to '소음': {}", lst);
 	}
