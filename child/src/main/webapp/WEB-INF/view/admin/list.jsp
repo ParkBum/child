@@ -70,7 +70,7 @@
 				</tr>
 			</table>
 
-			
+
 			<!-- 회원정보 -->
 			<div class="btns">
 				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
@@ -80,33 +80,33 @@
 			</div>
 		</form>
 		<a href="javascript:void(0)" align="right"
-				onclick="document.getElementById('id01').style.display='block'">회원정보
-				수정하기</a>
-
-			<!-- 모달 내용 -->
-			<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post">
+			onclick="document.getElementById('id01').style.display='block'">회원정보
+			수정하기</a> 
+		<!-- 모달 내용 -->
+		<form action="../user/passConfirm.child?mnum=${user.mnum}"
+			method="Post">
 			<div id="id01" class="w3-modal" style="z-index: 4">
-				<div class="w3-modal-content w3-animate-zoom"  style="width:20%">
+				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
 						style="background-color: #FFF1F5;">
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 :
-						<input type="password" id="password" name="password" style="width:72%"> 
+						비밀번호 입력 : <input type="password" id="password" name="password"
+							style="width: 72%">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id01').style.display='none'">
-								닫기<i class="fa fa-remove"></i></a> 
-								
-								<input type="submit" onclick="document.getElementById('id01').style.display='none'" 
-									class="w3-button w3-light-grey w3-right" value="확인" >
-									 <i class="fa fa-paper-plane"></i>
+								닫기<i class="fa fa-remove"></i>
+							</a> <input type="submit"
+								onclick="document.getElementById('id01').style.display='none'"
+								class="w3-button w3-light-grey w3-right" value="확인"> <i
+								class="fa fa-paper-plane"></i>
 						</div>
 					</div>
 				</div>
 			</div>
-			</form>
+		</form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
