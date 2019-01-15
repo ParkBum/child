@@ -190,11 +190,11 @@ function commentDelete(bnum, cnum){
 					url : "addRed.child",
 					type : "get",
 					data : {
-						"mnum" : $('input[name=mnum]').val();
+						"mnum" : $('input[name=mnum]').val()
 					}
 				})
-				$('#siren').hide();
-				$('#addred').show();
+				$('#siren').hide()
+				$('#addred').show()
 			}
 		})
 
