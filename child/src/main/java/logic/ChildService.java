@@ -241,6 +241,11 @@ public class ChildService {
 	public int commentCount(int bnum) {
 		return commentDao.commentCnt(bnum);
 	}
+	public double getScore_avg(Integer code) {
+		
+		return mapDao.getScore_avg(code);
+	}
+
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
