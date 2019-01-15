@@ -92,31 +92,30 @@ option {
       padding: 5px;
       text-align: center;
   } 
-<%--별점 평균--%>
-/* 
-.chart rect:first-of-type {
-  color: #fff;
-  stroke: #3994b6;
-  fill: white;
+<%-- pie chart --%>
+.arc2 text {
+  font: 10px sans-serif;
+  text-anchor: middle;
 }
 
-text:first-of-type {
-  fill: #3994b6;
-  font-family: sans-serif;
-  font-size: 12px;
+.arc2 path {
+  stroke: #fff;
 }
 
-.chart rect:nth-of-type(2) {
-  color: #fff;
-  stroke: transparent;
-  fill: #3994b6;
+.tooltip2 {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
 }
-
-text:nth-of-type(2) {
-  fill: #a8d4e4;
-  font-family: sans-serif;
-  font-size: 12px;
-} */
 </style>
 </head>
 <body>
@@ -193,10 +192,8 @@ text:nth-of-type(2) {
 			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
 			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
-<!-- 			<div style="display: table;">
-				<svg class="svg2"></svg>
-				<svg class="svg3"></svg>
-			</div> -->
+			<div class="tooltip2"></div>
+				<svg class="svg2"></svg> 
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -345,6 +342,7 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
+	    pieChart(data.daycare.gu);
 		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
 			dataset.push(
@@ -497,35 +495,80 @@ function graph(a){
 		}});
 	
 }
-//score 평점 출력
-function score(avg){
-	 var data = [5, avg]; // here are the data values; v1 = total, v2 = current value
-	  
-	  var svg = d3.select(".svg2") // creating the svg object inside the container div
-	    .attr("width", 200) // bar has a fixed width
-	    .attr("height", 20 * data.length);
-	  
-	  var x = d3.scale.linear() // takes the fixed width and creates the percentage from the data values
-	    .domain([0, d3.max(data)])
-	    .range([0, 200]); 
-	  
-	  svg.selectAll("rect") // this is what actually creates the bars
-	    .data(data)
-	  .enter().append("rect")
-	    .attr("width", x)
-	    .attr("height", 40)
-	    .attr("rx", 5) // rounded corners
-	    .attr("ry", 5);
-	    
-	  svg.selectAll("text") // adding the text labels to the bar
-	    .data(data)
-	  .enter().append("text")
-	    .attr("x", x)
-	    .attr("y", 10) // y position of the text inside bar
-	    .attr("dx", -3) // padding-right
-	    .attr("dy", ".35em") // vertical-align: middle
-	    .attr("text-anchor", "end") // text-align: right
-	    .text(String);
+
+function pieChart(guname){//guname이 실려있음
+	var tooltip = d3.select(".tooltip2");
+	var dataset = [
+		{ name: 'Firearms', total: 8124, percent: 67.9 },
+		{ name: 'Knives or cutting instruments', total: 1567, percent: 13.1 },
+		{ name: 'Other weapons', total: 1610, percent: 13.5 },
+		{ name: 'Hands, fists, feet, etc.', total: 660, percent: 5.5 }
+	];
+
+	var width = 960,
+	    height = 500,
+	    radius = Math.min(width, height) / 2;
+
+	var color = d3.scale.ordinal()
+	    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"]);
+
+	var arc = d3.svg.arc()
+	    .outerRadius(radius - 10)
+	    .innerRadius(radius - 70);
+
+	var pie = d3.layout.pie()
+	    .sort(null)
+		 .startAngle(1.1*Math.PI)
+	    .endAngle(3.1*Math.PI)
+	    .value(function(d) { return d.total; });
+
+	var svg = d3.select(".svg2")
+	    .attr("width", width)
+	    .attr("height", height)
+	  .append("g")
+	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+	 var g = svg.selectAll("arc")
+	 	  .attr("class", "arc2")
+	      .data(pie(dataset))
+	    .enter().append("g");
+
+	  g.append("path")
+		.style("fill", function(d) { return color(d.data.name); })
+	    .transition().delay(function(d,i) {
+		return i * 500; }).duration(500)
+		.attrTween('d', function(d) {
+			var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+			return function(t) {
+				d.endAngle = i(t); 
+				return arc(d)
+				}
+			}); 
+	  g.append("text")
+	      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+	      .attr("dy", ".35em")
+		  .transition()
+		  .delay(1000)
+	      .text(function(d) { return d.data.name; });
+
+		d3.selectAll("path").on("mousemove", function(d) {
+			tooltip.style("left", d3.event.pageX+10+"px");
+			tooltip.style("top", d3.event.pageY-25+"px");
+			tooltip.style("display", "inline-block");
+			tooltip.html((d.data.name)+"<br>"+(d.data.total) + "<br>"+(d.data.percent) + "%");
+	});
+		  
+	d3.selectAll("path").on("mouseout", function(d){
+		tooltip.style("display", "none");
+	});
+		  
+		  
+	//d3.select("body").transition().style("background-color", "#d3d3d3");
+	function type(d) {
+	  d.total = +d.total;
+	  return d;
+	}
 }
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
