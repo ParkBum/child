@@ -356,7 +356,8 @@ th {
 								</c:forEach>
 							</select>
 							<select name="code" id="code" style="width:120px;">
-								<option value="${board.code}">${board.dcname}</option>
+								<option value="">어린이집선택</option>
+								<option value="${board.code}" selected="selected">${board.dcname}</option>
 							</select>
 							</c:if>
 							&nbsp;<form:input path="subject" style="width:77%;border:0;"

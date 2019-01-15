@@ -26,7 +26,7 @@ import util.NaverLoginBO;
 public class UserController {
 	@Autowired
 	ChildService service;
-
+ 
 	@RequestMapping("user/loginForm")
 	public ModelAndView loginForm(HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);

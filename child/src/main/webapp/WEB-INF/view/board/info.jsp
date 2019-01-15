@@ -193,8 +193,8 @@ function commentDelete(bnum, cnum){
 						"mnum" : $('input[name=mnum]').val()
 					}
 				})
-				$('#siren').hide();
-				$('#addred').show();
+				$('#siren').hide()
+				$('#addred').show()
 			}
 		})
 
