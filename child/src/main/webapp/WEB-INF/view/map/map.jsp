@@ -224,6 +224,7 @@ option {
 		//생성된 마커 객체들을 실을 배열 객체
 		var markers = [];
 		var infos = [];
+		var codes =[];
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -263,24 +264,28 @@ option {
     						position:coords
     					});
     					marker.setMap(map);
-    					markers.push(marker);
-
+    					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+							+"어린이집 이름: "+data.daycarelist[i].name+'<br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
 							    removable:true
 							}); 
 						infos.push(infowindow);
-        				 map.setCenter(coords);	 
-   
+						markers.push(marker);
+						codes.push(data.daycarelist[i].code);
+        				map.setCenter(coords);	 
+        				console.log("codes["+i+"]:"+codes[i]);
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
         			    (function(marker, infowindow) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
+        			        	console.log("codes["+i+"]:"+codes[i]);
+        			        	graph(codes[i]);
+        			        	review(codes[i]);
         			            infowindow.open(map, marker);
         			        });
 
@@ -317,6 +322,7 @@ function hideMarkers() {
 function AnotherMarkers(){
 	 for (var i = 0; i < markers.length; i++) {
 	      infos[i].close();
+	      
   	}    
 }
 <%-- 그래프 비교  ajax --%>
@@ -406,7 +412,7 @@ function graph(a){
 		  
 		  x0.domain(Names);
 		  x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
-		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+		  y.domain([0, 20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
 		  
 		  svg.append("g")
 		      .attr("class", "x axis")
@@ -525,7 +531,7 @@ function graph(a){
 	
 	d3.json("../decorator/total_nowchild.json", function(error, data) {
 
-		node = data.values; 
+		node = data.values[0]; 
 		
 		
 	  var g = svg.selectAll("arc")
