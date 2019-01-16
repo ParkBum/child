@@ -18,7 +18,7 @@
 		if (searchType == null || searchType == "" || searchType.length == 0) {
 			document.searchForm.searchContent.value = "";
 			document.searchForm.pageNum.value = "1";
-			location.href = "list.child?bType=1,pageNum=" + pageNum;
+			location.href = "list.child?bType=1&pageNum=" + pageNum;
 		} else {
 			document.searchForm.pageNum.value = pageNum;
 			document.searchForm.submit();

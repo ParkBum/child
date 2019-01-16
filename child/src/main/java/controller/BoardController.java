@@ -192,7 +192,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(/*Integer bType,*/Board board, Comment comment) {
+	public ModelAndView boardAll(Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		List<Daycare> gulist = null;
 		if(board.getbType() == 2) { 
