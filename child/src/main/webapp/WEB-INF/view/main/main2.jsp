@@ -70,6 +70,7 @@
 .mainimage2 {
 	float: right;
 	padding: 10px;
+	padding-left: 25px;
 	width: 400px;
 	list-style: none;
 }
@@ -210,7 +211,7 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
 					style="width: 750px; height: 445px;"></a>
  -->
 			</div>
-			<div style="background-color: #FFF1F5; height: 500px; margin: 10px;">
+			<div style="background-color: #FFF1F5; height: 500px; width: 100%;">
 				<div class="menus">
 					<div class="card1">
 						<div class="mainimage1">

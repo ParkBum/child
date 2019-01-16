@@ -79,8 +79,8 @@ body {
 .footer {
 	clear: both;
 	color: black;
-	margin: 10px auto 30px auto;
-	height: 80px;
+	margin: 10px 640px 15px 640px;
+	height: 100px;
 	width: 550px;
 	text-align: left;
 }
@@ -199,9 +199,9 @@ body {
 		<div class="main">
 			<decorator:body />
 		</div>
-		<div class="footer" align="center">
 		<br>
 		<hr>
+		<div class="footer" align="center">
 			<img src="../decorator/logo1.png"
 				style="width: 55px; height: 70px; float: left; margin-top: 5px">
 			<br>어린이 집마련 프로젝트팀<br> 서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
