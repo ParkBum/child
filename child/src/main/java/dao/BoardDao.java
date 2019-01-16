@@ -72,6 +72,10 @@ public class BoardDao {
 	public void userBoardDelete(Integer mnum) {
 		sqlSession.getMapper(BoardMapper.class).userBoardDelete(mnum);
 	}
+
+	public List<Board> myBoardList(Integer mnum) {
+		return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
+	}
 }
 
 

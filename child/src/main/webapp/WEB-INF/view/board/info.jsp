@@ -111,7 +111,11 @@ td {
 	background-position: -15px 0;
 }
 </style>
-<script type="text/javascript">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+
+
 function commentDelete(bnum, cnum){
 	   var del = confirm("´ñ±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")
 	   if(del){
@@ -121,10 +125,6 @@ function commentDelete(bnum, cnum){
 	   return false;
 }
 
-</script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script>
 	$(document).ready(function() {
 		$('#addred').hide()
 		
@@ -265,15 +265,12 @@ function commentDelete(bnum, cnum){
 				<tr style="height: 30px;">
 					<td style="text-align: center;">Á¦¸ñ</td>
 					<td>&nbsp;[<c:if test="${board.bType == 1}">
-									${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}</c:if>
-							   <c:if test="${board.bType == 3}">
-									${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}</c:if>
-						<c:if test="${board.bType == 2}">
-									${board.dcname}</c:if>]
-								<c:if test="${board.bType == 3}">
+									${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}</c:if> <c:if
+							test="${board.bType == 3}">
+									${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}</c:if> <c:if test="${board.bType == 2}">
+									${board.dcname}</c:if>] <c:if test="${board.bType == 3}">
 									[${(board.mkinds==1)?"¿Ï±¸":(board.mkinds==2?"µµ¼­":(board.mkinds==3?"ÀÇ·ù":"±âÅ¸"))}]
-								</c:if>
-						${board.subject}
+								</c:if> ${board.subject}
 					</td>
 				</tr>
 				<c:if test="${board.bType == 2}">
@@ -369,15 +366,15 @@ function commentDelete(bnum, cnum){
 							</c:if>
 					È¸¿ø¹øÈ£ : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 								<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-								<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-									<c:choose>
-										<c:when test="${t==c1}">
-											<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-										</c:when>
-										<c:otherwise>
-											<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-										</c:otherwise>
-									</c:choose>)
+							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
+							<c:choose>
+								<c:when test="${t==c1}">
+									<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+								</c:when>
+								<c:otherwise>
+									<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
+								</c:otherwise>
+							</c:choose>)
 						
 						<!-- ´ñ±Û Ãâ·Â-->
 
@@ -389,6 +386,7 @@ function commentDelete(bnum, cnum){
 									&nbsp;${c.recomment}<br>
 								</div>
 							</div>
+
 							<!-- ¼öÁ¤¹öÆ° ´­¸®°í ´ñ±Û¼öÁ¤Ã¢ ³ª¿È-->
 							<div id="recommentupd${stat.index}" style="display: none">
 								<form:form action="commentUpdate.child" method="Post"

@@ -20,12 +20,12 @@
 }
 </style>
 <script type="text/javascript">
-	function check(){
-		if(f.pass.value != ${user.password}){
-			alert("비밀번호가 틀립니다.");
-			return false;
-		}else return true;
-	}
+function check(){
+	if(f.pass.value != ${user.password}){
+		alert("비밀번호가 틀립니다.");
+		return false;
+	} else return true;
+}
 
 	function allchkbox(chk) {
 		var chks = document.getElementsByName("idchks");
@@ -86,6 +86,7 @@
 				</c:if>
 			</div>
 		</form>
+		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이 작성한 게시글 확인하기</a><br> 
 		<a href="javascript:void(0)" align="right"
 			onclick="document.getElementById('id01').style.display='block'">회원정보
 			수정하기</a> 
@@ -93,7 +94,7 @@
 		<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post" 
 						onsubmit="return check()" name="f">
 			<input type="hidden" name="password" value="${user.password}">
-			<div id="id01" class="w3-modal" style="z-index: 4">
+			<div id="id01" class="w3-modal" style="z-index: 4; padding-top:280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
 						style="background-color: #FFF1F5;">

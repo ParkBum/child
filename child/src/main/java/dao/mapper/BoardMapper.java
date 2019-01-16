@@ -1,5 +1,7 @@
 package dao.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -32,6 +34,9 @@ public interface BoardMapper {
 
 	@Delete("delete from board where mnum=#{mnum}")
 	void userBoardDelete(Integer mnum);
+
+	@Select("select * from board where mnum=#{mnum}")
+	List<Board> myBoardList(Integer mnum);
 
 }
 

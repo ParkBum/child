@@ -254,6 +254,10 @@ public class ChildService {
 		return mapDao.autoMarkerlist(lat,lon);
 	}
 
+	public List<Board> myBoardList(Integer mnum) {
+		return boardDao.myBoardList(mnum);
+	}
+
 
 
 	/*
