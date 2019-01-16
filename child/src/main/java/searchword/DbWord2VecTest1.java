@@ -17,7 +17,7 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 
 public class DbWord2VecTest1 {
 
-	public static void main(String[] args) throws Exception {		
+	public static void main(String[] args) throws Exception {
 		String filePath = new ClassPathResource("searchword/daycare2.txt").getFile().getAbsolutePath();
 
 		SentenceIterator iter = new BasicLineIterator(filePath);
@@ -28,14 +28,14 @@ public class DbWord2VecTest1 {
 		WeightLookupTable<VocabWord> table = new InMemoryLookupTable.Builder<VocabWord>().vectorLength(100)
 				.useAdaGrad(false).cache(cache).lr(0.025f).build();
 
-		Word2Vec vec = new Word2Vec.Builder().minWordFrequency(1).iterations(100).epochs(1).layerSize(100).seed(42)
+		Word2Vec vec = new Word2Vec.Builder().minWordFrequency(3).iterations(1000).epochs(1).layerSize(100).seed(42)
 				.windowSize(5).iterate(iter).tokenizerFactory(t).lookupTable(table).vocabCache(cache).build();
 
 		vec.fit(); // 학습하기
 
 		WordVectorSerializer.writeFullModel(vec, "src/main/java/searchword/result.txt");
-		Collection<String> lst = vec.wordsNearest("홍익", 5);
-		System.out.println("5 Words closest to '홍익': " + lst);
+		Collection<String> lst = vec.wordsNearest("강남구", 5);
+		System.out.println("5 Words closest to '강남구': " + lst);
 	}
 
 }
