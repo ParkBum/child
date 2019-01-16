@@ -144,7 +144,7 @@ $(function(){
 			<!-- <a href="javascript:void(0)" align="right"
 					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a>  -->
 					<!-- 모달 내용 -->
-					<form action="chgPass.child" method="Post">
+					<form action="chgPass.child" method="Post" name="f">
 					<input type="hidden" name="mnum" value="${user.mnum }">
 					<div id="id01" class="w3-modal" style="z-index: 4">
 						<div class="w3-modal-content w3-animate-zoom" style="width:20%">
