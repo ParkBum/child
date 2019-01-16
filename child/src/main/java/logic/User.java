@@ -15,6 +15,7 @@ public class User {
 	private String nickname;
 	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
 	private String password;
+	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
 	private String password1;
 	@NotEmpty(message="주소를 입력해주세요")
 	private String addr1;

@@ -185,8 +185,8 @@ public class ChildService {
 		commentDao.update(comment);
 	}
 
-	public void changePass(String newpass1, Integer mnum) {
-		userDao.changePass(newpass1,mnum);
+	public void changePass(User user) {
+		userDao.changePass(user);
 	}
 
 	public void reWrite(Comment comment) {
@@ -246,6 +246,7 @@ public class ChildService {
 		return mapDao.getScore_avg(code);
 	}
 */
+
 
 
 	/*

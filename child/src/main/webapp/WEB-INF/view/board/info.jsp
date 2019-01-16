@@ -264,8 +264,15 @@ function commentDelete(bnum, cnum){
 				</tr>
 				<tr style="height: 30px;">
 					<td style="text-align: center;">Á¦¸ñ</td>
-					<td>&nbsp;[<c:if test="${board.bType != 2}">${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}</c:if>
-						<c:if test="${board.bType == 2}">${board.dcname}</c:if>]
+					<td>&nbsp;[<c:if test="${board.bType == 1}">
+									${(board.head==1)?"À°¾Æ²ÜÆÁ":"½Ã¼³ÃßÃµ"}</c:if>
+							   <c:if test="${board.bType == 3}">
+									${(board.head==1)?"»ð´Ï´Ù":"ÆË´Ï´Ù"}</c:if>
+						<c:if test="${board.bType == 2}">
+									${board.dcname}</c:if>]
+								[<c:if test="${board.bType == 3}">
+									${(board.mkinds==1)?"¿Ï±¸":(board.mkinds==2?"µµ¼­":(board.mkinds==3?"ÀÇ·ù":"±âÅ¸"))} 
+								</c:if>]
 						${board.subject}
 					</td>
 				</tr>

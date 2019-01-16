@@ -12,8 +12,8 @@ public interface BoardMapper {
 	@Select("select * from board where bnum = #{bnum}")
 	Board select(Integer bnum);
 
-	@Insert("insert into board (bnum,mnum,code,btype,head,subject,content,regdate,readcnt,file1,file2,file3,score,dcname) "
-			+ "values (#{bnum},#{mnum},#{code},#{bType},#{head},#{subject},#{content},now(),#{readcnt},#{file1},#{file2},#{file3},#{score},#{dcname})")
+	@Insert("insert into board (bnum,mnum,code,btype,head,subject,content,regdate,readcnt,file1,file2,file3,score,dcname,mkinds) "
+			+ "values (#{bnum},#{mnum},#{code},#{bType},#{head},#{subject},#{content},now(),#{readcnt},#{file1},#{file2},#{file3},#{score},#{dcname},#{mkinds})")
 	void insert(Board board);
 
 	@Select("select ifnull(max(bnum), 0) from board")
@@ -23,7 +23,7 @@ public interface BoardMapper {
 	void delete(Integer bnum);
 
 	@Update("Update board set code=#{code}, head=#{head}, subject=#{subject}, content=#{content}, score=#{score},"
-				+ " file1=#{file1}, file2=#{file2}, file3=#{file3}, dcname=#{dcname} where bnum=#{bnum}")
+				+ " file1=#{file1}, file2=#{file2}, file3=#{file3}, dcname=#{dcname}, mkinds=#{mkinds} where bnum=#{bnum}")
 	void update(Board board);
 
 

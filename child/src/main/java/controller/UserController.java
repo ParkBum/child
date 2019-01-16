@@ -195,13 +195,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/chgPass", method = RequestMethod.POST)
-	public ModelAndView chgPass(Integer mnum, HttpServletRequest request, HttpSession session) {
+	public ModelAndView chgPass(@Valid User user, BindingResult bindResult, Integer mnum, HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		String newpass1 = request.getParameter("newpass1");
 		String newpass2 = request.getParameter("newpass2");
+		if (bindResult.hasErrors()) {
+			mav.getModel().putAll(bindResult.getModel());
+			return mav;
+		}
 		if(newpass1.equals(newpass2)) {
-			service.changePass(newpass1,mnum);
+			service.changePass(user);
 			session.invalidate();
+			mav.addObject("user",user);
 			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
 			mav.setViewName("user/updateForm");
