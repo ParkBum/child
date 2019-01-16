@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.Board;
-import logic.ChildService2;
+import logic.ChildService;
 import logic.Message;
 
 @Controller
 public class MessageController {
 	@Autowired
-	ChildService2 service;
+	ChildService service;
 
 	@RequestMapping(value = "board/buyItem")
 	public ModelAndView buyItem(Message msg, HttpServletRequest request) {
