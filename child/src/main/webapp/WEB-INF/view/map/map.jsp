@@ -188,7 +188,7 @@ option {
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
+			<div class="bar" style="height:470px; border:solid 1px #aaaaaa; " id="chart">
 			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
 			<div class="tooltip2"></div>
@@ -225,6 +225,7 @@ option {
 		var markers = [];
 		var infos = [];
 		var codes =[];
+
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -245,6 +246,7 @@ option {
 					}
 					hideMarkers();
 					for (var i = 0; i < data.daycarelist.length; i++) {
+						
 						var Map = map;
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
@@ -274,7 +276,9 @@ option {
 							}); 
 						infos.push(infowindow);
 						markers.push(marker);
+						if(codes.length <= data.daycarelist.length ){
 						codes.push(data.daycarelist[i].code);
+						}
         				map.setCenter(coords);	 
         				console.log("codes["+i+"]:"+codes[i]);
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
@@ -284,13 +288,12 @@ option {
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
         			        	console.log("codes["+i+"]:"+codes[i]);
-        			        	graph(codes[i]);
+        			        	graph(codes[i]); //자꾸 최종 인덱스가 추가되는 현상
         			        	review(codes[i]);
         			            infowindow.open(map, marker);
         			        });
 
         			    })(marker, infowindow);
-
 					}
 					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 					function makeOverListener( map, marker, infowindow) { 
