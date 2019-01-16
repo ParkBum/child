@@ -11,6 +11,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+function passcheck(){
+	if(f.newpass1.value.length <= 4 || f.newpass1.value.length <= 4){
+		alert("4자 이상만 설정 가능합니다.");
+		f.newpass1.focus();
+		return false;
+	} else if(f.newpass1.value != f.newpass2.value){
+		alert("비밀번호가 다릅니다. 다시 입력하세요");
+		f.newpass1.focus();
+		return false;
+	} else return true;
+}
+
 $(function(){
 	$(".pass").keyup(function(){
 		var pass1 = $("#newpass1").val();
@@ -143,8 +155,8 @@ $(function(){
 	</form:form>
 			<!-- <a href="javascript:void(0)" align="right"
 					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a>  -->
-					<!-- 모달 내용 -->
-					<form action="chgPass.child" method="Post">
+					<!-- 모달 내용  action="chgPass.child"  -->
+					<form action="chgPass.child" method="Post" name="f" onsubmit="return passcheck()">
 					<input type="hidden" name="mnum" value="${user.mnum }">
 					<div id="id01" class="w3-modal" style="z-index: 4">
 						<div class="w3-modal-content w3-animate-zoom" style="width:20%">
