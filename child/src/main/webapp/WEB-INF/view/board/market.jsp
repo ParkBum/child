@@ -183,14 +183,19 @@
 					</select>&nbsp;
 					<select name="filterType2" id="filterType2" onchange="this.form.submit();" class="w3-border">
 						<option value="">선택</option>
-						<option value="toy">완구</option>
-						<option value="book">도서</option>
-						<option value="dress">의류</option>
-						<option value="other">기타</option>
+						<option value="1">완구</option>
+						<option value="2">도서</option>
+						<option value="3">의류</option>
+						<option value="4">기타</option>
 					</select>
 					<script type="text/javascript">
 						if ('${param.filterType}' != '') {
 							document.getElementById("filterType").value = '${param.filterType}';
+						}
+					</script>
+					<script type="text/javascript">
+						if ('${param.filterType2}' != '') {
+							document.getElementById("filterType2").value = '${param.filterType2}';
 						}
 					</script>
 					<font size="2">Total ${listcount}건 ${pageNum}페이지</font>

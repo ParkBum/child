@@ -48,6 +48,9 @@ public class BoardController {
 		if (filterType == null || filterType.toString().equals("")) {
 			filterType = null;
 		}
+		if (filterType2 == null || filterType2.toString().equals("")) {
+			filterType2 = null;
+		}
 		int limit = 10; // 한 페이지에 출력할 게시물 수
 		int listcount = service.boardCount(bType, filterType, searchType, searchContent, filterType2);
 		List<Board> boardlist = service.boardList(bType, filterType, searchType, searchContent, pageNum, filterType2, limit);

@@ -13,7 +13,7 @@
 				 and head = #{filterType} 
 			</if>
 			<if test="filterType2 != null">
-				and mkinds = #{filterType}
+				and mkinds = #{filterType2}
 			</if>
 			<if test="searchType != null and searchContent!=null">
 				 and ${searchType} like '%${searchContent}%'
@@ -32,7 +32,7 @@
 				 and head = #{filterType} 
 			</if>
 			<if test="filterType2 != null">
-				and mkinds = #{filterType}
+				and mkinds = #{filterType2}
 			</if>
 			<if test="searchType != null and searchContent!=null">
 				 and ${searchType} like '%${searchContent}%'
