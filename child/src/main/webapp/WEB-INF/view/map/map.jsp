@@ -13,7 +13,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/d3.v2.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
@@ -79,7 +78,7 @@ option {
 .x.axis path {
   display: none;
 } 
-  .tooltip {
+  .tooltip1 {
       position: absolute;
       display: none;
       width: auto;
@@ -92,31 +91,30 @@ option {
       padding: 5px;
       text-align: center;
   } 
-<%--별점 평균--%>
-/* 
-.chart rect:first-of-type {
-  color: #fff;
-  stroke: #3994b6;
-  fill: white;
+<%-- pie chart --%>
+.arc2 text {
+  font: 10px sans-serif;
+  text-anchor: middle;
 }
 
-text:first-of-type {
-  fill: #3994b6;
-  font-family: sans-serif;
-  font-size: 12px;
+.arc2 path {
+  stroke: #fff;
 }
 
-.chart rect:nth-of-type(2) {
-  color: #fff;
-  stroke: transparent;
-  fill: #3994b6;
+.tooltip2 {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
 }
-
-text:nth-of-type(2) {
-  fill: #a8d4e4;
-  font-family: sans-serif;
-  font-size: 12px;
-} */
 </style>
 </head>
 <body>
@@ -190,13 +188,11 @@ text:nth-of-type(2) {
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px; background-color: #FFF1F5;" id="chart">
-			<div class="tooltip"></div>
+			<div class="bar" style="height:470px; border:solid 1px #aaaaaa; " id="chart">
+			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
-<!-- 			<div style="display: table;">
+			<div class="tooltip2"></div>
 				<svg class="svg2"></svg>
-				<svg class="svg3"></svg>
-			</div> -->
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -205,7 +201,6 @@ text:nth-of-type(2) {
 		</div>
 		<!-- SearchAndMap -->
 	</div>
-
 	<%-- 지도를 생성을 합니다. --%>
 <script type="text/javascript">
 		// 지동 생성에 필요한 값들
@@ -216,7 +211,6 @@ text:nth-of-type(2) {
 			mapTypeId : daum.maps.MapTypeId.ROADMAP
 		// 지도종류
 		};
-
 		// 지도를 생성한다 
 		var map = new daum.maps.Map(mapContainer, mapOption);
 
@@ -228,6 +222,82 @@ text:nth-of-type(2) {
 		//생성된 마커 객체들을 실을 배열 객체
 		var markers = [];
 		var infos = [];
+		var codes =[];
+</script>
+<c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
+<script>
+$(document).ready(function() { 
+	var geocoder = new daum.maps.services.Geocoder();
+		geocoder.addressSearch('${sessionScope.loginUser.addr2}', function(result, status) {
+	     if (status === daum.maps.services.Status.OK) {
+			var data ={
+					"lat" : result[0].y,
+					"lon" : result[0].x
+			}
+			$.ajax({
+				url : "autoMarker.child",
+				type : "post",
+				data : data,
+				dataType : "json",
+				success : function(data){
+					if (data.autoMarkerList.length == 0){
+						alert("반경 안에 어린이집이 없습니다.")
+					}
+					hideMarkers();
+					for (var i = 0; i < data.autoMarkerList.length; i++) {
+						var Map = map;
+						var coords = new daum.maps.LatLng(
+            					data.autoMarkerList[i].lat,data.autoMarkerList[i].lon		
+            					);
+							
+						var marker = new daum.maps.Marker({
+    						map:Map,
+    						position:coords
+    					});
+    					marker.setMap(map);
+    					
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
+							+"어린이집 이름: "+data.autoMarkerList[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
+						var infowindow = new daum.maps.InfoWindow({
+							    position : coords, 
+							    content : content,
+							    removable:true
+							}); 
+						infos.push(infowindow);
+						markers.push(marker);
+        				map.setCenter(coords);	 
+        			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
+        			    (function(marker, infowindow) { 
+        			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        			        daum.maps.event.addListener(marker, 'click', function() {
+        			        	AnotherMarkers();
+        			            infowindow.open(map, marker);
+        			        });
+
+        			    })(marker, infowindow);
+						
+					}
+					function makeOverListener( map, marker, infowindow) { 
+						return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+				}
+			})   
+	    }; 
+	})   	
+})
+</script>
+</c:if>
+<script>
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -248,27 +318,18 @@ text:nth-of-type(2) {
 					}
 					hideMarkers();
 					for (var i = 0; i < data.daycarelist.length; i++) {
+						
 						var Map = map;
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
 							
-					 	/* var imageSrc = '';
-						if(data.daycarelist[i].bus == '운영')
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
-						else	 
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/512/1497619936-jd21_85172.png'; // 마커이미지의 주소입니다 	
-							  
-					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
-					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption); */
 						var marker = new daum.maps.Marker({
     						map:Map,
     						position:coords
     					});
     					marker.setMap(map);
-    					markers.push(marker);
-
+    					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
 							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
@@ -277,8 +338,8 @@ text:nth-of-type(2) {
 							    removable:true
 							}); 
 						infos.push(infowindow);
-        				 map.setCenter(coords);	 
-   
+						markers.push(marker);
+        				map.setCenter(coords);	 
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
         			    (function(marker, infowindow) { 
@@ -289,8 +350,7 @@ text:nth-of-type(2) {
         			        });
 
         			    })(marker, infowindow);
-
-					}
+					} //for문 끝나는 부분
 					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 					function makeOverListener( map, marker, infowindow) { 
 						return function() {
@@ -321,6 +381,7 @@ function hideMarkers() {
 function AnotherMarkers(){
 	 for (var i = 0; i < markers.length; i++) {
 	      infos[i].close();
+	      
   	}    
 }
 <%-- 그래프 비교  ajax --%>
@@ -328,7 +389,7 @@ var dataset = []; // 초기 서울 통계 평균 dataset에 저장
 dataset.push({"name":"서울시 평균",
     "values":[
 		{"value":${daytotal.teacher_avg} ,"column":"교사 수"},
-		{"value":${daytotal.maxchild_avg},"column":"정원"},
+		{"value":${daytotal.maxchild_avg},"column":"정원"}, 
 		{"value":${daytotal.nowchild_avg},"column":"현원"},
 		{"value":${daytotal.child_per_teacher},"column":"교사 당 원아 수"}
 	  ]
@@ -345,7 +406,9 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-		d3.selectAll("svg > *").remove(); 
+/* 			console.log(data); */
+ 	    pieChart(data.daycare.gu); 
+		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
 			dataset.push(
 					{"name":data.daycare.name,
@@ -368,11 +431,11 @@ function graph(a){
 						  ]
 					});	
 		}
-		 score(data.daycare.score_avg); 
+/* 		 score(data.daycare.score_avg);  */
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
 		    height = 450 - margin.top - margin.bottom;
-		var divTooltip = d3.select(".tooltip");
+		var divTooltip = d3.select(".tooltip1");
 		var x0 = d3.scale.ordinal()
 		    .rangeRoundBands([0, width], .1);
 
@@ -408,7 +471,7 @@ function graph(a){
 		  
 		  x0.domain(Names);
 		  x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
-		  y.domain([0, d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+		  y.domain([0, 20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
 		  
 		  svg.append("g")
 		      .attr("class", "x axis")
@@ -451,7 +514,6 @@ function graph(a){
 	                divTooltip.style("opacity", "0.9");
 	                var x = d3.event.pageX,
 	                    y = d3.event.pageY;
-	                var elements = document.querySelectorAll(":hover");
 	                divTooltip.html(d.column + "<br>" + d.value);
 	                d3.select(this)
 	                    .style("fill", d3.rgb(color(d.column)).brighter(1))
@@ -486,7 +548,7 @@ function graph(a){
 		      .style("fill", function(d) { return color(d); });
 
 		  legend.append("text")
-		      .attr("x", width - 6)
+		      .attr("x", width - 2)
 		      .attr("y", 9)
 		      .attr("dy", ".35em")
 		      .style("text-anchor", "end")
@@ -498,36 +560,85 @@ function graph(a){
 		}});
 	
 }
-//score 평점 출력
-function score(avg){
-	 var data = [5, avg]; // here are the data values; v1 = total, v2 = current value
-	  
-	  var svg = d3.select(".svg2") // creating the svg object inside the container div
-	    .attr("width", 200) // bar has a fixed width
-	    .attr("height", 20 * data.length);
-	  
-	  var x = d3.scale.linear() // takes the fixed width and creates the percentage from the data values
-	    .domain([0, d3.max(data)])
-	    .range([0, 200]); 
-	  
-	  svg.selectAll("rect") // this is what actually creates the bars
-	    .data(data)
-	  .enter().append("rect")
-	    .attr("width", x)
-	    .attr("height", 40)
-	    .attr("rx", 5) // rounded corners
-	    .attr("ry", 5);
-	    
-	  svg.selectAll("text") // adding the text labels to the bar
-	    .data(data)
-	  .enter().append("text")
-	    .attr("x", x)
-	    .attr("y", 10) // y position of the text inside bar
-	    .attr("dx", -3) // padding-right
-	    .attr("dy", ".35em") // vertical-align: middle
-	    .attr("text-anchor", "end") // text-align: right
-	    .text(String);
-}
+
+ function pieChart(guname){//guname이 실려있음
+	 var div = d3.select("body").select(".svg2").select(".tooltip2");
+
+	 var width = 960,
+	     height = 500,
+	     radius = Math.min(width, height) / 2;
+
+	 var color = d3.scale.ordinal()
+	     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56","#aabbcc","#121212"]);
+
+	 var arc = d3.svg.arc()
+	     .outerRadius(radius - 10)
+	     .innerRadius(radius - 70);
+
+	 var pie = d3.layout.pie()
+	     .sort(null)
+	 	 .startAngle(1.1*Math.PI)
+	     .endAngle(3.1*Math.PI)
+	     .value(function(a) { return a.value; });
+	 	 
+
+	 var svg = d3.select("body").select(".svg2")
+	     .attr("width", width)
+	     .attr("height", height)
+	   .append("g")
+	     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+	
+	d3.json("../decorator/total_nowchild.json", function(error, data) {
+
+		node = data.values[0]; 
+		
+		
+	  var g = svg.selectAll("arc")
+	       .data(pie(node))
+	     .enter().append("g")
+	       .attr("class", "arc2");
+
+	   g.append("path")
+	 	.style("fill", function(d) { return color(d.data.column); })
+	     .transition().delay(function(d,i) {
+	 	return i * 500; }).duration(500)
+	 	.attrTween('d', function(d) {
+	 		var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+	 		return function(t) {
+	 			d.endAngle = i(t); 
+	 			return arc(d);
+	 			}
+	 		}); 
+	   g.append("text")
+	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+	       .attr("dy", ".35em")
+	 	  .transition()
+	 	  .delay(1000)
+	       .text(function(d) { return d.data.column; });
+
+	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
+	 	    div.style("left", d3.event.pageX+10+"px");
+	 		  div.style("top", d3.event.pageY-25+"px");
+	 		  div.style("display", "inline-block");
+	     div.html((d.data.column)+"<br>"+(d.data.value));
+	 });
+	 	  
+	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
+	     div.style("display", "none");
+	 });
+	 	  
+	 	  
+	 //d3.select("body").transition().style("background-color", "#d3d3d3");
+ 	 function type(d) {
+	   d.data.value = +d.data.value;
+	   return d;
+	 } 
+			  
+			  
+		  
+	});
+	
+} 
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
 	var data = {
