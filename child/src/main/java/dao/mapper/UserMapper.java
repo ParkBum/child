@@ -32,7 +32,7 @@ public interface UserMapper {
 	@Insert("update user set red = ifnull(red, 0) + 1 where mnum = #{mnum}")
 	void addRed(Integer mnum);
 
-	@Update("update user set password=#{password1} where mnum = #{mnum}")
-	void changePass(User user);
+	@Update("update user set password=#{newpass1} where mnum = #{mnum}")
+	void changePass(Map<String, Object> map);
 
 }

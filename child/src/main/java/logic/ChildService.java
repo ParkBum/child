@@ -185,8 +185,8 @@ public class ChildService {
 		commentDao.update(comment);
 	}
 
-	public void changePass(User user) {
-		userDao.changePass(user);
+	public void changePass(String newpass1, Integer mnum) {
+		userDao.changePass(newpass1,mnum);
 	}
 
 	public void reWrite(Comment comment) {
