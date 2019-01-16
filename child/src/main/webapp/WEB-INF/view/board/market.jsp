@@ -219,6 +219,7 @@
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
 								<td><a href="info.child?bnum=${board.bnum}"
 									style="text-decoration: none;">
+									<input type="hidden" name="pageNum" value="1">
 									&nbsp;[${(board.head==1)?"삽니다":"팝니다"}]
 									&nbsp;[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
 									&nbsp;${board.subject}</a>
