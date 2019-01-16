@@ -158,7 +158,7 @@ $(function(){
 					<!-- 모달 내용  action="chgPass.child"  -->
 					<form action="chgPass.child" method="Post" name="f" onsubmit="return passcheck()">
 					<input type="hidden" name="mnum" value="${user.mnum }">
-					<div id="id01" class="w3-modal" style="z-index: 4">
+					<div id="id01" class="w3-modal" style="z-index: 4; padding-top:280px;">
 						<div class="w3-modal-content w3-animate-zoom" style="width:20%">
 							<div class="w3-container w3-padding"
 								style="background-color: #FFF1F5;">

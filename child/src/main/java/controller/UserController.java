@@ -1,6 +1,7 @@
 package controller;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import logic.Board;
 import logic.ChildService;
 import logic.Login;
 import logic.User;
@@ -232,7 +234,6 @@ public class UserController {
 		}
 		return mav;
 	}
-	
  
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
 	public ModelAndView confirm(String password, Integer mnum, HttpSession session) {
@@ -245,7 +246,34 @@ public class UserController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "user/myBoardList")
+	public ModelAndView myBoardList(Integer mnum) {
+		ModelAndView mav = new ModelAndView();
+		String nick = service.getNickName(mnum);
+		List<Board> myboard = service.myBoardList(mnum);		
+		mav.addObject("nickname",nick);
+		mav.addObject("myboard",myboard);
+		mav.setViewName("user/userboardList");
+		return mav;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
