@@ -271,6 +271,7 @@ public class ChildService {
 	}
 
 	public void buyItem(Message msg) {
+		msg.setMsgnum(messageDao.maxMsgnum() + 1);
 		messageDao.insert(msg);
 	}
 

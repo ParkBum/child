@@ -8,6 +8,7 @@
 		<typeAlias type="logic.Comment" alias="Comment"/>
 		<typeAlias type="logic.Daycare" alias="Daycare"/>
 		<typeAlias type="logic.Daycare_total" alias="Daycare_total"/>
+		<typeAlias type="logic.Message" alias="Message"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="dao/mapper/UserMapper.xml" />

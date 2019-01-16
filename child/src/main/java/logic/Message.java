@@ -1,12 +1,12 @@
 package logic;
 
 public class Message {
-	private int msgnum;
-	private int bnum;
-	private int buynum;
-	private int sellnum;
-	private int phone;
-	private int deal;
+	private int msgnum; // 쪽지 번호
+	private int bnum; // 구매게시글 번호
+	private int buynum; // 구매자 회원번호
+	private int sellnum; // 판매자 회원번호
+	private String phone; // 휴대폰 번호
+	private int deal; // 거래상태(0:판매중  1:구매요청  2:판매완료)
 
 	public int getMsgnum() {
 		return msgnum;
@@ -40,11 +40,11 @@ public class Message {
 		this.sellnum = sellnum;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

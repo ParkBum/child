@@ -20,7 +20,7 @@ public class MessageController {
 	public ModelAndView buyItem(Message msg, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("board/info");
 		String phone = request.getParameter("phone1") + request.getParameter("phone2") + request.getParameter("phone3");
-		msg.setPhone(Integer.parseInt(phone));
+		msg.setPhone(phone);
 		service.buyItem(msg);
 		Board board = service.getBoard(msg.getBnum());
 		mav.addObject("board", board);

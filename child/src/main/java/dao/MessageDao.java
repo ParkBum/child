@@ -18,4 +18,8 @@ public class MessageDao {
 		sqlSession.getMapper(MessageMapper.class).insert(msg);	
 	}
 
+	public int maxMsgnum() {
+		return sqlSession.getMapper(MessageMapper.class).maxMsgnum();
+	}
+
 }
