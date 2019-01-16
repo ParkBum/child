@@ -118,6 +118,27 @@ th {
 .starR2.on {
 	background-position: -15px 0;
 }
+
+.ani {
+	-webkit-animation: stretch-bounce .5s ease-in-out;
+}
+
+@-webkit-keyframes stretch-bounce {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(1.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
 </style>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -147,11 +168,14 @@ th {
 		if (file3.length == 0 || file2 == "") {
 			$('#tr3').hide();
 		}
-
+		
 		$('.starRev span').click(function() {
 			var starRevId = $(this).attr('id');
 			$(this).parent().children('span').removeClass('on');
+			$(this).parent().children('span').removeClass('ani');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			$(this).addClass('ani').prevAll('span').addClass('ani');
+			
 			switch (starRevId) {
 			case "left1":
 				$("#score").val('0.5');

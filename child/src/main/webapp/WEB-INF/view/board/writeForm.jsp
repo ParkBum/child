@@ -118,6 +118,28 @@ th {
 .starR2.on {
 	background-position: -15px 0;
 }
+.ani {
+	-webkit-animation: stretch-bounce .5s ease-in-out;
+}
+
+@-webkit-keyframes stretch-bounce {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(1.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
 </style>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -125,10 +147,14 @@ th {
 	$(document).ready(function() {
 		$('#tr2').hide();
 		$('#tr3').hide();
+		
 		$('.starRev span').click(function() {
 			var starRevId = $(this).attr('id');
 			$(this).parent().children('span').removeClass('on');
+			$(this).parent().children('span').removeClass('ani');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			$(this).addClass('ani').prevAll('span').addClass('ani');
+			
 			switch (starRevId) {
 			case "left1":
 				$("#score").val('0.5');
@@ -253,7 +279,7 @@ function nextselect(){
 				<input type="hidden" name="bType" value="${board.bType}">
 				<input type="hidden" name="mnum"
 					value="${sessionScope.loginUser.mnum}">
-				<input type="hidden" name="score" id="score" value="3">
+				<input type="hidden" name="score" id="score" value="0">
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<tr style="height: 30px;">
 						<th style="text-align: center;">제목</th>
@@ -300,12 +326,12 @@ function nextselect(){
 						<tr style="height: 30px;">
 							<th style="text-align: center;">별점</th>
 							<td><div class="starRev">
-									<span class="starR1 on" id="left1">별1_왼쪽</span> <span
-										class="starR2 on" id="right1">별1_오른쪽</span> <span
-										class="starR1 on" id="left2">별2_왼쪽</span> <span
-										class="starR2 on" id="right2">별2_오른쪽</span> <span
-										class="starR1 on" id="left3">별3_왼쪽</span> <span
-										class="starR2 on" id="right3">별3_오른쪽</span> <span
+									<span class="starR1" id="left1">별1_왼쪽</span> <span
+										class="starR2" id="right1">별1_오른쪽</span> <span
+										class="starR1" id="left2">별2_왼쪽</span> <span
+										class="starR2" id="right2">별2_오른쪽</span> <span
+										class="starR1" id="left3">별3_왼쪽</span> <span
+										class="starR2" id="right3">별3_오른쪽</span> <span
 										class="starR1" id="left4">별4_왼쪽</span> <span class="starR2"
 										id="right4">별4_오른쪽</span> <span class="starR1" id="left5">별5_왼쪽</span>
 									<span class="starR2" id="right5">별5_오른쪽</span>
