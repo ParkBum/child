@@ -406,7 +406,6 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-/* 			console.log(data); */
  	    pieChart(data.daycare.gu); 
 		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
@@ -560,12 +559,12 @@ function graph(a){
 		}});
 	
 }
-//추가 pie chart 
+//추가 pie chart (2017 구별 종합 현원 수)
 function pieChart(guname){//guname이 실려있음
 	 var tooltip = d3.select(".tooltip2");
 
-	 var width = 960,
-	     height = 500,
+	 var width = 750,
+	     height = 450,
 	     radius = Math.min(width, height) / 2;
 
 	 var color = d3.scale.ordinal()
@@ -621,14 +620,14 @@ function pieChart(guname){//guname이 실려있음
 	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 	       .attr("dy", ".35em")
 	 	  .transition()
-	 	  .delay(500)
-	       .text(function(d) { return d.data.type; });
+	 	  .delay(500);
+	       /* .text(function(d) { return d.data.type; }); */
 
-	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
+	 d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>"+(d.data.value));
+	 		tooltip.html((d.data.type)+"<br>2017 종합 현원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
@@ -659,10 +658,6 @@ function review(code){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) {
-			//버튼 클릭시 초기화
-			$('#removeboard').click(function(){
-				$('#reviews').empty();
-			})
 			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성
 		    $('#reviews').empty();
 		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
