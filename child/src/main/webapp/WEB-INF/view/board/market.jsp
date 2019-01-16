@@ -26,6 +26,20 @@
 		}
 		return false;
 	}
+
+	function searchCheck(pageNum) {
+		var searchType = document.searchForm.searchType.value;
+		if (searchType == null || searchType == "" || searchType.length == 0) {
+			alert("검색 조건을 선택하세요");
+			return false;
+		} else {
+			document.searchForm.pageNum.value = pageNum;
+			document.searchForm.submit();
+			return true;
+		}
+		return false;
+	}
+	
 	$('document').ready(function() {
 		$('#writebtn').click(function() {
 			location.href = "writeForm.child?bType=3";
@@ -136,13 +150,12 @@
 			</div>
 			<div class="search">
 				<form action="list.child" method="post" name="searchForm"
-					onsubmit="return list(1)">
+					onsubmit="return searchCheck(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<input type="hidden" name="bType" value="3">
 					<select name="searchType" id="searchType">
-						<option value="0">선택</option>
+						<option value="">선택</option>
 						<option value="subject">제목</option>
-						<option value="nickname">글쓴이</option>
 						<option value="content">내용</option>
 					</select>&nbsp;
 					<script type="text/javascript">
