@@ -13,7 +13,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/d3.v2.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
@@ -193,7 +192,7 @@ option {
 			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
 			<div class="tooltip2"></div>
-				<svg class="svg2"></svg> 
+				<svg class="svg2"></svg>
 			</div>
 			<div class="bar" style="height:320px;">
 				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
@@ -342,7 +341,8 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-	    pieChart(data.daycare.gu);
+/* 			console.log(data); */
+ 	    pieChart(data.daycare.gu); 
 		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
 			dataset.push(
@@ -366,7 +366,7 @@ function graph(a){
 						  ]
 					});	
 		}
-		 score(data.daycare.score_avg); 
+/* 		 score(data.daycare.score_avg);  */
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
 		    height = 450 - margin.top - margin.bottom;
@@ -496,80 +496,84 @@ function graph(a){
 	
 }
 
-function pieChart(guname){//guname이 실려있음
-	var tooltip = d3.select(".tooltip2");
-	var dataset = [
-		{ name: 'Firearms', total: 8124, percent: 67.9 },
-		{ name: 'Knives or cutting instruments', total: 1567, percent: 13.1 },
-		{ name: 'Other weapons', total: 1610, percent: 13.5 },
-		{ name: 'Hands, fists, feet, etc.', total: 660, percent: 5.5 }
-	];
+ function pieChart(guname){//guname이 실려있음
+	 var div = d3.select("body").select(".svg2").select(".tooltip2");
 
-	var width = 960,
-	    height = 500,
-	    radius = Math.min(width, height) / 2;
+	 var width = 960,
+	     height = 500,
+	     radius = Math.min(width, height) / 2;
 
-	var color = d3.scale.ordinal()
-	    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"]);
+	 var color = d3.scale.ordinal()
+	     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56","#aabbcc","#121212"]);
 
-	var arc = d3.svg.arc()
-	    .outerRadius(radius - 10)
-	    .innerRadius(radius - 70);
+	 var arc = d3.svg.arc()
+	     .outerRadius(radius - 10)
+	     .innerRadius(radius - 70);
 
-	var pie = d3.layout.pie()
-	    .sort(null)
-		 .startAngle(1.1*Math.PI)
-	    .endAngle(3.1*Math.PI)
-	    .value(function(d) { return d.total; });
+	 var pie = d3.layout.pie()
+	     .sort(null)
+	 	 .startAngle(1.1*Math.PI)
+	     .endAngle(3.1*Math.PI)
+	     .value(function(a) { return a.value; });
+	 	 
 
-	var svg = d3.select(".svg2")
-	    .attr("width", width)
-	    .attr("height", height)
-	  .append("g")
-	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+	 var svg = d3.select("body").select(".svg2")
+	     .attr("width", width)
+	     .attr("height", height)
+	   .append("g")
+	     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+	
+	d3.json("../decorator/total_nowchild.json", function(error, data) {
 
+		node = data.values; 
+		
+		
+	  var g = svg.selectAll("arc")
+	       .data(pie(node))
+	     .enter().append("g")
+	       .attr("class", "arc2");
 
-	 var g = svg.selectAll("arc")
-	 	  .attr("class", "arc2")
-	      .data(pie(dataset))
-	    .enter().append("g");
+	   g.append("path")
+	 	.style("fill", function(d) { return color(d.data.column); })
+	     .transition().delay(function(d,i) {
+	 	return i * 500; }).duration(500)
+	 	.attrTween('d', function(d) {
+	 		var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+	 		return function(t) {
+	 			d.endAngle = i(t); 
+	 			return arc(d);
+	 			}
+	 		}); 
+	   g.append("text")
+	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+	       .attr("dy", ".35em")
+	 	  .transition()
+	 	  .delay(1000)
+	       .text(function(d) { return d.data.column; });
 
-	  g.append("path")
-		.style("fill", function(d) { return color(d.data.name); })
-	    .transition().delay(function(d,i) {
-		return i * 500; }).duration(500)
-		.attrTween('d', function(d) {
-			var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
-			return function(t) {
-				d.endAngle = i(t); 
-				return arc(d)
-				}
-			}); 
-	  g.append("text")
-	      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-	      .attr("dy", ".35em")
-		  .transition()
-		  .delay(1000)
-	      .text(function(d) { return d.data.name; });
-
-		d3.selectAll("path").on("mousemove", function(d) {
-			tooltip.style("left", d3.event.pageX+10+"px");
-			tooltip.style("top", d3.event.pageY-25+"px");
-			tooltip.style("display", "inline-block");
-			tooltip.html((d.data.name)+"<br>"+(d.data.total) + "<br>"+(d.data.percent) + "%");
+	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
+	 	    div.style("left", d3.event.pageX+10+"px");
+	 		  div.style("top", d3.event.pageY-25+"px");
+	 		  div.style("display", "inline-block");
+	     div.html((d.data.column)+"<br>"+(d.data.value));
+	 });
+	 	  
+	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
+	     div.style("display", "none");
+	 });
+	 	  
+	 	  
+	 //d3.select("body").transition().style("background-color", "#d3d3d3");
+ 	 function type(d) {
+	   d.data.value = +d.data.value;
+	   return d;
+	 } 
+			  
+			  
+		  
 	});
-		  
-	d3.selectAll("path").on("mouseout", function(d){
-		tooltip.style("display", "none");
-	});
-		  
-		  
-	//d3.select("body").transition().style("background-color", "#d3d3d3");
-	function type(d) {
-	  d.total = +d.total;
-	  return d;
-	}
-}
+	
+} 
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
 	var data = {
