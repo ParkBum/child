@@ -115,6 +115,7 @@
 					<tr>
 						<th colspan="5" style="text-align: center;">È¸¿ø ¸ñ·Ï</th>
 					</tr>
+					
 					<tr>
 						<th style="text-align: center;">È¸¿ø¹øÈ£</th>
 						<th style="text-align: center;">¾ÆÀÌµð(ÀÌ¸ÞÀÏ)</th>
@@ -126,10 +127,20 @@
 						<tr>
 							<td style="text-align: center;">${user.mnum}</td>
 							<td>${user.email}</td>
+							<c:choose>
+							<c:when test="${user.red >= 3}">
+								<td style="color:red">${user.nickname}</td>
+							</c:when>
+							<c:otherwise>
 							<td>${user.nickname}</td>
+							</c:otherwise>
+							</c:choose>
+							
 							<td style="text-align: center;">${user.red}</td>
-							<td style="text-align: center;"><a
-								href="javascript:admindelete(${user.mnum})">°­Á¦Å»Åð</a></td>
+							<td style="text-align: center;">
+							<c:if test="${user.email != 'admin@aaa.bbb'}">
+							<a href="javascript:admindelete(${user.mnum})">°­Á¦Å»Åð</a></c:if>
+							<c:if test="${user.email == 'admin@aaa.bbb'}">Å»ÅðºÒ°¡</c:if></td>
 						</tr>
 					</c:forEach>
 				</table>
