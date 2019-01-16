@@ -15,7 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDao;
 import dao.CommentDao;
-import dao.MapDao; 
+import dao.MapDao;
+import dao.MessageDao;
 import dao.UserDao;
 
 @Service
@@ -29,6 +30,8 @@ public class ChildService2 {
 	private MapDao mapDao;
 	@Autowired
 	private CommentDao commentDao;
+	@Autowired
+	private MessageDao messageDao;
 
 	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
 		String uploadPath = request.getServletContext().getRealPath("/") + "/" + path + "/";
@@ -258,8 +261,8 @@ public class ChildService2 {
 		return boardDao.myBoardList(mnum);
 	}
 
-	public void sendMsg(Message msg) {
-		
+	public void buyItem(Message msg) {
+		messageDao.insert(msg);
 	}
 
 

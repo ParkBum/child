@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import logic.Board;
 import logic.ChildService2;
 import logic.Message;
 
@@ -15,12 +16,14 @@ public class MessageController {
 	@Autowired
 	ChildService2 service;
 
-	@RequestMapping(value = "board/sendMsg")
-	public ModelAndView sendMsg(Message msg, HttpServletRequest request) {
+	@RequestMapping(value = "board/buyItem")
+	public ModelAndView buyItem(Message msg, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("board/info");
 		String phone = request.getParameter("phone1") + request.getParameter("phone2") + request.getParameter("phone3");
 		msg.setPhone(Integer.parseInt(phone));
-		service.sendMsg(msg);		
+		service.buyItem(msg);
+		Board board = service.getBoard(msg.getBnum());
+		mav.addObject("board", board);
 		mav.setViewName("redirect:/board/info.child?bnum=" + msg.getBnum());
 		return mav;
 	}

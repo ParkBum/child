@@ -365,7 +365,7 @@ $(function() {
 					<td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
 						<input type="button" value="구매요청" name="buy"
 						onclick="document.getElementById('id01').style.display='block'" />
-						<form action="sendMsg.child" method="Post" name="f" onsubmit="return phonecheck()">
+						<form action="buyItem.child" method="Post" name="f" onsubmit="return phonecheck()">
 						<input type="hidden" name="bnum" value="${board.bnum }">
 						<input type="hidden" name="sellnum" value="${board.mnum }">
 						<input type="hidden" name="buynum" value="${sessionScope.loginUser.mnum }">
