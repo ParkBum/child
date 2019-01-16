@@ -609,7 +609,7 @@ function pieChart(guname){//guname이 실려있음
 	   g.append("path")
 	 	.style("fill", function(d) { return color(d.data.type); })
 	     .transition().delay(function(d,i) {
-	 	return i * 500; }).duration(500)
+	 	return i * 250; }).duration(500)
 	 	.attrTween('d', function(d) {
 	 		var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
 	 		return function(t) {
@@ -621,7 +621,7 @@ function pieChart(guname){//guname이 실려있음
 	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 	       .attr("dy", ".35em")
 	 	  .transition()
-	 	  .delay(1000)
+	 	  .delay(500)
 	       .text(function(d) { return d.data.type; });
 
 	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
