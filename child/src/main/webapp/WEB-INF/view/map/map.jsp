@@ -257,7 +257,7 @@ $(document).ready(function() {
     					marker.setMap(map);
     					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.autoMarkerList[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
+							+"어린이집 이름: "+data.autoMarkerList[i].name+"["+data.autoMarkerList[i].type+"]"+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
