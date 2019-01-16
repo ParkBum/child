@@ -1,5 +1,7 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,13 +82,14 @@ public class BoardController {
 	@RequestMapping(value = "board/info")
 	public ModelAndView info(Integer bnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
+		Comment comment = new Comment();
+		Date date = new Date();
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
-		Comment comment = new Comment();
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
-		int limit = 10;
+/*		int limit = 10;
 		int commentCnt = service.commentCount(bnum);
-/*		int maxpage = (int) ((double) commentCnt / limit + 0.95); // 전체 페이지 수
+		int maxpage = (int) ((double) commentCnt / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
 		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
 		if (endpage > maxpage)
@@ -97,6 +100,10 @@ public class BoardController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("commentCnt", commentCnt);*/
+		for(Comment c : commentList) {
+			c.setNickname(service.getNickName(c.getMnum()));
+		}
+		mav.addObject("today", date);
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
 		mav.addObject("comment", comment);

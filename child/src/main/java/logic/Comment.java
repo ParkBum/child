@@ -13,7 +13,16 @@ public class Comment {
 	private Date comdate;
 	private int ref;
 	private int refstep;
+	private String nickname;
 	
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	public int getRef() {
 		return ref;
