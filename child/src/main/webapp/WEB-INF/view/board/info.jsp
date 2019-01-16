@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>게시물 상세 보기</title>
 <style type="text/css">
 .cmain {
@@ -113,9 +114,8 @@ td {
 </style>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script>
 
-
+<script type="text/javascript">
 function commentDelete(bnum, cnum){
 	   var del = confirm("댓글을 삭제하시겠습니까?")
 	   if(del){
@@ -124,6 +124,44 @@ function commentDelete(bnum, cnum){
 	   }
 	   return false;
 }
+
+function phonecheck() {
+	if (f.phone1.value.length == 3){		
+		if (f.phone2.value.length == 4) {
+			if (f.phone3.value.length == 4) {
+				alert("구매요청 완료");
+				return true;
+			}
+		}
+	} 
+	alert("휴대폰 번호를 입력하세요");
+	return false;
+}
+
+$(function() {			
+	$(".inputs").keyup (function () {
+		var charLimit = $(this).attr("maxlength");
+		if (this.value.length >= charLimit) {
+			$(this).next('.inputs').focus();
+		}
+		
+		var phone1 = $("#phone1").val();
+		var phone2 = $("#phone2").val();
+		var phone3 = $("#phone3").val();
+		var msg="";				
+		if(phone1.length < 3) {
+			msg = "휴대폰 번호를 입력하세요";					
+		} else if (phone2.length == 4 && phone3.length == 4) {
+			msg = "입력 확인";
+			$("#check").css("color","green");
+			$("#send").removeAttr("disabled");
+		} else {
+			msg = "휴대폰 번호를 입력하세요"
+			$("#check").css("color","red");
+		}
+		$('#check').html(msg);
+	})
+});
 
 	$(document).ready(function() {
 		$('#addred').hide()
@@ -198,8 +236,11 @@ function commentDelete(bnum, cnum){
 				$('#addred').show()
 			}
 		})
-
-
+			
+		$("input:text[numberOnly]").on("keyup", function() {
+    		$(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
+		
 	});
 </script>
 </head>
@@ -265,12 +306,15 @@ function commentDelete(bnum, cnum){
 				<tr style="height: 30px;">
 					<td style="text-align: center;">제목</td>
 					<td>&nbsp;[<c:if test="${board.bType == 1}">
-									${(board.head==1)?"육아꿀팁":"시설추천"}</c:if> <c:if
-							test="${board.bType == 3}">
-									${(board.head==1)?"삽니다":"팝니다"}</c:if> <c:if test="${board.bType == 2}">
-									${board.dcname}</c:if>] <c:if test="${board.bType == 3}">
+									${(board.head==1)?"육아꿀팁":"시설추천"}</c:if>
+							   <c:if test="${board.bType == 3}">
+									${(board.head==1)?"삽니다":"팝니다"}</c:if>
+						<c:if test="${board.bType == 2}">
+									${board.dcname}</c:if>]
+								<c:if test="${board.bType == 3}">
 									[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
-								</c:if> ${board.subject}
+								</c:if>
+						${board.subject}
 					</td>
 				</tr>
 				<c:if test="${board.bType == 2}">
@@ -317,6 +361,39 @@ function commentDelete(bnum, cnum){
 						</td>
 					</tr>
 				</c:if>
+				<!--  구매요청  -->
+				<tr>
+					<td colspan="2">
+						<input type="button" value="구매요청" name="buy"
+						onclick="document.getElementById('id01').style.display='block'" />
+						<form action="sendMsg.child" method="Post" name="f" onsubmit="return phonecheck()">
+						<input type="hidden" name="bnum" value="${board.bnum }">
+						<input type="hidden" name="sellnum" value="${board.mnum }">
+						<input type="hidden" name="buynum" value="${sessionScope.loginUser.mnum }">
+						<div id="id01" class="w3-modal" style="z-index: 4; padding-top:280px;">
+							<div class="w3-modal-content w3-animate-zoom" style="width:20%">
+								<div class="w3-container w3-padding" style="background-color: #FFF1F5;">
+								<a class="w3-button" style="background-color: #FFF1F5; float:right;"
+										onclick="document.getElementById('id01').style.display='none'">
+									<i class="material-icons">clear</i></a><h2>구매 요청</h2>								
+								</div>
+								<div class="w3-panel">
+								휴대폰 번호 입력 : 
+								<input type="text" name="phone1" id="phone1" class="inputs" maxlength="3" style="width:40px;" numberOnly required> - 
+								<input type="text" name="phone2" id="phone2" class="inputs" maxlength="4" style="width:50px;" numberOnly required> - 
+								<input type="text" name="phone3" id="phone3" class="inputs" maxlength="4" style="width:50px;" numberOnly required>
+								<br>
+								<font id="check" size="3" color="red"></font>
+								<div class="w3-section">
+								<input type="submit" id="send" onclick="document.getElementById('id01').style.display='none'"
+										class="w3-button w3-light-grey w3-center" value="확인" disabled="disabled">					
+									</div>
+								</div>
+							</div>
+						</div>
+						</form>
+					</td>
+				</tr>	
 				<tr>
 					<td colspan="2" style="text-align: center; height: 30px;"><c:if
 							test="${sessionScope.loginUser.mnum == board.mnum}">
@@ -366,15 +443,15 @@ function commentDelete(bnum, cnum){
 							</c:if>
 					회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
 								<f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-							<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-							<c:choose>
-								<c:when test="${t==c1}">
-									<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-								</c:when>
-								<c:otherwise>
-									<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-								</c:otherwise>
-							</c:choose>)
+								<f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
+									<c:choose>
+										<c:when test="${t==c1}">
+											<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+										</c:when>
+										<c:otherwise>
+											<f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
+										</c:otherwise>
+									</c:choose>)
 						
 						<!-- 댓글 출력-->
 
@@ -386,7 +463,6 @@ function commentDelete(bnum, cnum){
 									&nbsp;${c.recomment}<br>
 								</div>
 							</div>
-
 							<!-- 수정버튼 눌리고 댓글수정창 나옴-->
 							<div id="recommentupd${stat.index}" style="display: none">
 								<form:form action="commentUpdate.child" method="Post"
