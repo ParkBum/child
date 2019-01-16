@@ -165,8 +165,8 @@
 		</dependency>
 		
 		<!-- word2vec을 위한 설정 구간-->
-		
-		<!-- https://mvnrepository.com/artifact/org.nd4j/nd4j-api -->
+<!-- 		
+		https://mvnrepository.com/artifact/org.nd4j/nd4j-api
 		<dependency>
 			<groupId>org.nd4j</groupId>
 			<artifactId>nd4j-api</artifactId>
@@ -178,29 +178,29 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.nd4j/nd4j-native-platform -->
+		https://mvnrepository.com/artifact/org.nd4j/nd4j-native-platform
 		<dependency>
 			<groupId>org.nd4j</groupId>
 			<artifactId>nd4j-native-platform</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- core DL4J -->
-		<!-- https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core -->
+		core DL4J
+		https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
 			<artifactId>deeplearning4j-core</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-nlp -->
+		https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-nlp
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
 			<artifactId>deeplearning4j-nlp</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- deeplearning4j-ui : HistogramIterationListener + 시각화에 사용됨. http://deeplearning4j.org/visualization 
-			참고. -->
+		deeplearning4j-ui : HistogramIterationListener + 시각화에 사용됨. http://deeplearning4j.org/visualization 
+			참고.
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
 			<artifactId>deeplearning4j-ui_2.10</artifactId>
@@ -213,19 +213,19 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-		<!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
-			<version>22.0</version> </dependency> -->
+		https://mvnrepository.com/artifact/com.google.guava/guava
+		<dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
+			<version>22.0</version> </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.datavec/datavec-api -->
+		https://mvnrepository.com/artifact/org.datavec/datavec-api
 		<dependency>
 			<groupId>org.datavec</groupId>
 			<artifactId>datavec-api</artifactId>
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- feedforward/classification/MLP* , feedforward/regression/RegressionMathFunctions 
-			예제에 사용 됨. -->
+		feedforward/classification/MLP* , feedforward/regression/RegressionMathFunctions 
+			예제에 사용 됨.
 		<dependency>
 			<groupId>jfree</groupId>
 			<artifactId>jfreechart</artifactId>
@@ -237,7 +237,7 @@
 			<version>1.0.23</version>
 		</dependency>
 
-		<!-- 몇몇 예제에서 데이터를 다운로드 할 때 사용. -->
+		몇몇 예제에서 데이터를 다운로드 할 때 사용.
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -252,7 +252,7 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.7</version>
-		</dependency>
+		</dependency> -->
 		<!-- word2vec을 위한 설정구간 끝 -->
 
 	</dependencies>
