@@ -258,6 +258,15 @@ public class ChildService {
 		return boardDao.myBoardList(mnum);
 	}
 
+	public void myBoardDelete(Integer[] checkBoard) {	
+		myComDelete(checkBoard);
+		boardDao.myBoardDelete(checkBoard);
+	}
+
+	private void myComDelete(Integer[] checkBoard) {
+		commentDao.myComDelete(checkBoard);
+	}
+
 
 
 	/*

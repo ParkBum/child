@@ -9,4 +9,13 @@
 		</if>
 		order by ref, refstep 
 	</select>
+	<select id="mycomment" resultType="Comment" parameterType="map">
+		delete from comment
+		<if test="bnum != null">
+			where bnum in 
+				<foreach collection="bnum" item="bnum" separator="," open="(" close=")">
+					#{bnum}
+				</foreach>
+		</if>
+	</select>
 </mapper>

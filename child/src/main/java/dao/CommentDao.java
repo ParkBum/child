@@ -66,6 +66,12 @@ public class CommentDao {
 		return sqlSession.getMapper(CommentMapper.class).commentCount(bnum);
 	}
 
+	public void myComDelete(Integer[] checkBoard) {
+		Map<String,Integer[]> map = new HashMap<String,Integer[]>();
+		map.put("bnum", checkBoard);
+		sqlSession.selectList(NS + "mycomment", map);
+	}
+
 	
 
 }

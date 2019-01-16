@@ -330,7 +330,7 @@ $(document).ready(function() {
     					});
     					marker.setMap(map);
     					
-    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">'
 							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
@@ -560,16 +560,16 @@ function graph(a){
 		}});
 	
 }
-
- function pieChart(guname){//guname이 실려있음
-	 var div = d3.select("body").select(".svg2").select(".tooltip2");
+//추가 pie chart 
+function pieChart(guname){//guname이 실려있음
+	 var tooltip = d3.select(".tooltip2");
 
 	 var width = 960,
 	     height = 500,
 	     radius = Math.min(width, height) / 2;
 
 	 var color = d3.scale.ordinal()
-	     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56","#aabbcc","#121212"]);
+	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
 
 	 var arc = d3.svg.arc()
 	     .outerRadius(radius - 10)
@@ -579,7 +579,7 @@ function graph(a){
 	     .sort(null)
 	 	 .startAngle(1.1*Math.PI)
 	     .endAngle(3.1*Math.PI)
-	     .value(function(a) { return a.value; });
+	     .value(function(d) { return d.value; });
 	 	 
 
 	 var svg = d3.select("body").select(".svg2")
@@ -589,17 +589,25 @@ function graph(a){
 	     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 	
 	d3.json("../decorator/total_nowchild.json", function(error, data) {
-
-		node = data.values[0]; 
-		
-		
+	 for (var i=0; i<data.length;i++){
+		 if(guname == data[i].gu){
+			 console.log(data[i].gu);			 
+			var dataset=[
+				{"type":data[i].values[0].column,"value":data[i].values[0].value},
+				{"type":data[i].values[1].column,"value":data[i].values[1].value},
+				{"type":data[i].values[2].column,"value":data[i].values[2].value},
+				{"type":data[i].values[3].column,"value":data[i].values[3].value},
+				{"type":data[i].values[4].column,"value":data[i].values[4].value},
+				{"type":data[i].values[5].column,"value":data[i].values[5].value},
+				{"type":data[i].values[6].column,"value":data[i].values[6].value}
+			]
 	  var g = svg.selectAll("arc")
-	       .data(pie(node))
+	       .data(pie(dataset))
 	     .enter().append("g")
 	       .attr("class", "arc2");
 
 	   g.append("path")
-	 	.style("fill", function(d) { return color(d.data.column); })
+	 	.style("fill", function(d) { return color(d.data.type); })
 	     .transition().delay(function(d,i) {
 	 	return i * 500; }).duration(500)
 	 	.attrTween('d', function(d) {
@@ -614,27 +622,28 @@ function graph(a){
 	       .attr("dy", ".35em")
 	 	  .transition()
 	 	  .delay(1000)
-	       .text(function(d) { return d.data.column; });
+	       .text(function(d) { return d.data.type; });
 
 	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
-	 	    div.style("left", d3.event.pageX+10+"px");
-	 		  div.style("top", d3.event.pageY-25+"px");
-	 		  div.style("display", "inline-block");
-	     div.html((d.data.column)+"<br>"+(d.data.value));
+	 		tooltip.style("left", d3.event.pageX+10+"px");
+	 		tooltip.style("top", d3.event.pageY-25+"px");
+	 		tooltip.style("display", "inline-block");
+	 		tooltip.html((d.data.type)+"<br>"+(d.data.value));
 	 });
 	 	  
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
-	     div.style("display", "none");
+		 tooltip.style("display", "none");
 	 });
 	 	  
 	 	  
 	 //d3.select("body").transition().style("background-color", "#d3d3d3");
  	 function type(d) {
-	   d.data.value = +d.data.value;
+	   d.value = +d.value;
 	   return d;
 	 } 
-			  
-			  
+	 		
+		 }
+	 }		  
 		  
 	});
 	
