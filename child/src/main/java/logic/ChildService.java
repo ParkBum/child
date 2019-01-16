@@ -249,6 +249,11 @@ public class ChildService {
 	}
 */
 
+	public List<Daycare> autoMarkerlist(Double lat, Double lon) {
+		// TODO Auto-generated method stub
+		return mapDao.autoMarkerlist(lat,lon);
+	}
+
 
 
 	/*

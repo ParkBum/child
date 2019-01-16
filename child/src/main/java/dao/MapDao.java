@@ -60,6 +60,14 @@ public class MapDao {
 	}
 
 
+	public List<Daycare> autoMarkerlist(Double lat, Double lon) {
+		Map<String,Double> map = new HashMap<String,Double>();
+		map.put("lat", lat);
+		map.put("lon", lon);
+		return sqlSession.selectList(NS+"automarker",map);
+	}
+
+
 /*	public double getScore_avg(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
