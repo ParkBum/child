@@ -201,7 +201,6 @@ option {
 		</div>
 		<!-- SearchAndMap -->
 	</div>
-
 	<%-- 지도를 생성을 합니다. --%>
 <script type="text/javascript">
 		// 지동 생성에 필요한 값들
@@ -212,7 +211,6 @@ option {
 			mapTypeId : daum.maps.MapTypeId.ROADMAP
 		// 지도종류
 		};
-
 		// 지도를 생성한다 
 		var map = new daum.maps.Map(mapContainer, mapOption);
 
@@ -225,7 +223,81 @@ option {
 		var markers = [];
 		var infos = [];
 		var codes =[];
+</script>
+<c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
+<script>
+$(document).ready(function() { 
+	var geocoder = new daum.maps.services.Geocoder();
+		geocoder.addressSearch('${sessionScope.loginUser.addr2}', function(result, status) {
+	     if (status === daum.maps.services.Status.OK) {
+			var data ={
+					"lat" : result[0].y,
+					"lon" : result[0].x
+			}
+			$.ajax({
+				url : "autoMarker.child",
+				type : "post",
+				data : data,
+				dataType : "json",
+				success : function(data){
+					if (data.autoMarkerList.length == 0){
+						alert("반경 안에 어린이집이 없습니다.")
+					}
+					hideMarkers();
+					for (var i = 0; i < data.autoMarkerList.length; i++) {
+						var Map = map;
+						var coords = new daum.maps.LatLng(
+            					data.autoMarkerList[i].lat,data.autoMarkerList[i].lon		
+            					);
+							
+						var marker = new daum.maps.Marker({
+    						map:Map,
+    						position:coords
+    					});
+    					marker.setMap(map);
+    					
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
+							+"어린이집 이름: "+data.autoMarkerList[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
+						var infowindow = new daum.maps.InfoWindow({
+							    position : coords, 
+							    content : content,
+							    removable:true
+							}); 
+						infos.push(infowindow);
+						markers.push(marker);
+        				map.setCenter(coords);	 
+        			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
+        			    (function(marker, infowindow) { 
+        			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        			        daum.maps.event.addListener(marker, 'click', function() {
+        			        	AnotherMarkers();
+        			            infowindow.open(map, marker);
+        			        });
 
+        			    })(marker, infowindow);
+						
+					}
+					function makeOverListener( map, marker, infowindow) { 
+						return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+				}
+			})   
+	    }; 
+	})   	
+})
+</script>
+</c:if>
+<script>
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -252,15 +324,6 @@ option {
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
             					);
 							
-					 	/* var imageSrc = '';
-						if(data.daycarelist[i].bus == '운영')
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/682/PNG/512/school-bus_icon-icons.com_61070.png';	
-						else	 
-							 imageSrc = 'https://cdn.icon-icons.com/icons2/1283/PNG/512/1497619936-jd21_85172.png'; // 마커이미지의 주소입니다 	
-							  
-					    var imageSize = new daum.maps.Size(45, 45); // 마커이미지의 크기입니다
-					    var imageOption = {offset: new daum.maps.Point(27, 27)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-					    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption); */
 						var marker = new daum.maps.Marker({
     						map:Map,
     						position:coords
@@ -268,7 +331,7 @@ option {
     					marker.setMap(map);
     					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'<br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
@@ -276,25 +339,18 @@ option {
 							}); 
 						infos.push(infowindow);
 						markers.push(marker);
-						if(codes.length <= data.daycarelist.length ){
-						codes.push(data.daycarelist[i].code);
-						}
         				map.setCenter(coords);	 
-        				console.log("codes["+i+"]:"+codes[i]);
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
         			    (function(marker, infowindow) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
-        			        	console.log("codes["+i+"]:"+codes[i]);
-        			        	graph(codes[i]); //자꾸 최종 인덱스가 추가되는 현상
-        			        	review(codes[i]);
         			            infowindow.open(map, marker);
         			        });
 
         			    })(marker, infowindow);
-					}
+					} //for문 끝나는 부분
 					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 					function makeOverListener( map, marker, infowindow) { 
 						return function() {

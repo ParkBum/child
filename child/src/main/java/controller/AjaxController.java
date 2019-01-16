@@ -105,7 +105,14 @@ public class AjaxController {
 		map.put("fourlists",fourlists);
 		return map;
 	}
-	
+	@ResponseBody
+	@RequestMapping("map/autoMarker")
+	public Object autoMarker(Double lat, Double lon) {
+		List<Daycare> autoMarkerList = service.autoMarkerlist(lat,lon);
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("autoMarkerList",autoMarkerList);
+		return map;
+	}
 	
 }
 	
