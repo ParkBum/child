@@ -120,7 +120,7 @@ function commentDelete(bnum, cnum){
 	   var del = confirm("댓글을 삭제하시겠습니까?")
 	   if(del){
 		   location.href = "commentDelete.child?bnum="+bnum+"&cnum="+cnum;
-		   alert("삭제했습니다.");
+		   alert("삭제 완료");
 	   }
 	   return false;
 }
@@ -129,7 +129,7 @@ function phonecheck() {
 	if (f.phone1.value.length == 3){		
 		if (f.phone2.value.length == 4) {
 			if (f.phone3.value.length == 4) {
-				alert("구매요청 완료");
+				alert("판매자에게 구매요청을 전송하였습니다.");
 				return true;
 			}
 		}
@@ -360,10 +360,9 @@ $(function() {
 							</c:if>
 						</td>
 					</tr>
-				</c:if>
 				<!--  구매요청  -->
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
 						<input type="button" value="구매요청" name="buy"
 						onclick="document.getElementById('id01').style.display='block'" />
 						<form action="sendMsg.child" method="Post" name="f" onsubmit="return phonecheck()">
@@ -393,7 +392,8 @@ $(function() {
 						</div>
 						</form>
 					</td>
-				</tr>	
+				</tr>
+				</c:if>	
 				<tr>
 					<td colspan="2" style="text-align: center; height: 30px;"><c:if
 							test="${sessionScope.loginUser.mnum == board.mnum}">
