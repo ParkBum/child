@@ -159,7 +159,7 @@
 					onsubmit="return searchCheck(1)">
 					<input type="hidden" name="pageNum" value="1">
 					<input type="hidden" name="bType" value="1">
-					<select name="searchType" id="searchType">
+					<select name="searchType" id="searchType" style="width:80px;">
 						<option value="">선택</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
@@ -170,8 +170,8 @@
 						}
 					</script>
 					<input type="text" name="searchContent"
-						value="${param.searchContent}" style="width: 150px;"> <input
-						type="submit" value="검색">
+						value="${param.searchContent}" style="width: 200px;">&nbsp;
+						<input type="submit" value="검색">
 				</form>
 			</div>
 			<div class="filter">
