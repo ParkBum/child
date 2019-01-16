@@ -18,18 +18,19 @@ public class BoardDao {
 
 	private final String NS = "dao.mapper.BoardMapper.";
 
-	public int getCount(Integer bType, String filterType, String searchType, String searchContent) {
+	public int getCount(Integer bType, String filterType, String searchType, String searchContent, String filterType2) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bType", bType);
 		map.put("filterType", filterType);
 		map.put("searchType", searchType);
 		map.put("searchContent", searchContent);
+		map.put("filterType2",filterType2);
 		Integer ret = sqlSession.selectOne(NS + "count", map);
 		return ret;
 	}
 
 	public List<Board> getList(Integer bType, String filterType, String searchType, String searchContent,
-			Integer pageNum, int limit) {
+			Integer pageNum, int limit, String filterType2) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int startrow = (pageNum - 1) * limit;
 		map.put("bType", bType);
@@ -38,6 +39,7 @@ public class BoardDao {
 		map.put("searchContent", searchContent);
 		map.put("startrow", startrow);
 		map.put("limit", limit);
+		map.put("filterType2", filterType2);
 		return sqlSession.selectList(NS + "list", map);
 	}
 

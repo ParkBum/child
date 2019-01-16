@@ -24,7 +24,7 @@
 		if(f.pass.value != ${user.password}){
 			alert("비밀번호가 틀립니다.");
 			return false;
-		} else return true;
+		}else return true;
 	}
 
 	function allchkbox(chk) {

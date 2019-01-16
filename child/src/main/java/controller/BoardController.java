@@ -26,7 +26,7 @@ public class BoardController {
 	ChildService service;
 
 	@RequestMapping(value = "board/list")
-	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType,
+	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType, String filterType2,
 			String searchContent) {
 		ModelAndView mav = new ModelAndView();
 		switch (bType) { // 게시판 종류
@@ -49,8 +49,8 @@ public class BoardController {
 			filterType = null;
 		}
 		int limit = 10; // 한 페이지에 출력할 게시물 수
-		int listcount = service.boardCount(bType, filterType, searchType, searchContent);
-		List<Board> boardlist = service.boardList(bType, filterType, searchType, searchContent, pageNum, limit);
+		int listcount = service.boardCount(bType, filterType, searchType, searchContent, filterType2);
+		List<Board> boardlist = service.boardList(bType, filterType, searchType, searchContent, pageNum, filterType2, limit);
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
 		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
@@ -61,6 +61,7 @@ public class BoardController {
 		for(Board board : boardlist) { //댓글 수 추가아아아
 			board.setCommentcnt(service.commentCount(board.getBnum()));
 		}
+		mav.addObject("filterType2", filterType2);
 		mav.addObject("filterType", filterType);
 		mav.addObject("searchType", searchType);
 		mav.addObject("pageNum", pageNum);

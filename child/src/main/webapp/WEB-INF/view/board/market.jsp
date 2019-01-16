@@ -175,12 +175,19 @@
 			<div class="filter">
 				<form action="list.child" method="post" name="filterForm">
 					<input type="hidden" name="bType" value="3"> <input
-						type="hidden" name="pageNum" value="1"> <select
-						name="filterType" id="filterType" onchange="this.form.submit();" class="w3-border">
+						type="hidden" name="pageNum" value="1"> 
+						<select name="filterType" id="filterType" onchange="this.form.submit();" class="w3-border">
 						<option value="">전체</option>
 						<option value="1">삽니다</option>
 						<option value="2">팝니다</option>
 					</select>&nbsp;
+					<select name="filterType2" id="filterType2" onchange="this.form.submit();" class="w3-border">
+						<option value="">선택</option>
+						<option value="toy">완구</option>
+						<option value="book">도서</option>
+						<option value="dress">의류</option>
+						<option value="other">기타</option>
+					</select>
 					<script type="text/javascript">
 						if ('${param.filterType}' != '') {
 							document.getElementById("filterType").value = '${param.filterType}';

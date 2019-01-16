@@ -60,13 +60,13 @@ public class ChildService {
 		boardDao.insert(board);
 	}
 
-	public int boardCount(Integer bType, String filterType, String searchType, String searchContent) {
-		return boardDao.getCount(bType, filterType, searchType, searchContent);
+	public int boardCount(Integer bType, String filterType, String searchType, String searchContent, String filterType2) {
+		return boardDao.getCount(bType, filterType, searchType, searchContent,filterType2);
 	}
 
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
-			Integer pageNum, int limit) {
-		List<Board> board = boardDao.getList(bType, filterType, searchType, searchContent, pageNum, limit);
+			Integer pageNum, String filterType2, int limit) {
+		List<Board> board = boardDao.getList(bType, filterType, searchType, searchContent, pageNum, limit, filterType2);
 		for (Board b : board) {
 			b.setNickname(getNickName(b.getMnum()));
 		}
