@@ -270,9 +270,9 @@ function commentDelete(bnum, cnum){
 									${(board.head==1)?"삽니다":"팝니다"}</c:if>
 						<c:if test="${board.bType == 2}">
 									${board.dcname}</c:if>]
-								[<c:if test="${board.bType == 3}">
-									${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))} 
-								</c:if>]
+								<c:if test="${board.bType == 3}">
+									[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
+								</c:if>
 						${board.subject}
 					</td>
 				</tr>

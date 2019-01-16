@@ -16,8 +16,9 @@ $(function(){
 		var pass1 = $("#newpass1").val();
 		var pass2 = $("#newpass2").val();
 		var msg="";
-		if(pass1.length <= 4 || pass2.length <= 4){
+		if(pass1.length <= 4){
 			msg = "비밀번호는 4자 이상만 설정가능합니다.";
+			
 		} else if(pass1 == pass2) {
 			msg = "비밀번호 일치";
 			$("#check").css("color","green");
@@ -143,7 +144,7 @@ $(function(){
 			<!-- <a href="javascript:void(0)" align="right"
 					onclick="document.getElementById('id01').style.display='block'">비밀번호변경하기</a>  -->
 					<!-- 모달 내용 -->
-					<form:form action="chgPass.child" method="Post" modelAttribute="user" >
+					<form action="chgPass.child" method="Post">
 					<input type="hidden" name="mnum" value="${user.mnum }">
 					<div id="id01" class="w3-modal" style="z-index: 4">
 						<div class="w3-modal-content w3-animate-zoom" style="width:20%">
@@ -153,11 +154,9 @@ $(function(){
 							</div>
 							<div class="w3-panel">
 								변경할 비밀번호 입력 : 
-								<form:input path="password" class="pass" id="newpass1" name="newpass1" />
-								<form:errors path="password"/><br><br>
+								<input type="password" class="pass" id="newpass1" name="newpass1" ><br><br>
 								변경할 비밀번호 확인 : 
-								<form:input path="password" class="pass" id="newpass2" name="newpass2" />
-								<form:errors path="password"/><br>
+								<input type="password" class="pass" id="newpass2" name="newpass2" ><br>
 								<font id="check" size="3" color="red"></font> 
 								<div class="w3-section">
 								<input type="submit" id="change"
@@ -171,7 +170,7 @@ $(function(){
 							</div>
 						</div>
 					</div>
-					</form:form>
+					</form>
 </body>
 </html>
 
