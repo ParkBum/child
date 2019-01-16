@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -254,7 +254,15 @@ public class UserController {
 		List<Board> myboard = service.myBoardList(mnum);		
 		mav.addObject("nickname",nick);
 		mav.addObject("myboard",myboard);
-		mav.setViewName("user/userboardList");
+		mav.setViewName("user/myBoard");
+		return mav;
+	}
+	
+	@RequestMapping(value = "user/myBoardDelete")
+	public ModelAndView myBoardDelete(Integer[] checkBoard, Integer mnum) {
+		ModelAndView mav = new ModelAndView();	
+		service.myBoardDelete(checkBoard);
+		mav.setViewName("redirect:../user/myBoardList.child?mnum="+mnum);
 		return mav;
 	}
 }

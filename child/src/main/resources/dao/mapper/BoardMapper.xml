@@ -39,4 +39,29 @@
 			</if>
 		</if>
 	</select>
+	<select id="myboard" resultType="board" parameterType="map">
+		delete from board
+		<if test="bnum != null">
+			where bnum in
+				<foreach collection="bnum" item="bnum" separator="," open="(" close=")">
+					#{bnum}
+				</foreach>
+		</if>
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

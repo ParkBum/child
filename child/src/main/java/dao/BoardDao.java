@@ -76,6 +76,12 @@ public class BoardDao {
 	public List<Board> myBoardList(Integer mnum) {
 		return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
 	}
+
+	public void myBoardDelete(Integer[] checkBoard) {
+		Map<String,Integer[]> map = new HashMap<String,Integer[]>();
+		map.put("bnum", checkBoard);
+		sqlSession.selectList(NS + "myboard" , map);
+	}
 }
 
 
