@@ -133,6 +133,10 @@
 .btns {
 	margin: 20px;
 }
+
+.btns a {
+	text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -219,8 +223,8 @@
 					<a href="javascript:list(${pageNum - 1})"><i class="material-icons" style="vertical-align: middle;">arrow_back</i></a>&nbsp;
 					</c:if>
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a==pageNum}"><font size="4">${a}</font>&nbsp;</c:if>
-						<c:if test="${a!=pageNum}"><a href="javascript:list(${a})"><font size="4">${a}</font></a>&nbsp;</c:if>
+						<c:if test="${a==pageNum}"><font size="4" class="w3-pale-red">&nbsp; ${a} &nbsp;</font>&nbsp;</c:if>
+						<c:if test="${a!=pageNum}"><a href="javascript:list(${a})"><font size="4">&nbsp; ${a} &nbsp;</font></a>&nbsp;</c:if>
 					</c:forEach>
 					<c:if test="${pageNum < maxpage}">
 					&nbsp;<a href="javascript:list(${pageNum + 1})"><i class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>

@@ -75,8 +75,12 @@ body {
 	color: white;
 }
 
-/*하단 footer */
 .footer {
+	clear: both;
+}
+
+/*하단 footer */
+.footerimg {
 	clear: both;
 	color: black;
 	margin: 10px 640px 15px 640px;
@@ -199,13 +203,16 @@ body {
 		<div class="main">
 			<decorator:body />
 		</div>
+		<div class="footer">
+		<br>
 		<br>
 		<hr>
-		<div class="footer" align="center">
+			<div class="footerimg">
 			<img src="../decorator/logo1.png"
 				style="width: 55px; height: 70px; float: left; margin-top: 5px">
 			<br>어린이 집마련 프로젝트팀<br> 서울시 금천구 가산디지털2로 115, 509호, 811호(가산동,
 			대륭테크노타운3차)
+			</div>
 		</div>
 	</div>
 </body>
