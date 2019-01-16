@@ -78,15 +78,25 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/info")
-	public ModelAndView info(Integer bnum) {
+	public ModelAndView info(Integer bnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
 		Comment comment = new Comment();
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
 		int limit = 10;
-		
+		int commentCnt = service.commentCount(bnum);
+/*		int maxpage = (int) ((double) commentCnt / limit + 0.95); // 전체 페이지 수
+		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
+		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
+		if (endpage > maxpage)
+			endpage = maxpage;
 		service.readcntAdd(bnum);
+		mav.addObject("pageNum", pageNum);
+		mav.addObject("maxpage", maxpage);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("commentCnt", commentCnt);*/
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
 		mav.addObject("comment", comment);
@@ -174,7 +184,7 @@ public class BoardController {
 		mav.setViewName("redirect:/board/info.child?bnum=" + comment.getBnum());
 		return mav;
 	}
-
+//대댓글
 	@RequestMapping(value = "board/recomment", method = RequestMethod.POST)
 	public ModelAndView recomment(@Valid Comment comment, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();

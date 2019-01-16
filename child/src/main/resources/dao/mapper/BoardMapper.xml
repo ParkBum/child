@@ -5,7 +5,7 @@
 	<select id="list" resultType="Board" parameterType="map">
 		select * from board
 		<if test="num != null">
-			where num = #{num}
+			where bnum = #{bnum}
 		</if>
 		<if test="bType != null">
 			where btype = #{bType}
