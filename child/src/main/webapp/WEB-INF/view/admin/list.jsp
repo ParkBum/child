@@ -20,6 +20,13 @@
 }
 </style>
 <script type="text/javascript">
+	function check(){
+		if(f.pass.value != ${user.password}){
+			alert("비밀번호가 틀립니다.");
+			return false;
+		} else return true;
+	}
+
 	function allchkbox(chk) {
 		var chks = document.getElementsByName("idchks");
 		for (var i = 0; i < chks.length; i++) {
@@ -83,8 +90,9 @@
 			onclick="document.getElementById('id01').style.display='block'">회원정보
 			수정하기</a> 
 		<!-- 모달 내용 -->
-		<form action="../user/passConfirm.child?mnum=${user.mnum}"
-			method="Post">
+		<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post" 
+						onsubmit="return check()" name="f">
+			<input type="hidden" name="password" value="${user.password}">
 			<div id="id01" class="w3-modal" style="z-index: 4">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
@@ -92,7 +100,7 @@
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 : <input type="password" id="password" name="password"
+						비밀번호 입력 : <input type="password" id="password" name="pass"
 							style="width: 72%">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
