@@ -6,7 +6,7 @@ public class Message {
 	private int buynum; // 구매자 회원번호
 	private int sellnum; // 판매자 회원번호
 	private String phone; // 휴대폰 번호
-	private int deal; // 거래상태(0:판매중  1:구매요청  2:판매완료)
+	private int deal; // 거래상태 (0:구매요청  1:거래중  2:거래완료  3:구매요청거절)
 
 	public int getMsgnum() {
 		return msgnum;
