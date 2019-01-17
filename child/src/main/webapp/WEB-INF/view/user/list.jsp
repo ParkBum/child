@@ -20,6 +20,19 @@
 }
 </style>
 <script type="text/javascript">
+function delcheck(){
+	var check = confirm("탈퇴하시겠습니까?");
+	if(check){
+		alert("탈퇴가 완료되었습니다.");
+		return true;
+	}
+	if(fdel.pass.value != ${user.password}){
+		alert("비밀번호가 틀립니다.");
+		return false;
+	}
+	return false;
+}
+
 function check(){
 	if(f.pass.value != ${user.password}){
 		alert("비밀번호가 틀립니다.");
@@ -76,18 +89,41 @@ function check(){
 					</td>
 				</tr>
 			</table>
-
-
-			<!-- 회원정보 -->
+		</form>
+		
+		<!-- 회원정보 -->
 			<div class="btns">
 				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
 				<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
-					<a href="../user/delete.child?mnum=${user.mnum}">회원탈퇴</a>
+					<a href="javascript:void(0)" align="right"
+			onclick="document.getElementById('id01').style.display='block'">회원탈퇴</a>
 				</c:if>
 			</div>
+			<!-- 회원탈퇴 모달창 -->
+		<form action="../user/userdelete.child" method="Post"
+			onsubmit="return delcheck()" name="fdel">
+			<input type="hidden" name="mnum" value="${user.mnum}"> 
+			<input type="hidden" name="password" value="${user.password}">
+			<div id="id01" class="w3-modal" style="z-index: 4; padding-top: 280px;">
+				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
+					<div class="w3-container w3-padding" style="background-color: #FFF1F5;">
+						<h2>회원탈퇴 비밀번호 확인</h2>
+					</div>
+					<div class="w3-panel">
+						비밀번호 입력 : <input type="password" id="password" name="pass"
+							style="width: 72%">
+						<div class="w3-section">
+							<a class="w3-button" style="background-color: #FFF1F5;"
+								onclick="document.getElementById('id01').style.display='none'">
+								닫기</a> 
+						<input type="submit" onclick="document.getElementById('id01').style.display='none'"
+								class="w3-button w3-light-grey w3-right" value="확인">
+						</div>
+					</div>
+				</div>
+			</div>
 		</form>
-		<a
-			href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이
+		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이
 			작성한 게시글 확인하기</a><br> <a href="javascript:void(0)" align="right"
 			onclick="document.getElementById('id01').style.display='block'">회원정보
 			수정하기</a>
