@@ -27,6 +27,12 @@ public class Board {
 	private double score; // 별점
 	private int commentcnt; // 댓글수(db엔 없고 여기만 추가)
 	private String mkinds;
+	/*
+	 * 1 : 완구
+	 * 2 : 도서
+	 * 3 : 의류
+	 * 4 : 기타
+	 */
 	
 
 	public String getMkinds() {
