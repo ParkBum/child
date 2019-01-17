@@ -9,7 +9,7 @@ public class Message {
 	private int sellnum; // 판매자 회원번호
 	private String phone; // 휴대폰 번호
 	private int deal; // 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절)
-	private Date msgdate;
+	private Date msgdate; // 요청 수락 날짜
 	private Board board; // 구매 게시글 정보
 	private User User; // 구매 요청 회원 정보
 
