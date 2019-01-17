@@ -81,7 +81,7 @@ function check(){
 			<!-- 회원정보 -->
 			<div class="btns">
 				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-				<c:if test="${sessionScope.loginUser.mnum != 1}">
+				<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
 					<a href="../user/delete.child?mnum=${user.mnum}">회원탈퇴</a>
 				</c:if>
 			</div>
