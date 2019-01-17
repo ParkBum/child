@@ -393,7 +393,7 @@ $(function() {
             </tr>
             
             <!--  구매요청  -->
-               <c:if test="${board.bType == 3 && board.head == 1 && sessionScope.loginUser.mnum != board.mnum }">
+               <c:if test="${board.bType == 3 && board.head == 2 && sessionScope.loginUser.mnum != board.mnum }">
             <tr>
                <td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
                   <c:if test=""></c:if> <!-- 구매 완료버튼으로 변경해야 함. -->

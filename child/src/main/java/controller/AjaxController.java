@@ -100,8 +100,12 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("map/reviews")
 	public Object reviews(Integer code) {
-		List<Board> fourlists = service.fourlists(code);
 		Map<Object, Object> map = new HashMap<Object, Object>();
+		List<Board> fourlists = service.fourlists(code);
+		for ( Board b : fourlists) {
+			System.out.println(b.getDcname());
+		}
+		Daycare daycare = service.selectOne(code);
 		map.put("fourlists",fourlists);
 		return map;
 	}
