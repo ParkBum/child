@@ -81,7 +81,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/info")
-	public ModelAndView info(Integer bnum, Integer pageNum, HttpSession session) {
+	public ModelAndView info(HttpSession session,Integer bnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		Comment comment = new Comment();
 		Date date = new Date();
@@ -152,7 +152,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/updateForm")
-	public ModelAndView updateForm(Integer bnum, HttpServletRequest request) {
+	public ModelAndView updateForm(HttpSession session,Integer bnum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = service.getBoard(bnum);
 		List<Daycare> gulist = null;
@@ -227,8 +227,8 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "board/*")
-	public ModelAndView boardAll(Board board, Comment comment) {
+	@RequestMapping(value = "board/writeForm") //기존의 board/*, boardall 메서드에서 board/writeForm, writeForm 메서드로바꿈
+	public ModelAndView writeForm(HttpSession session,Board board, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		List<Daycare> gulist = null;
 		if (board.getbType() == 2) {
