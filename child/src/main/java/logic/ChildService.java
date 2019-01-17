@@ -275,6 +275,10 @@ public class ChildService {
 		messageDao.insert(msg);
 	}
 
+	public List<Message> messageList(Integer bnum) {
+		return messageDao.messageList(bnum);
+	}
+
 
 
 

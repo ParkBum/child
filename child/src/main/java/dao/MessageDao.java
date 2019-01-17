@@ -1,5 +1,9 @@
 package dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,6 +24,12 @@ public class MessageDao {
 
 	public int maxMsgnum() {
 		return sqlSession.getMapper(MessageMapper.class).maxMsgnum();
+	}
+
+	public List<Message> messageList(Integer bnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bnum", bnum);
+		return sqlSession.selectList(NS + "list", map);
 	}
 
 }
