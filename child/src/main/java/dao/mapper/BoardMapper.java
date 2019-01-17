@@ -38,6 +38,9 @@ public interface BoardMapper {
 	@Select("select * from board where mnum=#{mnum}")
 	List<Board> myBoardList(Integer mnum);
 
+	@Select("select count(*) from board where mnum=#{mnum}")
+	int myBoardCnt(Integer mnum);
+
 }
 
 

@@ -261,8 +261,8 @@ public class ChildService {
 		return mapDao.autoMarkerlist(lat, lon);
 	}
 
-	public List<Board> myBoardList(Integer mnum) {
-		return boardDao.myBoardList(mnum);
+	public List<Board> myBoardList(Integer mnum, Integer pageNum, int limit) {
+		return boardDao.myBoardList(mnum, pageNum, limit);
 	}
 
 	public void myBoardDelete(Integer[] checkBoard) {
@@ -300,6 +300,14 @@ public class ChildService {
 			return true;
 		}
 		return false;
+	}
+
+	public int myBoardCount(Integer mnum) {
+		return boardDao.myBoardCnt(mnum);
+	}
+	
+	public int getBoardDeal(Integer bnum) {
+	      return messageDao.MaxDeal(bnum);
 	}
 
 	/*

@@ -325,7 +325,7 @@ $(function() {
 					<td width="15%" style="text-align: center;">작성자</td>
 					<td width="90%">&nbsp;${board.nickname} <c:if
 							test="${board.bType == 3}">
-            &nbsp;<img src="${path}/decorator/siren.png" id="siren">
+            &nbsp;<img src="${path}/decorator/siren.png" id="siren" style="cursor: pointer;">
 							<font id="addred" size="1" color="red"><b>신고완료</b></font>
 						</c:if></td>
 				</tr>
@@ -392,7 +392,7 @@ $(function() {
 					<tr>
 						<td colspan="2"
 							style="text-align: center; border-top: hidden; padding: 30px;">
-							<c:if test=""></c:if> <!-- 구매 완료버튼으로 변경해야 함. --> <input
+							<c:if test="${!empty buyid}"></c:if> <!-- 구매 완료버튼으로 변경해야 함. --> <input
 							type="button" value="구매요청" name="buy"
 							onclick="document.getElementById('id01').style.display='block'" />
 							<form action="buyItem.child" method="Post" name="f"

@@ -54,7 +54,11 @@ public class MessageDao {
 	}
 
 	public int dayCnt(Date msgdate) {
-		return sqlSession.getMapper(MessageMapper.class).dayCnt(msgdate) ;
+		return sqlSession.getMapper(MessageMapper.class).dayCnt(msgdate);
+	}
+
+	public int MaxDeal(Integer bnum) {
+		return sqlSession.getMapper(MessageMapper.class).MaxDeal(bnum);
 	}
 
 }
