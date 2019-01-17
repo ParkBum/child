@@ -55,6 +55,7 @@
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 			<property name="exceptionMappings">
 				<value>exception.LoginException=exception
+					   exception.BoardException=exception
 					   exception.ShopException=exception</value>
 				<!-- exception.CartEmptyException 예외가 발생했으면  exception.jsp로 보내-->
 			</property>		
