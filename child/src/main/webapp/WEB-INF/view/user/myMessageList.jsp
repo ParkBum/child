@@ -62,11 +62,12 @@ $(document).ready(function() {
 				</c:choose>
 				</td>
 				<td style="text-align: left  !important; padding-left:20px; padding-right:20px;">
+				<a href="../board/info.child?bnum=${msg.bnum}">
 				<c:if test="${msg.board.mkinds == 1}">[완구]</c:if>
 				<c:if test="${msg.board.mkinds == 2}">[도서]</c:if>
 				<c:if test="${msg.board.mkinds == 3}">[의류]</c:if>
 				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>	
-				${msg.board.subject}</td>
+				${msg.board.subject}</a></td>
 				<td>${msg.user.nickname}&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px;">phone_iphone</i>${msg.phone}</c:if></td>
 				<td>
 				<c:if test="${msg.deal == 0}">
