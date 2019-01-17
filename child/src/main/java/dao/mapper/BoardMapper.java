@@ -15,7 +15,7 @@ public interface BoardMapper {
 	Board select(Integer bnum);
 
 	@Insert("insert into board (bnum,mnum,code,btype,head,subject,content,regdate,readcnt,file1,file2,file3,score,dcname,mkinds) "
-			+ "values (#{bnum},#{mnum},#{code},#{bType},#{head},#{subject},#{content},now(),#{readcnt},#{file1},#{file2},#{file3},#{score},#{dcname},#{mkinds})")
+			+ "values (#{bnum},#{mnum},#{code},#{bType},#{head},#{subject},#{content},now(),0,#{file1},#{file2},#{file3},#{score},#{dcname},#{mkinds})")
 	void insert(Board board);
 
 	@Select("select ifnull(max(bnum), 0) from board")
@@ -37,6 +37,9 @@ public interface BoardMapper {
 
 	@Select("select * from board where mnum=#{mnum}")
 	List<Board> myBoardList(Integer mnum);
+
+	@Select("select count(*) from board where mnum=#{mnum}")
+	int myBoardCnt(Integer mnum);
 
 }
 

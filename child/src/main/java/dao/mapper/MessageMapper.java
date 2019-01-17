@@ -22,4 +22,7 @@ public interface MessageMapper {
 	@Select("select ifnull(datediff(now(), #{msgdate}), 0)")
 	int dayCnt(Date msgdate);
 
+	@Select("select ifnull(max(deal),0) from message where bnum = #{bnum} and deal < 4")
+	int MaxDeal(Integer bnum);
+
 }

@@ -74,13 +74,32 @@ public class BoardDao {
 	}
 
 	public List<Board> myBoardList(Integer mnum) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("mnum", mnum);
 		return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
 	}
-
+	/*
+	public List<Board> myBoardList(Integer mnum,Integer pageNum, int limit) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		int startrow = (pageNum - 1) * limit;
+		map.put("mnum", mnum);
+		map.put("pageNum", pageNum);
+		map.put("limit", limit);
+		map.put("startrow", startrow);
+		return sqlSession.selectList(NS + "mylist", map);
+	//	return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
+	}
+*/
 	public void myBoardDelete(Integer[] checkBoard) {
 		Map<String,Integer[]> map = new HashMap<String,Integer[]>();
 		map.put("bnum", checkBoard);
 		sqlSession.selectList(NS + "myboard" , map);
+	}
+
+	public int myBoardCnt(Integer mnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("mnum", mnum);
+		return sqlSession.getMapper(BoardMapper.class).myBoardCnt(mnum);
 	}
 }
 

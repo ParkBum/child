@@ -81,21 +81,21 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "board/info")
-	public ModelAndView info(Integer bnum, Integer pageNum) {
+	public ModelAndView info(Integer bnum, Integer pageNum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Comment comment = new Comment();
 		Date date = new Date();
 		Board board = service.getBoard(bnum);
+		service.readcntAdd(bnum);//조회수 증가
 		List<Message> messageList = service.messageList(bnum);
 		board.setContent(board.getContent().replaceAll("\r\n", "<br>"));
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
-
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
 		}
 		int limit = 10; // 한 페이지에 출력할 게시물 수
-		int commentCnt = service.commentCount(bnum); //게시글에 달린 댓글수
-		List<Comment> commentList = service.commentList(bnum, pageNum, limit); //댓글 리스트
+		int commentCnt = service.commentCount(bnum); // 게시글에 달린 댓글수
+		List<Comment> commentList = service.commentList(bnum, pageNum, limit); // 댓글 리스트
 		int maxpage = (int) ((double) commentCnt / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
 		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
@@ -106,17 +106,20 @@ public class BoardController {
 		for (Comment c : commentList) {
 			c.setNickname(service.getNickName(c.getMnum()));
 		}
-
+		
+		int deal = service.getBoardDeal(bnum);
+		
+		mav.addObject("deal", deal);
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("maxpage", maxpage);
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("commentCnt", commentCnt);
 		mav.addObject("comCnt", comCnt);
-		mav.addObject("messageList", messageList);
 		mav.addObject("today", date);
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
+		mav.addObject("messageList", messageList);
 		mav.addObject("comment", comment);
 		return mav;
 	}
@@ -203,7 +206,7 @@ public class BoardController {
 		return mav;
 	}
 
-//대댓글
+	// 대댓글
 	@RequestMapping(value = "board/recomment", method = RequestMethod.POST)
 	public ModelAndView recomment(@Valid Comment comment, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
