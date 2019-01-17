@@ -182,13 +182,29 @@ body {
 						<li class="right"><c:if
 								test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
 								<a
-									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
+									href="${path}/user/list.child?mnum=${sessionScope.loginUser.mnum}"
 									style="margin-left: -4px;" title="회원정보">회원정보</a>
 							</c:if> <c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 								<a
-									href="${path}/admin/list.child?mnum=${sessionScope.loginUser.mnum}"
+									href="${path}/user/list.child?mnum=${sessionScope.loginUser.mnum}"
 									style="margin-left: -4px;" title="회원관리">회원관리</a>
-							</c:if></li>
+							</c:if>
+							<ul>
+								<li><a href="${path}/user/list.child?mnum=${sessionScope.loginUser.mnum}"
+										style="background: white; color: #AAAAAA;"
+										onmouseover="this.style.color='#CE5B7C'"
+										onmouseout="this.style.color='#AAAAAA'" title="내정보">내정보</a>
+									<a href="${path}/user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}"
+										style="background: white; color: #AAAAAA;"
+										onmouseover="this.style.color='#CE5B7C'"
+										onmouseout="this.style.color='#AAAAAA'" title="내게시글목록">내게시글목록</a>
+									<a href="${path}/user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}"
+										style="background: white; color: #AAAAAA;"
+										onmouseover="this.style.color='#CE5B7C'"
+										onmouseout="this.style.color='#AAAAAA'" title="거래요청목록">거래요청목록</a>
+								</li>
+							</ul>
+							</li>
 						<c:if test="${!empty sessionScope.loginUser}">
 							<li class="right" style="margin-right: 50px;"><a
 								href="${path}/user/logout.child"
