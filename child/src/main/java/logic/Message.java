@@ -6,7 +6,9 @@ public class Message {
 	private int buynum; // 구매자 회원번호
 	private int sellnum; // 판매자 회원번호
 	private String phone; // 휴대폰 번호
-	private int deal; // 거래상태 (0:구매요청  1:거래중  2:거래완료  3:구매요청거절)
+	private int deal; // 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절)
+	private Board board; // 구매 게시글 정보
+	private User User; // 구매 요청 회원 정보
 
 	public int getMsgnum() {
 		return msgnum;
@@ -54,6 +56,22 @@ public class Message {
 
 	public void setDeal(int deal) {
 		this.deal = deal;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	public User getUser() {
+		return User;
+	}
+
+	public void setUser(User user) {
+		User = user;
 	}
 
 }

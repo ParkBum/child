@@ -105,6 +105,7 @@ public class BoardController {
 		for(Comment c : commentList) {
 			c.setNickname(service.getNickName(c.getMnum()));
 		}
+		mav.addObject("messageList", messageList);
 		mav.addObject("today", date);
 		mav.addObject("board", board);
 		mav.addObject("commentList", commentList);
