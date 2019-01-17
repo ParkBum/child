@@ -24,7 +24,7 @@
 
 #SearchAndMap {
 	width: 100%;
-	height: 800px;
+	height: 900px;
 	display: table;
 }
  
@@ -36,7 +36,7 @@
 
 #map_wrap {
 	width: 100%;
-	height: 700px;
+	height: 500px;
 }
 
 select {
@@ -64,9 +64,6 @@ option {
   width: 50%;
   padding: 15px;
 } 
-.bar {
- 
-}
 <%-- 차트 관련 css--%>
 .axis path,
 .axis line {
@@ -80,28 +77,27 @@ option {
 } 
   .tooltip1 {
       position: absolute;
-      display: none;
-      width: auto;
-      height: auto;
-      background: #515A5A;
-      border: 0 none;
-      border-radius: 4px;
-      color: white;
-      font: 12px sans-serif;
-      padding: 5px;
-      text-align: center;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
   } 
 <%-- pie chart --%>
-.arc2 text {
-  font: 10px sans-serif;
+.arc2 text ,.arc3 text {
+  font: 25px;
   text-anchor: middle;
 }
-
-.arc2 path {
+.arc2 path , .arc3 path {
   stroke: #fff;
 }
-
-.tooltip2 {
+.tooltip2,.tooltip3 {
     position: absolute;
     display: none;
     width: auto;
@@ -114,7 +110,30 @@ option {
     font: 12px sans-serif;
     padding: 5px;
     text-align: center;
+} 
+/* .arc3 text {
+  font: 25px;
+  text-anchor: middle;
 }
+
+.arc3 path {
+  stroke: #fff;
+}
+
+.tooltip3 {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
+} */
 </style>
 </head>
 <body>
@@ -183,23 +202,33 @@ option {
 			<div id="map_wrap" align="center" class="map_wrap">
 				<div id="map" style="width: 100%; height: 100%; margin: 10px 0"
 					align="center"></div>
+				<div class="bar" style="height:285px; border:solid 1px #aaaaaa; margin-top:10px">
+		    <div class="tooltip3"></div>
+				<svg class="svg3"></svg>
+			<div class="tooltip2"></div>
+				<svg class="svg2"></svg>
+			</div>
 			</div>
 			</div>
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
 			<div class="half" style="display: block;">
-			<div class="bar" style="height:470px; border:solid 1px #aaaaaa; " id="chart">
+			<div class="bar" style="height:450px; border:solid 1px #aaaaaa; " id="chart">
 			<div class="tooltip1"></div>
 				<svg class="svg1"></svg>
+			</div>
+<!-- 			<div class="bar" style="height:430px; border:solid 1px #aaaaaa; margin-top:10px">
+		    <div class="tooltip3"></div>
+				<svg class="svg3"></svg>
 			<div class="tooltip2"></div>
 				<svg class="svg2"></svg>
-			</div>
-			<div class="bar" style="height:320px;">
-				<div id="reviews" style="width:750px; height : 270px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
-			</div>
-			</div>
+			</div> -->
+			 <div class="bar" style="height:430px;">
+				<div id="reviews" style="width:750px; height : 430px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
+			</div> 
 		</div>
 		<!-- SearchAndMap -->
+	</div>
 	</div>
 	<%-- 지도를 생성을 합니다. --%>
 <script type="text/javascript">
@@ -257,7 +286,7 @@ $(document).ready(function() {
     					marker.setMap(map);
     					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
-							+"어린이집 이름: "+data.autoMarkerList[i].name+"["+data.autoMarkerList[i].type+"]"+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
+							+"<strong>"+data.autoMarkerList[i].name+"</strong>[<strong>"+data.autoMarkerList[i].type+"</strong>]"+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
@@ -330,8 +359,8 @@ $(document).ready(function() {
     					});
     					marker.setMap(map);
     					
-    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">'
-							+"어린이집 이름: "+data.daycarelist[i].name+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>전화번호: '+data.daycarelist[i].tel+'<br>주소:'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
+    					var content = '<div class="labelWish" style="opacity:0.5; width:400px; height:100px;margin-top : 15px;"><span class="centerWish">'
+							+"<font >"+data.daycarelist[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>'+data.daycarelist[i].tel+'<br>'+data.daycarelist[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
 							    position : coords, 
 							    content : content,
@@ -406,8 +435,8 @@ function graph(a){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) { 
-/* 			console.log(data); */
- 	    pieChart(data.daycare.gu); 
+		NowChildPieChart(data.daycare.gu); 
+		MaxChildPieChart(data.daycare.gu); 
 		d3.selectAll(".svg1 > *").remove(); 
 		if(dataset.length == 1){
 			dataset.push(
@@ -507,13 +536,11 @@ function graph(a){
 		      .style("fill", function(d) { return color(d.column) })
 		      .attr("y", function(d) { return y(0); })
 		      .attr("height", function(d) { return height - y(0); })
-		      .on("mouseover", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
+		      .on("mousemove", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
 		    	    divTooltip.style("left", d3.event.pageX + 10 + "px")
 	                divTooltip.style("top", d3.event.pageY - 25 + "px")
 	                divTooltip.style("display", "inline-block")
-	                divTooltip.style("opacity", "0.9");
-	                var x = d3.event.pageX,
-	                    y = d3.event.pageY;
+	                divTooltip.style("opacity", "0.9")
 	                divTooltip.html(d.column + "<br>" + d.value);
 	                d3.select(this)
 	                    .style("fill", d3.rgb(color(d.column)).brighter(1))
@@ -560,20 +587,21 @@ function graph(a){
 		}});
 	
 }
-//추가 pie chart 
-function pieChart(guname){//guname이 실려있음
+//추가 pie chart (2017 구별 종합 현원 수)
+function NowChildPieChart(guname){//guname이 실려있음
+	 d3.selectAll(".svg2 > *").remove(); 
 	 var tooltip = d3.select(".tooltip2");
 
-	 var width = 960,
-	     height = 500,
-	     radius = Math.min(width, height) / 2;
+	 var width = 375,
+	     height = 270,
+	     radius = Math.min(width-30, height-30) / 2;
 
 	 var color = d3.scale.ordinal()
 	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
 
 	 var arc = d3.svg.arc()
 	     .outerRadius(radius - 10)
-	     .innerRadius(radius - 70);
+	     .innerRadius(radius - 55);
 
 	 var pie = d3.layout.pie()
 	     .sort(null)
@@ -602,14 +630,14 @@ function pieChart(guname){//guname이 실려있음
 				{"type":data[i].values[6].column,"value":data[i].values[6].value}
 			]
 	  var g = svg.selectAll("arc")
-	       .data(pie(dataset))
-	     .enter().append("g")
-	       .attr("class", "arc2");
+	  		 .attr("class", "arc2")
+	         .data(pie(dataset))
+	         .enter().append("g");
 
 	   g.append("path")
 	 	.style("fill", function(d) { return color(d.data.type); })
 	     .transition().delay(function(d,i) {
-	 	return i * 500; }).duration(500)
+	 	return i * 250; }).duration(500)
 	 	.attrTween('d', function(d) {
 	 		var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
 	 		return function(t) {
@@ -621,17 +649,126 @@ function pieChart(guname){//guname이 실려있음
 	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 	       .attr("dy", ".35em")
 	 	  .transition()
-	 	  .delay(1000)
-	       .text(function(d) { return d.data.type; });
+	 	  .delay(500);
+	       /* .text(function(d) { return d.data.type; }); */
+	  svg.append("text")
+          .attr("text-anchor", "middle")
+          .attr('font-size', '1em')
+          .attr('y', 10)
+          .text("총 현원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
 
-	 	d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
+	  svg.append("text")
+      .attr("text-anchor", "middle")
+      .attr('font-size', '1em')
+      .attr('y', 130)
+      .text("2017 "+data[i].gu+" 어린이집 영유아 현원");
+	       
+	 d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>"+(d.data.value));
+	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 현원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
+		 tooltip.style("display", "none");
+	 });
+	 	  
+	 	  
+
+ 	 function type(d) {
+	   d.value = +d.value;
+	   return d;
+	 } 
+	 		
+			 }
+	 	}		  	  
+	});	
+}
+//추가 pie chart (2017 구별 종합 현원 수)
+function MaxChildPieChart(guname){//guname이 실려있음
+	 d3.selectAll(".svg3 > *").remove(); 
+	 var tooltip = d3.select(".tooltip3");
+
+	 var width = 375,
+	     height = 270,
+	     radius = Math.min(width-30, height-30) / 2;
+
+	 var color = d3.scale.ordinal()
+	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
+
+	 var arc = d3.svg.arc()
+	     .outerRadius(radius - 10)
+	     .innerRadius(radius - 55);
+
+	 var pie = d3.layout.pie()
+	     .sort(null)
+	 	 .startAngle(1.1*Math.PI)
+	     .endAngle(3.1*Math.PI)
+	     .value(function(d) { return d.value; });
+	 	 
+
+	 var svg = d3.select("body").select(".svg3")
+	     .attr("width", width)
+	     .attr("height", height)
+	   .append("g")
+	     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+	
+	d3.json("../decorator/total_maxchild.json", function(error, data) {
+	 for (var i=0; i<data.length;i++){
+		 if(guname == data[i].gu){
+			 console.log(data[i].gu);			 
+			var dataset=[
+				{"type":data[i].values[0].column,"value":data[i].values[0].value},
+				{"type":data[i].values[1].column,"value":data[i].values[1].value},
+				{"type":data[i].values[2].column,"value":data[i].values[2].value},
+				{"type":data[i].values[3].column,"value":data[i].values[3].value},
+				{"type":data[i].values[4].column,"value":data[i].values[4].value},
+				{"type":data[i].values[5].column,"value":data[i].values[5].value},
+				{"type":data[i].values[6].column,"value":data[i].values[6].value}
+			]
+	  var g = svg.selectAll("arc")
+	  		.attr("class", "arc3")
+	        .data(pie(dataset))
+	        .enter().append("g");
+
+	   g.append("path")
+	 	.style("fill", function(d) { return color(d.data.type); })
+	     .transition().delay(function(d,i) {
+	 	return i * 250; }).duration(500)
+	 	.attrTween('d', function(d) {
+	 		var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+	 		return function(t) {
+	 			d.endAngle = i(t); 
+	 			return arc(d);
+	 			}
+	 		}); 
+	   g.append("text")
+	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+	       .attr("dy", ".35em")
+	 	  .transition()
+	 	  .delay(500);
+	       /* .text(function(d) { return d.data.type; }); */
+	 svg.append("text")
+          .attr("text-anchor", "middle")
+          .attr('font-size', '1em')
+          .attr('y', 10)
+          .text("총 정원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
+	  
+	 svg.append("text")
+     .attr("text-anchor", "middle")
+     .attr('font-size', '1em')
+     .attr('y', 130)
+     .text("2017 "+data[i].gu+" 어린이집 영유아 정원");
+	 
+	 d3.select(".svg3").selectAll("path").on("mousemove", function(d) {
+	 		tooltip.style("left", d3.event.pageX+10+"px");
+	 		tooltip.style("top", d3.event.pageY-25+"px");
+	 		tooltip.style("display", "inline-block");
+	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 정원 수:"+(d.data.value)+"명");
+	 });
+	 	  
+	 d3.select(".svg3").selectAll("path").on("mouseout", function(d){
 		 tooltip.style("display", "none");
 	 });
 	 	  
@@ -647,7 +784,7 @@ function pieChart(guname){//guname이 실려있음
 		  
 	});
 	
-} 
+}
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
 	var data = {
@@ -659,10 +796,6 @@ function review(code){
 		data : data,
 		dataType : "json", // ajax 통신으로 받는 타입
 		success : function(data) {
-			//버튼 클릭시 초기화
-			$('#removeboard').click(function(){
-				$('#reviews').empty();
-			})
 			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성
 		    $('#reviews').empty();
 		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
@@ -672,7 +805,7 @@ function review(code){
 				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor=white'>";
                 board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td><td height='23' style='text-align:center'>"+data.fourlists[i].score+"</td></tr>";
                }
-			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
+			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2&searchType=dcname&searchContent='"+data.fourlists[0].dcname+"''>더보기</a></td></tr></table>";
 		     }else{
 			board += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr>";
 			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
