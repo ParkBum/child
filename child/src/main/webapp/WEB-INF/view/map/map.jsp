@@ -45,16 +45,14 @@ select {
 
 }
 .buttons {
-	border : 0;
-	outline: 0;
-	background-color:#F6A5BC; 
-	color:white;
-	
+    -webkit-appearance: button;
+	/* color:white;
+	 */
 }
-.buttons:hover{
+/* .buttons:hover{
 	background-color : #CE5B7C;
 	color : white;
-}
+} */
 option {
 	font-size: large;
 }
@@ -125,7 +123,7 @@ option {
 		<div id="SearchAndMap">
 			<div class="half1">
 			<div id="search">
-				<div style="text-align: center; width: 100%; height: 80px; background: #F6A5BC; color:white;">
+				<div style="text-align: center; width: 100%; height: 80px; background: #f7f7f7; border : solid 1px #dbdbdb;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
@@ -174,7 +172,7 @@ option {
 								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="buttons" id="searchs" value="조회">
 						</div>
 					</div>
 					<div style="width: 100%; height: 40px;">
@@ -186,7 +184,7 @@ option {
 			<div id="map_wrap" align="center" class="map_wrap">
 				<div id="map" style="width: 100%; height: 100%; margin: 10px 0"
 					align="center"></div>
-				<div class="bar1" style="height:285px;  margin-top:10px; background: #FCE2EC; color:white; ">
+				<div class="bar1" style="height:285px;  margin-top:10px; border:solid 1px #ccc; ">
 				<h3 id="text1" style="position:relative; padding-top:125px; padding-bottom:125px; z-index:3; margin:0;">구별 영유아 정/현원 차트 부분</h3>
 		    <div class="tooltip3" style=" z-index:3;"></div>
 				<svg class="svg3" style=" position:relative; z-index:2;"></svg>
@@ -199,14 +197,14 @@ option {
 		<!-- SearchAndMap -->
 	</div>
 	<div class="half2">
-			<div class="bar2" style="height:470px; text-align:center; background: #FCE2EC; color:white;" id="chart">
+			<div class="bar2" style="height:470px; text-align:center; border:solid 1px #ccc;" id="chart">
 			<h2 id="text2" style="position:relative; padding-top:200px; padding-bottom:200px; z-index:3; margin:0;">어린이집 차트 부분</h2>
 			<div class="tooltip1"  style=" z-index:3;"></div>
 				<svg class="svg1" style=" z-index:2;"></svg>  
 			</div>
 			 <div class="bar3" style="height:400px; text-align:center; border:solid 1px #ccc; margin-top : 10px;">
 			 	<h2 id="text3" style="position:relative; padding-top:176px;; padding-bottom:176px; z-index:3; margin:0;">어린이집 후기 부분</h2>
-				<div id="reviews" style="position:relative;width:750px; height : 400px; z-index:2; top:-400px;"></div> 
+				<div id="reviews" style="position:relative;width:770px; height : 400px; z-index:2; top:-400px;"></div> 
 			</div> 
 		</div>
 	</div>
@@ -406,9 +404,8 @@ dataset.push({"name":"서울시 평균",
 });
 //첫번재 차트
 function graph(a){
-	$('.bar1').css('background','')
-	$('.bar2').css('background','')
-	$('.bar1').css('opacity','1')
+/* 	$('.bar1').css('border','')
+	$('.bar2').css('border','') */
 	$('#text1').remove();
 	$('#text2').remove();
 	var code = a;
@@ -781,8 +778,6 @@ function review(code){
 			$('#reviews').html(data);
 		}});
 }
-
-
 </script>
 </body>
 </html>
