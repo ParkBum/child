@@ -24,10 +24,10 @@
 			autoControls : true, //stop,play  
 			pager : true, //∆‰¿Ã¬°  
 			pause : 5000,
-			autoDelay : 0,
 			slideWidth : 1200,
-			speed : 1000,
-			infiniteLoop : true,
+			speed : 2000,
+			infiniteLoop : false,
+			hideControlOnEnd : true,
 			stopAutoOnclick : true
 		});
 
@@ -69,7 +69,7 @@
 
 .mainimage1 {
 	float: left;
-	padding: 30px 0 0 30px;
+	padding: 30px 30px 0 30px;
 	width: 800px;
 }
 
