@@ -56,7 +56,7 @@ th, td {
 				<c:if test="${msg.board.mkinds == 2}">[도서]</c:if>
 				<c:if test="${msg.board.mkinds == 3}">[의류]</c:if>
 				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>				
-				&nbsp;${msg.board.subject}</td>
+				${msg.board.subject}</td>
 				<td>${msg.user.nickname}&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px;">phone_iphone</i>${msg.phone}</c:if></td>
 				<td><input type="button" value="수락" id="yes">&nbsp;<input type="button" value="거절" id="no"></td>
 			</tr>
