@@ -34,7 +34,7 @@ $(document).ready(function() {
 <body>
 	<div class="wrap">
 	<h2>거래 요청 목록</h2>
-		<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 보이며, 거래완료 후에는 연락처가 자동 삭제됩니다.</font><br>
+		<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 표기되며, 거래완료 후에는 연락처가 표기되지않습니다.</font><br>
 		<font size="2">거래 수락 후 7일이 지난 거래는 완료로 자동 전환됩니다.</font>
 		<table border="1" style="border-collapse: collapse;" class="w3-table w3-border w3-bordered">
 			<tr>
@@ -70,10 +70,10 @@ $(document).ready(function() {
 				<td>${msg.user.nickname}&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px;">phone_iphone</i>${msg.phone}</c:if></td>
 				<td>
 				<c:if test="${msg.deal == 0}">
-				<a href="${path}/user/dealYes.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">수락</a>&nbsp;<a href="${path}/user/dealNo.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">거절</a>
+					<a href="${path}/user/dealYes.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">수락</a>&nbsp;<a href="${path}/user/dealNo.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">거절</a>
 				</c:if>
 				<c:if test="${msg.deal == 1}">
-				<a href="${path}/user/dealEnd.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">완료</a>&nbsp;<a href="${path}/user/dealCancel.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">취소</a>
+					<a href="${path}/user/dealEnd.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">완료</a>&nbsp;<a href="${path}/user/dealCancel.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">취소</a>
 				</c:if>
 				</td>
 			</tr>

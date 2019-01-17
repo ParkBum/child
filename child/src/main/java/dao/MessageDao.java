@@ -20,7 +20,7 @@ public class MessageDao {
 	private final String NS = "dao.mapper.MessageMapper.";
 
 	public void insert(Message msg) {
-		sqlSession.getMapper(MessageMapper.class).insert(msg);	
+		sqlSession.getMapper(MessageMapper.class).insert(msg);
 	}
 
 	public int maxMsgnum() {
@@ -51,6 +51,10 @@ public class MessageDao {
 		msg.setDeal(deal);
 		msg.setMsgdate(date);
 		sqlSession.getMapper(MessageMapper.class).updateDeal(msg);
+	}
+
+	public int dayCnt(Date msgdate) {
+		return sqlSession.getMapper(MessageMapper.class).dayCnt(msgdate) ;
 	}
 
 }

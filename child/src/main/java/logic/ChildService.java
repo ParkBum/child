@@ -64,8 +64,9 @@ public class ChildService {
 		boardDao.insert(board);
 	}
 
-	public int boardCount(Integer bType, String filterType, String searchType, String searchContent, String filterType2) {
-		return boardDao.getCount(bType, filterType, searchType, searchContent,filterType2);
+	public int boardCount(Integer bType, String filterType, String searchType, String searchContent,
+			String filterType2) {
+		return boardDao.getCount(bType, filterType, searchType, searchContent, filterType2);
 	}
 
 	public List<Board> boardList(Integer bType, String filterType, String searchType, String searchContent,
@@ -155,7 +156,7 @@ public class ChildService {
 		boolean b = Pattern.matches("[\\w\\~\\-\\.]+@[\\w\\~\\-]+(\\.[\\w\\~\\-]+)+", email.trim());
 		return b;
 	}
- 
+
 	public void commentWrite(Comment comment) {
 		comment.setCnum(commentDao.maxCnum() + 1);
 		comment.setRef(comment.getCnum());
@@ -169,16 +170,18 @@ public class ChildService {
 	public void addRed(Integer mnum) {
 		userDao.addRed(mnum);
 	}
+
 	public void commentDelete(Integer cnum) {
 		commentDao.delete(cnum);
 	}
 
-// 머리쓰기 싫어서 여러개 만들었어요 죗옹해요. 이름 구리면 변경할게요 알려주세요ㅠㅠ
-	//게시글 삭제 위해서 댓글 삭제
+	// 머리쓰기 싫어서 여러개 만들었어요 죗옹해요. 이름 구리면 변경할게요 알려주세요ㅠㅠ
+	// 게시글 삭제 위해서 댓글 삭제
 	public void commentDeleteList(Integer bnum) {
 		commentDao.deleteList(bnum);
 	}
-	//회원탈퇴하려고 다 삭제
+
+	// 회원탈퇴하려고 다 삭제
 	public void userCommentDelete(Integer mnum) {
 		commentDao.userCommentDelete(mnum);
 	}
@@ -186,13 +189,14 @@ public class ChildService {
 	public void userBoardDelete(Integer mnum) {
 		boardDao.userBoardDelete(mnum);
 	}
-//	
+
+	//
 	public void commentUpdate(Comment comment) {
 		commentDao.update(comment);
 	}
 
 	public void changePass(String newpass1, Integer mnum) {
-		userDao.changePass(newpass1,mnum);
+		userDao.changePass(newpass1, mnum);
 	}
 
 	public void reWrite(Comment comment) {
@@ -233,36 +237,35 @@ public class ChildService {
 		return mapDao.listBygu(gu);
 	}
 
-
 	public List<Board> fourlists(Integer code) {
 
 		return mapDao.fourlists(code);
 	}
 
 	public Daycare_total getTotal() {
-		
+
 		return mapDao.getTotal();
 	}
 
 	public int commentCount(int bnum) {
 		return commentDao.commentCnt(bnum);
 	}
-/*	public double getScore_avg(Integer code) {
-		
-		return mapDao.getScore_avg(code);
-	}
-*/
+	/*
+	 * public double getScore_avg(Integer code) {
+	 * 
+	 * return mapDao.getScore_avg(code); }
+	 */
 
 	public List<Daycare> autoMarkerlist(Double lat, Double lon) {
 		// TODO Auto-generated method stub
-		return mapDao.autoMarkerlist(lat,lon);
+		return mapDao.autoMarkerlist(lat, lon);
 	}
 
 	public List<Board> myBoardList(Integer mnum) {
 		return boardDao.myBoardList(mnum);
 	}
 
-	public void myBoardDelete(Integer[] checkBoard) {	
+	public void myBoardDelete(Integer[] checkBoard) {
 		myComDelete(checkBoard);
 		boardDao.myBoardDelete(checkBoard);
 	}
@@ -289,11 +292,15 @@ public class ChildService {
 	}
 
 	public void updateDeal(Integer msgnum, Integer deal, Date date) {
-		messageDao.updateDeal(msgnum, deal, date);		
+		messageDao.updateDeal(msgnum, deal, date);
 	}
 
-
-
+	public boolean dayCnt(Date msgdate) {
+		if (messageDao.dayCnt(msgdate) > 7) {
+			return true;
+		}
+		return false;
+	}
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
