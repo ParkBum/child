@@ -323,11 +323,19 @@ $(function() {
 				class="w3-table w3-border w3-bordered">
 				<tr style="height: 30px;">
 					<td width="15%" style="text-align: center;">작성자</td>
-					<td width="90%">&nbsp;${board.nickname} <c:if
-							test="${board.bType == 3}">
-            &nbsp;<img src="${path}/decorator/siren.png" id="siren" style="cursor: pointer;">
-							<font id="addred" size="1" color="red"><b>신고완료</b></font>
-						</c:if></td>
+					<td width="90%">&nbsp;${board.nickname} 
+					<c:if test="${board.bType == 3}">
+					<c:set var="cnt" value="0"/>
+ 					<c:forEach items="${messageList}" var="msg">
+						<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
+							<c:set var="cnt" value="${cnt + 1}"/>
+						</c:if>
+					</c:forEach> 
+					<c:if test="${cnt > 0}">
+						&nbsp;<img src="${path}/decorator/siren.png" id="siren" style="cursor: pointer;">
+						<font id="addred" size="1" color="red"><b>신고완료</b></font>
+					</c:if>
+					</c:if></td>
 				</tr>
 				<tr style="height: 30px;">
 					<td style="text-align: center;">제목</td>
@@ -370,13 +378,13 @@ $(function() {
 								test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
 								<tr>
 									<td>&nbsp; <c:if test="${!empty board.file1}">
-											<img src="../file/${board.file1}"
+											<img src="${path}/file/${board.file1}"
 												style="width: 150px; height: 150px;">
 										</c:if>&nbsp; <c:if test="${!empty board.file2}">
-											<img src="../file/${board.file2}"
+											<img src="${path}/file/${board.file2}"
 												style="width: 150px; height: 150px;">
 										</c:if>&nbsp; <c:if test="${!empty board.file3}">
-											<img src="../file/${board.file3}"
+											<img src="${path}/file/${board.file3}"
 												style="width: 150px; height: 150px;">
 										</c:if>
 									</td>
