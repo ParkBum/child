@@ -86,10 +86,10 @@ public class BoardController {
 		Comment comment = new Comment();
 		Date date = new Date();
 		Board board = service.getBoard(bnum);
+		service.readcntAdd(bnum);//조회수 증가
 		List<Message> messageList = service.messageList(bnum);
 		board.setContent(board.getContent().replaceAll("\r\n", "<br>"));
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
-
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
 		}
