@@ -411,7 +411,7 @@ $(function() {
                      modelAttribute="comment">
                      <input type="hidden" name="bnum" value="${board.bnum}">
                      <input type="hidden" name="mnum" value="${loginUser.mnum}">
-                     댓글 작성자 : ${sessionScope.loginUser.nickname}
+                    	 댓글 작성자 : ${sessionScope.loginUser.nickname}
                <form:textarea path="recomment"
                         style="width:100%;height:100px;border:0;resize:none;"
                         placeholder="댓글을 입력하세요."></form:textarea>
@@ -424,28 +424,20 @@ $(function() {
             <tr>
                <td colspan="2"><c:forEach var="c" items="${commentList}"
                      varStatus="stat">
-                     <c:if test="${c.refstep > 0}">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└>${c.ref}의 대댓글<%-- ${stat.count} --%>
-                     </c:if>
-
+                     <div> 
                      <c:if test="${c.refstep == 0}">
                         <input type="button" id="recom" value="답글"
                            onclick="$('#comm${stat.index}').show();">
                      </c:if>
-                     <c:if
+                     <c:if 
                         test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
                         <!-- 댓글수정버튼 -->
                         <input type="button" id="commentUpdate" value="수정"
                            onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
                         <input type="button" id="commentDelete" value="삭제"
                            onclick="commentDelete(${c.bnum},${c.cnum})">
-                     </c:if>
-                     <br>
-                     <c:if test="${c.refstep>0}">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     </c:if>
-               회원번호 : ${c.mnum} &nbsp;&nbsp;&nbsp;&nbsp; (
-                        <f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
+                     </c:if><br>
+               		    <f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
                         <f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
                            <c:choose>
                               <c:when test="${t==c1}">
@@ -454,16 +446,25 @@ $(function() {
                               <c:otherwise>
                                  <f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
                               </c:otherwise>
-                           </c:choose>)
+                           </c:choose><br> 
+                     <c:if test="${c.refstep > 0}">
+                           <div style="margin-left:2%">
+                           └>닉네임 : ${c.nickname}</div> </c:if>
+                     <c:if test= "${c.refstep == 0}">
+                           <div>
+                          닉네임 : ${c.nickname}</div></c:if>
+                           </div><br>
+               
                   
                   <!-- 댓글 출력-->
-
-
                      <div id="recontent${stat.index}">
-                        <div id="recomment${stat.index}" style="display: block">
+                        <div id="recomment${stat.index}" style="display: block;">
                            <c:if test="${c.refstep>0}">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>
-                           &nbsp;${c.recomment}<br>
+                        	<div style="margin-left:3%">
+                           ${c.recomment}</div></c:if>
+                           <c:if test="${c.refstep==0}">
+                           	${c.recomment}
+                           </c:if><br>
                         </div>
                      </div>
                      <!-- 수정버튼 눌리고 댓글수정창 나옴-->
@@ -478,8 +479,8 @@ $(function() {
                               onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
                         </form:form>
                      </div>
+                     
                      <div id="rere${stat.index}">
-
                         <!-- 답글버튼 눌리고 대댓글창 나옴-->
                         <div id="comm${stat.index}" style="display: none">
                            <form:form action="recomment.child" method="Post"
