@@ -392,9 +392,13 @@ $(function() {
 					<tr>
 						<td colspan="2"
 							style="text-align: center; border-top: hidden; padding: 30px;">
-							<c:if test="${!empty buyid}"></c:if> <!-- 구매 완료버튼으로 변경해야 함. --> <input
-							type="button" value="구매요청" name="buy"
-							onclick="document.getElementById('id01').style.display='block'" />
+						<c:if test="${deal != 3}">
+							<input type="button" value="구매요청" name="buy"
+								onclick="document.getElementById('id01').style.display='block'" />
+						</c:if>
+						<c:if test="${deal == 3}">
+							<input type="button" value="구매완료" disabled="disabled">
+						</c:if>
 							<form action="buyItem.child" method="Post" name="f"
 								onsubmit="return phonecheck()">
 								<input type="hidden" name="bnum" value="${board.bnum }">
