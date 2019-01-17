@@ -125,7 +125,6 @@ function check(){
 			</div>
 		</form>
 		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
-		 <input type="hidden" name="pageNum" value="1"> 
 		[내 게시글 목록]</a><br> 
 		<a href="javascript:void(0)" align="right"
 			onclick="document.getElementById('id02').style.display='block'">

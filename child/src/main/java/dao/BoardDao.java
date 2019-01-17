@@ -73,6 +73,12 @@ public class BoardDao {
 		sqlSession.getMapper(BoardMapper.class).userBoardDelete(mnum);
 	}
 
+	public List<Board> myBoardList(Integer mnum) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("mnum", mnum);
+		return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
+	}
+	/*
 	public List<Board> myBoardList(Integer mnum,Integer pageNum, int limit) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		int startrow = (pageNum - 1) * limit;
@@ -83,7 +89,7 @@ public class BoardDao {
 		return sqlSession.selectList(NS + "mylist", map);
 	//	return sqlSession.getMapper(BoardMapper.class).myBoardList(mnum);
 	}
-
+*/
 	public void myBoardDelete(Integer[] checkBoard) {
 		Map<String,Integer[]> map = new HashMap<String,Integer[]>();
 		map.put("bnum", checkBoard);
