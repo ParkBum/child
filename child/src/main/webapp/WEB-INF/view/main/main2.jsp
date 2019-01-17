@@ -195,7 +195,7 @@
  	svg 안에 요소, g : g는 동일한 속성을 공유하는 요소 집합이다. 
 	 
  */
-function makepiechart(data){
+function makepiechart(data,selectguname){
 	d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
 	
 	d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
@@ -296,7 +296,15 @@ function makepiechart(data){
 	    	.attr("text-anchor", "middle")
 		 	.attr('font-size', '3em')
 		 	.attr('y', 20)
+		 	.text(selectguname);
+	    	
+		
+		svg.append("text")
+			.attr("text-anchor", "middle")
+		 	.attr('font-size', '2em')
+		 	.attr('y', 230)
 	    	.text("합계:" + seoul.seoul[i].total);
+		
 	 	//성공했던 코드...
 	 	 g.append("text")
 	    	.attr("transform", function(d) {
@@ -308,9 +316,8 @@ function makepiechart(data){
 	      .attr("dy", ".50em")
 	      .style("text-anchor", "middle")
 	      .text(function(d,i) {
-	        return kind[i] + ":" + piedata[i];
+	        return kind[i] + ":" + piedatas[i].value;
 	      });
-	 	
 	 	}
     
   }
@@ -368,7 +375,7 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
        //d3.select(this).style("마우스 포인터 변경");
       })
       .on("click",function(d){
-    	 makepiechart(d.properties.SIG_CD);
+    	 makepiechart(d.properties.SIG_CD, d.properties.SIG_KOR_NM);
     	 $( '#maplink' ).hide();
       })
       .on("mouseout",function(){
