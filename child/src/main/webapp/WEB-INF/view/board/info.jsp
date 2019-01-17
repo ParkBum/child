@@ -360,6 +360,8 @@ $(function() {
                      </c:if>
                   </td>
                </tr>
+               </c:if>
+               <c:if test="${board.bType == 3}">
             <!--  구매요청  -->
             <tr>
                <td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
