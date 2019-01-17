@@ -271,13 +271,32 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/myBoardList")
-	public ModelAndView myBoardList(Integer mnum) {
+	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		String nick = service.getNickName(mnum);
-		List<Board> myboard = service.myBoardList(mnum);		
+		int myBoardCnt = service.myBoardCount(mnum); //내가 작성한 총 게시글 수
+		if (pageNum == null || pageNum.toString().equals("")) {
+			pageNum = 1;
+		}
+		int limit = 10; // 한 페이지에 출력할 게시물 수
+		List<Board> myboard = service.myBoardList(mnum, pageNum, limit);
+		int maxpage = (int) ((double) myBoardCnt / limit + 0.95); // 전체 페이지 수
+		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
+		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
+		if (endpage > maxpage)
+			endpage = maxpage;
+		int boardCnt = myBoardCnt - (pageNum - 1) * limit;
+		
+		mav.addObject("pageNum", pageNum);
+		mav.addObject("maxpage", maxpage);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("myBoardCnt", myBoardCnt);
+		mav.addObject("boardCnt", boardCnt);
+		
 		mav.addObject("nickname",nick);
 		mav.addObject("myboard",myboard);
-		mav.setViewName("user/myBoard");
+	//	mav.setViewName("user/myBoard");
 		return mav;
 	}
 	
