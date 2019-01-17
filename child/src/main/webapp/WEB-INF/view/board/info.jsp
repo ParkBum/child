@@ -128,12 +128,20 @@ td {
 	}
 	return false;
 } */
+function chkSecret(){
+	var secret = document.f.secret.value;
+	if($("#secret").is(":checked")){
+		secret = 1;
+		document.f.secret.value	= secret;
+		return true;
+	}else {
+		return true;
+	}
+
+}
+
 function comment(){
 	var check = confirm("댓글을 등록하시겠습니까?");
-	var secret = "n";
-	if($("#secret").is(":checked")){
-		secret = "y";
-	}
 	if(check){ 
 		return true;
 	} else return false;
@@ -385,7 +393,7 @@ $(function() {
             </tr>
             
             <!--  구매요청  -->
-               <c:if test="${board.bType == 3 && sessionScope.loginUser.mnum != board.mnum}">
+               <c:if test="${board.bType == 3 && board.head == 1 && sessionScope.loginUser.mnum != board.mnum }">
             <tr>
                <td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
                   <c:if test=""></c:if> <!-- 구매 완료버튼으로 변경해야 함. -->
@@ -439,7 +447,7 @@ $(function() {
                         style="width:100%;height:100px;border:0;resize:none;"
                         placeholder="댓글을 입력하세요."></form:textarea>
                      <div align="right">
-                     	<input type="checkbox" name="secretcomment" id="secret">비밀댓글&nbsp;
+                     	<input type="checkbox" name="secret" id="secret" value="0" onchange="chkSecret()">비밀댓글&nbsp;
                         <input type="submit" value="등록">
                      </div>
                   </form:form></td>
@@ -486,7 +494,9 @@ $(function() {
                            <c:if test="${c.refstep>0}">
                         	<div style="margin-left:3%">
                            ${c.recomment}</div></c:if>
-                           <c:if test="${c.refstep==0}">
+                           <c:if test="${c.refstep==0 && c.secret == 1}">
+                           		※비밀댓글입니다.</c:if>
+                           <c:if test="${c.refstep==0 && c.secret == 0}">
                            	${c.recomment}
                            </c:if><br>
                         </div>
