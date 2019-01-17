@@ -32,4 +32,10 @@ public class MessageDao {
 		return sqlSession.selectList(NS + "list", map);
 	}
 
+	public List<Message> getMymessageList(Integer mnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sellnum", mnum);
+		return sqlSession.selectList(NS + "list", map);
+	}
+
 }

@@ -279,6 +279,10 @@ public class ChildService {
 		return messageDao.messageList(bnum);
 	}
 
+	public List<Message> getMyMessageList(Integer mnum) {
+		return messageDao.getMymessageList(mnum);
+	}
+
 
 
 
