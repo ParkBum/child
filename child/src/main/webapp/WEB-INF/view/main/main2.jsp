@@ -7,11 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>main</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var main = $('.bxslider').bxSlider({
@@ -21,10 +19,10 @@
 			autoControls : true, //stop,play  
 			pager : true, //∆‰¿Ã¬°  
 			pause : 5000,
-			autoDelay : 0,
 			slideWidth : 1200,
-			speed : 1000,
-			infiniteLoop : true,
+			speed : 2000,
+			infiniteLoop : false,
+			hideControlOnEnd : true,
 			stopAutoOnclick : true
 		});
 
@@ -63,7 +61,7 @@
 
 .mainimage1 {
 	float: left;
-	padding: 30px 0 0 30px;
+	padding: 30px 30px 0 30px;
 	width: 800px;
 }
 
