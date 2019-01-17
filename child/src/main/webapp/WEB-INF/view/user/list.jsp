@@ -86,15 +86,17 @@ function check(){
 				</c:if>
 			</div>
 		</form>
-		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이 작성한 게시글 확인하기</a><br> 
-		<a href="javascript:void(0)" align="right"
+		<a
+			href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이
+			작성한 게시글 확인하기</a><br> <a href="javascript:void(0)" align="right"
 			onclick="document.getElementById('id01').style.display='block'">회원정보
-			수정하기</a> 
+			수정하기</a>
 		<!-- 모달 내용 -->
-		<form action="../user/passConfirm.child?mnum=${user.mnum}" method="Post" 
-						onsubmit="return check()" name="f">
+		<form action="../user/passConfirm.child?mnum=${user.mnum}"
+			method="Post" onsubmit="return check()" name="f">
 			<input type="hidden" name="password" value="${user.password}">
-			<div id="id01" class="w3-modal" style="z-index: 4; padding-top:280px;">
+			<div id="id01" class="w3-modal"
+				style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
 						style="background-color: #FFF1F5;">
@@ -124,7 +126,7 @@ function check(){
 					<tr>
 						<th colspan="5" style="text-align: center;">회원 목록</th>
 					</tr>
-					
+
 					<tr>
 						<th style="text-align: center;">회원번호</th>
 						<th style="text-align: center;">아이디(이메일)</th>
@@ -137,19 +139,19 @@ function check(){
 							<td style="text-align: center;">${user.mnum}</td>
 							<td>${user.email}</td>
 							<c:choose>
-							<c:when test="${user.red >= 3}">
-								<td style="color:red">${user.nickname}</td>
-							</c:when>
-							<c:otherwise>
-							<td>${user.nickname}</td>
-							</c:otherwise>
+								<c:when test="${user.red >= 3}">
+									<td style="color: red">${user.nickname}</td>
+								</c:when>
+								<c:otherwise>
+									<td>${user.nickname}</td>
+								</c:otherwise>
 							</c:choose>
-							
+
 							<td style="text-align: center;">${user.red}</td>
-							<td style="text-align: center;">
-							<c:if test="${user.email != 'admin@aaa.bbb'}">
-							<a href="javascript:admindelete(${user.mnum})">강제탈퇴</a></c:if>
-							<c:if test="${user.email == 'admin@aaa.bbb'}">탈퇴불가</c:if></td>
+							<td style="text-align: center;"><c:if
+									test="${user.email != 'admin@aaa.bbb'}">
+									<a href="javascript:admindelete(${user.mnum})">강제탈퇴</a>
+								</c:if> <c:if test="${user.email == 'admin@aaa.bbb'}">탈퇴불가</c:if></td>
 						</tr>
 					</c:forEach>
 				</table>

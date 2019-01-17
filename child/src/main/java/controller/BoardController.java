@@ -94,8 +94,8 @@ public class BoardController {
 			pageNum = 1;
 		}
 		int limit = 10; // 한 페이지에 출력할 게시물 수
-		int commentCnt = service.commentCount(bnum);
-		List<Comment> commentList = service.commentList(bnum, pageNum, limit);
+		int commentCnt = service.commentCount(bnum); //게시글에 달린 댓글수
+		List<Comment> commentList = service.commentList(bnum, pageNum, limit); //댓글 리스트
 		int maxpage = (int) ((double) commentCnt / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
 		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
