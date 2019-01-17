@@ -84,7 +84,7 @@ public class UserController {
 	}
 
 	@RequestMapping("user/delete")
-	public ModelAndView delete(User user, HttpSession session, Integer mnum) {
+	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		if(dbUser.getMnum() == 1) {
@@ -188,7 +188,7 @@ public class UserController {
 	}
 
 	@RequestMapping("user/update")
-	public ModelAndView update(@Valid User user, BindingResult bindResult, Integer mnum, HttpSession session) {
+	public ModelAndView update(@Valid User user, HttpSession session , Integer mnum, BindingResult bindResult) {
 		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회 
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) {
@@ -218,7 +218,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "user/chgPass", method = RequestMethod.POST)
-	public ModelAndView chgPass(Integer mnum, HttpServletRequest request, HttpSession session) {
+	public ModelAndView chgPass(Integer mnum,HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		String newpass1 = request.getParameter("newpass1");
 		String newpass2 = request.getParameter("newpass2");
@@ -236,7 +236,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/userdelete")
-	public ModelAndView userdelete(String password, HttpSession session, Integer mnum) {
+	public ModelAndView userdelete(Integer mnum, HttpSession session,String password ) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		if (password.equals(dbUser.getPassword())) {
@@ -257,7 +257,7 @@ public class UserController {
 	}
  
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(String password, Integer mnum, HttpSession session) {
+	public ModelAndView confirm( Integer mnum, HttpSession session,String password) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		if(password.equals(dbUser.getPassword())) {
