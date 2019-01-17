@@ -190,15 +190,15 @@ body {
 									style="margin-left: -4px;" title="회원관리">회원관리</a>
 							</c:if>
 							<ul>
-								<li><a href="${path}/user/list.child?bType=1"
+								<li><a href="${path}/user/list.child?mnum=${sessionScope.loginUser.mnum}"
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
 										onmouseout="this.style.color='#AAAAAA'" title="내정보">내정보</a>
-									<a href="${path}/board/list.child?bType=2"
+									<a href="${path}/user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}"
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
 										onmouseout="this.style.color='#AAAAAA'" title="내게시글목록">내게시글목록</a>
-									<a href="${path}/user/loginForm.child"
+									<a href="${path}/user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}"
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
 										onmouseout="this.style.color='#AAAAAA'" title="거래요청목록">거래요청목록</a>
