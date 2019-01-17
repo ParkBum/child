@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.scenario.effect.impl.prism.PrImage;
 
-import logic.Board;
+import logic.Board; 
 import logic.ChildService;
 import logic.Daycare;
 import logic.Daycare_total;

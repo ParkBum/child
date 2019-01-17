@@ -23,12 +23,13 @@
 function delcheck(){
 	var check = confirm("탈퇴하시겠습니까?");
 	if(check){
-		alert("탈퇴가 완료되었습니다.");
-		return true;
-	}
-	if(fdel.pass.value != ${user.password}){
-		alert("비밀번호가 틀립니다.");
-		return false;
+		if(fdel.pass.value != ${user.password}){
+			alert("비밀번호가 틀립니다.");
+			return false;
+		}else {
+			alert("탈퇴가 완료되었습니다.");
+			return true;
+		}
 	}
 	return false;
 }
@@ -123,15 +124,17 @@ function check(){
 				</div>
 			</div>
 		</form>
-		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">본인이
-			작성한 게시글 확인하기</a><br> <a href="javascript:void(0)" align="right"
-			onclick="document.getElementById('id01').style.display='block'">회원정보
-			수정하기</a>
+		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+		 <input type="hidden" name="pageNum" value="1"> 
+		[내 게시글 목록]</a><br> 
+		<a href="javascript:void(0)" align="right"
+			onclick="document.getElementById('id02').style.display='block'">
+			[회원정보 수정]</a>
 		<!-- 모달 내용 -->
 		<form action="../user/passConfirm.child?mnum=${user.mnum}"
 			method="Post" onsubmit="return check()" name="f">
 			<input type="hidden" name="password" value="${user.password}">
-			<div id="id01" class="w3-modal"
+			<div id="id02" class="w3-modal"
 				style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
@@ -143,12 +146,11 @@ function check(){
 							style="width: 72%">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
-								onclick="document.getElementById('id01').style.display='none'">
-								닫기<i class="fa fa-remove"></i>
+								onclick="document.getElementById('id02').style.display='none'">
+								닫기 
 							</a> <input type="submit"
-								onclick="document.getElementById('id01').style.display='none'"
-								class="w3-button w3-light-grey w3-right" value="확인"> <i
-								class="fa fa-paper-plane"></i>
+								onclick="document.getElementById('id02').style.display='none'"
+								class="w3-button w3-light-grey w3-right" value="확인"> 
 						</div>
 					</div>
 				</div>
