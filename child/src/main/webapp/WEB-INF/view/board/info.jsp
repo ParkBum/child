@@ -116,6 +116,29 @@ td {
    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
 <script type="text/javascript">
+/* function list(pageNum) {
+	if (searchType == null || searchType.length == 0) {
+		document.searchForm.searchContent.value = "";
+		document.searchForm.pageNum.value = "1";
+		location.href = "info.child?bType=3&pageNum=" + pageNum;
+	} else {
+		document.searchForm.pageNum.value = pageNum;
+		document.searchForm.submit();
+		return true;
+	}
+	return false;
+} */
+function comment(){
+	var check = confirm("´ñ±ÛÀ» µî·ÏÇÏ½Ã°Ú½À´Ï±î?");
+	var secret = "n";
+	if($("#secret").is(":checked")){
+		secret = "y";
+	}
+	if(check){ 
+		return true;
+	} else return false;
+} 
+
 function commentDelete(bnum, cnum){
       var del = confirm("´ñ±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")
       if(del){
@@ -407,8 +430,8 @@ $(function() {
             <!-- ´ñ±ÛÀÛ¼º -->
             <tr style="height: 30px;">
                <td style="text-align: center;">´ñ±Û</td>
-               <td><form:form action="commentWrite.child" method="Post"
-                     modelAttribute="comment">
+               <td><form:form action="commentWrite.child" method="Post" modelAttribute="comment" 
+               			name="f" onsubmit="return comment()">
                      <input type="hidden" name="bnum" value="${board.bnum}">
                      <input type="hidden" name="mnum" value="${loginUser.mnum}">
                     	 ´ñ±Û ÀÛ¼ºÀÚ : ${sessionScope.loginUser.nickname}
@@ -416,6 +439,7 @@ $(function() {
                         style="width:100%;height:100px;border:0;resize:none;"
                         placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä."></form:textarea>
                      <div align="right">
+                     	<input type="checkbox" name="secretcomment" id="secret">ºñ¹Ð´ñ±Û&nbsp;
                         <input type="submit" value="µî·Ï">
                      </div>
                   </form:form></td>
@@ -509,6 +533,18 @@ $(function() {
                   </c:forEach></td>
             </tr>
          </table>
+				<div class="btns">
+					<c:if test="${pageNum > 1}">
+					<a href="javascript:list(${pageNum - 1})"><i class="material-icons" style="vertical-align: middle;">arrow_back</i></a>&nbsp;
+					</c:if>
+					<c:forEach var="a" begin="${startpage}" end="${endpage}">
+						<c:if test="${a==pageNum}"><font size="4" class="w3-pale-red">&nbsp; ${a} &nbsp;</font>&nbsp;</c:if>
+						<c:if test="${a!=pageNum}"><a href="javascript:list(${a})"><font size="4">&nbsp; ${a} &nbsp;</font></a>&nbsp;</c:if>
+					</c:forEach>
+					<c:if test="${pageNum < maxpage}">
+					&nbsp;<a href="javascript:list(${pageNum + 1})"><i class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
+					</c:if>
+				</div>
       </div>
    </div>
 </body>
