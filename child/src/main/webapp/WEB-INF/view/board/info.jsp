@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>게시물 상세 보기</title>
 <style type="text/css">
 .cmain {
@@ -393,7 +394,7 @@ $(function() {
             </tr>
             
             <!--  구매요청  -->
-               <c:if test="${board.bType == 3 && board.head == 1 && sessionScope.loginUser.mnum != board.mnum }">
+               <c:if test="${board.bType == 3 && board.head == 2 && sessionScope.loginUser.mnum != board.mnum }">
             <tr>
                <td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
                   <c:if test=""></c:if> <!-- 구매 완료버튼으로 변경해야 함. -->
@@ -457,6 +458,8 @@ $(function() {
                <td colspan="2"><c:forEach var="c" items="${commentList}"
                      varStatus="stat">
                      <div> 
+                     <c:if test="${c.secret == 1}">
+                     <i class="fa fa-lock" style="font-size:24px"></i></c:if>
                      <c:if test="${c.refstep == 0}">
                         <input type="button" id="recom" value="답글"
                            onclick="$('#comm${stat.index}').show();">
@@ -494,8 +497,19 @@ $(function() {
                            <c:if test="${c.refstep>0}">
                         	<div style="margin-left:3%">
                            ${c.recomment}</div></c:if>
-                           <c:if test="${c.refstep==0 && c.secret == 1}">
-                           		※비밀댓글입니다.</c:if>
+                           
+                           <c:if test="${c.secret == 1}">
+                           <c:choose>
+                           	<c:when test="${c.mnum == sessionScope.loginUser.mnum || 
+                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
+                           			${c.recomment}
+                           	</c:when>
+                           	<c:otherwise>
+                           		※비밀댓글입니다.
+                           	</c:otherwise>
+                           </c:choose>
+                           	</c:if>
+                           	
                            <c:if test="${c.refstep==0 && c.secret == 0}">
                            	${c.recomment}
                            </c:if><br>
