@@ -117,18 +117,10 @@ td {
    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-/* function list(pageNum) {
-	if (searchType == null || searchType.length == 0) {
-		document.searchForm.searchContent.value = "";
-		document.searchForm.pageNum.value = "1";
-		location.href = "info.child?bType=3&pageNum=" + pageNum;
-	} else {
-		document.searchForm.pageNum.value = pageNum;
-		document.searchForm.submit();
-		return true;
-	}
-	return false;
-} */
+function list(pageNum) {
+		location.href = "info.child?bnum="+${board.bnum}+"&pageNum=" + pageNum;
+	return true;
+} 
 function chkSecret(){
 	var secret = document.f.secret.value;
 	if($("#secret").is(":checked")){
@@ -472,25 +464,14 @@ $(function() {
                         <input type="button" id="commentDelete" value="삭제"
                            onclick="commentDelete(${c.bnum},${c.cnum})">
                      </c:if><br>
-               		    <f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-                        <f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-                           <c:choose>
-                              <c:when test="${t==c1}">
-                                 <f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-                              </c:when>
-                              <c:otherwise>
-                                 <f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-                              </c:otherwise>
-                           </c:choose><br> 
                      <c:if test="${c.refstep > 0}">
                            <div style="margin-left:2%">
                            └>닉네임 : ${c.nickname}</div> </c:if>
                      <c:if test= "${c.refstep == 0}">
                            <div>
                           닉네임 : ${c.nickname}</div></c:if>
-                           </div><br>
-               
-                  
+                           </div>
+                           
                   <!-- 댓글 출력-->
                      <div id="recontent${stat.index}">
                         <div id="recomment${stat.index}" style="display: block;">

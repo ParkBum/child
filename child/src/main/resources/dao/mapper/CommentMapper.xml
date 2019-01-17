@@ -5,17 +5,21 @@
 	<select id="list" resultType="Comment" parameterType="map">
 		select * from comment
 		<if test="bnum != null">
-			where bnum = #{bnum}
+			where bnum = #{bnum} 
+			order by ref, refstep
 		</if>
-		order by ref, refstep 
+		<if test="startrow != null and limit != null">
+			limit #{startrow},#{limit}
+		</if>
 	</select>
 	<select id="mycomment" resultType="Comment" parameterType="map">
 		delete from comment
 		<if test="bnum != null">
-			where bnum in 
-				<foreach collection="bnum" item="bnum" separator="," open="(" close=")">
-					#{bnum}
-				</foreach>
+			where bnum in
+			<foreach collection="bnum" item="bnum" separator="," open="("
+				close=")">
+				#{bnum}
+			</foreach>
 		</if>
 	</select>
 </mapper>
