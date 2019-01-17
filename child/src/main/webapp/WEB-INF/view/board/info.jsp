@@ -500,7 +500,7 @@ $(function() {
                            	${c.recomment}
                            </c:if><br>
                         </div>
-                     </div>
+                     </div> 
                      <!-- 수정버튼 눌리고 댓글수정창 나옴-->
                      <div id="recommentupd${stat.index}" style="display: none">
                         <form:form action="commentUpdate.child" method="Post"
