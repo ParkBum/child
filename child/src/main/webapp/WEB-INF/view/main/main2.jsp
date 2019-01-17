@@ -12,6 +12,9 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script><!-- 지도 -->
+<script src="http://d3js.org/d3.v4.min.js"></script> 
+<script src="http://d3js.org/topojson.v1.min.js"></script> 
 <script>
 	$(document).ready(function() {
 		var main = $('.bxslider').bxSlider({
@@ -46,14 +49,17 @@
 	});
 </script>
 <style type="text/css">
-.chart {
-	width: 900px;
+#chartarea {
+/* 	width: 900px;
 	height: 500px;
-	border: solid 2px silver;
-	margin-left: 320px;
+ */	border: solid 2px silver;
+	margin-left: 100px;
 	margin-bottom: 70px;
 }
-
+/* #mapchart {
+	margin-left: 50px;
+}
+ */
 .menus {
 	margin: 40px;
 	margin-left: 320px;
@@ -127,41 +133,198 @@
 </style>
 <style>
 
-svg .municipality {
+.svg1 .municipality {
   pointer-events: none;
 }
 
-svg .municipality {
+.svg1 .municipality {
   stroke: #fff; 
 }
-svg .municipality-label {
+.svg1 .municipality-label {
   fill: #bbb;
   font-size: 12px;
   font-weight: 300;
   text-anchor: middle;
 }
-path {
-  fill:#efefef;
-}
-path:hover {
-  fill: red;
-}
-svg .municipality-label{
+.svg1 .municipality-label{
   stroke: #333; 
+}
+
+.toolTip {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
 }
 
 </style>
 </head>
 <body>
-		<div id="wrap">
-		<div id="chart"></div>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script>
-        var width = 800,
-    height = 600;
 
-var svg = d3.select("#chart").append("svg")
+
+<div id="wrap">
+<div id="chartarea" style="display: inline-flex;" align="center">
+<div id="mapchart"></div> 
+<div id="piechart" style="width: 600">
+	<a href="../map/map.child" id="maplink">
+	<img src="../decorator/seoulsearch.png" alt="어린이집 검색"
+					style="width: 750px; height: 445px;"></a>
+	<!-- <div class="tooltip2">
+	</div> -->
+	<svg class="svg2">
+	</svg>
+	</div>
+	
+ </div>
+
+<script>
+/** 
+ * 
+ 	select : 태그 선택
+ 	append() : 문서요소정의
+ 	data() : 데이터 불러옴
+ 	enter() : 데이터와 문서연동
+ 	svg 안에 요소, g : g는 동일한 속성을 공유하는 요소 집합이다. 
+	 
+ */
+function makepiechart(data){
+	d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
+	
+	d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
+        if (error) {
+            console.log(error);
+            throw error;
+        }
+        console.log(data)
+        
+     // topojson의 properties.SIG_CD
+	var width = 800, height = 500, radius = Math.min(width, height) /3 ;
+	var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
+     .attr("width", width)
+     .attr("height", height) 
+     .attr("radius",Math.min(width, height) / 2)
+     .append("g") //svg2안에 g태그 선택
+     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+	//body에 있는 svg2 선택함
+	 var color = d3.scale.ordinal().range(['#3acc85','#ff8a00','#304bce','#ffffbf','#cc5555','#009dee','#ff0099']);
+	 var kind = ["국공립","복지법인","법인단체","민간","가정","부모협동","직장"]
+	 var pie = d3.pie();
+	 var arc = d3.arc()	//호
+                .outerRadius(radius - 10)
+	 			.innerRadius(100);
+	 // 각 호의 크기를 정함.
+	 
+	 var label = d3.arc()
+	 			.outerRadius(radius)
+	 			.innerRadius(radius - 80);
+	 
+	//Generate groups
+	for(var i=0; i<seoul.seoul.length; i++){
+	
+		if(data == seoul.seoul[i].code){
+		
+ 	var piedata = [
+		 seoul.seoul[i].publics,
+		 seoul.seoul[i].welfare,
+		 seoul.seoul[i].corporate,
+		 seoul.seoul[i].privates,
+		 seoul.seoul[i].home,
+		 seoul.seoul[i].parental,
+		 seoul.seoul[i].Job
+		 ]; 
+	 	console.log(piedata);
+	 	
+	 var piedatas = [
+		 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#3acc85'},//녹색
+			{name : '복지법인',  	value : seoul.seoul[i].welfare,  	color : '#ff8a00'},//주황
+			{name : '법인단체',	value : seoul.seoul[i].corporate,	color : '#304bce'},//파랑
+			{name : '민간', 		value : seoul.seoul[i].privates, 	color : '#ffffbf'},//노랑
+			{name : '가정',    	value : seoul.seoul[i].home,     	color : '#cc5555'},//붉은
+			{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#009dee'},//하늘
+			{name : '직장',      	value : seoul.seoul[i].Job,      	color : '#ff0099'}	//핑크색
+		 ]; 
+	 
+	 
+	 //실제 데이터를 넣고 파이그래프를 만드는 부분
+	 var g = svg.selectAll(".arc")		//호들을 집합시킴
+             .attr("class", "arc")		//arcs의 class : arc임
+             .data(pie(piedata))		//data들은 piedata를 넣어 줌
+             .enter().append("g");		//g라는 것을 대입함.
+	    //Draw arc paths
+	   	 g.append("path")	//호 하나하나를 만듦
+	   	 	.attr("class","arcdata")
+	        .attr("d", arc)		//d는 호라고 생각하자.
+	        .attr("fill", 
+	        function(d, i) {	//호 별로 i 순서대로 color 데이터를 넣어 줍니다
+	        	console.log(color(i))
+	        	return color(i);
+	        })
+	        .transition()	//에니메이션
+	    	.duration(1000)
+	    	.delay(function(d, i) {
+	    		return i * 10;
+	    	})
+	    	.attrTween("d", function(d, i) {
+	    		var interpolate = d3.interpolate(
+	    			{startAngle : d.startAngle, endAngle : d.startAngle},
+	    			{startAngle : d.startAngle, endAngle : d.endAngle}
+	    		);
+	    		return function(t){
+	    			return arc(interpolate(t));
+	    		}
+	    	});
+             
+	   var div = d3.select("#piechart").append("div").attr("class", "toolTip");
+	   	
+		d3.selectAll(".arc").append("g").on("click", function(d, i) {
+		      div.style("left", d3.event.pageX+10+"px");
+			  div.style("top", d3.event.pageY-25+"px");
+			  
+			  div.style("display", "inline-block");
+			  div.html(kind[i] + " : " + piedatas[i].value);
+		    	})
+	 // text 정 중앙에 텍스트 넣기
+	    svg.append("text")
+	    	.attr("text-anchor", "middle")
+		 	.attr('font-size', '3em')
+		 	.attr('y', 20)
+	    	.text("합계:" + seoul.seoul[i].total);
+	 	//성공했던 코드...
+	 	 g.append("text")
+	    	.attr("transform", function(d) {
+	        var _d = arc.centroid(d);
+	        _d[0] *= 1.5;	//multiply by a constant factor
+	        _d[1] *= 1.5;	//multiply by a constant factor
+	        return "translate(" + _d + ")";
+	      })
+	      .attr("dy", ".50em")
+	      .style("text-anchor", "middle")
+	      .text(function(d,i) {
+	        return kind[i] + ":" + piedata[i];
+	      });
+	 	
+	 	}
+    
+  }
+});
+}
+
+</script>
+<script>
+    
+    
+var width = 800, height = 600;
+
+var svg = d3.select("#mapchart").append("svg")
+	.attr("class","svg1")
     .attr("width", width)
     .attr("height", height);
 
@@ -171,29 +334,45 @@ var projection = d3.geo.mercator()
     .translate([width/2, height/2]);
 
 var quantize = d3.scale.quantize()
-    .domain([0, 1000])
+    .domain([1, 1000])
     .range(d3.range(9).map(function(i) { return "p" + i; }));
-var popByName = d3.map();
+/* var popByName = d3.map(); */
 var path = d3.geo.path().projection(projection);
 
-
-var map = svg.append("g").attr("id", "map");
+var map = svg.append("g")
+			.attr("id", "map")
+			.attr("width", width)
+			.attr("height", height);
     //places = svg.append("g").attr("id", "places");
 
 
 d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, data) {
   var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
   
+  console.log(features)
   map.selectAll("path")
       .data(features)
       .enter().append("path")
-      .attr("class", function(d) { 
-        console.log(); 
-        return "municipalityc" + d.properties.SIG_CD} 
+      .attr("class",  function(d) { 
+        console.log();
+        var gus = "municipalityc" + d.properties.SIG_CD
+        return gus} 
         )
       .attr("d", path)
       .attr("id",function(d){
         return d.properties.SIG_CD
+      })
+      .style("fill","#E89923")
+      .on("mouseover",function(d){
+    	 d3.select(this).style("fill","red");
+       //d3.select(this).style("마우스 포인터 변경");
+      })
+      .on("click",function(d){
+    	 makepiechart(d.properties.SIG_CD);
+    	 $( '#maplink' ).hide();
+      })
+      .on("mouseout",function(){
+    	  d3.select(this).style("fill","#E89923");
       });
       
   map.selectAll("text")
@@ -206,9 +385,8 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
 });
     </script>
 			<div class="maineslider">
-<!-- 				<a href="../map/map.child"><img
-					src="../decorator/seoulsearch.png" alt="어린이집 검색"
-					style="width: 750px; height: 445px;"></a>
+
+<!-- 				
  -->
 			</div>
 			<div style="background-color: #FFF1F5; height: 500px; width: 100%;">
