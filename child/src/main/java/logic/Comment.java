@@ -14,7 +14,15 @@ public class Comment {
 	private int ref;
 	private int refstep;
 	private String nickname;
-	
+	private String secret;
+
+	public String getSecret() {
+		return secret;
+	}
+
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
 
 	public String getNickname() {
 		return nickname;
