@@ -86,6 +86,7 @@ public class BoardController {
 		Date date = new Date();
 		Board board = service.getBoard(bnum);
 		List<Comment> commentList = service.commentList(bnum);
+		board.setContent(board.getContent().replaceAll("\r\n","<br>"));
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
 /*		int limit = 10;
 		int commentCnt = service.commentCount(bnum);

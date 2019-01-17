@@ -341,13 +341,9 @@ $(function() {
                      <tr>
                         <td>&nbsp;${board.content}</td>
                      </tr>
-                  </table>
-               </td>
-            </tr>
-            <c:if
+                     <c:if
                test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
                <tr>
-                  <td style="text-align: center;">첨부파일</td>
                   <td>&nbsp; <c:if test="${!empty board.file1}">
                         <img src="../file/${board.file1}"
                            style="width: 150px; height: 150px;">
@@ -360,11 +356,16 @@ $(function() {
                      </c:if>
                   </td>
                </tr>
-               </c:if>
-               <c:if test="${board.bType == 3}">
+               </c:if> 
+                  </table>
+               </td>
+            </tr>
+            
             <!--  구매요청  -->
+               <c:if test="${board.bType == 3 && sessionScope.loginUser.mnum != board.mnum}">
             <tr>
                <td colspan="2" style="text-align:center; border-top:hidden; padding: 30px;">
+                  <c:if test=""></c:if> <!-- 구매 완료버튼으로 변경해야 함. -->
                   <input type="button" value="구매요청" name="buy"
                   onclick="document.getElementById('id01').style.display='block'" />
                   <form action="buyItem.child" method="Post" name="f" onsubmit="return phonecheck()">
