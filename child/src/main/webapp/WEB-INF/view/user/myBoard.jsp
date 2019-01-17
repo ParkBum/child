@@ -15,7 +15,6 @@ function allchkbox(chk) {
 }
 
 function deleteCheck(){
-	var cnt = f.checkBoard.value;
 	var chk = confirm("게시글을 삭제하시겠습니까?");
 	if(chk){
 		alert("삭제했습니다.");

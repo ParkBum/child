@@ -11,8 +11,8 @@ import logic.Comment;
 
 public interface CommentMapper {
 
-	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate,ref,refstep)" + 
-			" values(#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref},#{refstep})")
+	@Insert("insert into comment (cnum,bnum,mnum,recomment,comdate,ref,refstep,secret)" + 
+			" values(#{cnum},#{bnum},#{mnum},#{recomment},now(),#{ref},#{refstep},#{secret})")
 	void insert(Comment comment);
 
 /*	@Select("select * from comment where bnum = #{bnum} order by ref desc, refstep")

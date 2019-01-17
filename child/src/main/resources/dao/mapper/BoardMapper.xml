@@ -4,7 +4,7 @@
 <mapper namespace="dao.mapper.BoardMapper">
 	<select id="list" resultType="Board" parameterType="map">
 		select * from board
-		<if test="num != null">
+		<if test="bnum != null">
 			where bnum = #{bnum}
 		</if>
 		<if test="bType != null">

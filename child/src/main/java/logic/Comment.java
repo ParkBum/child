@@ -14,13 +14,13 @@ public class Comment {
 	private int ref;
 	private int refstep;
 	private String nickname;
-	private String secret;
+	private int secret;
 
-	public String getSecret() {
+	public int getSecret() {
 		return secret;
 	}
 
-	public void setSecret(String secret) {
+	public void setSecret(int secret) {
 		this.secret = secret;
 	}
 
