@@ -126,7 +126,6 @@ function check(){
 		</form>
 		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
 		[내 게시글 목록]</a><br> 
-		
 		<a href="javascript:void(0)" align="right"
 			onclick="document.getElementById('id02').style.display='block'">
 			[회원정보 수정]</a>

@@ -49,6 +49,15 @@
 			</foreach>
 		</if>
 	</select>
+	<!-- <select id="mylist" resultType="board" parameterType="map">
+		select * from board
+		<if test="mnum != null">
+			where mnum = #{mnum}
+		</if>
+		<if test="startrow != null and limit != null">
+			limit #{startrow},#{limit}
+		</if>
+	</select> -->
 </mapper>
 
 
