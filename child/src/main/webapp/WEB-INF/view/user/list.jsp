@@ -91,23 +91,30 @@ function check(){
 				</tr>
 			</table>
 		</form>
-		
+
 		<!-- 회원정보 -->
-			<div class="btns">
-				<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-				<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
-					<a href="javascript:void(0)" align="right"
-			onclick="document.getElementById('id01').style.display='block'">회원탈퇴</a>
-				</c:if>
-			</div>
-			<!-- 회원탈퇴 모달창 -->
+		<div class="btns">
+			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
+			<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+				[내 게시글 목록]</a> 
+			<a href="javascript:void(0)" align="right"
+				onclick="document.getElementById('id02').style.display='block'">
+				[회원정보 수정]</a>  
+			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
+				<a href="javascript:void(0)" align="right"
+					onclick="document.getElementById('id01').style.display='block'">[회원탈퇴]</a>
+			</c:if>
+		</div>
+		<!-- 회원탈퇴 모달창 -->
 		<form action="../user/userdelete.child" method="Post"
 			onsubmit="return delcheck()" name="fdel">
-			<input type="hidden" name="mnum" value="${user.mnum}"> 
-			<input type="hidden" name="password" value="${user.password}">
-			<div id="id01" class="w3-modal" style="z-index: 4; padding-top: 280px;">
+			<input type="hidden" name="mnum" value="${user.mnum}"> <input
+				type="hidden" name="password" value="${user.password}">
+			<div id="id01" class="w3-modal"
+				style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
-					<div class="w3-container w3-padding" style="background-color: #FFF1F5;">
+					<div class="w3-container w3-padding"
+						style="background-color: #FFF1F5;">
 						<h2>회원탈퇴 비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
@@ -116,19 +123,14 @@ function check(){
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id01').style.display='none'">
-								닫기</a> 
-						<input type="submit" onclick="document.getElementById('id01').style.display='none'"
+								닫기</a> <input type="submit"
+								onclick="document.getElementById('id01').style.display='none'"
 								class="w3-button w3-light-grey w3-right" value="확인">
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
-		<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
-		[내 게시글 목록]</a><br> 
-		<a href="javascript:void(0)" align="right"
-			onclick="document.getElementById('id02').style.display='block'">
-			[회원정보 수정]</a>
 		<!-- 모달 내용 -->
 		<form action="../user/passConfirm.child?mnum=${user.mnum}"
 			method="Post" onsubmit="return check()" name="f">
@@ -146,10 +148,9 @@ function check(){
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id02').style.display='none'">
-								닫기 
-							</a> <input type="submit"
+								닫기 </a> <input type="submit"
 								onclick="document.getElementById('id02').style.display='none'"
-								class="w3-button w3-light-grey w3-right" value="확인"> 
+								class="w3-button w3-light-grey w3-right" value="확인">
 						</div>
 					</div>
 				</div>
