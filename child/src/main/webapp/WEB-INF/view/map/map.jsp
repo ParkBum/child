@@ -25,7 +25,7 @@
 #SearchAndMap {
 	width: 100%;
 	height: 900px;
-	display: table;
+	/* display: table; */
 }
  
 #search {
@@ -59,11 +59,17 @@ option {
 	font-size: large;
 }
 <%-- 지도 영역, 내용 출력 영역 나누기 --%>
-.half{
+.half1{
  float: left;
   width: 50%;
   padding: 15px;
 } 
+.half2{
+ float: right;
+  width: 50%;
+  padding: 15px; 
+}
+.
 <%-- 차트 관련 css--%>
 .axis path,
 .axis line {
@@ -111,35 +117,13 @@ option {
     padding: 5px;
     text-align: center;
 } 
-/* .arc3 text {
-  font: 25px;
-  text-anchor: middle;
-}
 
-.arc3 path {
-  stroke: #fff;
-}
-
-.tooltip3 {
-    position: absolute;
-    display: none;
-    width: auto;
-    height: auto;
-    background: none repeat scroll 0 0 white;
-    border: 0 none;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow: -3px 3px 15px #888888;
-    color: black;
-    font: 12px sans-serif;
-    padding: 5px;
-    text-align: center;
-} */
 </style>
 </head>
 <body>
 	<div id="main">
 		<div id="SearchAndMap">
-			<div class="half">
+			<div class="half1">
 			<div id="search">
 				<div style="text-align: center; width: 100%; height: 80px; background: #F6A5BC; color:white;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
@@ -202,32 +186,29 @@ option {
 			<div id="map_wrap" align="center" class="map_wrap">
 				<div id="map" style="width: 100%; height: 100%; margin: 10px 0"
 					align="center"></div>
-				<div class="bar" style="height:285px; border:solid 1px #aaaaaa; margin-top:10px">
-		    <div class="tooltip3"></div>
-				<svg class="svg3"></svg>
-			<div class="tooltip2"></div>
-				<svg class="svg2"></svg>
-			</div>
+				<div class="bar1" style="height:285px;  margin-top:10px; background: #FCE2EC; color:white; ">
+				<h3 id="text1" style="position:relative; padding-top:125px; padding-bottom:125px; z-index:3; margin:0;">구별 영유아 정/현원 차트 부분</h3>
+		    <div class="tooltip3" style=" z-index:3;"></div>
+				<svg class="svg3" style=" position:relative; z-index:2;"></svg>
+			<div class="tooltip2" style=" z-index:3;"></div>
+				<svg class="svg2" style=" position:relative; z-index:2;"></svg>
 			</div>
 			</div>
 			<!-- map_wrap의 끝 -->
 			<!-- 그래프 및 후기 게시판 출력 -->
-			<div class="half" style="display: block;">
-			<div class="bar" style="height:450px; border:solid 1px #aaaaaa; " id="chart">
-			<div class="tooltip1"></div>
-				<svg class="svg1"></svg>
+		<!-- SearchAndMap -->
+	</div>
+	<div class="half2">
+			<div class="bar2" style="height:470px; text-align:center; background: #FCE2EC; color:white;" id="chart">
+			<h2 id="text2" style="position:relative; padding-top:200px; padding-bottom:200px; z-index:3; margin:0;">어린이집 차트 부분</h2>
+			<div class="tooltip1"  style=" z-index:3;"></div>
+				<svg class="svg1" style=" z-index:2;"></svg>  
 			</div>
-<!-- 			<div class="bar" style="height:430px; border:solid 1px #aaaaaa; margin-top:10px">
-		    <div class="tooltip3"></div>
-				<svg class="svg3"></svg>
-			<div class="tooltip2"></div>
-				<svg class="svg2"></svg>
-			</div> -->
-			 <div class="bar" style="height:430px;">
-				<div id="reviews" style="width:750px; height : 430px; margin : 23px auto;"></div> 
+			 <div class="bar3" style="height:400px; text-align:center; border:solid 1px #ccc; margin-top : 10px;">
+			 	<h2 id="text3" style="position:relative; padding-top:176px;; padding-bottom:176px; z-index:3; margin:0;">어린이집 후기 부분</h2>
+				<div id="reviews" style="position:relative;width:750px; height : 400px; z-index:2; top:-400px;"></div> 
 			</div> 
 		</div>
-		<!-- SearchAndMap -->
 	</div>
 	</div>
 	<%-- 지도를 생성을 합니다. --%>
@@ -366,9 +347,9 @@ $(document).ready(function() {
 							    content : content,
 							    removable:true
 							}); 
-						infos.push(infowindow);
-						markers.push(marker);
-        				map.setCenter(coords);	 
+						infos.push(infowindow);//배열에 추가
+						markers.push(marker);//배열에 추가
+        				map.setCenter(coords);
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
         			    (function(marker, infowindow) { 
@@ -425,6 +406,11 @@ dataset.push({"name":"서울시 평균",
 });
 //첫번재 차트
 function graph(a){
+	$('.bar1').css('background','')
+	$('.bar2').css('background','')
+	$('.bar1').css('opacity','1')
+	$('#text1').remove();
+	$('#text2').remove();
 	var code = a;
 	var data = {
 		"code" : code
@@ -460,10 +446,9 @@ function graph(a){
 						  ]
 					});	
 		}
-/* 		 score(data.daycare.score_avg);  */
 		var margin = {top: 20, right: 20, bottom: 30, left: 40},
 		    width = 750 - margin.left - margin.right,
-		    height = 450 - margin.top - margin.bottom;
+		    height = 470 - margin.top - margin.bottom;
 		var divTooltip = d3.select(".tooltip1");
 		var x0 = d3.scale.ordinal()
 		    .rangeRoundBands([0, width], .1);
@@ -582,8 +567,6 @@ function graph(a){
 		      .text(function(d) {return d; });
 
 		  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
-		/*   //버튼 클릭 시 차트 초기화
-		  d3.select('#remove').on('click',function(){ d3.selectAll("svg > *").remove(); data=[];}); */
 		}});
 	
 }
@@ -792,22 +775,10 @@ function review(code){
 		type : "post",
 		data : {"code" : code, "bType":2},
 		success : function(data) {
-			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성ㅈ
-			$('#reviews').append(data);
-/*  		    $('#reviews').empty(); */
-/*		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
-		    	if ( data.fourlists.length > 0){
-		        board  += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr>";
-			for(var i = 0; i < data.fourlists.length; i++){     
-				board += "<tr align='center' valign='middle' bordercolor='#333333' onmouseover='this.style.backgroundColor=#FFF1F5' onmouseout='this.style.backgroundColor=white'>";
-                board += "<td height='23' style='text-align:center'><a href='../board/info.child?bnum="+data.fourlists[i].bnum+"&bType=2' style='text-decoration: none;'>"+data.fourlists[i].subject+"</a></td><td height='23' style='text-align:center'>"+data.fourlists[i].score+"</td></tr>";
-               }
-			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2&searchType=dcname&searchContent='"+data.fourlists[0].dcname+"''>더보기</a></td></tr></table>";
-		     }else{
-			board += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr>";
-			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
-		     } */
-/* 			$('#reviews').load("${path}/map/table.jsp");  */
+			$('.bar3').css('border','');
+			$('#text3').remove();
+			$('#reviews').css('top','0px');
+			$('#reviews').html(data);
 		}});
 }
 

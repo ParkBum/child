@@ -10,6 +10,9 @@
 		<table border='1'
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
+				<tr>
+					<td colspan='2' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td>
+				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>
 				<th width='20%' height='26' style='text-align: center'>점수</th>
@@ -22,8 +25,8 @@
 			<c:if test="${!empty fourlists}">
 				<c:forEach items="${fourlists}" var="list">
 					<tr align='center' valign='middle' bordercolor='#333333'
-						onmouseover='this.style.backgroundColor=#FFF1F5'
-						onmouseout='this.style.backgroundColor=white'>
+						onmouseover='this.style.backgroundColor="#FFF1F5"'
+						onmouseout='this.style.backgroundColor="white"'>
 
 						<td height='23' style='text-align: center'><a
 							href='../board/info.child?bnum=${list.bnum}&bType=2'
