@@ -1,5 +1,7 @@
 package dao.mapper;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -14,8 +16,10 @@ public interface MessageMapper {
 	@Select("select ifnull(max(msgnum), 0) from message")
 	int maxMsgnum();
 
-	@Update("update message set deal = #{deal} where msgnum = #{msgnum}")
+	@Update("update message set deal = #{deal}, msgdate = #{msgdate} where msgnum = #{msgnum}")
 	void updateDeal(Message msg);
 
+	@Select("select ifnull(datediff(now(), #{msgdate}), 0)")
+	int dayCnt(Date msgdate);
 
 }

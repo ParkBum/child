@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -36,9 +37,13 @@ public class MessageController {
 	public ModelAndView myMessageList(Integer mnum) {
 		ModelAndView mav = new ModelAndView();
 		List<Message> messageList = service.getMyMessageList(mnum);
+		
 		for (Message msg : messageList) {
 			msg.setBoard(service.getBoard(msg.getBnum()));
 			msg.setUser(service.userInfo(msg.getBuynum()));
+			if(service.dayCnt(msg.getMsgdate())) { // 7일 이후인 경우. 8일째부터
+				service.updateDeal(msg.getMsgnum(), 2, msg.getMsgdate()); // 거래완료
+			}
 		}
 		mav.addObject("messageList", messageList);
 		return mav;
@@ -61,5 +66,23 @@ public class MessageController {
 		mav.setViewName("redirect:/user/myMessageList.child?mnum=" + msg.getSellnum());
 		return mav;
 	}
-	
+
+	@RequestMapping(value = "user/dealEnd")
+	public ModelAndView dealEnd(Integer msgnum) {
+		ModelAndView mav = new ModelAndView("user/myMessageList");
+		Message msg = service.getMessage(msgnum);
+		service.updateDeal(msgnum, 2, msg.getMsgdate());
+		mav.setViewName("redirect:/user/myMessageList.child?mnum=" + msg.getSellnum());
+		return mav;
+	}
+
+	@RequestMapping(value = "user/dealCancel")
+	public ModelAndView dealCancel(Integer msgnum) {
+		ModelAndView mav = new ModelAndView("user/myMessageList");
+		Message msg = service.getMessage(msgnum);
+		service.updateDeal(msgnum, 3, msg.getMsgdate());
+		mav.setViewName("redirect:/user/myMessageList.child?mnum=" + msg.getSellnum());
+		return mav;
+	}
+
 }
