@@ -265,7 +265,7 @@ public class UserController {
 		if(password.equals(dbUser.getPassword())) {
 			mav.setViewName("redirect:../user/updateForm.child?mnum="+ mnum); 
 		} else {
-			mav.setViewName("redirect:../admin/list.child?mnum="+ mnum);
+			mav.setViewName("redirect:../user/list.child?mnum="+ mnum);
 		}
 		return mav;
 	}
