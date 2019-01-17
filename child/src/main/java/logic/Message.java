@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Date;
+
 public class Message {
 	private int msgnum; // 쪽지 번호
 	private int bnum; // 구매게시글 번호
@@ -7,6 +9,7 @@ public class Message {
 	private int sellnum; // 판매자 회원번호
 	private String phone; // 휴대폰 번호
 	private int deal; // 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절)
+	private Date msgdate;
 	private Board board; // 구매 게시글 정보
 	private User User; // 구매 요청 회원 정보
 
@@ -58,6 +61,14 @@ public class Message {
 		this.deal = deal;
 	}
 
+	public Date getMsgdate() {
+		return msgdate;
+	}
+
+	public void setMsgdate(Date msgdate) {
+		this.msgdate = msgdate;
+	}
+
 	public Board getBoard() {
 		return board;
 	}
@@ -73,5 +84,4 @@ public class Message {
 	public void setUser(User user) {
 		User = user;
 	}
-
 }

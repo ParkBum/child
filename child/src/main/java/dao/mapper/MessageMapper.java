@@ -2,6 +2,7 @@ package dao.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Message;
 
@@ -12,5 +13,9 @@ public interface MessageMapper {
 
 	@Select("select ifnull(max(msgnum), 0) from message")
 	int maxMsgnum();
+
+	@Update("update message set deal = #{deal} where msgnum = #{msgnum}")
+	void updateDeal(Message msg);
+
 
 }

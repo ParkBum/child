@@ -3,6 +3,7 @@ package logic;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -281,6 +282,14 @@ public class ChildService {
 
 	public List<Message> getMyMessageList(Integer mnum) {
 		return messageDao.getMymessageList(mnum);
+	}
+
+	public Message getMessage(Integer msgnum) {
+		return messageDao.getMessage(msgnum);
+	}
+
+	public void updateDeal(Integer msgnum, Integer deal, Date date) {
+		messageDao.updateDeal(msgnum, deal, date);		
 	}
 
 
