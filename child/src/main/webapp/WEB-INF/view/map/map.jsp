@@ -224,7 +224,7 @@ option {
 				<svg class="svg2"></svg>
 			</div> -->
 			 <div class="bar" style="height:430px;">
-				<div id="reviews" style="width:750px; height : 430px; margin : 23px auto; /* background-color: rgba(255, 243, 246, 0.5); */"></div> 
+				<div id="reviews" style="width:750px; height : 430px; margin : 23px auto;"></div> 
 			</div> 
 		</div>
 		<!-- SearchAndMap -->
@@ -787,18 +787,15 @@ function MaxChildPieChart(guname){//guname이 실려있음
 }
 //해당 어린이집에 대한 최신순 후기게시판 출력
 function review(code){
-	var data = {
-		"code" : code
-	}
 	$.ajax({
 		url : "reviews.child",
 		type : "post",
-		data : data,
-		dataType : "json", // ajax 통신으로 받는 타입
+		data : {"code" : code, "bType":2},
 		success : function(data) {
-			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성
-		    $('#reviews').empty();
-		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
+			//다른 어린이집 후기 클릭할 때마다 초기화 후 게시판 재생성ㅈ
+			$('#reviews').append(data);
+/*  		    $('#reviews').empty(); */
+/*		    var board  = "<table border='1' style='border-collapse: collapse; width: 100%; margin: 10px auto;' class='w3-table w3-border w3-bordered'>";
 		    	if ( data.fourlists.length > 0){
 		        board  += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr>";
 			for(var i = 0; i < data.fourlists.length; i++){     
@@ -809,8 +806,8 @@ function review(code){
 		     }else{
 			board += "<tr><th width='80%' height='26' style='text-align:center'>제목</th><th width='80%' height='26' style='text-align:center'>점수</th></tr><tr><td colspan='2'>등록된 게시물이 없습니다.</td></tr>";
 			board += "<tr><td colspan='2' style='text-align:right'><a href='../board/list.child?bType=2'>더보기</a></td></tr></table>";
-		     }
-			$('#reviews').append(board);
+		     } */
+/* 			$('#reviews').load("${path}/map/table.jsp");  */
 		}});
 }
 

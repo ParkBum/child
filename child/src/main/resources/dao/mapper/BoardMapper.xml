@@ -10,13 +10,13 @@
 		<if test="bType != null">
 			where btype = #{bType}
 			<if test="filterType != null">
-				 and head = #{filterType} 
+				and head = #{filterType}
 			</if>
 			<if test="filterType2 != null">
 				and mkinds = #{filterType2}
 			</if>
 			<if test="searchType != null and searchContent!=null">
-				 and ${searchType} like '%${searchContent}%'
+				and ${searchType} like '%${searchContent}%'
 			</if>
 			order by regdate desc
 		</if>
@@ -29,13 +29,13 @@
 		<if test="bType != null">
 			where btype = #{bType}
 			<if test="filterType != null">
-				 and head = #{filterType} 
+				and head = #{filterType}
 			</if>
 			<if test="filterType2 != null">
 				and mkinds = #{filterType2}
 			</if>
 			<if test="searchType != null and searchContent!=null">
-				 and ${searchType} like '%${searchContent}%'
+				and ${searchType} like '%${searchContent}%'
 			</if>
 		</if>
 	</select>
@@ -43,9 +43,10 @@
 		delete from board
 		<if test="bnum != null">
 			where bnum in
-				<foreach collection="bnum" item="bnum" separator="," open="(" close=")">
-					#{bnum}
-				</foreach>
+			<foreach collection="bnum" item="bnum" separator="," open="("
+				close=")">
+				#{bnum}
+			</foreach>
 		</if>
 	</select>
 </mapper>

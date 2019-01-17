@@ -23,10 +23,13 @@ public class CommentDao {
 		sqlSession.getMapper(CommentMapper.class).insert(comment);
 	}
 
-	public List<Comment> commentSelect(Integer bnum) {
-//		return sqlSession.getMapper(CommentMapper.class).selectComment(bnum);
+	public List<Comment> commentSelect(Integer bnum, Integer pageNum, int limit) {
 		Map<String,Object> map = new HashMap<String,Object>();
+		int startrow = (pageNum - 1) * limit;
 		map.put("bnum", bnum);
+		map.put("pageNum", pageNum);
+		map.put("limit", limit);
+		map.put("startrow", startrow);
 		return sqlSession.selectList(NS + "list", map);
 	}
 

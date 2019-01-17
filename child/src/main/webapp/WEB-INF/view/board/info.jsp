@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>게시물 상세 보기</title>
 <style type="text/css">
 .cmain {
@@ -116,18 +117,10 @@ td {
    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-/* function list(pageNum) {
-	if (searchType == null || searchType.length == 0) {
-		document.searchForm.searchContent.value = "";
-		document.searchForm.pageNum.value = "1";
-		location.href = "info.child?bType=3&pageNum=" + pageNum;
-	} else {
-		document.searchForm.pageNum.value = pageNum;
-		document.searchForm.submit();
-		return true;
-	}
-	return false;
-} */
+function list(pageNum) {
+		location.href = "info.child?bnum="+${board.bnum}+"&pageNum=" + pageNum;
+	return true;
+} 
 function chkSecret(){
 	var secret = document.f.secret.value;
 	if($("#secret").is(":checked")){
@@ -457,6 +450,8 @@ $(function() {
                <td colspan="2"><c:forEach var="c" items="${commentList}"
                      varStatus="stat">
                      <div> 
+                     <c:if test="${c.secret == 1}">
+                     <i class="fa fa-lock" style="font-size:24px"></i></c:if>
                      <c:if test="${c.refstep == 0}">
                         <input type="button" id="recom" value="답글"
                            onclick="$('#comm${stat.index}').show();">
@@ -469,33 +464,33 @@ $(function() {
                         <input type="button" id="commentDelete" value="삭제"
                            onclick="commentDelete(${c.bnum},${c.cnum})">
                      </c:if><br>
-               		    <f:formatDate value="${today}" pattern="yyyyMMdd" var="t" />
-                        <f:formatDate value="${c.comdate}" pattern="yyyyMMdd" var="c1" />
-                           <c:choose>
-                              <c:when test="${t==c1}">
-                                 <f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-                              </c:when>
-                              <c:otherwise>
-                                 <f:formatDate value="${c.comdate}" pattern="yy/MM/dd HH:mm:ss" />
-                              </c:otherwise>
-                           </c:choose><br> 
                      <c:if test="${c.refstep > 0}">
                            <div style="margin-left:2%">
                            └>닉네임 : ${c.nickname}</div> </c:if>
                      <c:if test= "${c.refstep == 0}">
                            <div>
                           닉네임 : ${c.nickname}</div></c:if>
-                           </div><br>
-               
-                  
+                           </div>
+                           
                   <!-- 댓글 출력-->
                      <div id="recontent${stat.index}">
                         <div id="recomment${stat.index}" style="display: block;">
                            <c:if test="${c.refstep>0}">
                         	<div style="margin-left:3%">
                            ${c.recomment}</div></c:if>
-                           <c:if test="${c.refstep==0 && c.secret == 1}">
-                           		※비밀댓글입니다.</c:if>
+                           
+                           <c:if test="${c.secret == 1}">
+                           <c:choose>
+                           	<c:when test="${c.mnum == sessionScope.loginUser.mnum || 
+                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
+                           			${c.recomment}
+                           	</c:when>
+                           	<c:otherwise>
+                           		※비밀댓글입니다.
+                           	</c:otherwise>
+                           </c:choose>
+                           	</c:if>
+                           	
                            <c:if test="${c.refstep==0 && c.secret == 0}">
                            	${c.recomment}
                            </c:if><br>

@@ -7,5 +7,6 @@
 	<excludes>
 		<pattern>*search.child*</pattern>
 		<pattern>*maker.*</pattern>
+		<pattern>*reviews.*</pattern>
 	</excludes>
 </decorators>

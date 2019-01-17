@@ -162,8 +162,8 @@ public class ChildService {
 		commentDao.commentWrite(comment);
 	}
 
-	public List<Comment> commentList(Integer bnum) {
-		return commentDao.commentSelect(bnum);
+	public List<Comment> commentList(Integer bnum, Integer pageNum, int limit) {
+		return commentDao.commentSelect(bnum, pageNum, limit);
 	}
 
 	public void addRed(Integer mnum) {
