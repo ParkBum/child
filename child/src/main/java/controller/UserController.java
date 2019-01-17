@@ -88,6 +88,8 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		if(dbUser.getMnum() == 1) {
+			service.userCommentDelete(mnum);
+			service.userBoardDelete(mnum);
 			service.userDelete(mnum);
 			mav.setViewName("redirect:../user/list.child");
 		}

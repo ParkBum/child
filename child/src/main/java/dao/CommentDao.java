@@ -54,6 +54,8 @@ public class CommentDao {
 	}
 
 	public Comment getSelect(int cnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("cnum", cnum);
 		return sqlSession.getMapper(CommentMapper.class).select(cnum);
 	}
 
@@ -62,10 +64,14 @@ public class CommentDao {
 	}
 
 	public void userCommentDelete(Integer mnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("mnum", mnum);
 		sqlSession.getMapper(CommentMapper.class).deleteComment(mnum);
 	}
 
 	public int commentCnt(int bnum) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("bnum", bnum);
 		return sqlSession.getMapper(CommentMapper.class).commentCount(bnum);
 	}
 

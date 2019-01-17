@@ -23,12 +23,13 @@
 function delcheck(){
 	var check = confirm("탈퇴하시겠습니까?");
 	if(check){
-		alert("탈퇴가 완료되었습니다.");
-		return true;
-	}
-	if(fdel.pass.value != ${user.password}){
-		alert("비밀번호가 틀립니다.");
-		return false;
+		if(fdel.pass.value != ${user.password}){
+			alert("비밀번호가 틀립니다.");
+			return false;
+		}else {
+			alert("탈퇴가 완료되었습니다.");
+			return true;
+		}
 	}
 	return false;
 }
