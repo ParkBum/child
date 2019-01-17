@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,20 @@ public class MessageDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sellnum", mnum);
 		return sqlSession.selectList(NS + "list", map);
+	}
+
+	public Message getMessage(Integer msgnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msgnum", msgnum);
+		return sqlSession.selectOne(NS + "list", map);
+	}
+
+	public void updateDeal(Integer msgnum, Integer deal, Date date) {
+		Message msg = new Message();
+		msg.setMsgnum(msgnum);
+		msg.setDeal(deal);
+		msg.setMsgdate(date);
+		sqlSession.getMapper(MessageMapper.class).updateDeal(msg);
 	}
 
 }

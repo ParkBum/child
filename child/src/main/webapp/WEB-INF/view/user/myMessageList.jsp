@@ -9,6 +9,7 @@
 <title>거래 요청 목록</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <style type="text/css">
 .wrap {
 	clear: both;
@@ -18,8 +19,17 @@
 
 th, td {
 	text-align: center !important;
+	vertical-align: middle !important;
+}
+
+a {
+	text-decoration: none;
 }
 </style>
+<script>
+$(document).ready(function() {
+});
+</script>
 </head>
 <body>
 	<div class="wrap">
@@ -44,7 +54,7 @@ th, td {
 					<font>거래 완료</font>
 				</c:when>
 				<c:when test="${msg.deal == 3}">
-					<font>거래 거절</font>
+					<font>거래 취소</font>
 				</c:when>
 				<c:otherwise>
 					<font color="red">대기중</font>
@@ -55,10 +65,17 @@ th, td {
 				<c:if test="${msg.board.mkinds == 1}">[완구]</c:if>
 				<c:if test="${msg.board.mkinds == 2}">[도서]</c:if>
 				<c:if test="${msg.board.mkinds == 3}">[의류]</c:if>
-				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>				
+				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>	
 				${msg.board.subject}</td>
 				<td>${msg.user.nickname}&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px;">phone_iphone</i>${msg.phone}</c:if></td>
-				<td><input type="button" value="수락" id="yes">&nbsp;<input type="button" value="거절" id="no"></td>
+				<td>
+				<c:if test="${msg.deal == 0}">
+				<a href="${path}/user/dealYes.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">수락</a>&nbsp;<a href="${path}/user/dealNo.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">거절</a>
+				</c:if>
+				<c:if test="${msg.deal == 1}">
+				<a href="${path}/user/dealEnd.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">완료</a>&nbsp;<a href="${path}/user/dealCancel.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">취소</a>
+				</c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

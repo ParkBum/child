@@ -4,12 +4,15 @@
 <mapper namespace="dao.mapper.MessageMapper">
 	<select id="list" resultType="Message" parameterType="map">
 		select * from Message 
+		<if test="msgnum != null">
+			where msgnum = #{msgnum}
+		</if>
 		<if test="bnum != null">
 			where bnum = #{bnum}
 		</if>
 		<if test="sellnum != null">
 			where sellnum = #{sellnum}
 		</if>
-		order by msgnum desc
+		order by deal, msgnum desc
 	</select>
 </mapper>
