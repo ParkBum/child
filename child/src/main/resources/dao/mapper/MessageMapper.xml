@@ -4,5 +4,8 @@
 <mapper namespace="dao.mapper.MessageMapper">
 	<select id="list" resultType="Message" parameterType="map">
 		select * from Message
+		<if test="bnum != null">
+			where bnum = #{bnum}
+		</if>
 	</select>
 </mapper>
