@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.scenario.effect.impl.prism.PrImage;
 
@@ -93,26 +94,25 @@ public class AjaxController {
 	public Object selectname(String gu) {
 		List<Daycare> daycareList = service.listBygu(gu);
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("daycareList",daycareList);
+		map.put("daycareList",daycareList);  
 		return map;
 	}
 	
 	@ResponseBody
-	@RequestMapping("map/reviews")
-	public Object reviews(Integer code) {
-		Map<Object, Object> map = new HashMap<Object, Object>();
+	@RequestMapping("map/reviews*")
+	public ModelAndView reviews(Integer code,Integer bType) {
+		ModelAndView mav = new ModelAndView();
 		List<Board> fourlists = service.fourlists(code);
-		for ( Board b : fourlists) {
-			System.out.println(b.getDcname());
-		}
-		Daycare daycare = service.selectOne(code);
-		map.put("fourlists",fourlists);
-		return map;
+/*		mav.setViewName("redirect:../map.");*/
+/*		Daycare daycare = service.selectOne(code);*/
+		mav.addObject("bType",bType);
+		mav.addObject("fourlists",fourlists);
+		return mav;
 	}
 	@ResponseBody
 	@RequestMapping("map/autoMarker")
 	public Object autoMarker(Double lat, Double lon) {
-		List<Daycare> autoMarkerList = service.autoMarkerlist(lat,lon);
+		List<Daycare> autoMarkerList = service.autoMarkerlist(lat,lon);	
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("autoMarkerList",autoMarkerList);
 		return map;
