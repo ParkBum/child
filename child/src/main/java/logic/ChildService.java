@@ -59,8 +59,10 @@ public class ChildService {
 			uploadFileCreate(board.getMulti3(), request, "file"); // file의 내용을 파일로 저장
 			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
 		}
-		Daycare dc = mapDao.selectOne(board.getCode());
-		board.setDcname(dc.getName());
+		if(board.getbType() == 2) {
+			Daycare dc = mapDao.selectOne(board.getCode());
+			board.setDcname(dc.getName());	
+		}
 		boardDao.insert(board);
 	}
 
