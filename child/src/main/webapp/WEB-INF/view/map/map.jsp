@@ -18,8 +18,8 @@
 
 <style type="text/css">
 #main {
-	width: 1600px;
-	margin-left: 150px;
+	max-width: 1200px;
+	margin-left: 250px;
 } 
 
 #SearchAndMap {
@@ -128,8 +128,8 @@ option {
 				<div style="text-align: center; width: 100%; height: 80px; background: #F6A5BC; color:white;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
-							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
-								<option value="">선택하세요</option>
+							<font style="margin-top: 4px;">구&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
+								<option value="">선택</option>
 								<option>강남구</option>
 								<option>강동구</option>
 								<option>강북구</option>
@@ -158,8 +158,8 @@ option {
 							</select>
 						</div>
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
-							<font style="margin-top: 4px;">어린이집 유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
-								<option value="">선택하세요</option>
+							<font style="margin-top: 4px;">유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
+								<option value="">선택</option>
 								<option>가정</option>
 								<option>국공립</option>
 								<option>민간</option>
@@ -174,11 +174,11 @@ option {
 								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
-						</div>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;
 					</div>
 					<div style="width: 100%; height: 40px;">
-					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button class="buttons" onclick="hideMarkers()">지도 초기화</button> --><!-- &nbsp;&nbsp;&nbsp;<button id="remove" class="buttons">차트 초기화</button>&nbsp;&nbsp;&nbsp;<button id="removeboard" class="buttons">후기게시판 초기화</button> -->
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
+						</div>
 					</div>
 				</div>
 			</div>
