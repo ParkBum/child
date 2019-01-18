@@ -205,6 +205,7 @@ th {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
 			var head = $('select[name=head]').val();
+			var mkinds = $('select[name=mkinds]').val();
 			var gu = $('#gu').val();
 			var code = $('#code').val();
 			
@@ -220,10 +221,13 @@ th {
 					if (head.length == 0) {
 						alert("말머리를 선택하세요");
 						return false;
+					} else if(mkinds.length == 0){
+						alert("물품종류를 선택하세요");
+						return false;
 					} else {
 						return true;
 					}
-				}
+				} 
 			}
 			return false;
 		});
