@@ -53,8 +53,8 @@
 /* 	width: 900px;
 	height: 500px;
  	border: solid 2px silver;*/
-	margin-left: 100px;
-	margin-bottom: 70px;
+	margin-left: 350px;
+/*	margin-bottom: 70px;*/
 }
 /* #mapchart {
 	margin-left: 50px;
@@ -149,6 +149,9 @@
 .svg1 .municipality-label{
   stroke: #333; 
 }
+.svg2{
+    margin-left: -100;
+}
 
 .toolTip {
     position: absolute;
@@ -206,9 +209,8 @@ function makepiechart(data,selectguname){
             console.log(error);
             throw error;
         }
-        
      // topojson의 properties.SIG_CD
-	var width = 800, height = 600, radius = Math.min(width, height) /3 ;
+	var width = 600, height = 500, radius = Math.min(width, height) /3 ;
 	var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
      .attr("width", width)
      .attr("height", height) 
@@ -299,25 +301,27 @@ function makepiechart(data,selectguname){
 		 	.attr('font-size', '3em')
 		 	.attr('y', 20)
 		 	.text(selectguname);
-	    	
 		svg.append("text")
 			.attr("text-anchor", "middle")
-		 	.attr('font-size', '2em')
-		 	.attr('y', 260)
-	    	.text("합계:" + seoul.seoul[i].total);
-		
+	 		.attr('font-size', '3.5em')
+	 		.attr('y', -200)
+    		.text("구별 어린이집 현황");
 	 	//성공했던 코드...
+	 	
 	 	 g.append("text")
 	    	.attr("transform", function(d) {
 	        var _d = arc.centroid(d);
-	        _d[0] *= 1.5;	//multiply by a constant factor
-	        _d[1] *= 1.5;	//multiply by a constant factor
+	        _d[0] *= 1;	//multiply by a constant factor
+	        _d[1] *= 1;	//multiply by a constant factor
 	        return "translate(" + _d + ")";
 	      })
-	      .attr("dy", ".50em")
+	      .attr("dy", ".40em")
 	      .style("text-anchor", "middle")
 	      .text(function(d,i) {
-	        return kind[i] + ":" + piedatas[i].value;
+	    	if(piedatas[i].value==0){
+	    		piedatas[i].value = "";
+	    	}
+	        return piedatas[i].value;
 	      });
 	 	}
     
@@ -327,8 +331,7 @@ function makepiechart(data,selectguname){
 
 </script>
 <script>
-    
-var width = 800, height = 600;
+var width = 600, height = 460;
 var svg = d3.select("#mapchart").append("svg")
 	.attr("class","svg1")
     .attr("width", width)
