@@ -52,7 +52,7 @@
 #chartarea {
 /* 	width: 900px;
 	height: 500px;
- */	border: solid 2px silver;
+ 	border: solid 2px silver;*/
 	margin-left: 100px;
 	margin-bottom: 70px;
 }
@@ -174,11 +174,14 @@
 <div id="chartarea" style="display: inline-flex;" align="center">
 <div id="mapchart"></div> 
 <div id="piechart" style="width: 600">
-	<a href="../map/map.child" id="maplink">
-	<img src="../decorator/seoulsearch.png" alt="어린이집 검색"
-					style="width: 750px; height: 445px;"></a>
+	<!-- <a href="../map/map.child" id="maplink"> -->
+	<!-- <img src="../decorator/seoulsearch.png" alt="어린이집 검색"
+					style="width: 750px; height: 445px;"></a> -->
 	<!-- <div class="tooltip2">
 	</div> -->
+	<div>
+	
+	</div>
 	<svg class="svg2">
 	</svg>
 	</div>
@@ -203,10 +206,9 @@ function makepiechart(data,selectguname){
             console.log(error);
             throw error;
         }
-        console.log(data)
         
      // topojson의 properties.SIG_CD
-	var width = 800, height = 500, radius = Math.min(width, height) /3 ;
+	var width = 800, height = 600, radius = Math.min(width, height) /3 ;
 	var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
      .attr("width", width)
      .attr("height", height) 
@@ -298,11 +300,10 @@ function makepiechart(data,selectguname){
 		 	.attr('y', 20)
 		 	.text(selectguname);
 	    	
-		
 		svg.append("text")
 			.attr("text-anchor", "middle")
 		 	.attr('font-size', '2em')
-		 	.attr('y', 230)
+		 	.attr('y', 260)
 	    	.text("합계:" + seoul.seoul[i].total);
 		
 	 	//성공했던 코드...
@@ -327,21 +328,18 @@ function makepiechart(data,selectguname){
 </script>
 <script>
     
-    
 var width = 800, height = 600;
-
 var svg = d3.select("#mapchart").append("svg")
 	.attr("class","svg1")
     .attr("width", width)
     .attr("height", height);
-
 var projection = d3.geo.mercator()
     .center([126.9895, 37.5651])
     .scale(100000)
     .translate([width/2, height/2]);
 
 var quantize = d3.scale.quantize()
-    .domain([1, 1000])
+    .domain([1, 5000])
     .range(d3.range(9).map(function(i) { return "p" + i; }));
 /* var popByName = d3.map(); */
 var path = d3.geo.path().projection(projection);
@@ -351,7 +349,6 @@ var map = svg.append("g")
 			.attr("width", width)
 			.attr("height", height);
     //places = svg.append("g").attr("id", "places");
-
 
 d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, data) {
   var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
