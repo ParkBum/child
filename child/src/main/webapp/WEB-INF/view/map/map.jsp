@@ -18,54 +18,43 @@
 
 <style type="text/css">
 #main {
-	width: 1600px;
-	margin-left: 150px;
+	max-width: 1200px;
+	margin-left :350px ;
 } 
 
 #SearchAndMap {
-	width: 100%;
+	width: 1200px;
 	height: 900px;
-	/* display: table; */
 }
  
 #search {
-	width: 100%;
+	width: 570px;
 	height: 80px;
 	vertical-align: middle;
 }
 
 #map_wrap {
-	width: 100%;
+	width: 570px;
 	height: 500px;
 }
 
-select {
-	border : 0;
-	outline: 0;
-
-}
 .buttons {
     -webkit-appearance: button;
-	/* color:white;
-	 */
+
 }
-/* .buttons:hover{
-	background-color : #CE5B7C;
-	color : white;
-} */
 option {
 	font-size: large;
 }
 <%-- 지도 영역, 내용 출력 영역 나누기 --%>
 .half1{
  float: left;
-  width: 50%;
-  padding: 15px;
+  width: 570px;
+/*   padding: 15px; */
 } 
 .half2{
  float: right;
-  width: 50%;
-  padding: 15px; 
+  width: 570px;
+/*   padding: 15px;  */
 }
 .
 <%-- 차트 관련 css--%>
@@ -101,6 +90,11 @@ option {
 .arc2 path , .arc3 path {
   stroke: #fff;
 }
+/* .textmiddle{
+	 text-shadow: -3px 3px 15px #888888;
+	 font: sans-serif;
+} */
+
 .tooltip2,.tooltip3 {
     position: absolute;
     display: none;
@@ -126,8 +120,8 @@ option {
 				<div style="text-align: center; width: 100%; height: 80px; background: #f7f7f7; border : solid 1px #dbdbdb;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
-							<font style="margin-top: 4px;">구를 선택해주세요&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
-								<option value="">선택하세요</option>
+							<font style="margin-top: 4px;">구&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
+								<option value="">선택</option>
 								<option>강남구</option>
 								<option>강동구</option>
 								<option>강북구</option>
@@ -156,8 +150,8 @@ option {
 							</select>
 						</div>
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
-							<font style="margin-top: 4px;">어린이집 유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
-								<option value="">선택하세요</option>
+							<font style="margin-top: 4px;">유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
+								<option value="">선택</option>
 								<option>가정</option>
 								<option>국공립</option>
 								<option>민간</option>
@@ -172,11 +166,12 @@ option {
 								<option value="">선택하세요</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="buttons" id="searchs" value="조회">
-						</div>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;
+
 					</div>
 					<div style="width: 100%; height: 40px;">
-					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <button class="buttons" onclick="hideMarkers()">지도 초기화</button> --><!-- &nbsp;&nbsp;&nbsp;<button id="remove" class="buttons">차트 초기화</button>&nbsp;&nbsp;&nbsp;<button id="removeboard" class="buttons">후기게시판 초기화</button> -->
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -186,10 +181,12 @@ option {
 					align="center"></div>
 				<div class="bar1" style="height:285px;  margin-top:10px; border:solid 1px #ccc; ">
 				<h3 id="text1" style="position:relative; padding-top:125px; padding-bottom:125px; z-index:3; margin:0;">구별 영유아 정/현원 차트 부분</h3>
+		  		<svg class="legends" style=" position:relative; z-index:2;"></svg>
 		    <div class="tooltip3" style=" z-index:3;"></div>
-				<svg class="svg3" style=" position:relative; z-index:2;"></svg>
+				<svg class="svg3" style=" position:relative; top:-20px; z-index:2;"></svg>
 			<div class="tooltip2" style=" z-index:3;"></div>
-				<svg class="svg2" style=" position:relative; z-index:2;"></svg>
+				<svg class="svg2" style=" position:relative; top:-20px; z-index:2;"></svg>
+		  
 			</div>
 			</div>
 			<!-- map_wrap의 끝 -->
@@ -197,14 +194,14 @@ option {
 		<!-- SearchAndMap -->
 	</div>
 	<div class="half2">
-			<div class="bar2" style="height:470px; text-align:center; border:solid 1px #ccc;" id="chart">
+			<div class="bar2" style="height:470px; width:570px;text-align:center; border:solid 1px #ccc;" id="chart">
 			<h2 id="text2" style="position:relative; padding-top:200px; padding-bottom:200px; z-index:3; margin:0;">어린이집 차트 부분</h2>
 			<div class="tooltip1"  style=" z-index:3;"></div>
 				<svg class="svg1" style=" z-index:2;"></svg>  
 			</div>
-			 <div class="bar3" style="height:400px; text-align:center; border:solid 1px #ccc; margin-top : 10px;">
+			 <div class="bar3" style="height:400px; width:570px; text-align:center; border:solid 1px #ccc; margin-top : 15px;">
 			 	<h2 id="text3" style="position:relative; padding-top:176px;; padding-bottom:176px; z-index:3; margin:0;">어린이집 후기 부분</h2>
-				<div id="reviews" style="position:relative;width:770px; height : 400px; z-index:2; top:-400px;"></div> 
+				<div id="reviews" style="position:relative;width:570px; height : 400px; z-index:2; top:-400px;"></div> 
 			</div> 
 		</div>
 	</div>
@@ -231,6 +228,7 @@ option {
 		var markers = [];
 		var infos = [];
 		var codes =[];
+		var is = [];
 </script>
 <c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
 <script>
@@ -263,7 +261,6 @@ $(document).ready(function() {
     						position:coords
     					});
     					marker.setMap(map);
-    					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
 							+"<strong>"+data.autoMarkerList[i].name+"</strong>[<strong>"+data.autoMarkerList[i].type+"</strong>]"+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
@@ -273,13 +270,16 @@ $(document).ready(function() {
 							}); 
 						infos.push(infowindow);
 						markers.push(marker);
+						codes.push(data.autoMarkerList[i].code);
+						is.push(i);
         				map.setCenter(coords);	 
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
-        			    (function(marker, infowindow) { 
+        			    (function(marker, infowindow, codes,is) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
+        			        	graph(codes[is]);
         			            infowindow.open(map, marker);
         			        });
 
@@ -402,12 +402,154 @@ dataset.push({"name":"서울시 평균",
 		{"value":${daytotal.child_per_teacher},"column":"교사 당 원아 수"}
 	  ]
 });
-//첫번재 차트
-function graph(a){
-/* 	$('.bar1').css('border','')
-	$('.bar2').css('border','') */
-	$('#text1').remove();
+</script>
+<script>//페이지 로드 시 서울 평균, 게시판 부분 먼저 출력
+loadGraph();
+loadReviews();
+function loadGraph(){
 	$('#text2').remove();
+	var margin = {top: 20, right: 20, bottom: 30, left: 30},
+    width = 540 - margin.left - margin.right,
+    height = 470 - margin.top - margin.bottom;
+var divTooltip = d3.select(".tooltip1");
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x0)
+    .tickSize(0)										
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+  
+var color = d3.scale.ordinal()
+    .range(["#FFC321","#7FD100" ,"#0B77E8","#FF6336"]);
+
+var svg = d3.select('#chart').select('.svg1')
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  // data 주는 부분	
+  var data = dataset;
+  
+  var Names = data.map(function(d) { return d.name; });
+  var columnNames = data[0].values.map(function(d) { return d.column; });
+  
+  x0.domain(Names);
+  x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0,20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+  
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .style('opacity','0')
+      .call(yAxis)
+  .append("text")
+  	  .attr("x",50)
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .style('font-weight','bold')
+      .text("인원 수");
+
+  svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
+  
+  
+  var slice = svg.selectAll(".slice")
+      .data(data)
+      .enter().append("g")
+      .attr("class", "g")
+      .attr("transform",function(d) { return "translate(" + x0(d.name) + ",0)"; });
+
+  slice.selectAll("rect")
+      .data(function(d) { return d.values; })
+  .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.column); })
+      .style("fill", function(d) { return color(d.column) })
+      .attr("y", function(d) { return y(0); })
+      .attr("height", function(d) { return height - y(0); })
+      .on("mousemove", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
+    	    divTooltip.style("left", d3.event.pageX + 10 + "px")
+            divTooltip.style("top", d3.event.pageY - 25 + "px")
+            divTooltip.style("display", "inline-block")
+            divTooltip.style("opacity", "0.9")
+            divTooltip.html(d.column + "<br>" + d.value);
+            d3.select(this)
+                .style("fill", d3.rgb(color(d.column)).brighter(1))
+                .style("opacity", "0.7");
+      })
+      .on("mouseout", function(d) {
+    	  divTooltip.style("display", "none")
+            d3.select(this).transition().duration(250)
+                .style("fill", color(d.column))
+                .style("opacity", "1");
+      });
+  
+  slice.selectAll("rect")
+      .transition()
+      .delay(function (d) {return Math.random()*1000;})
+      .duration(1000)
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); });
+
+  //범례
+  var legend = svg.selectAll(".legend")
+      .data(data[0].values.map(function(d) { return d.column; }).reverse())
+  .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+      .style("opacity","0");
+
+  legend.append("rect")
+      .attr("x", width)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", function(d) { return color(d); });
+
+  legend.append("text")
+      .attr("x", width - 2)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) {return d; });
+
+  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+	
+}
+function loadReviews() {
+	$.ajax({
+		url : "reviewsOnload.child",
+		type : "post",
+		data : {"bType":2},
+		success: function(data){
+			$('.bar3').css('border','');
+			$('#text3').remove();
+			$('#reviews').css('top','0px');
+			$('#reviews').html(data);
+		}
+	})
+}
+</script>
+<script>
+//첫번재 차트(클릭시)
+function graph(a){
+	$('#text1').remove();
+/* 	$('#text2').remove(); */
 	var code = a;
 	var data = {
 		"code" : code
@@ -443,8 +585,8 @@ function graph(a){
 						  ]
 					});	
 		}
-		var margin = {top: 20, right: 20, bottom: 30, left: 40},
-		    width = 750 - margin.left - margin.right,
+		var margin = {top: 20, right: 20, bottom: 30, left: 30},
+		    width = 540 - margin.left - margin.right,
 		    height = 470 - margin.top - margin.bottom;
 		var divTooltip = d3.select(".tooltip1");
 		var x0 = d3.scale.ordinal()
@@ -572,9 +714,9 @@ function NowChildPieChart(guname){//guname이 실려있음
 	 d3.selectAll(".svg2 > *").remove(); 
 	 var tooltip = d3.select(".tooltip2");
 
-	 var width = 375,
+	 var width = 270,
 	     height = 270,
-	     radius = Math.min(width-30, height-30) / 2;
+	     radius = Math.min(width-50, height-50) / 2;
 
 	 var color = d3.scale.ordinal()
 	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
@@ -630,31 +772,32 @@ function NowChildPieChart(guname){//guname이 실려있음
 	       .attr("dy", ".35em")
 	 	  .transition()
 	 	  .delay(500);
-	       /* .text(function(d) { return d.data.type; }); */
-	  svg.append("text")
-          .attr("text-anchor", "middle")
-          .attr('font-size', '1em')
-          .attr('y', 10)
-          .text("총 현원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
 
 	  svg.append("text")
       .attr("text-anchor", "middle")
       .attr('font-size', '1em')
       .attr('y', 130)
-      .text("2017 "+data[i].gu+" 어린이집 영유아 현원");
+      .text("어린이집 현원");
+	  
+	  svg.append("text")
+	  	 .attr('class','textmiddle')
+	     .attr("text-anchor", "middle")
+	     .attr('font-size', '2em')
+	     .attr('y', 15)
+	     .text(data[i].gu);
 	       
 	 d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 현원 수:"+(d.data.value)+"명");
+	 		tooltip.html((d.data.type)+" 현원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
 		 tooltip.style("display", "none");
 	 });
-	 	  
-	 	  
+	 
+	  
 
  	 function type(d) {
 	   d.value = +d.value;
@@ -670,9 +813,9 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	 d3.selectAll(".svg3 > *").remove(); 
 	 var tooltip = d3.select(".tooltip3");
 
-	 var width = 375,
+	 var width = 270,
 	     height = 270,
-	     radius = Math.min(width-30, height-30) / 2;
+	     radius = Math.min(width-50, height-50) / 2;
 
 	 var color = d3.scale.ordinal()
 	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
@@ -728,32 +871,56 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	       .attr("dy", ".35em")
 	 	  .transition()
 	 	  .delay(500);
-	       /* .text(function(d) { return d.data.type; }); */
-	 svg.append("text")
-          .attr("text-anchor", "middle")
-          .attr('font-size', '1em')
-          .attr('y', 10)
-          .text("총 정원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
 	  
 	 svg.append("text")
      .attr("text-anchor", "middle")
      .attr('font-size', '1em')
      .attr('y', 130)
-     .text("2017 "+data[i].gu+" 어린이집 영유아 정원");
+     .text("어린이집 정원");
+	 
+	 svg.append("text")
+	 .attr('class','textmiddle')
+     .attr("text-anchor", "middle")
+     .attr('font-size', '2em')
+     .attr('y', 15)
+     .text(data[i].gu);
 	 
 	 d3.select(".svg3").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 정원 수:"+(d.data.value)+"명");
+	 		tooltip.html((d.data.type)+" 정원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg3").selectAll("path").on("mouseout", function(d){
 		 tooltip.style("display", "none");
 	 });
+	 
+	 var legend = d3.select('.legends').attr('width',570).attr('height',20).selectAll(".legend3")
+     .data(dataset.map(function(d) { return d.type; }).reverse())
+ 	.enter().append("g")
+     .attr("class", "legend3")
+     .attr("transform", function(d,i) { return "translate("+(i*86+20)+",0 )"; })
+     .style("opacity","1");
+
+ legend.append("rect")
+     .attr("x", 16)
+     .attr("y",8)
+     .attr("width", 13)
+     .attr("height", 13)
+     .style("fill", function(d) { return color(d); });
+ 
+ legend.append("text")
+     .attr("x",-7)
+     .attr("y", 14)
+     .attr('font-size', '0.8em')
+     .attr("dy", ".35em")
+     .style("text-anchor", "middle")
+     .text(function(d) {
+    	 if(d=='사회복지법인') return '사회복지';
+    	 else if(d=='법인·단체 등') return '법인단체';
+    	 return d; });
 	 	  
-	 	  
-	 //d3.select("body").transition().style("background-color", "#d3d3d3");
  	 function type(d) {
 	   d.value = +d.value;
 	   return d;

@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
 	<form action="../board/list.child" method="post">
-		<c:if test="${! empty fourlists}">
-			<input type="hidden" name="searchType"  value="dcname">
-			<input type="hidden" name="searchContent"  value="${fourlists[0].dcname}">
-		</c:if>
 		<input type="hidden" name="bType" value="${bType}">
 		<table border='1'
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
 				<tr style="vertical-align: middle;">
-					<td colspan='2' height='41' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td> 
+					<td colspan='2' height='41' style="text-align: center;">후기 게시물</td> 
 				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>
@@ -30,7 +26,7 @@
 
 						<td height='23' style='text-align: center'><a
 							href='../board/info.child?bnum=${list.bnum}&bType=2'
-							style='text-decoration: none;'>${list.subject}</a></td>
+							style='text-decoration: none;'>[${list.dcname}]${list.subject}</a></td>
 						<td height='23' style='text-align: center'>${list.score}</td>
 					</tr>
 				</c:forEach>
