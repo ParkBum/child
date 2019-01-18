@@ -50,8 +50,8 @@
 </script>
 <style type="text/css">
 #chartarea {
-/* 	width: 900px;
-	height: 500px;
+/* 	width: 900px;*/
+	height: 460px;/*
  	border: solid 2px silver;*/
 	margin-left: 350px;
 /*	margin-bottom: 70px;*/
@@ -132,6 +132,9 @@
 }
 </style>
 <style>
+.svg1{
+	/*background-image: url('../decorator/tlgja.png');*/
+}
 
 .svg1 .municipality {
   pointer-events: none;
@@ -151,8 +154,8 @@
 }
 .svg2{
     margin-left: -100;
+    margin-top: 20px;
 }
-
 .toolTip {
     position: absolute;
     display: none;
@@ -172,11 +175,10 @@
 </head>
 <body>
 
-
 <div id="wrap">
 <div id="chartarea" style="display: inline-flex;" align="center">
 <div id="mapchart"></div> 
-<div id="piechart" style="width: 600">
+<div id="piechart" style="width: 600; height: 460;">
 	<!-- <a href="../map/map.child" id="maplink"> -->
 	<!-- <img src="../decorator/seoulsearch.png" alt="어린이집 검색"
 					style="width: 750px; height: 445px;"></a> -->
@@ -210,7 +212,7 @@ function makepiechart(data,selectguname){
             throw error;
         }
      // topojson의 properties.SIG_CD
-	var width = 600, height = 500, radius = Math.min(width, height) /3 ;
+	var width = 600, height = 400, radius = Math.min(width, height) /2.5 ;
 	var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
      .attr("width", width)
      .attr("height", height) 
@@ -218,14 +220,11 @@ function makepiechart(data,selectguname){
      .append("g") //svg2안에 g태그 선택
      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 	//body에 있는 svg2 선택함
-	 var color = d3.scale.ordinal().range(['#3acc85','#ff8a00','#304bce','#ffffbf','#cc5555','#009dee','#ff0099']);
-	 var kind = ["국공립","복지법인","법인단체","민간","가정","부모협동","직장"]
 	 var pie = d3.pie();
 	 var arc = d3.arc()	//호
                 .outerRadius(radius - 10)
 	 			.innerRadius(100);
 	 // 각 호의 크기를 정함.
-	 
 	 var label = d3.arc()
 	 			.outerRadius(radius)
 	 			.innerRadius(radius - 80);
@@ -234,8 +233,7 @@ function makepiechart(data,selectguname){
 	for(var i=0; i<seoul.seoul.length; i++){
 	
 		if(data == seoul.seoul[i].code){
-		
- 	var piedata = [
+ 	/* var piedata = [
 		 seoul.seoul[i].publics,
 		 seoul.seoul[i].welfare,
 		 seoul.seoul[i].corporate,
@@ -243,8 +241,7 @@ function makepiechart(data,selectguname){
 		 seoul.seoul[i].home,
 		 seoul.seoul[i].parental,
 		 seoul.seoul[i].Job
-		 ]; 
-	 	console.log(piedata);
+		 ];  */
 	 	
 	 var piedatas = [
 		 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#3acc85'},//녹색
@@ -255,7 +252,38 @@ function makepiechart(data,selectguname){
 			{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#009dee'},//하늘
 			{name : '직장',      	value : seoul.seoul[i].Job,      	color : '#ff0099'}	//핑크색
 		 ]; 
+	var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
+	var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
+	var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
 	 
+	console.log(piedatas[0].value)// 국공립... 
+	 var legendItemSize = 18
+	 var legendSpacing = 4
+	 var legend = svg
+	  .selectAll('.legend')
+	  .data(piedatas)
+	  .enter()
+	  .append('g')
+	  .attr('class', 'legend')
+	  .attr("transform", function(d, i) {
+	    var height = legendItemSize + legendSpacing
+	    var offset = height * piedatas.length / 2
+	    var x = legendItemSize * -2;
+	    var y = (i * height) - offset
+	    return "translate("+x+","+y+")";
+	  })
+	  
+	legend
+	  .append('rect')
+	  .attr('width', legendItemSize)
+	  .attr('height', legendItemSize)
+	  .style('fill', function(d,i) {return color(i)});
+	
+	legend
+	  .append('text')
+	  .attr('x', legendItemSize + legendSpacing)
+	  .attr('y', legendItemSize - legendSpacing)
+	  .text(function(d,i) {return kind[i]})
 	 
 	 //실제 데이터를 넣고 파이그래프를 만드는 부분
 	 var g = svg.selectAll(".arc")		//호들을 집합시킴
@@ -285,26 +313,16 @@ function makepiechart(data,selectguname){
 	    			return arc(interpolate(t));
 	    		}
 	    	});
-             
-	   var div = d3.select("#piechart").append("div").attr("class", "toolTip");
-	   	
-		d3.selectAll(".arc").append("g").on("click", function(d, i) {
-		      div.style("left", d3.event.pageX+10+"px");
-			  div.style("top", d3.event.pageY-25+"px");
-			  
-			  div.style("display", "inline-block");
-			  div.html(kind[i] + " : " + piedatas[i].value);
-		    	})
 	 // text 정 중앙에 텍스트 넣기
 	    svg.append("text")
 	    	.attr("text-anchor", "middle")
-		 	.attr('font-size', '3em')
-		 	.attr('y', 20)
+		 	.attr('font-size', '1.5em')
+		 	.attr('y', 190)
 		 	.text(selectguname);
 		svg.append("text")
 			.attr("text-anchor", "middle")
-	 		.attr('font-size', '3.5em')
-	 		.attr('y', -200)
+	 		.attr('font-size', '2em')
+	 		.attr('y', -165)
     		.text("구별 어린이집 현황");
 	 	//성공했던 코드...
 	 	
@@ -331,7 +349,8 @@ function makepiechart(data,selectguname){
 
 </script>
 <script>
-var width = 600, height = 460;
+
+var width = 600, height = 430;
 var svg = d3.select("#mapchart").append("svg")
 	.attr("class","svg1")
     .attr("width", width)
