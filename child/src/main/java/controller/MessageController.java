@@ -36,12 +36,12 @@ public class MessageController {
 	public ModelAndView myMessageList(Integer mnum) {
 		ModelAndView mav = new ModelAndView();
 		List<Message> messageList = service.getMyMessageList(mnum);
-		
+
 		for (Message msg : messageList) {
 			msg.setBoard(service.getBoard(msg.getBnum()));
 			msg.setUser(service.userInfo(msg.getBuynum()));
 			msg.setBoarddeal(service.getBoardDeal(msg.getBnum()));
-			if(service.dayCnt(msg.getMsgdate())) { // 7일 이후인 경우. 8일째부터
+			if (service.dayCnt(msg.getMsgdate())) { // 7일 이후인 경우. 8일째부터
 				service.updateDeal(msg.getMsgnum(), 2, msg.getMsgdate()); // 거래완료
 			}
 		}
@@ -70,8 +70,17 @@ public class MessageController {
 	@RequestMapping(value = "user/dealEnd")
 	public ModelAndView dealEnd(Integer msgnum) {
 		ModelAndView mav = new ModelAndView("user/myMessageList");
+
 		Message msg = service.getMessage(msgnum);
 		service.updateDeal(msgnum, 2, msg.getMsgdate());
+
+		List<Message> messageList = service.messageList(msg.getBnum());
+		for (Message m : messageList) {
+			if (m.getMsgnum() != msgnum && m.getDeal() != 3) {
+				service.updateDeal(m.getMsgnum(), 3, null);
+			}
+		}
+
 		mav.setViewName("redirect:/user/myMessageList.child?mnum=" + msg.getSellnum());
 		return mav;
 	}
