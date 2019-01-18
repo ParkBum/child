@@ -14,7 +14,8 @@
 .wrap {
 	clear: both;
 	width: 1200px;
-	margin-left: 350px;
+	margin-left: 353px;
+	margin-right: 353px;
 }
 
 th, td {
@@ -37,15 +38,17 @@ $(document).ready(function() {
 	<h2>거래 요청 목록</h2>
 		<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 표기되며, 거래완료 후에는 연락처가 표기되지않습니다.</font><br>
 		<font size="2">거래 수락 후 7일이 지난 거래는 완료로 자동 전환됩니다.</font>
-		<table border="1" style="border-collapse: collapse;" class="w3-table w3-border w3-bordered">
+		<table border="1" class="w3-table w3-border w3-bordered" style="border-collapse: collapse;w">
 			<tr>
+				<th width="10%" style="padding-left:8px;">거래번호</th>
 				<th width="10%">거래 상태</th>
-				<th width="50%">해당 게시글</th>
+				<th width="40%">해당 게시글</th>
 				<th width="20%">요청 회원 정보</th> <!-- 연락처 여기에 포함 -->
 				<th width="20%">수락 여부</th>
 			</tr>
 			<c:forEach items="${messageList}" var="msg">
 			<tr>
+				<td style="padding-left:8px;"><fmt:formatNumber value="${msg.bnum}" pattern="000-" /><fmt:formatNumber value="${msg.msgnum}" pattern="000" /></td>
 				<td>
 				<c:choose>
 				<c:when test="${msg.deal == 1}">
