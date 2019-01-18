@@ -240,7 +240,9 @@ public class ChildService {
 	}
 
 	public List<Board> fourlists(Integer code) {
-
+		if(code == null) {
+			code = null;
+		}
 		return mapDao.fourlists(code);
 	}
 

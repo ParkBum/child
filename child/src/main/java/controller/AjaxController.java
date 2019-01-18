@@ -102,9 +102,8 @@ public class AjaxController {
 	@RequestMapping("map/reviews*")
 	public ModelAndView reviews(Integer code,Integer bType) {
 		ModelAndView mav = new ModelAndView();
-		List<Board> fourlists = service.fourlists(code);
-/*		mav.setViewName("redirect:../map.");*/
-/*		Daycare daycare = service.selectOne(code);*/
+		List<Board> fourlists = null;
+		fourlists = service.fourlists(code);
 		mav.addObject("bType",bType);
 		mav.addObject("fourlists",fourlists);
 		return mav;

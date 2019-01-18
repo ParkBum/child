@@ -228,6 +228,7 @@ option {
 		var markers = [];
 		var infos = [];
 		var codes =[];
+		var is = [];
 </script>
 <c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
 <script>
@@ -260,7 +261,6 @@ $(document).ready(function() {
     						position:coords
     					});
     					marker.setMap(map);
-    					
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="leftWish"></span><span class="centerWish">'
 							+"<strong>"+data.autoMarkerList[i].name+"</strong>[<strong>"+data.autoMarkerList[i].type+"</strong>]"+'&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span><span class="rightWish"></span></div>';
 						var infowindow = new daum.maps.InfoWindow({
@@ -270,13 +270,16 @@ $(document).ready(function() {
 							}); 
 						infos.push(infowindow);
 						markers.push(marker);
+						codes.push(data.autoMarkerList[i].code);
+						is.push(i);
         				map.setCenter(coords);	 
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
-        			    (function(marker, infowindow) { 
+        			    (function(marker, infowindow, codes,is) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
+        			        	graph(codes[is]);
         			            infowindow.open(map, marker);
         			        });
 
@@ -400,8 +403,9 @@ dataset.push({"name":"서울시 평균",
 	  ]
 });
 </script>
-<script>//페이지 로드 시 서울 평균 먼저 출력
+<script>//페이지 로드 시 서울 평균, 게시판 부분 먼저 출력
 loadGraph();
+loadReviews();
 function loadGraph(){
 	$('#text2').remove();
 	var margin = {top: 20, right: 20, bottom: 30, left: 30},
@@ -443,7 +447,7 @@ var svg = d3.select('#chart').select('.svg1')
   
   x0.domain(Names);
   x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, 20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+  y.domain([0,20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
   
   svg.append("g")
       .attr("class", "x axis")
@@ -526,6 +530,19 @@ var svg = d3.select('#chart').select('.svg1')
 
   legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
 	
+}
+function loadReviews() {
+	$.ajax({
+		url : "reviewsOnload.child",
+		type : "post",
+		data : {"bType":2},
+		success: function(data){
+			$('.bar3').css('border','');
+			$('#text3').remove();
+			$('#reviews').css('top','0px');
+			$('#reviews').html(data);
+		}
+	})
 }
 </script>
 <script>

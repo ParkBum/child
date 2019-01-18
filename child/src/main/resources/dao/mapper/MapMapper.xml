@@ -34,7 +34,13 @@
 	</select>
 	<!-- 지도 검색 페이지에 후기 게시물 7개 보여주기 -->
 	<select id="threelists" resultType="board" parameterType="map">
-		select * from board where code = #{code} and btype = 2 order by regdate desc limit 0,7
+		select * from board 
+		<if test="code == null">
+			where btype = 2 order by regdate desc limit 0,7
+		</if>
+		<if test="code != null">
+		where code = #{code} and btype = 2 order by regdate desc limit 0,7
+		</if>
 	</select>
 	<!-- 서울 평군  -->	
 	<select id="getTotal" resultType="Daycare_total">

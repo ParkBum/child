@@ -8,5 +8,6 @@
 		<pattern>*search.child*</pattern>
 		<pattern>*maker.*</pattern>
 		<pattern>*reviews.*</pattern>
+		<pattern>*reviewsOnload.*</pattern>
 	</excludes>
 </decorators>
