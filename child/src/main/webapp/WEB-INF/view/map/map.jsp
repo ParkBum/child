@@ -176,10 +176,12 @@ option {
 					align="center"></div>
 				<div class="bar1" style="height:285px;  margin-top:10px; border:solid 1px #ccc; ">
 				<h3 id="text1" style="position:relative; padding-top:125px; padding-bottom:125px; z-index:3; margin:0;">구별 영유아 정/현원 차트 부분</h3>
+		  		<svg class="legends" style=" position:relative; z-index:2;"></svg>
 		    <div class="tooltip3" style=" z-index:3;"></div>
-				<svg class="svg3" style=" position:relative; z-index:2;"></svg>
+				<svg class="svg3" style=" position:relative; top:-20px; z-index:2;"></svg>
 			<div class="tooltip2" style=" z-index:3;"></div>
-				<svg class="svg2" style=" position:relative; z-index:2;"></svg>
+				<svg class="svg2" style=" position:relative; top:-20px; z-index:2;"></svg>
+		  
 			</div>
 			</div>
 			<!-- map_wrap의 끝 -->
@@ -520,16 +522,12 @@ var svg = d3.select('#chart').select('.svg1')
   legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
 	
 }
-
-
 </script>
 <script>
 //첫번재 차트(클릭시)
 function graph(a){
-/* 	$('.bar1').css('border','')
-	$('.bar2').css('border','') */
 	$('#text1').remove();
-	$('#text2').remove();
+/* 	$('#text2').remove(); */
 	var code = a;
 	var data = {
 		"code" : code
@@ -696,7 +694,7 @@ function NowChildPieChart(guname){//guname이 실려있음
 
 	 var width = 270,
 	     height = 270,
-	     radius = Math.min(width-30, height-30) / 2;
+	     radius = Math.min(width-50, height-50) / 2;
 
 	 var color = d3.scale.ordinal()
 	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
@@ -757,7 +755,13 @@ function NowChildPieChart(guname){//guname이 실려있음
       .attr("text-anchor", "middle")
       .attr('font-size', '1em')
       .attr('y', 130)
-      .text("2017 "+data[i].gu+" 어린이집 영유아 현원");
+      .text("어린이집 현원");
+	  
+	  svg.append("text")
+	     .attr("text-anchor", "middle")
+	     .attr('font-size', '2em')
+	     .attr('y', 15)
+	     .text(data[i].gu);
 	       
 	 d3.select(".svg2").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
@@ -769,8 +773,8 @@ function NowChildPieChart(guname){//guname이 실려있음
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
 		 tooltip.style("display", "none");
 	 });
-	 	  
-	 	  
+	 
+	  
 
  	 function type(d) {
 	   d.value = +d.value;
@@ -788,7 +792,7 @@ function MaxChildPieChart(guname){//guname이 실려있음
 
 	 var width = 270,
 	     height = 270,
-	     radius = Math.min(width-30, height-30) / 2;
+	     radius = Math.min(width-50, height-50) / 2;
 
 	 var color = d3.scale.ordinal()
 	     .range(["#74c493", "#e9d78e", "#e16552", "#a34974", "#5698c4","#447c69","#9163b6"]);
@@ -849,7 +853,13 @@ function MaxChildPieChart(guname){//guname이 실려있음
      .attr("text-anchor", "middle")
      .attr('font-size', '1em')
      .attr('y', 130)
-     .text("2017 "+data[i].gu+" 어린이집 영유아 정원");
+     .text("어린이집 정원");
+	 
+	 svg.append("text")
+     .attr("text-anchor", "middle")
+     .attr('font-size', '2em')
+     .attr('y', 15)
+     .text(data[i].gu);
 	 
 	 d3.select(".svg3").selectAll("path").on("mousemove", function(d) {
 	 		tooltip.style("left", d3.event.pageX+10+"px");
@@ -861,9 +871,32 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	 d3.select(".svg3").selectAll("path").on("mouseout", function(d){
 		 tooltip.style("display", "none");
 	 });
+	 
+	 var legend = d3.select('.legends').attr('width',570).attr('height',20).selectAll(".legend3")
+     .data(dataset.map(function(d) { return d.type; }).reverse())
+ 	.enter().append("g")
+     .attr("class", "legend3")
+     .attr("transform", function(d,i) { return "translate("+(i*86+20)+",0 )"; })
+     .style("opacity","1");
+
+ legend.append("rect")
+     .attr("x", 16)
+     .attr("y",8)
+     .attr("width", 13)
+     .attr("height", 13)
+     .style("fill", function(d) { return color(d); });
+ 
+ legend.append("text")
+     .attr("x",-7)
+     .attr("y", 14)
+     .attr('font-size', '0.8em')
+     .attr("dy", ".35em")
+     .style("text-anchor", "middle")
+     .text(function(d) {
+    	 if(d=='사회복지법인') return '사회복지';
+    	 else if(d=='법인·단체 등') return '법인단체';
+    	 return d; });
 	 	  
-	 	  
-	 //d3.select("body").transition().style("background-color", "#d3d3d3");
  	 function type(d) {
 	   d.value = +d.value;
 	   return d;

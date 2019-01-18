@@ -10,8 +10,8 @@
 		<table border='1'
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
-				<tr>
-					<td colspan='2' height='46' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td> 
+				<tr style="vertical-align: middle;">
+					<td colspan='2' height='41' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td> 
 				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>
