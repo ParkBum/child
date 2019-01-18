@@ -11,7 +11,7 @@
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
 				<tr>
-					<td colspan='2' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td>
+					<td colspan='2' height='46' style="text-align: center;">${fourlists[0].dcname} 후기 게시물</td> 
 				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>
@@ -19,7 +19,7 @@
 			</tr>
 			<c:if test="${empty fourlists}">
 				<tr>
-					<td colspan='2'>등록된 게시물이 없습니다.</td>
+					<td  colspan='2'>등록된 게시물이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty fourlists}">

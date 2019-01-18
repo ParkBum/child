@@ -19,22 +19,22 @@
 <style type="text/css">
 #main {
 	max-width: 1200px;
-	margin : 0 auto;
+	margin-left :350px ;
 } 
 
 #SearchAndMap {
-	width: 100%;
+	width: 1200px;
 	height: 900px;
 }
  
 #search {
-	width: 100%;
+	width: 570px;
 	height: 80px;
 	vertical-align: middle;
 }
 
 #map_wrap {
-	width: 100%;
+	width: 570px;
 	height: 500px;
 }
 
@@ -48,13 +48,13 @@ option {
 <%-- 지도 영역, 내용 출력 영역 나누기 --%>
 .half1{
  float: left;
-  width: 50%;
-  padding: 15px;
+  width: 570px;
+/*   padding: 15px; */
 } 
 .half2{
  float: right;
-  width: 50%;
-  padding: 15px; 
+  width: 570px;
+/*   padding: 15px;  */
 }
 .
 <%-- 차트 관련 css--%>
@@ -187,14 +187,14 @@ option {
 		<!-- SearchAndMap -->
 	</div>
 	<div class="half2">
-			<div class="bar2" style="height:470px; text-align:center; border:solid 1px #ccc;" id="chart">
+			<div class="bar2" style="height:470px; width:570px;text-align:center; border:solid 1px #ccc;" id="chart">
 			<h2 id="text2" style="position:relative; padding-top:200px; padding-bottom:200px; z-index:3; margin:0;">어린이집 차트 부분</h2>
 			<div class="tooltip1"  style=" z-index:3;"></div>
 				<svg class="svg1" style=" z-index:2;"></svg>  
 			</div>
-			 <div class="bar3" style="height:400px; text-align:center; border:solid 1px #ccc; margin-top : 10px;">
+			 <div class="bar3" style="height:400px; width:570px; text-align:center; border:solid 1px #ccc; margin-top : 15px;">
 			 	<h2 id="text3" style="position:relative; padding-top:176px;; padding-bottom:176px; z-index:3; margin:0;">어린이집 후기 부분</h2>
-				<div id="reviews" style="position:relative;width:770px; height : 400px; z-index:2; top:-400px;"></div> 
+				<div id="reviews" style="position:relative;width:570px; height : 400px; z-index:2; top:-400px;"></div> 
 			</div> 
 		</div>
 	</div>
@@ -392,7 +392,139 @@ dataset.push({"name":"서울시 평균",
 		{"value":${daytotal.child_per_teacher},"column":"교사 당 원아 수"}
 	  ]
 });
-//첫번재 차트
+</script>
+<script>//페이지 로드 시 서울 평균 먼저 출력
+loadGraph();
+function loadGraph(){
+	$('#text2').remove();
+	var margin = {top: 20, right: 20, bottom: 30, left: 30},
+    width = 540 - margin.left - margin.right,
+    height = 470 - margin.top - margin.bottom;
+var divTooltip = d3.select(".tooltip1");
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x0)
+    .tickSize(0)										
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+  
+var color = d3.scale.ordinal()
+    .range(["#FFC321","#7FD100" ,"#0B77E8","#FF6336"]);
+
+var svg = d3.select('#chart').select('.svg1')
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  // data 주는 부분	
+  var data = dataset;
+  
+  var Names = data.map(function(d) { return d.name; });
+  var columnNames = data[0].values.map(function(d) { return d.column; });
+  
+  x0.domain(Names);
+  x1.domain(columnNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0, 20+d3.max(data, function(name) { return d3.max(name.values, function(d) { return d.value; }); })]); 
+  
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .style('opacity','0')
+      .call(yAxis)
+  .append("text")
+  	  .attr("x",50)
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .style('font-weight','bold')
+      .text("인원 수");
+
+  svg.select('.y').transition().duration(500).delay(1300).style('opacity','1');
+  
+  
+  var slice = svg.selectAll(".slice")
+      .data(data)
+      .enter().append("g")
+      .attr("class", "g")
+      .attr("transform",function(d) { return "translate(" + x0(d.name) + ",0)"; });
+
+  slice.selectAll("rect")
+      .data(function(d) { return d.values; })
+  .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.column); })
+      .style("fill", function(d) { return color(d.column) })
+      .attr("y", function(d) { return y(0); })
+      .attr("height", function(d) { return height - y(0); })
+      .on("mousemove", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
+    	    divTooltip.style("left", d3.event.pageX + 10 + "px")
+            divTooltip.style("top", d3.event.pageY - 25 + "px")
+            divTooltip.style("display", "inline-block")
+            divTooltip.style("opacity", "0.9")
+            divTooltip.html(d.column + "<br>" + d.value);
+            d3.select(this)
+                .style("fill", d3.rgb(color(d.column)).brighter(1))
+                .style("opacity", "0.7");
+      })
+      .on("mouseout", function(d) {
+    	  divTooltip.style("display", "none")
+            d3.select(this).transition().duration(250)
+                .style("fill", color(d.column))
+                .style("opacity", "1");
+      });
+  
+  slice.selectAll("rect")
+      .transition()
+      .delay(function (d) {return Math.random()*1000;})
+      .duration(1000)
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); });
+
+  //범례
+  var legend = svg.selectAll(".legend")
+      .data(data[0].values.map(function(d) { return d.column; }).reverse())
+  .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+      .style("opacity","0");
+
+  legend.append("rect")
+      .attr("x", width)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", function(d) { return color(d); });
+
+  legend.append("text")
+      .attr("x", width - 2)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) {return d; });
+
+  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+	
+}
+
+
+</script>
+<script>
+//첫번재 차트(클릭시)
 function graph(a){
 /* 	$('.bar1').css('border','')
 	$('.bar2').css('border','') */
@@ -433,8 +565,8 @@ function graph(a){
 						  ]
 					});	
 		}
-		var margin = {top: 20, right: 20, bottom: 30, left: 40},
-		    width = 750 - margin.left - margin.right,
+		var margin = {top: 20, right: 20, bottom: 30, left: 30},
+		    width = 540 - margin.left - margin.right,
 		    height = 470 - margin.top - margin.bottom;
 		var divTooltip = d3.select(".tooltip1");
 		var x0 = d3.scale.ordinal()
@@ -562,7 +694,7 @@ function NowChildPieChart(guname){//guname이 실려있음
 	 d3.selectAll(".svg2 > *").remove(); 
 	 var tooltip = d3.select(".tooltip2");
 
-	 var width = 375,
+	 var width = 270,
 	     height = 270,
 	     radius = Math.min(width-30, height-30) / 2;
 
@@ -620,12 +752,6 @@ function NowChildPieChart(guname){//guname이 실려있음
 	       .attr("dy", ".35em")
 	 	  .transition()
 	 	  .delay(500);
-	       /* .text(function(d) { return d.data.type; }); */
-	  svg.append("text")
-          .attr("text-anchor", "middle")
-          .attr('font-size', '1em')
-          .attr('y', 10)
-          .text("총 현원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
 
 	  svg.append("text")
       .attr("text-anchor", "middle")
@@ -637,7 +763,7 @@ function NowChildPieChart(guname){//guname이 실려있음
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 현원 수:"+(d.data.value)+"명");
+	 		tooltip.html((d.data.type)+" 현원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg2").selectAll("path").on("mouseout", function(d){
@@ -660,7 +786,7 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	 d3.selectAll(".svg3 > *").remove(); 
 	 var tooltip = d3.select(".tooltip3");
 
-	 var width = 375,
+	 var width = 270,
 	     height = 270,
 	     radius = Math.min(width-30, height-30) / 2;
 
@@ -718,12 +844,6 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	       .attr("dy", ".35em")
 	 	  .transition()
 	 	  .delay(500);
-	       /* .text(function(d) { return d.data.type; }); */
-	 svg.append("text")
-          .attr("text-anchor", "middle")
-          .attr('font-size', '1em')
-          .attr('y', 10)
-          .text("총 정원 수:" + (dataset[0].value+ dataset[1].value+ dataset[2].value+ dataset[3].value+ dataset[4].value+ dataset[5].value+ dataset[6].value)+"명");
 	  
 	 svg.append("text")
      .attr("text-anchor", "middle")
@@ -735,7 +855,7 @@ function MaxChildPieChart(guname){//guname이 실려있음
 	 		tooltip.style("left", d3.event.pageX+10+"px");
 	 		tooltip.style("top", d3.event.pageY-25+"px");
 	 		tooltip.style("display", "inline-block");
-	 		tooltip.html((d.data.type)+"<br>2017 어린이집 영유아 정원 수:"+(d.data.value)+"명");
+	 		tooltip.html((d.data.type)+" 정원 수:"+(d.data.value)+"명");
 	 });
 	 	  
 	 d3.select(".svg3").selectAll("path").on("mouseout", function(d){
