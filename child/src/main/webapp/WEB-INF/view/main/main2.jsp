@@ -335,21 +335,19 @@ var svg = d3.select("#mapchart").append("svg")
     .attr("height", height);
 var projection = d3.geo.mercator()
     .center([126.9895, 37.5651])
-    .scale(100000)
+    .scale(70000)
     .translate([width/2, height/2]);
-
 var quantize = d3.scale.quantize()
-    .domain([1, 5000])
+    .domain([1, 1000])
     .range(d3.range(9).map(function(i) { return "p" + i; }));
 /* var popByName = d3.map(); */
 var path = d3.geo.path().projection(projection);
-
+var width2 = 300, height2 = 100;
 var map = svg.append("g")
 			.attr("id", "map")
-			.attr("width", width)
-			.attr("height", height);
+			.attr("width", width2)
+			.attr("height", height2);
     //places = svg.append("g").attr("id", "places");
-
 d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, data) {
   var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
   
@@ -366,9 +364,9 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
       .attr("id",function(d){
         return d.properties.SIG_CD
       })
-      .style("fill","#E89923")
+      .style("fill","#8CD790")
       .on("mouseover",function(d){
-    	 d3.select(this).style("fill","red");
+    	 d3.select(this).style("fill","#30A9DE");
        //d3.select(this).style("마우스 포인터 변경");
       })
       .on("click",function(d){
@@ -376,10 +374,10 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
     	 $( '#maplink' ).hide();
       })
       .on("mouseout",function(){
-    	  d3.select(this).style("fill","#E89923");
+    	  d3.select(this).style("fill","#8CD790");
       });
       
-  map.selectAll("text")
+  map.selectAll("text")	//글자넣는 구간
       .data(features)
       .enter().append("text")
       .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
