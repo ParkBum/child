@@ -12,6 +12,7 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
 <title>게시물 상세 보기</title>
 <style type="text/css">
 .cmain {
@@ -492,19 +493,25 @@ $(function() {
 								<c:if test="${c.secret == 1}">
 									<i class="fa fa-lock" style="font-size: 24px"></i>
 								</c:if>
-								<c:if test="${c.refstep == 0}">
-									<input type="button" id="recom" value="답글"
-										onclick="$('#comm${stat.index}').show();">
+								
+								<c:if test="${c.ref == 1 && c.secret == 1}">
+									<i class="fa fa-lock" style="font-size: 24px;"></i>
 								</c:if>
-								<c:if
+									<c:if
 									test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-									<!-- 댓글수정버튼 -->
-									<input type="button" id="commentUpdate" value="수정"
+									<!-- 댓글수정버튼 -->  
+									 <input type="button" id="commentDelete" value="삭제" style="float:right;"
+										onclick="commentDelete(${c.bnum},${c.cnum})"> 
+									<input type="button" id="commentUpdate" value="수정" style="float:right;" 
 										onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
-									<input type="button" id="commentDelete" value="삭제"
-										onclick="commentDelete(${c.bnum},${c.cnum})">
 								</c:if>
+								
+								<c:if test="${c.refstep == 0}">
+									<input type="button" id="recom" value="답글" style="float:right;"
+										onclick="$('#comm${stat.index}').show();">
+								</c:if>  
 								<br>
+								
 								<!-- 대댓글인 경우 닉,날짜 등 간격 줌-->
 						<div id="recontent${stat.index}">
 							<div id="recomment${stat.index}" style="display: block;">
