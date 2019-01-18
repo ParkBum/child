@@ -39,11 +39,6 @@
 	height: 500px;
 }
 
-select {
-	border : 0;
-	outline: 0;
-
-}
 .buttons {
 	border : 0;
 	outline: 0;
