@@ -90,6 +90,11 @@ option {
 .arc2 path , .arc3 path {
   stroke: #fff;
 }
+/* .textmiddle{
+	 text-shadow: -3px 3px 15px #888888;
+	 font: sans-serif;
+} */
+
 .tooltip2,.tooltip3 {
     position: absolute;
     display: none;
@@ -758,6 +763,7 @@ function NowChildPieChart(guname){//guname이 실려있음
       .text("어린이집 현원");
 	  
 	  svg.append("text")
+	  	 .attr('class','textmiddle')
 	     .attr("text-anchor", "middle")
 	     .attr('font-size', '2em')
 	     .attr('y', 15)
@@ -856,6 +862,7 @@ function MaxChildPieChart(guname){//guname이 실려있음
      .text("어린이집 정원");
 	 
 	 svg.append("text")
+	 .attr('class','textmiddle')
      .attr("text-anchor", "middle")
      .attr('font-size', '2em')
      .attr('y', 15)
