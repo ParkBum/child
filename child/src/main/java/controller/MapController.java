@@ -26,6 +26,5 @@ public class MapController {
 		Daycare_total daytotal = service.getTotal();
 		mav.addObject("daytotal",daytotal);
 		return mav;
-	}
-	
+	}	
 }
