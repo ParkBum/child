@@ -175,13 +175,13 @@ function check(){
 					<c:forEach items="${userlist}" var="user">
 						<tr>
 							<td style="text-align: center;">${user.mnum}</td>
-							<td>${user.email}</td>
+							<td>&nbsp;${user.email}</td>
 							<c:choose>
 								<c:when test="${user.red >= 3}">
-									<td style="color: red">${user.nickname}</td>
+									<td style="color: red; text-align: center;">${user.nickname}</td>
 								</c:when>
 								<c:otherwise>
-									<td>${user.nickname}</td>
+									<td style="text-align: center;">${user.nickname}</td>
 								</c:otherwise>
 							</c:choose>
 

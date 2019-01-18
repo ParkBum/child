@@ -10,7 +10,6 @@
 <head>
 <meta charset="EUC-KR">
 <title><decorator:title /></title>
-<decorator:head />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
@@ -128,6 +127,7 @@ body {
 	display: block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 }
 </style>
+<decorator:head />
 </head>
 <body>
 	<div>

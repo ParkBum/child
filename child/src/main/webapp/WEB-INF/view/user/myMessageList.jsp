@@ -20,6 +20,7 @@
 th, td {
 	text-align: center !important;
 	vertical-align: middle !important;
+	height: 40px;
 }
 
 a {
