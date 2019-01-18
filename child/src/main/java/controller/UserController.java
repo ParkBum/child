@@ -110,11 +110,11 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
-		System.out.println("여기 안나와??");
+		//System.out.println("여기 안나와??");
 		String email = "";
 		String id ="";
 		for(int i=0;i<18; i++) {
-			System.out.println(apiResult.split("\"")[i]);
+			//System.out.println(apiResult.split("\"")[i]);
 			if(i==13) 	id =apiResult.split("\"")[i];
 			if(i==17) 	email =apiResult.split("\"")[i];
 		}

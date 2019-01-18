@@ -50,18 +50,21 @@
 </script>
 <style type="text/css">
 #chartarea {
-/* 	width: 900px;*/
-	height: 460px;/*
+    width: 1200px;
+	height: 600px;/*
  	border: solid 2px silver;*/
-	margin-left: 350px;
-/*	margin-bottom: 70px;*/
+	margin-left: 300px;
+	background-image: url('../decorator/seoul.png');
+
 }
+
 /* #mapchart {
 	margin-left: 50px;
 }
  */
 .menus {
 	margin: 40px;
+	margin-top: 0px;
 	margin-left: 320px;
 	width: 1200px;
 	height: 350px;
@@ -133,7 +136,12 @@
 </style>
 <style>
 .svg1{
-	/*background-image: url('../decorator/tlgja.png');*/
+    margin-left: 100px;
+}
+
+.path{
+/* border:solid 1px black; */
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .svg1 .municipality {
@@ -141,7 +149,8 @@
 }
 
 .svg1 .municipality {
-  stroke: #fff; 
+  stroke: black; 
+  
 }
 .svg1 .municipality-label {
   fill: #bbb;
@@ -153,24 +162,12 @@
   stroke: #333; 
 }
 .svg2{
-    margin-left: -100;
     margin-top: 20px;
 }
-.toolTip {
-    position: absolute;
-    display: none;
-    width: auto;
-    height: auto;
-    background: none repeat scroll 0 0 white;
-    border: 0 none;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow: -3px 3px 15px #888888;
-    color: black;
-    font: 12px sans-serif;
-    padding: 5px;
-    text-align: center;
+#map path{
+   stroke:white;
+   stroke-width: 0.5px;
 }
-
 </style>
 </head>
 <body>
@@ -217,6 +214,8 @@ function makepiechart(data,selectguname){
      .attr("width", width)
      .attr("height", height) 
      .attr("radius",Math.min(width, height) / 2)
+     .style("margin-left",-100)
+     .style("margin-top",50)
      .append("g") //svg2안에 g태그 선택
      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 	//body에 있는 svg2 선택함
@@ -353,6 +352,7 @@ function makepiechart(data,selectguname){
 var width = 600, height = 430;
 var svg = d3.select("#mapchart").append("svg")
 	.attr("class","svg1")
+	.style("margin-top",50)
     .attr("width", width)
     .attr("height", height);
 var projection = d3.geo.mercator()
@@ -407,12 +407,59 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
       .attr("class", "municipality-label")
       .text(function(d) { return d.properties.SIG_KOR_NM; })
 });
-    </script>
-			<div class="maineslider">
 
-<!-- 				
- -->
-			</div>
+var defs = svg.append("defs");
+
+//create filter with id #drop-shadow
+//height=130% so that the shadow is not clipped
+var filter = defs.append("filter")
+ .attr("id", "drop-shadow")
+ .attr("height", "120%");
+
+//SourceAlpha refers to opacity of graphic that this filter will be applied to
+//convolve that with a Gaussian with standard deviation 3 and store result
+//in blur
+filter.append("feGaussianBlur")
+ .attr("in", "SourceAlpha")
+ .attr("stdDeviation", 3)
+ .attr("result", "blur");
+
+//translate output of Gaussian blur to the right and downwards with 2px
+//store result in offsetBlur
+var feOffset = filter.append("feOffset")
+ .attr("in", "blur")
+ .attr("dx", 2)
+ .attr("dy", 3)
+ .attr("result", "offsetBlur");
+
+//overlay original SourceGraphic over translated blurred opacity by using
+//feMerge filter. Order of specifying inputs is important!
+var feMerge = filter.append("feMerge");
+
+feMerge.append("feMergeNode")
+    .attr("in", "offsetBlur")
+feMerge.append("feMergeNode")
+    .attr("in", "SourceGraphic");
+
+var gradient = svg.append("svg:defs")
+  .append("svg:linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "0%")
+    .attr("y2", "100%")
+    .attr("spreadMethod", "pad");
+
+gradient.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#0F3871")
+    .attr("stop-opacity", 1);
+
+gradient.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#175BA8")
+    .attr("stop-opacity", 1);
+    </script>
 			<div style="background-color: #FFF1F5; height: 500px; width: 100%;">
 				<div class="menus">
 					<div class="card1">
