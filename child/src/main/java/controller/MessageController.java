@@ -40,7 +40,7 @@ public class MessageController {
 		for (Message msg : messageList) {
 			msg.setBoard(service.getBoard(msg.getBnum()));
 			msg.setUser(service.userInfo(msg.getBuynum()));
-			msg.setBoarddeal(service.getBoardDeal(msg.getBnum()));
+			msg.getBoard().setBoarddeal(service.getBoardDeal(msg.getBnum()));
 			if (service.dayCnt(msg.getMsgdate())) { // 7일 이후인 경우. 8일째부터
 				service.updateDeal(msg.getMsgnum(), 2, msg.getMsgdate()); // 거래완료
 			}

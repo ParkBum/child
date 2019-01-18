@@ -66,6 +66,7 @@ public class BoardController {
 
 		for (Board board : boardlist) { // 댓글 수 추가아아아
 			board.setCommentcnt(service.commentCount(board.getBnum()));
+			board.setBoarddeal(service.getBoardDeal(board.getBnum()));
 		}
 		mav.addObject("filterType2", filterType2);
 		mav.addObject("filterType", filterType);

@@ -221,8 +221,8 @@
 									style="text-decoration: none;">
 									<input type="hidden" name="pageNum" value="1">
 									&nbsp;[${(board.head==1)?"삽니다":"팝니다"}]
-									&nbsp;[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
-									&nbsp;${board.subject}</a>
+									[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
+									${board.subject}&nbsp;&nbsp;<font size="2" color="blue">${(board.boarddeal == 2)?"거래완료":""}</font></a>
 									<c:if test="${board.commentcnt != 0}">
 										<i class="fa fa-comment-o w3-margin-left"><font size="1" color="red">${board.commentcnt}</font></i>
 									</c:if>
