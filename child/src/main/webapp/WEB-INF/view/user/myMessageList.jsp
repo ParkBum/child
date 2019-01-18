@@ -11,13 +11,68 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <style type="text/css">
-.wrap {
+.cmain {
 	clear: both;
 	width: 1200px;
-	margin-left: 353px;
-	margin-right: 353px;
+	margin: 0 315px 0 315px;
 }
 
+.subMenu {
+	float: left;
+	width: 200px;
+	margin: 0 auto;
+	margin-bottom: 300px;
+	border-bottom: 2px solid #dddddd;
+}
+
+.subMenu ul, li {
+	margin: 0;
+	margin-bottom: 1px;
+	padding: 0;
+	list-style: none;
+}
+
+.subMenu a {
+	text-decoration: none;
+}
+
+.menu1 {
+	height: 100px;
+	background: #F6A5BC;
+	color: white;
+}
+
+.active {
+	display: block;
+	height: 40px;
+	background-color: #CE5B7C;
+	color: white;
+}
+.active a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.menu2 {
+	height: 40px;
+	background: #f7f7f7;
+}
+
+.menu2 a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.board {
+	float: right;
+	width: 1000px;
+	padding-left: 50px;
+	text-align: left;
+}
 th, td {
 	text-align: center !important;
 	vertical-align: middle !important;
@@ -34,11 +89,22 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<div class="wrap">
-	<h2>거래 요청 목록</h2>
-		<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 표기되며, 거래완료 후에는 연락처가 표기되지않습니다.</font><br>
-		<font size="2">거래 수락 후 7일이 지난 거래는 완료로 자동 전환됩니다.</font>
-		<table border="1" class="w3-table w3-border w3-bordered" style="border-collapse: collapse;w">
+	<div class="cmain" align="center">
+		<div class="subMenu">
+			<ul>
+				<li class="menu1"><font style="line-height:100px;" size="5">회원 관리</font></li>
+				<li class="menu2"><a href="../user/list.child?mnum=${sessionScope.loginUser.mnum}">회원 정보</a></li>
+				<li class="menu2"><a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">작성글 목록</a></li>
+				<li class="active"><a href="../user/myMessageList.child?:mnum=${sessionScope.loginUser.mnum}">거래요청 목록</a></li>
+			</ul>
+		</div>
+		<div class="board">
+			<div style="margin-top: 30px; margin-bottom: 30px;">
+			<h3>거래 요청 목록</h3>
+			</div>
+			<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 표기되며, 거래완료 후에는 연락처가 표기되지않습니다.</font><br>
+			<font size="2">거래 수락 후 7일이 지난 거래는 완료로 자동 전환됩니다.</font>
+			<table border="1" class="w3-table w3-border w3-bordered" style="border-collapse: collapse;w">
 			<tr>
 				<th width="10%" style="padding-left:8px;">거래번호</th>
 				<th width="10%">거래 상태</th>
@@ -90,7 +156,8 @@ $(document).ready(function() {
 				</td>
 			</tr>
 			</c:forEach>
-		</table>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

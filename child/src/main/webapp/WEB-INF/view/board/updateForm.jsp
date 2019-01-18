@@ -448,6 +448,7 @@ th {
 							<c:if test="${!empty board.file1}"><a href="../file/${board.file1}">${board.file1}</a>&nbsp;
 								<input type="button" id="del1" value="첨부파일삭제"></c:if>
 							<c:if test="${empty board.file1}"><input type="file" name="multi1"></c:if>
+							<br><font size="2">이미지 파일만 첨부가능</font>
 						</td>
 					</tr>
 					<tr id="tr2" style="height: 30px;">
@@ -458,6 +459,7 @@ th {
 							<c:if test="${!empty board.file2}"><a href="../file/${board.file2}">${board.file2}</a>&nbsp;
 								<input type="button" id="del2" value="첨부파일삭제"></c:if>
 							<c:if test="${empty board.file2}"><input type="file" name="multi2"></c:if>
+							<br><font size="2">이미지 파일만 첨부가능</font>
 						</td>
 					</tr>
 					<tr id="tr3" style="height: 30px;">
@@ -466,6 +468,7 @@ th {
 							<c:if test="${!empty board.file3}"><a href="../file/${board.file3}">${board.file3}</a>&nbsp;
 								<input type="button" id="del3" value="첨부파일삭제"></c:if>
 							<c:if test="${empty board.file3}"><input type="file" name="multi3"></c:if>
+							<br><font size="2">이미지 파일만 첨부가능</font>
 						</td>
 					</tr>
 					<tr style="height: 30px;">
