@@ -10,11 +10,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script type="text/javascript">
-function list(pageNum) {
+/* function list(pageNum) {
 	location.href = "myBoard.child?mnum="+${user.mnum}+"&pageNum=" + pageNum;
 return true;
 } 
-
+ */
 function allchkbox(chk) {
 	var chks = document.getElementsByName("checkBoard"); 
 	for(var i=0; i<chks.length; i++) {
@@ -68,7 +68,7 @@ th {
 					<input type="submit" value="»èÁ¦" ><br><br>
 					</td></tr>
 			</form:form>
-		</table>
+		</table><%-- 
 		<div class="btns">
 				<c:if test="${pageNum > 1}">
 					<a href="javascript:list(${pageNum - 1})"><i
@@ -85,7 +85,7 @@ th {
 					&nbsp;<a href="javascript:list(${pageNum + 1})"><i
 						class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
 				</c:if>
-			</div>
+			</div> --%>
 	</div> 
 </body>
 </html>
