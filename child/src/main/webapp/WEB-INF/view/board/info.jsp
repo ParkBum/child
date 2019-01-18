@@ -152,9 +152,9 @@ function commentDelete(bnum, cnum){
 }
 
 function phonecheck() {
-   if (f.phone1.value.length == 3){      
-      if (f.phone2.value.length == 4) {
-         if (f.phone3.value.length == 4) {
+   if (document.mf.phone1.value.length == 3){      
+      if (document.mf.phone2.value.length == 4) {
+         if (document.mf.phone3.value.length == 4) {
             alert("판매자에게 구매요청을 전송하였습니다.");
             return true;
          }
@@ -395,11 +395,9 @@ $(function() {
 				</tr>
 
 				<!--  구매요청  -->
-				<c:if
-					test="${board.bType == 3 && board.head == 2 && sessionScope.loginUser.mnum != board.mnum }">
+				<c:if test="${board.bType == 3 && board.head == 2 && sessionScope.loginUser.mnum != board.mnum }">
 					<tr>
-						<td colspan="2"
-							style="text-align: center; border-top: hidden; padding: 30px;">
+						<td colspan="2" style="text-align: center; border-top: hidden; padding: 30px;">
 						<c:if test="${deal != 3}">
 							<input type="button" value="구매요청" name="buy"
 								onclick="document.getElementById('id01').style.display='block'" />
@@ -407,7 +405,7 @@ $(function() {
 						<c:if test="${deal == 3}">
 							<input type="button" value="구매완료" disabled="disabled">
 						</c:if>
-							<form action="buyItem.child" method="Post" name="f"
+							<form action="buyItem.child" method="Post" name="mf"
 								onsubmit="return phonecheck()">
 								<input type="hidden" name="bnum" value="${board.bnum }">
 								<input type="hidden" name="sellnum" value="${board.mnum }">

@@ -70,7 +70,8 @@ $(document).ready(function() {
 				${msg.board.subject}</a></td>
 				<td>${msg.user.nickname}&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px;">phone_iphone</i>${msg.phone}</c:if></td>
 				<td>
-				<c:if test="${msg.deal == 0}">
+				${msg.boarddeal }
+				<c:if test="${msg.deal == 0 && msg.boarddeal == 0}">
 					<a href="${path}/user/dealYes.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">수락</a>&nbsp;<a href="${path}/user/dealNo.child?msgnum=${msg.msgnum}" type="button" class="w3-button w3-small">거절</a>
 				</c:if>
 				<c:if test="${msg.deal == 1}">
