@@ -88,7 +88,6 @@ public class BoardController {
 		Date date = new Date();
 		Board board = service.getBoard(bnum);
 		service.readcntAdd(bnum);//조회수 증가
-		List<Message> messageList = service.messageList(bnum);
 		board.setContent(board.getContent().replaceAll("\r\n", "<br>"));
 		// 댓글 10개 넘어가면 다음페이지로 넘기기
 		if (pageNum == null || pageNum.toString().equals("")) {
@@ -108,9 +107,10 @@ public class BoardController {
 			c.setNickname(service.getNickName(c.getMnum()));
 		}
 		
-		int deal = service.getBoardDeal(bnum);
+		List<Message> messageList = service.messageList(bnum);
 		
-		mav.addObject("deal", deal);
+		board.setBoarddeal(service.getBoardDeal(bnum));
+		
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("maxpage", maxpage);
 		mav.addObject("startpage", startpage);

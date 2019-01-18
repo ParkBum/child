@@ -332,16 +332,16 @@ $(function() {
 			<table style="border-collapse: collapse; width: 100%;"
 				class="w3-table w3-border w3-bordered">
 				<tr style="height: 30px;">
-					<td width="15%" style="text-align: center;">작성자</td>
+					<td width="15%" style="text-align: center; padding-left:8px;">작성자</td>
 					<td width="90%">&nbsp;${board.nickname} <c:if
 							test="${board.bType == 3}">
-							<c:set var="cnt" value="0" />
+							<c:set var="flag" value="0" />
 							<c:forEach items="${messageList}" var="msg">
 								<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
-									<c:set var="cnt" value="${cnt + 1}" />
+									<c:set var="flag" value="${flag + 1}" />
 								</c:if>
 							</c:forEach>
-							<c:if test="${cnt > 0}">
+							<c:if test="${flag > 0}">
 						&nbsp;<img src="${path}/decorator/siren.png" id="siren"
 									style="cursor: pointer;">
 								<font id="addred" size="1" color="red"><b>신고완료</b></font>
@@ -349,7 +349,7 @@ $(function() {
 						</c:if></td>
 				</tr>
 				<tr style="height: 30px;">
-					<td style="text-align: center;">제목</td>
+					<td style="text-align: center; padding-left:8px;">제목</td>
 					<td>&nbsp;[<c:if test="${board.bType == 1}">
                            ${(board.head==1)?"육아꿀팁":"시설추천"}</c:if> <c:if
 							test="${board.bType == 3}">
@@ -363,7 +363,7 @@ $(function() {
 				</tr>
 				<c:if test="${board.bType == 2}">
 					<tr style="height: 30px;">
-						<th style="text-align: center;">별점</th>
+						<th style="text-align: center; padding-left:8px;">별점</th>
 						<td style="padding-left: 5px;">
 							<div class="starRev">
 								<span class="starR1" id="left1">별1_왼쪽</span> <span
@@ -379,16 +379,16 @@ $(function() {
 					</tr>
 				</c:if>
 				<tr>
-					<td style="text-align: center; height: 400px;">내용</td>
+					<td style="text-align: center; height: 400px; padding-left:8px;">내용</td>
 					<td>
 						<table width="100%" height="100%">
 							<tr>
-								<td>&nbsp;${board.content}</td>
+								<td style="padding-left:8px;">&nbsp;${board.content}</td>
 							</tr>
 							<c:if
 								test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
 								<tr>
-									<td>&nbsp; <c:if test="${!empty board.file1}">
+									<td style="padding-left:8px;">&nbsp; <c:if test="${!empty board.file1}">
 											<img src="${path}/file/${board.file1}"
 												style="width: 150px; height: 150px;">
 										</c:if>&nbsp; <c:if test="${!empty board.file2}">
@@ -411,11 +411,26 @@ $(function() {
 					<tr>
 						<td colspan="2"
 							style="text-align: center; border-top: hidden; padding: 30px;">
-							<c:if test="${deal != 3}">
-								<input type="button" value="구매요청" name="buy"
-									onclick="document.getElementById('id01').style.display='block'" />
-							</c:if> <c:if test="${deal == 3}">
-								<input type="button" value="구매완료" disabled="disabled">
+							<c:if test="${board.boarddeal == 0}">
+							<c:set var="flag" value="0" />
+							<c:forEach items="${messageList}" var="msg">
+								<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
+									<c:set var="flag" value="${flag + 1}" />
+								</c:if>
+							</c:forEach>
+							<c:if test="${flag > 0}">
+								<input type="button" value="요청중" class="w3-disabled">
+							</c:if>
+							<c:if test="${flag == 0}">
+							<input type="button" value="구매요청" name="buy"
+									onclick="document.getElementById('id01').style.display='block'">
+							</c:if>
+							</c:if>
+							<c:if test="${board.boarddeal == 1}">
+								<input type="button" value="거래중" class="w3-disabled">
+							</c:if>
+							<c:if test="${board.boarddeal == 2}">
+								<input type="button" value="거래완료" class="w3-disabled">
 							</c:if>
 							<form action="buyItem.child" method="Post" name="mf"
 								onsubmit="return phonecheck()">
@@ -459,7 +474,7 @@ $(function() {
 					</tr>
 				</c:if>
 				<tr>
-					<td colspan="2" style="text-align: center; height: 30px;"><c:if
+					<td colspan="2" style="text-align: center; height: 30px; padding-left:8px;"><c:if
 							test="${sessionScope.loginUser.mnum == board.mnum || sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 							<input type="button" id="update" value="수정">
 							<input type="button" id="delete" value="삭제">
@@ -467,7 +482,7 @@ $(function() {
 				</tr>
 				<!-- 댓글작성 -->
 				<tr style="height: 30px;">
-					<td style="text-align: center;">댓글</td>
+					<td style="text-align: center; padding-left:8px;">댓글</td>
 					<td><form:form action="commentWrite.child" method="Post"
 							modelAttribute="comment" name="f" onsubmit="return comment()">
 							<input type="hidden" name="bnum" value="${board.bnum}">
@@ -487,7 +502,7 @@ $(function() {
 				<c:forEach var="c" items="${commentList}"
 							varStatus="stat">
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="padding-left:8px;">
 							<div>
 							<!-- 비댓이면 자물쇠표시 -->
 								<c:if test="${c.secret == 1}">
