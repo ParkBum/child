@@ -348,7 +348,7 @@ th {
 						<th style="text-align: center;">제목</th>
 						<td style="vertical-align: middle;">
 							<c:if test="${board.bType != 2 }">
-								<select name="head" style="width: 20%;">
+								<select name="head">
 									<option value="">선택하세요</option>
 									<c:if test="${board.bType == 1}">
 										<c:if test="${board.head == 1}">
@@ -372,7 +372,7 @@ th {
 									</c:if>
 								</select>
 									<c:if test="${board.bType == 3}">
-								<select name="mkinds" style="width:20%">
+								<select name="mkinds">
 										<c:if test="${board.mkinds == 1}">
 											<option value="1" selected="selected">완구</option>
 											<option value="2">도서</option>
@@ -412,7 +412,7 @@ th {
 								<option value="${board.code}" selected="selected">${board.dcname}</option>
 							</select>
 							</c:if>
-							&nbsp;<form:input path="subject" style="width:77%;border:0;"
+							&nbsp;<form:input path="subject" style="width:500px;border:0;"
 								value="${board.subject}" /> <font color="red"><form:errors
 									path="subject" /></font>
 					</tr>

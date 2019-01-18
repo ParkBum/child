@@ -181,7 +181,7 @@
 						name="filterType" id="filterType" onchange="this.form.submit();" class="w3-border">
 						<option value="">전체</option>
 						<option value="1">육아꿀팁</option>
-						<option value="2">추천장소</option>
+						<option value="2">시설추천</option>
 					</select>&nbsp;
 					<script type="text/javascript">
 						if ('${param.filterType}' != '') {
