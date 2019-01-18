@@ -181,7 +181,7 @@
 						name="filterType" id="filterType" onchange="this.form.submit();" class="w3-border">
 						<option value="">전체</option>
 						<option value="1">육아꿀팁</option>
-						<option value="2">추천장소</option>
+						<option value="2">시설추천</option>
 					</select>&nbsp;
 					<script type="text/javascript">
 						if ('${param.filterType}' != '') {
@@ -195,7 +195,7 @@
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<c:if test="${listcount > 0}">
 						<tr>
-							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="8%" height="26" style="text-align:center; padding-left:8px;">번호</th>
 							<th width="50%" height="26" style="text-align:center">제목</th>
 							<th width="14%" height="26" style="text-align:center">글쓴이</th>
 							<th width="17%" height="26" style="text-align:center">날짜</th>
@@ -205,7 +205,7 @@
 							<tr align="center" valign="middle" bordercolor="#333333"
 								onmouseover="this.style.backgroundColor='#FFF1F5'"
 								onmouseout="this.style.backgroundColor=''">
-								<td height="23" style="text-align:center">${boardcnt}</td>
+								<td height="23" style="text-align:center; padding-left:8px;">${boardcnt}</td>
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
 								<td>
 									<c:if test="${!empty sessionScope.loginUser}">
@@ -226,14 +226,14 @@
 					</c:if>
 					<c:if test="${listcount == 0}">
 						<tr>
-							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="8%" height="26" style="text-align:center; padding-left:8px;">번호</th>
 							<th width="50%" height="26" style="text-align:center">제목</th>
 							<th width="14%" height="26" style="text-align:center">글쓴이</th>
 							<th width="17%" height="26" style="text-align:center">날짜</th>
 							<th width="11%" height="26" style="text-align:center">조회</th>
 						</tr>
 						<tr>
-							<td colspan="5">등록된 게시물이 없습니다.</td>
+							<td colspan="5" style="padding-left:8px;">등록된 게시물이 없습니다.</td>
 						</tr>
 					</c:if>
 				</table>

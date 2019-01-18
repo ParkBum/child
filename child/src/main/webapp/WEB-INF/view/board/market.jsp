@@ -205,7 +205,7 @@
 				<table border="1" style="border-collapse: collapse; width: 100%;" class="w3-table w3-border w3-bordered">
 					<c:if test="${listcount > 0}">
 						<tr>
-							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="8%" height="26" style="text-align:center; padding-left:8px;">번호</th>
 							<th width="50%" height="26" style="text-align:center">제목</th>
 							<th width="14%" height="26" style="text-align:center">글쓴이</th>
 							<th width="17%" height="26" style="text-align:center">날짜</th>
@@ -215,14 +215,14 @@
 							<tr align="center" valign="middle" bordercolor="#333333"
 								onmouseover="this.style.backgroundColor='#FFF1F5'"
 								onmouseout="this.style.backgroundColor=''">
-								<td height="23" style="text-align:center">${boardcnt}</td>
+								<td height="23" style="text-align:center; padding-left:8px;">${boardcnt}</td>
 								<c:set var="boardcnt" value="${boardcnt - 1}" />
 								<td><a href="info.child?bnum=${board.bnum}"
 									style="text-decoration: none;">
 									<input type="hidden" name="pageNum" value="1">
 									&nbsp;[${(board.head==1)?"삽니다":"팝니다"}]
-									&nbsp;[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
-									&nbsp;${board.subject}</a>
+									[${(board.mkinds==1)?"완구":(board.mkinds==2?"도서":(board.mkinds==3?"의류":"기타"))}]
+									${board.subject}&nbsp;&nbsp;<font size="2" color="blue">${(board.boarddeal == 2)?"거래완료":""}</font></a>
 									<c:if test="${board.commentcnt != 0}">
 										<i class="fa fa-comment-o w3-margin-left"><font size="1" color="red">${board.commentcnt}</font></i>
 									</c:if>
@@ -236,14 +236,14 @@
 					</c:if>
 					<c:if test="${listcount == 0}">
 						<tr>
-							<th width="8%" height="26" style="text-align:center">번호</th>
+							<th width="8%" height="26" style="text-align:center; padding-left:8px;">번호</th>
 							<th width="50%" height="26" style="text-align:center">제목</th>
 							<th width="14%" height="26" style="text-align:center">글쓴이</th>
 							<th width="17%" height="26" style="text-align:center">날짜</th>
 							<th width="11%" height="26" style="text-align:center">조회</th>
 						</tr>
 						<tr>
-							<td colspan="5">등록된 게시물이 없습니다.</td>
+							<td colspan="5" style="padding-left:8px;">등록된 게시물이 없습니다.</td>
 						</tr>
 					</c:if>
 				</table>

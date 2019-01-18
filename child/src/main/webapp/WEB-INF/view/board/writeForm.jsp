@@ -205,6 +205,7 @@ th {
 			var check = confirm('등록하시겠습니까?');
 			var btype = $('input[name=bType]').val();
 			var head = $('select[name=head]').val();
+			var mkinds = $('select[name=mkinds]').val();
 			var gu = $('#gu').val();
 			var code = $('#code').val();
 			
@@ -220,10 +221,13 @@ th {
 					if (head.length == 0) {
 						alert("말머리를 선택하세요");
 						return false;
+					} else if(mkinds.length == 0){
+						alert("물품종류를 선택하세요");
+						return false;
 					} else {
 						return true;
 					}
-				}
+				} 
 			}
 			return false;
 		});
@@ -350,17 +354,17 @@ function nextselect(){
 						<th style="text-align: right;"><a href="#"><i
 								class="material-icons"
 								style="vertical-align: middle; float: left;" id="box1">add_box</i></a>첨부파일1&nbsp;</th>
-						<td><input type="file" name="multi1"></td>
+						<td><input type="file" name="multi1"><br><font size="2">이미지 파일만 첨부가능</font></td>
 					</tr>
 					<tr id="tr2" style="height: 30px;">
 						<th style="text-align: right;"><a href="#"><i
 								class="material-icons"
 								style="vertical-align: middle; float: left;" id="box2">add_box</i></a>첨부파일2&nbsp;</th>
-						<td><input type="file" name="multi2"></td>
+						<td><input type="file" name="multi2"><br><font size="2">이미지 파일만 첨부가능</font></td>
 					</tr>
 					<tr id="tr3" style="height: 30px;">
 						<th style="text-align: right;">첨부파일3&nbsp;</th>
-						<td><input type="file" name="multi3"></td>
+						<td><input type="file" name="multi3"><br><font size="2">이미지 파일만 첨부가능</font></td>
 					</tr>
 					<tr style="height: 30px;">
 						<td colspan="2" style="text-align: center;"><input
