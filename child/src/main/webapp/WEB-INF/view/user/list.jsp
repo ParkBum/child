@@ -11,7 +11,64 @@
 .cmain {
 	clear: both;
 	width: 1200px;
-	margin: 0 315px 315px 315px;
+	margin: 0 315px 0 315px;
+}
+
+.subMenu {
+	float: left;
+	width: 200px;
+	margin: 0 auto;
+	margin-bottom: 300px;
+	border-bottom: 2px solid #dddddd;
+}
+
+.subMenu ul, li {
+	margin: 0;
+	margin-bottom: 1px;
+	padding: 0;
+	list-style: none;
+}
+
+.subMenu a {
+	text-decoration: none;
+}
+
+.menu1 {
+	height: 100px;
+	background: #F6A5BC;
+	color: white;
+}
+
+.active {
+	display: block;
+	height: 40px;
+	background-color: #CE5B7C;
+	color: white;
+}
+.active a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.menu2 {
+	height: 40px;
+	background: #f7f7f7;
+}
+
+.menu2 a {
+	display: block;
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+}
+
+.board {
+	float: right;
+	width: 1000px;
+	padding-left: 50px;
+	text-align: left;
 }
 
 .btns {
@@ -58,32 +115,44 @@ function check(){
 </script>
 </head>
 <body>
-	<div class="cmain">
+	<div class="cmain" align="center">
+		<div class="subMenu">
+			<ul>
+				<li class="menu1"><font style="line-height:100px;" size="5">회원 관리</font></li>
+				<li class="active"><a href="../user/list.child?mnum=${sessionScope.loginUser.mnum}">회원 정보</a></li>
+				<li class="menu2"><a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">작성글 목록</a></li>
+				<li class="menu2"><a href="../user/myMessageList.child?:mnum=${sessionScope.loginUser.mnum}">거래요청 목록</a></li>
+			</ul>
+		</div>
+		<div class="board">
+		<div style="margin-top: 30px; margin-bottom: 30px;">
+		<h3>회원 정보 관리</h3>
+		</div>
 		<form action="list.child?mnum=${user.mnum}" method="Post">
 			<table border="1" style="border-collapse: collapse; width: 100%;"
 				class="w3-table w3-border w3-bordered">
 				<tr>
 					<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
-						<th colspan="2" style="text-align: center;">관리자 정보</th>
+						<th colspan="2" style="text-align: center; padding-left:8px;">관리자 정보</th>
 					</c:if>
 					<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
 						<th colspan="2" style="text-align: center;">회원 정보</th>
 					</c:if>
 				</tr>
 				<tr>
-					<th style="text-align: center;">닉네임</th>
+					<th style="text-align: center; padding-left:8px;">닉네임</th>
 					<td>${sessionScope.loginUser.nickname}</td>
 				</tr>
 				<tr>
-					<th style="text-align: center;">아이디(이메일)</th>
+					<th style="text-align: center; padding-left:8px;">아이디(이메일)</th>
 					<td>${sessionScope.loginUser.email}</td>
 				</tr>
 				<tr>
-					<th style="text-align: center;">우편번호</th>
+					<th style="text-align: center; padding-left:8px;">우편번호</th>
 					<td>${sessionScope.loginUser.addr1}</td>
 				</tr>
 				<tr>
-					<th style="text-align: center;">주소</th>
+					<th style="text-align: center; padding-left:8px;">주소</th>
 					<td>${sessionScope.loginUser.addr2}<c:if
 							test="${!empty sessionScope.loginUser.addr2}">, </c:if>
 						${sessionScope.loginUser.addr3}
@@ -162,11 +231,11 @@ function check(){
 				<table border="1" style="border-collapse: collapse; width: 100%"
 					class="w3-table w3-border w3-bordered">
 					<tr>
-						<th colspan="5" style="text-align: center;">회원 목록</th>
+						<th colspan="5" style="text-align: center; padding-left:8px;">회원 목록</th>
 					</tr>
 
 					<tr>
-						<th style="text-align: center;">회원번호</th>
+						<th style="text-align: center; padding-left:8px;">회원번호</th>
 						<th style="text-align: center;">아이디(이메일)</th>
 						<th style="text-align: center;">닉네임</th>
 						<th style="text-align: center;">경고</th>
@@ -174,7 +243,7 @@ function check(){
 					</tr>
 					<c:forEach items="${userlist}" var="user">
 						<tr>
-							<td style="text-align: center;">${user.mnum}</td>
+							<td style="text-align: center; padding-left:8px;">${user.mnum}</td>
 							<td>&nbsp;${user.email}</td>
 							<c:choose>
 								<c:when test="${user.red >= 3}">
@@ -195,6 +264,7 @@ function check(){
 				</table>
 			</form>
 		</c:if>
+		</div>
 	</div>
 </body>
 </html>
