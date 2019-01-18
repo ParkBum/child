@@ -26,14 +26,8 @@ public class Board {
 	private MultipartFile multi3; // 첨부파일 원본3
 	private double score; // 별점
 	private int commentcnt; // 댓글수(db엔 없고 여기만 추가)
-	private String mkinds;
-	/*
-	 * 1 : 완구
-	 * 2 : 도서
-	 * 3 : 의류
-	 * 4 : 기타
-	 */
-	
+	private String mkinds; // 거래물품종류(1:완구  2:도서  3:의류  4:기타)
+	private int boarddeal; // 게시글 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절). db저장X
 
 	public String getMkinds() {
 		return mkinds;
@@ -193,6 +187,14 @@ public class Board {
 
 	public void setCommentcnt(int commentcnt) {
 		this.commentcnt = commentcnt;
+	}
+
+	public int getBoarddeal() {
+		return boarddeal;
+	}
+
+	public void setBoarddeal(int boarddeal) {
+		this.boarddeal = boarddeal;
 	}
 
 }

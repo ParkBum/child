@@ -52,9 +52,9 @@
 #chartarea {
 /* 	width: 900px;
 	height: 500px;
- */	border: solid 2px silver;
-	margin-left: 100px;
-	margin-bottom: 70px;
+ 	border: solid 2px silver;*/
+	margin-left: 350px;
+/*	margin-bottom: 70px;*/
 }
 /* #mapchart {
 	margin-left: 50px;
@@ -149,6 +149,9 @@
 .svg1 .municipality-label{
   stroke: #333; 
 }
+.svg2{
+    margin-left: -100;
+}
 
 .toolTip {
     position: absolute;
@@ -174,11 +177,14 @@
 <div id="chartarea" style="display: inline-flex;" align="center">
 <div id="mapchart"></div> 
 <div id="piechart" style="width: 600">
-	<a href="../map/map.child" id="maplink">
-	<img src="../decorator/seoulsearch.png" alt="어린이집 검색"
-					style="width: 750px; height: 445px;"></a>
+	<!-- <a href="../map/map.child" id="maplink"> -->
+	<!-- <img src="../decorator/seoulsearch.png" alt="어린이집 검색"
+					style="width: 750px; height: 445px;"></a> -->
 	<!-- <div class="tooltip2">
 	</div> -->
+	<div>
+	
+	</div>
 	<svg class="svg2">
 	</svg>
 	</div>
@@ -203,10 +209,8 @@ function makepiechart(data,selectguname){
             console.log(error);
             throw error;
         }
-        console.log(data)
-        
      // topojson의 properties.SIG_CD
-	var width = 800, height = 500, radius = Math.min(width, height) /3 ;
+	var width = 600, height = 500, radius = Math.min(width, height) /3 ;
 	var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
      .attr("width", width)
      .attr("height", height) 
@@ -297,26 +301,27 @@ function makepiechart(data,selectguname){
 		 	.attr('font-size', '3em')
 		 	.attr('y', 20)
 		 	.text(selectguname);
-	    	
-		
 		svg.append("text")
 			.attr("text-anchor", "middle")
-		 	.attr('font-size', '2em')
-		 	.attr('y', 230)
-	    	.text("합계:" + seoul.seoul[i].total);
-		
+	 		.attr('font-size', '3.5em')
+	 		.attr('y', -200)
+    		.text("구별 어린이집 현황");
 	 	//성공했던 코드...
+	 	
 	 	 g.append("text")
 	    	.attr("transform", function(d) {
 	        var _d = arc.centroid(d);
-	        _d[0] *= 1.5;	//multiply by a constant factor
-	        _d[1] *= 1.5;	//multiply by a constant factor
+	        _d[0] *= 1;	//multiply by a constant factor
+	        _d[1] *= 1;	//multiply by a constant factor
 	        return "translate(" + _d + ")";
 	      })
-	      .attr("dy", ".50em")
+	      .attr("dy", ".40em")
 	      .style("text-anchor", "middle")
 	      .text(function(d,i) {
-	        return kind[i] + ":" + piedatas[i].value;
+	    	if(piedatas[i].value==0){
+	    		piedatas[i].value = "";
+	    	}
+	        return piedatas[i].value;
 	      });
 	 	}
     
@@ -326,33 +331,26 @@ function makepiechart(data,selectguname){
 
 </script>
 <script>
-    
-    
-var width = 800, height = 600;
-
+var width = 600, height = 460;
 var svg = d3.select("#mapchart").append("svg")
 	.attr("class","svg1")
     .attr("width", width)
     .attr("height", height);
-
 var projection = d3.geo.mercator()
     .center([126.9895, 37.5651])
-    .scale(100000)
+    .scale(70000)
     .translate([width/2, height/2]);
-
 var quantize = d3.scale.quantize()
     .domain([1, 1000])
     .range(d3.range(9).map(function(i) { return "p" + i; }));
 /* var popByName = d3.map(); */
 var path = d3.geo.path().projection(projection);
-
+var width2 = 300, height2 = 100;
 var map = svg.append("g")
 			.attr("id", "map")
-			.attr("width", width)
-			.attr("height", height);
+			.attr("width", width2)
+			.attr("height", height2);
     //places = svg.append("g").attr("id", "places");
-
-
 d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, data) {
   var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
   
@@ -369,9 +367,9 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
       .attr("id",function(d){
         return d.properties.SIG_CD
       })
-      .style("fill","#E89923")
+      .style("fill","#8CD790")
       .on("mouseover",function(d){
-    	 d3.select(this).style("fill","red");
+    	 d3.select(this).style("fill","#30A9DE");
        //d3.select(this).style("마우스 포인터 변경");
       })
       .on("click",function(d){
@@ -379,10 +377,10 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
     	 $( '#maplink' ).hide();
       })
       .on("mouseout",function(){
-    	  d3.select(this).style("fill","#E89923");
+    	  d3.select(this).style("fill","#8CD790");
       });
       
-  map.selectAll("text")
+  map.selectAll("text")	//글자넣는 구간
       .data(features)
       .enter().append("text")
       .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })

@@ -10,7 +10,6 @@ public class Message {
 	private String phone; // 휴대폰 번호
 	private int deal; // 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절)
 	private Date msgdate; // 요청 수락 날짜
-	private int boarddeal; // 게시글 거래상태 (0:대기중 1:거래중 2:거래완료 3:구매요청거절). db저장X
 	private Board board; // 구매 게시글 정보
 	private User User; // 구매 요청 회원 정보
 
@@ -85,12 +84,5 @@ public class Message {
 	public void setUser(User user) {
 		User = user;
 	}
-
-	public int getBoarddeal() {
-		return boarddeal;
-	}
-
-	public void setBoarddeal(int boarddeal) {
-		this.boarddeal = boarddeal;
-	}
+	
 }
