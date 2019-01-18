@@ -145,10 +145,11 @@ function rechkSecret(){
 }
 
 function comment(){
-	var check = confirm("댓글을 등록하시겠습니까?");
-	if(check){ 
-		return true;
-	} else return false;
+	if(f.com.value.length == 0){
+		alert("내용을 입력하세요");
+		return false;
+	} else return true;
+	
 } 
 
 function commentDelete(bnum, cnum){
@@ -458,7 +459,7 @@ $(function() {
 				</c:if>
 				<tr>
 					<td colspan="2" style="text-align: center; height: 30px;"><c:if
-							test="${sessionScope.loginUser.mnum == board.mnum}">
+							test="${sessionScope.loginUser.mnum == board.mnum || sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 							<input type="button" id="update" value="수정">
 							<input type="button" id="delete" value="삭제">
 						</c:if> <input type="button" id="list" value="목록"></td>
@@ -471,20 +472,21 @@ $(function() {
 							<input type="hidden" name="bnum" value="${board.bnum}">
 							<input type="hidden" name="mnum" value="${loginUser.mnum}">
                     	 댓글 작성자 : ${sessionScope.loginUser.nickname}
-               <form:textarea path="recomment"
+               <form:textarea path="recomment" id="com"
 								style="width:100%;height:100px;border:0;resize:none;"
 								placeholder="댓글을 입력하세요."></form:textarea>
 							<div align="right">
 								<input type="checkbox" name="secret" id="secret" value="0"
-									onchange="chkSecret()">비밀댓글&nbsp; <input type="submit"
-									value="등록">
+									onchange="chkSecret()">비밀댓글&nbsp; 
+									<input type="submit" value="등록">
 							</div>
 						</form:form></td>
 				</tr>
 				<!-- --------------------------------------------------------------------------------------------------------- -->
-				<tr>
-					<td colspan="2"><c:forEach var="c" items="${commentList}"
+				<c:forEach var="c" items="${commentList}"
 							varStatus="stat">
+				<tr>
+					<td colspan="2">
 							<div>
 							<!-- 비댓이면 자물쇠표시 -->
 								<c:if test="${c.secret == 1}">
@@ -569,52 +571,6 @@ $(function() {
 							</div>
 							</div>
 								</div>
-
-						<%-- 	<!-- 댓글 출력-->
-							 <div id="recontent${stat.index}">
-								<div id="recomment${stat.index}" style="display: block;">
-									<c:if test="${c.refstep>0}"> <!-- 대댓글인경우 -->
-										<div style="margin-left: 3%">
-										<c:choose>
-											<c:when test="${c.secret == 1}">
-										<c:choose>
-											<c:when
-												test="${c.mnum == sessionScope.loginUser.mnum || 
-                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
-                           					${c.recomment}
-                           					</c:when>
-											<c:otherwise>
-                           						※비밀댓글입니다.
-                           					</c:otherwise>
-											</c:choose>
-										</c:when>
-										<c:otherwise>
-										${c.recomment}
-										</c:otherwise>
-									</c:choose>
-									</div>
-									</c:if>
-										</div>
-
-									<c:if test="${c.secret == 1}">
-										<c:choose>
-											<c:when
-												test="${c.mnum == sessionScope.loginUser.mnum || 
-                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
-                           					${c.recomment}
-                           					</c:when>
-											<c:otherwise>
-                           						※비밀댓글입니다.
-                           					</c:otherwise>
-										</c:choose>
-									</c:if>
-
-									<c:if test="${c.refstep==0 && c.secret == 0}">
-                           	${c.recomment}
-                           </c:if>
-									<br>
-								</div>  --%>
-								
 							<!-- 수정버튼 눌리고 댓글수정창 나옴-->
 							<div id="recommentupd${stat.index}" style="display: none">
 								<form:form action="commentUpdate.child" method="Post"
@@ -653,9 +609,9 @@ $(function() {
 								</div>
 							</div>
 							<!--대댓글 -->
-							<hr>
-						</c:forEach></td>
-				</tr>
+							<br>
+						</td>
+				</tr></c:forEach>
 			</table>
 			<div class="btns">
 				<c:if test="${pageNum > 1}">
