@@ -98,6 +98,10 @@ function deleteCheck(){
 	margin: 30px 500px 0px 500px;
 }
 
+th {
+	background-color: #f7f7f7;
+}
+
 th, td {
 	text-align: center !important;
 	vertical-align: middle !important;
@@ -131,11 +135,11 @@ a {
 			<table  border="1" style="border-collapse: collapse;" class="w3-table w3-border w3-bordered">
 				<tr>  
 					<th width="7%" style="padding-left:8px;">전체&nbsp;<input type="checkbox" name="allchk" onchange="allchkbox(this)"></th> 
-					<th width="6%">글번호</th>
+					<th width="7%">글번호</th>
 					<th width="7%">게시판</th>
 					<th width="45%">제목</th>
 					<th width="7%">댓글 수</th>
-					<th width="13%">작성 날짜</th>
+					<th width="12%">작성 날짜</th>
 					<th width="15%">비고</th>
 				</tr>
 				<c:forEach items="${myboard}" var="myboard">

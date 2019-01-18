@@ -73,6 +73,11 @@
 	padding-left: 50px;
 	text-align: left;
 }
+
+th {
+	background-color: #f7f7f7;
+}
+
 th, td {
 	text-align: center !important;
 	vertical-align: middle !important;

@@ -75,6 +75,10 @@
 	margin: 30px;
 	text-align: right;
 }
+
+th {
+	background-color: #f7f7f7;
+}
 </style>
 <script type="text/javascript">
 function delcheck(){
