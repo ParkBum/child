@@ -11,7 +11,7 @@
 <style type="text/css">
 .loginForm {
 	border-radius: 5px;
-	margin: 18% auto;
+	margin: 5% auto;
 	width: 25%;
 	background-color: #f2f2f2;
 	text-align: center;
@@ -57,24 +57,6 @@ input[type=submit]:hover, input[type=button]:hover {
 					</c:forEach>
 				</font>
 			</spring:hasBindErrors>
-			<%-- 		<table style="">
-			<tr height="40px">
- 				<td>이메일</td> 
-				<td><form:input path="email" placeholder="아이디(e-mail)을 입력하세요"/><font color="red"> 
-				<form:errors path="email" /></font></td>
-			</tr>
-			<tr height="40px">
-				<td>비밀번호</td> 
-				<td><form:password path="password" placeholder="비밀번호를 입력하세요"/> <font color="red">
-						<form:errors path="password" />
-				</font></td>
-			</tr>
-			<tr height="40px">
-				<td colspan="2" align="center"><input type="submit" value="로그인"></td></tr>
-			<tr height="40px">
-				<td colspan="2" align="center"><input type="button" value="회원가입" onclick="location.href='userEntry.child'"></td>
-			</tr>
-		</table> --%>
 			<div class="inner">
 				<div class="inin">
 					<img src="../decorator/lock.png" width="50px" height="50px"
