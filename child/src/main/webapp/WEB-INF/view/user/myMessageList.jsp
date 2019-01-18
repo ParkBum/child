@@ -100,7 +100,7 @@ $(document).ready(function() {
 				<li class="menu1"><font style="line-height:100px;" size="5">회원 관리</font></li>
 				<li class="menu2"><a href="../user/list.child?mnum=${sessionScope.loginUser.mnum}">회원 정보</a></li>
 				<li class="menu2"><a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">작성글 목록</a></li>
-				<li class="active"><a href="../user/myMessageList.child?:mnum=${sessionScope.loginUser.mnum}">거래요청 목록</a></li>
+				<li class="active"><a href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">거래요청 목록</a></li>
 			</ul>
 		</div>
 		<div class="board">
