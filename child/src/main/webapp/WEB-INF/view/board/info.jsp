@@ -123,6 +123,7 @@ function list(pageNum) {
 		location.href = "info.child?bnum="+${board.bnum}+"&pageNum=" + pageNum;
 	return true;
 } 
+
 function chkSecret(){
 	var secret = document.f.secret.value;
 	if($("#secret").is(":checked")){
@@ -135,14 +136,12 @@ function chkSecret(){
 }
 
 function rechkSecret(){
-	var secret = document.recomf.secret.value;
-	if($("#secret").is(":checked")){
-		secret = 1;
-		document.recomf.secret.value = secret;
+	var secret = document.recomf.resecret.value;
+	if($("#resecret").is(":checked")){
 		return true;
 	}else {
 		return true;
-	}
+	} 
 }
 
 function comment(){
@@ -644,7 +643,7 @@ $(function() {
 											style="width:80%;height:100px;border:0;resize:none;"
 											placeholder="댓글을 입력하세요."></form:textarea>
 										<div align="right">
-											<input type="checkbox" name="secret" id="secret" value="0"
+											<input type="checkbox" name="secret" id="resecret" value="1"
 												onchange="rechkSecret()">비밀댓글&nbsp; 
 												<input type="submit" value="등록"> 
 												<input type="button" id="x" value="취소"
@@ -653,8 +652,6 @@ $(function() {
 									</form:form>
 								</div>
 							</div>
-							<%-- </c:otherwise>
-               </c:choose> --%>
 							<!--대댓글 -->
 							<hr>
 						</c:forEach></td>
