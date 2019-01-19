@@ -156,6 +156,7 @@ public class UserController {
 		if (br.hasErrors()) {
 			mav.getModel().putAll(br.getModel());
 			mav.setViewName("user/userForm");
+			//alert창 띄우고 유효성 검증은 그대로....
 			return mav;
 		}
 		try {

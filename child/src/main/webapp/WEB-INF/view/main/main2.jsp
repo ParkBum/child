@@ -50,7 +50,7 @@
 </script>
 <style type="text/css">
 #chartarea {
-    width: 1200px;
+    width: 1190px;
 	height: 600px;/*
  	border: solid 2px silver;*/
 	margin-left: 300px;
@@ -58,7 +58,8 @@
 
 }
 
-/* #mapchart {
+/* 
+#mapchart {
 	margin-left: 50px;
 }
  */
@@ -485,13 +486,14 @@ gradient.append("svg:stop")
 								</div>
 							</div>
 						</div>
+						
 						<ul class="mainimage2">
-							<li><a class="a1" href="../board/list.child?bType=1"><span
-									class="tit">자유게시판</span></a></li>
+							<li><a class="a1" href="../board/list.child?bType=1">
+							<span class="tit" style="font-size: 16px;">자유게시판</span></a></li>
 							<li><a class="a2" href="../board/list.child?bType=2"><span
-									class="tit">후기게시판</span></a></li>
+									class="tit" style="font-size: 16px;">후기게시판</span></a></li>
 							<li><a class="a3" href="../board/list.child?bType=3"><span
-									class="tit">거래게시판</span></a></li>
+									class="tit" style="font-size: 16px;">거래게시판</span></a></li>
 						</ul>
 						<div class="mainimage3">
 							<iframe style="height: 200px;"
