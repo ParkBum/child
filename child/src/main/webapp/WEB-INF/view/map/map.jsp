@@ -228,9 +228,8 @@ option {
 		var markers = [];
 		var infos = [];
 		var codes =[];
-		var is = [];
 </script>
-<c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
+<c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1.5km내 가까운 곳부터 20개 출력 -->
 <script>
 $(document).ready(function() { 
 	var geocoder = new daum.maps.services.Geocoder();
@@ -270,16 +269,14 @@ $(document).ready(function() {
 							}); 
 						infos.push(infowindow);
 						markers.push(marker);
-						codes.push(data.autoMarkerList[i].code);
-						is.push(i);
         				map.setCenter(coords);	 
         			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
         			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
-        			    (function(marker, infowindow, codes,is) { 
+        			    (function(marker, infowindows) { 
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
-        			        	graph(codes[is]);
+        			        	graph();
         			            infowindow.open(map, marker);
         			        });
 
@@ -305,7 +302,7 @@ $(document).ready(function() {
 })
 </script>
 </c:if>
-<script>
+<script>//검색 조회 후 출력되는 값
 		$("#searchs").click(function() {
 			var gu = $("#gu").val();
 			var type = $("#type").val();
@@ -326,7 +323,6 @@ $(document).ready(function() {
 					}
 					hideMarkers();
 					for (var i = 0; i < data.daycarelist.length; i++) {
-						
 						var Map = map;
 						var coords = new daum.maps.LatLng(
             					data.daycarelist[i].lat,data.daycarelist[i].lon		
@@ -372,8 +368,6 @@ $(document).ready(function() {
 					        infowindow.close();
 					    };
 					}
-
-
 				}
 			});
 		})
