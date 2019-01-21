@@ -35,17 +35,6 @@ input[type=text], input[type=password] {
 	border-radius: 4px;
 }
 
-input[type=submit]{
-	padding: 10px;
-	maring: 8px 0;
-	border-radius: 4px;
-	cursor: pointer;
-	background-color: white;
-	width: 100%;
-	margin-top: 10px;
-	width: 210.667px;
-	
-}
 input[type=button] {
 	padding: 10px;
 	maring: 8px 0;
@@ -56,10 +45,21 @@ input[type=button] {
 }
 
 input[type=submit]:hover{ 
-
-	background-color: #F6A5BC;
+	background-color: white;
+	color:pink;
 }
-input[type=button]:hover {
+input[type=submit]{
+  background:pink;
+  margin: 8px 0;
+  padding: 10px;
+  margin-top: 10px;
+  color:#fff;
+  border:none;
+  position:relative;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  width: 210.667px;
 }
 .Row {
   margin-bottom: 6px;
@@ -134,9 +134,10 @@ padding-left:0px;
 					<form:password path="login_password" placeholder="비밀번호"	border="solid 1px black" />
 					<br>
 					<font color="red"> <form:errors path="login_password" /></font>
+				</div>
+				<div class="inin">
 				<input type="submit" value="로그인" >
 				</div>
-				
 				<ul>
 			<li class="Row horizontalRow">
               <div class="horizontalText">또는</div>
