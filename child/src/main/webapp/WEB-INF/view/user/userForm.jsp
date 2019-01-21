@@ -183,7 +183,7 @@ input[type=reset]:hover {
 }
 
 button{
-  background:#1AAB8A;
+  background:pink;
   color:#fff;
   border:none;
   position:relative;
@@ -194,7 +194,7 @@ button{
 
 
 input[type=submit],input[type=reset]{
-  background:#1AAB8A;
+  background:pink;
   color:#fff;
   border:none;
   position:relative;
@@ -208,7 +208,8 @@ input[type=submit],input[type=reset]{
 
 input[type=submit]:hover,input[type=reset]:hover{
   background:#fff;
-  color:#1AAB8A;
+  /* color:#1AAB8A; */
+  color:pink;
 }
 
 input[type=submit]:before,input[type=submit]:after,input[type=reset]:before,input[type=reset]:after{
@@ -218,7 +219,7 @@ input[type=submit]:before,input[type=submit]:after,input[type=reset]:before,inpu
   right:0;
   height:2px;
   width:0;
-  background: #1AAB8A;
+  background: pink;
   transition:400ms ease all;
 }
 input[type=submit]:after,input[type=reset]:after{
@@ -246,12 +247,11 @@ input[type=submit]:hover:before,input[type=submit]:hover:after, input[type=reset
 			</spring:hasBindErrors>
 			<div>
 			<div style="color: white; width: 100%; background-color: pink; border-top-radius:4px; ">
-				<h2 style="font-family: 'Sunflower', sans-serif; text-align: center; margin-top: 0px; height: 70px; padding-top: 14px;">
-				어집프</h2>
+				<!-- <h2 style="font-family: 'Sunflower', sans-serif; text-align: center; margin-top: 0px; height: 70px; padding-top: 14px;">
+				어린이 집마련 프로젝트</h2> -->
 			</div>
 			<div class="inin">
-			
-			<h2 style="text-align: left;"><b>Sign Up</b></h2>
+			<h2 style="text-align: center;"><b>Sign Up</b></h2>
 				<div class="formfont" style="text-align: left;">이메일</div>
 				<c:if test="${entryUser != null}">
 					<form:input path="email" id="email" name="email" value="${entryUser.email}"	readonly="readonly" />
