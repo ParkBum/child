@@ -172,6 +172,7 @@ body {
 						<li class="right"><a href="${path}/user/userForm.child"
 							style="margin-left: -4px;" title="회원가입">회원가입</a></li>
 					</c:if>
+					
 					<c:if test="${empty sessionScope.loginUser}">
 						<li class="right" style="margin-right: 50px;"><a
 							href="${path}/user/loginForm.child"
