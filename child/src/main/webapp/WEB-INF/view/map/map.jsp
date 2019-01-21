@@ -180,8 +180,7 @@ option {
 				<div id="map" style="width: 100%; height: 100%; margin: 10px 0"
 					align="center"></div>
 				<div class="bar1" style="height:285px;  margin-top:10px; border:solid 1px #ccc; ">
-				<h3 id="text1" style="position:relative; padding-top:125px; padding-bottom:125px; z-index:3; margin:0;">구별 영유아 정/현원 차트 부분</h3>
-		  		<svg class="legends" style=" position:relative; z-index:2;"></svg>
+	  		<svg class="legends" style=" position:relative; z-index:2;"></svg>
 		    <div class="tooltip3" style=" z-index:3;"></div>
 				<svg class="svg3" style=" position:relative; top:-20px; z-index:2;"></svg>
 			<div class="tooltip2" style=" z-index:3;"></div>
