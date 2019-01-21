@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>관리자 정보</title>
+<title>관리자 정보</title> 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="${path}/css/total.css">
 <style type="text/css">

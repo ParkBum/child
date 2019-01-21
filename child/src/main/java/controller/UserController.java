@@ -81,7 +81,8 @@ public class UserController {
 		mav.addObject("userlist", userList);
 		return mav;
 	}
-
+	
+//관리자가 강제탈퇴
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
