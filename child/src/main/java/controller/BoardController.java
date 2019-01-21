@@ -28,7 +28,7 @@ public class BoardController {
 	ChildService service;
 
 	@RequestMapping(value = "board/list")
-	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType, String filterType2,
+	public ModelAndView list(HttpSession session,Integer bType, Integer pageNum, String filterType, String searchType, String filterType2,
 			String searchContent) {
 		ModelAndView mav = new ModelAndView();
 		switch (bType) { // 게시판 종류
