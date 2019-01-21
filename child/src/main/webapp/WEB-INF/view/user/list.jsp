@@ -168,7 +168,7 @@ function check(){
 		<!-- 회원정보 -->
 		<div class="btns">
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-			<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
 				[내 게시글 목록]</a> 
 			<a href="javascript:void(0)" align="right"
 				onclick="document.getElementById('id02').style.display='block'">
@@ -205,7 +205,7 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form action="../user/passConfirm.child?mnum=${user.mnum}"
+		<form action="passConfirm.child?mnum=${user.mnum}"
 			method="Post" onsubmit="return check()" name="f">
 			<input type="hidden" name="password" value="${user.password}">
 			<div id="id02" class="w3-modal"
