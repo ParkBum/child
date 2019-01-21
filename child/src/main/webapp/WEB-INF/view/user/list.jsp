@@ -1,77 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>관리자 정보</title>
+<title>관리자 정보</title> 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="${path}/css/total.css">
 <style type="text/css">
-.cmain {
-	clear: both;
-	width: 1200px;
-	margin: 0 315px 0 315px;
-}
-
-.subMenu {
-	float: left;
-	width: 200px;
-	margin: 0 auto;
-	margin-bottom: 300px;
-	border-bottom: 2px solid #dddddd;
-}
-
-.subMenu ul, li {
-	margin: 0;
-	margin-bottom: 1px;
-	padding: 0;
-	list-style: none;
-}
-
-.subMenu a {
-	text-decoration: none;
-}
-
-.menu1 {
-	height: 100px;
-	background: #F6A5BC;
-	color: white;
-}
-
-.active {
-	display: block;
-	height: 40px;
-	background-color: #CE5B7C;
-	color: white;
-}
-.active a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.menu2 {
-	height: 40px;
-	background: #f7f7f7;
-}
-
-.menu2 a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
 
 .board {
-	float: right;
-	width: 1000px;
-	padding-left: 50px;
 	text-align: left;
 }
 
-.btns {
+.btns2 {
 	margin: 30px;
 	text-align: right;
 }
@@ -87,7 +31,7 @@ function delcheck(){
 		if(fdel.pass.value != ${user.password}){
 			alert("비밀번호가 틀립니다.");
 			return false;
-		}else {
+		} else {
 			alert("탈퇴가 완료되었습니다.");
 			return true;
 		}
@@ -166,9 +110,9 @@ function check(){
 		</form>
 
 		<!-- 회원정보 -->
-		<div class="btns">
+		<div class="btns2">
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-			<a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
 				[내 게시글 목록]</a> 
 			<a href="javascript:void(0)" align="right"
 				onclick="document.getElementById('id02').style.display='block'">
@@ -179,10 +123,10 @@ function check(){
 			</c:if>
 		</div>
 		<!-- 회원탈퇴 모달창 -->
-		<form action="../user/userdelete.child" method="Post"
+		<form action="userdelete.child" method="Post"
 			onsubmit="return delcheck()" name="fdel">
-			<input type="hidden" name="mnum" value="${user.mnum}"> <input
-				type="hidden" name="password" value="${user.password}">
+			<input type="hidden" name="mnum" value="${user.mnum}"> 
+			<input type="hidden" name="password" value="${user.password}">
 			<div id="id01" class="w3-modal"
 				style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
@@ -205,7 +149,7 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form action="../user/passConfirm.child?mnum=${user.mnum}"
+		<form action="passConfirm.child?mnum=${user.mnum}"
 			method="Post" onsubmit="return check()" name="f">
 			<input type="hidden" name="password" value="${user.password}">
 			<div id="id02" class="w3-modal"

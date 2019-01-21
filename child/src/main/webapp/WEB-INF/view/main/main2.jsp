@@ -53,9 +53,8 @@
     width: 1190px;
 	height: 600px;/*
  	border: solid 2px silver;*/
-	margin-left: 300px;
+	margin-left: 18%;
 	background-image: url('../decorator/seoul.png');
-
 }
 
 /* 
@@ -66,7 +65,8 @@
 .menus {
 	margin: 40px;
 	margin-top: 0px;
-	margin-left: 320px;
+	
+	margin-left: 19%;
 	width: 1200px;
 	height: 350px;
 }
@@ -172,7 +172,6 @@
 </style>
 </head>
 <body>
-
 <div id="wrap">
 <div id="chartarea" style="display: inline-flex;" align="center">
 <div id="mapchart"></div> 
@@ -325,15 +324,14 @@ function makepiechart(data,selectguname){
 	 		.attr('y', -165)
     		.text("구별 어린이집 현황");
 	 	//성공했던 코드...
-	 	
-	 	 g.append("text")
+	 	 g.append("text")	//텍스트 테그 부름
 	    	.attr("transform", function(d) {
-	        var _d = arc.centroid(d);
+	        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
 	        _d[0] *= 1;	//multiply by a constant factor
-	        _d[1] *= 1;	//multiply by a constant factor
+	        _d[1] *= 1;	//multiply by a constant factor	.. 글자 위치 나타냄
 	        return "translate(" + _d + ")";
 	      })
-	      .attr("dy", ".40em")
+	      .attr("dy", ".40em")	//글자 크기
 	      .style("text-anchor", "middle")
 	      .text(function(d,i) {
 	    	if(piedatas[i].value==0){
@@ -461,7 +459,10 @@ gradient.append("svg:stop")
     .attr("stop-color", "#175BA8")
     .attr("stop-opacity", 1);
     </script>
-			<div style="background-color: #FFF1F5; height: 500px; width: 100%;">
+   </div>
+   
+   <div style="background-color: #FFF1F5; height: 500px; width: 100%;">
+			<div> <!-- style="background-color: #FFF1F5; height: 500px; width: 100%;" -->
 				<div class="menus">
 					<div class="card1">
 						<div class="mainimage1">

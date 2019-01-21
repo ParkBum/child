@@ -28,7 +28,7 @@ public class BoardController {
 	ChildService service;
 
 	@RequestMapping(value = "board/list")
-	public ModelAndView list(Integer bType, Integer pageNum, String filterType, String searchType, String filterType2,
+	public ModelAndView list(HttpSession session,Integer bType, Integer pageNum, String filterType, String searchType, String filterType2,
 			String searchContent) {
 		ModelAndView mav = new ModelAndView();
 		switch (bType) { // 게시판 종류
@@ -130,6 +130,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/writeForm");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			mav.setViewName("redirect:writeForm.child?bType="+board.getbType());
 			return mav;
 		}
 		try {

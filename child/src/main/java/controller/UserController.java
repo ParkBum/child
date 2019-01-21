@@ -81,17 +81,15 @@ public class UserController {
 		mav.addObject("userlist", userList);
 		return mav;
 	}
-
+	
+//관리자가 강제탈퇴
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
-		User dbUser = (User) session.getAttribute("loginUser");
-		if (dbUser.getMnum() == 1) {
 			service.userCommentDelete(mnum);
 			service.userBoardDelete(mnum);
 			service.userDelete(mnum);
 			mav.setViewName("redirect:../user/list.child");
-		}
 		return mav;
 	}
 
@@ -250,10 +248,10 @@ public class UserController {
 				mav.setViewName("redirect:../main/main2.child");
 			} catch (Exception e) {
 				e.printStackTrace();
-				mav.setViewName("user/delete");
+				mav.setViewName("user/list");
 			}
 		} else { // 비밀번호 불일치
-			mav.setViewName("user/delete");
+			mav.setViewName("user/list");
 		}
 		return mav;
 	}

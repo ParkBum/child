@@ -1,4 +1,5 @@
 [
+{"gu":"서울시","values":[{"value":74098,"column":"국공립"},{"value":1878,"column":"사회복지법인"},{"value":5337,"column":"법인·단체 등"},{"value":97215,"column":"민간"},{"value":42804,"column":"가정"},{"value":795,"column":"부모협동"},{"value":12740,"column":"직장"}]},
 {"gu":"종로구","values":[{"value":1647,"column":"국공립"},{"value":85,"column":"사회복지법인"},{"value":123,"column":"법인·단체 등"},{"value":453,"column":"민간"},{"value":84,"column":"가정"},{"value":0,"column":"부모협동"},{"value":1391,"column":"직장"}]},
 {"gu":"중구","values":[{"value":1699,"column":"국공립"},{"value":0,"column":"사회복지법인"},{"value":334,"column":"법인·단체 등"},{"value":364,"column":"민간"},{"value":248,"column":"가정"},{"value":0,"column":"부모협동"},{"value":864,"column":"직장"}]},
 {"gu":"용산구","values":[{"value":1631,"column":"국공립"},{"value":75,"column":"사회복지법인"},{"value":316,"column":"법인·단체 등"},{"value":1274,"column":"민간"},{"value":915,"column":"가정"},{"value":28,"column":"부모협동"},{"value":514,"column":"직장"}]},
