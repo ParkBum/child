@@ -167,16 +167,6 @@ option {
                         <option>운영</option>
                         <option>미운영</option>
                      </select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" onclick="javascript:searchs()" id="searchs">조회</button>
-					<script type="text/javascript">
-					function searchs(){
-						if(document.gu.value=='' || document.bus.value=='' || document.type.value=='' ){
-							alert("조건을 모두 선택하셔야합니다.")
-							return false;
-						}else if(){
-							
-						}
-					}
-					</script>
                </div>
                </div>
             </div>
@@ -355,8 +345,6 @@ $(document).ready(function() {
                      }); 
                   infos.push(infowindow);
                   markers.push(marker);
-                  codes.push(data.autoMarkerList[i].code);
-                  is.push(i);
                     map.setCenter(coords);    
                      // 이벤트 리스너로는 클로저를 만들어 등록합니다 
                      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
