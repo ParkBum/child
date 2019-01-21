@@ -29,9 +29,7 @@ html {
 body {
 	/* max-width: 1200px; */
 	display: block;
-	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
-	height: 100%;
 	/* max-width: 1200px; */
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -45,12 +43,10 @@ body {
 }
 
 .menu .left {
-	/* float: left; */
 	list-style: none;
 }
 
 .menu .right {
-	/* float: right; */
 	list-style: none;
 	margin: 40px 0px 10px 0px;
 }
@@ -82,7 +78,7 @@ body {
 .footerimg {
 	clear: both;
 	color: black;
-	margin: 10px 640px 15px 640px;
+	margin: 10px 685px 15px 685px;
 	height: 100px;
 	width: 550px;
 	text-align: left;
@@ -99,13 +95,9 @@ body {
 }
 
 .menu {
-	width: 1300px;
-	margin: 0 -384px 0 300px;
-	padding-top: 20px;
-}
-
-.nav {
-	padding-left: 400px;
+	width: 1200px;
+	margin: 20px 360px 0 360px;
+	padding: 0px;
 }
 
 .right ul {
@@ -126,6 +118,7 @@ body {
 .menu-bar .right:hover ul {
 	display: block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
 }
+
 </style>
 <decorator:head />
 </head>
@@ -143,7 +136,7 @@ body {
 						style="background-color: white;"><img
 							src="../decorator/logo.png"
 							style="width: 130px; height: 100px; margin: 0 0 4px 20px;" title="홈바로가기"></a></li>
-					<li class="right nav"><a href="${path}/map/map.child"
+					<li class="right" style="margin-left: 450px;"><a href="${path}/map/map.child"
 						style="border-radius: 20px 0 0 20px;" title="어린이집검색">어린이집 검색</a></li>
 					<li class="right"><a href="${path}/board/list.child?bType=1"
 						style="margin-left: -4px;" title="커뮤니티">커뮤니티</a>

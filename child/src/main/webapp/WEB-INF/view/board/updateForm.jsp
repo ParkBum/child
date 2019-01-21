@@ -10,74 +10,8 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"  href="${path}/css/total.css">
 <style type="text/css">
-.cmain {
-	clear: both;
-	width: 1200px;
-	margin: 0 315px 0 315px;
-}
-
-.subMenu {
-	float: left;
-	width: 200px;
-	margin: 0 auto;
-	margin-bottom: 300px;
-	border-bottom: 2px solid #dddddd;
-}
-
-.subMenu ul, li {
-	margin: 0;
-	margin-bottom: 1px;
-	padding: 0;
-	list-style: none;
-}
-
-.subMenu a {
-	text-decoration: none;
-}
-
-.menu1 {
-	height: 100px;
-	background: #F6A5BC;
-	color: white;
-}
-
-.active {
-	display: block;
-	height: 40px;
-	background-color: #CE5B7C;
-	color: white;
-}
-
-.active a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.menu2 {
-	height: 40px;
-	background: #f7f7f7;
-}
-
-.menu2 a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.board {
-	float: right;
-	width: 1000px;
-	padding-left: 50px;
-}
-
-.btns {
-	margin: 20px;
-}
-
 td {
 	text-align: left;
 }
