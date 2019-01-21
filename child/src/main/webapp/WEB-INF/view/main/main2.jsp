@@ -50,10 +50,10 @@
 </script>
 <style type="text/css">
 #chartarea {
-    width: 1190px;
+    width: 1200px;
 	height: 600px;/*
  	border: solid 2px silver;*/
-	margin-left: 18%;
+	margin: 0 360px 0 360px;
 	background-image: url('../decorator/seoul.png');
 }
 
@@ -64,9 +64,7 @@
  */
 .menus {
 	margin: 40px;
-	margin-top: 0px;
-	
-	margin-left: 19%;
+	margin: 0px 360px 0px 360px;
 	width: 1200px;
 	height: 350px;
 }
@@ -79,7 +77,7 @@
 
 .mainimage2 {
 	float: right;
-	padding: 10px;
+	padding: 15px;
 	padding-left: 25px;
 	width: 400px;
 	list-style: none;
@@ -150,7 +148,7 @@
 }
 
 .svg1 .municipality {
-  stroke: black; 
+  /* stroke: black;  */
   
 }
 .svg1 .municipality-label {
@@ -167,7 +165,7 @@
 }
 #map path{
    stroke:white;
-   stroke-width: 0.5px;
+   stroke-width: 1.3px;
 }
 </style>
 </head>
@@ -386,10 +384,10 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
         return d.properties.SIG_CD
       })
       
-      .style("fill","#72BD1F")
-//      .style("opacity","0.7")
+      .style("fill","#CCEFD5") // CCEFD5
+//      .style("opacity","0.8")
       .on("mouseover",function(d){
-    	 d3.select(this).style("fill","#87B5FF");
+    	 d3.select(this).style("fill","#9AC7A6");
        //d3.select(this).style("마우스 포인터 변경");
        //87B5FF - 푸른색
        //8FD892 녹색보다 흐리게
@@ -399,7 +397,7 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
     	 $( '#maplink' ).hide();
       })
       .on("mouseout",function(){
-    	  d3.select(this).style("fill","#87B5FF");
+    	  d3.select(this).style("fill","#CCEFD5");
       });
   map.selectAll("text")	//글자넣는 구간
       .data(features)
@@ -407,7 +405,7 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
       .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .attr("class", "municipality-label")
-      .style("stroke", "white")
+      .style("stroke", "#1F1F1F")
       .text(function(d) { return d.properties.SIG_KOR_NM; })
 });
 
