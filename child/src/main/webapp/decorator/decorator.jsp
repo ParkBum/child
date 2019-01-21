@@ -145,27 +145,18 @@ body {
 								style="background: white; color: #AAAAAA;"
 								onmouseover="this.style.color='#CE5B7C'"
 								onmouseout="this.style.color='#AAAAAA'" title="자유게시판">자유게시판</a>
-							   <c:if test="${!empty sessionScope.loginUser}">
 								<a href="${path}/board/list.child?bType=2"
 								style="background: white; color: #AAAAAA;"
 								onmouseover="this.style.color='#CE5B7C'"
-								onmouseout="this.style.color='#AAAAAA'" title="후기게시판">후기게시판</a></c:if>
-							   <c:if test="${empty sessionScope.loginUser}">
-								<a href="${path}/user/loginForm.child"
-								style="background: white; color: #AAAAAA;"
-								onmouseover="this.style.color='#CE5B7C'"
-								onmouseout="this.style.color='#AAAAAA'" title="후기게시판">후기게시판</a></c:if></li>
+								onmouseout="this.style.color='#AAAAAA'" title="후기게시판">후기게시판</a>
 						</ul></li>
-					<li class="right"><c:if test="${!empty sessionScope.loginUser}">
+					<li class="right">
 					<a href="${path}/board/list.child?bType=3"
-						style="margin-left: -4px;" title="거래게시판">중고장터</a></c:if>
-						<c:if test="${empty sessionScope.loginUser}"><a href="${path}/user/loginForm.child"
-						style="margin-left: -4px;" title="거래게시판">중고장터</a></c:if></li>
+						style="margin-left: -4px;" title="거래게시판">중고장터</a>
 					<c:if test="${empty sessionScope.loginUser}">
 						<li class="right"><a href="${path}/user/userForm.child"
 							style="margin-left: -4px;" title="회원가입">회원가입</a></li>
-					</c:if>
-					
+					</c:if>					
 					<c:if test="${empty sessionScope.loginUser}">
 						<li class="right" style="margin-right: 50px;"><a
 							href="${path}/user/loginForm.child"
