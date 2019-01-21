@@ -19,6 +19,9 @@
 	margin: 5% auto;
 	width: 25%;
 	text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
 }
 
 .inner {
@@ -106,7 +109,7 @@ padding-left:0px;
 		<div align="center">
 		<div id="formform" >
 			
-			<h2 style="font-family:'Sunflower', sans-serif;">Sign in</h2>
+			<h2 style="font-family:'Sunflower', sans-serif;"><b>Sign in</b></h2>
 			<spring:hasBindErrors name="login">
 				<font color="red">
 				 <c:forEach items="${errors.globalErrors}" var="error">

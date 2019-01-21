@@ -125,13 +125,15 @@
 </script>
 <style type="text/css">
 .joinForm {
-
-
 	border-radius: 5px;
 	margin: 5% auto;
-	width: 30%;
+	width: 402.594px;
 	text-align: left;
-	border: 1px pink solid;}
+	border: 1.5px #F6A5BC solid;
+    margin-top: 0px;
+    margin-bottom: 0px;
+	
+	}
 
 .inner {
 	display:
