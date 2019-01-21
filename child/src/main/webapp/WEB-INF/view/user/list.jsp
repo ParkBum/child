@@ -179,7 +179,7 @@ function check(){
 			</c:if>
 		</div>
 		<!-- È¸¿øÅ»Åð ¸ð´ÞÃ¢ -->
-		<form action="../user/userdelete.child" method="Post"
+		<form action="userdelete.child" method="Post"
 			onsubmit="return delcheck()" name="fdel">
 			<input type="hidden" name="mnum" value="${user.mnum}"> <input
 				type="hidden" name="password" value="${user.password}">
