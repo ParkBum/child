@@ -113,6 +113,7 @@ public class ChildService {
 	}
 
 	public void userCreate(User user) {
+		user.setPassword(getHashValue(user.getPassword()));
 		userDao.createuser(user);
 	}
 
@@ -330,7 +331,7 @@ public class ChildService {
 		return boardDao.myBoardLists(mnum, pageNum, limit);
 	}
 
-	public String getHashValue(String password) {
+	public String getHashValue(String password) { 
 		MessageDigest md;
 		String hashvalue = "";
 		try {
