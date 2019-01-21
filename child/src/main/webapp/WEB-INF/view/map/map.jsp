@@ -29,13 +29,13 @@
  
 #search {
 	width: 570px;
-	height: 80px;
+	height: 40px;
 	vertical-align: middle;
 }
 
 #map_wrap {
 	width: 570px;
-	height: 500px;
+	height: 540px;
 }
 
 .buttons {
@@ -117,7 +117,7 @@ option {
 		<div id="SearchAndMap">
 			<div class="half1">
 			<div id="search">
-				<div style="text-align: center; width: 100%; height: 80px; background: #f7f7f7; border : solid 1px #dbdbdb;">
+				<div style="text-align: center; width: 100%; height: 40px; background: #f7f7f7; border : solid 1px #dbdbdb;">
 					<div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
 						<div style="width: 30%; height:36px; margin : 2px 0; float: left;">
 							<font style="margin-top: 4px;">구&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
@@ -162,16 +162,16 @@ option {
 							</select>
 						</div>
 						<div style="width: 39%; height:36px; margin : 2px 0; float: left;">
-							<font style="margin-top: 4px;">통원 버스&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
+							<font style="margin-top: 4px;">통원 차량&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
 								<option value="">선택</option>
 								<option>운영</option>
 								<option>미운영</option>
-							</select> &nbsp;&nbsp;&nbsp;&nbsp;
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
 
 					</div>
-					<div style="width: 100%; height: 40px;">
-					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
-						</div>
+<!-- 					<div style="width: 100%; height: 40px;">
+					<a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -803,7 +803,7 @@ function loadPieGraph_now(){
 	   .append("g")
 	     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 	
-	d3.json("../decorator/total_nowchild.json", function(error, data) {		 
+	d3.json("../decorator/total_nowchild.json", function(error, data) {		
 			var dataset=[
 				{"type":data[0].values[0].column,"value":data[0].values[0].value},
 				{"type":data[0].values[1].column,"value":data[0].values[1].value},
