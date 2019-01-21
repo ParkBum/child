@@ -53,9 +53,8 @@
     width: 1190px;
 	height: 600px;/*
  	border: solid 2px silver;*/
-	margin-left: 300px;
+	margin-left: 18%;
 	background-image: url('../decorator/seoul.png');
-
 }
 
 /* 
@@ -66,7 +65,8 @@
 .menus {
 	margin: 40px;
 	margin-top: 0px;
-	margin-left: 320px;
+	
+	margin-left: 19%;
 	width: 1200px;
 	height: 350px;
 }
@@ -172,7 +172,6 @@
 </style>
 </head>
 <body>
-
 <div id="wrap">
 <div id="chartarea" style="display: inline-flex;" align="center">
 <div id="mapchart"></div> 
@@ -460,7 +459,10 @@ gradient.append("svg:stop")
     .attr("stop-color", "#175BA8")
     .attr("stop-opacity", 1);
     </script>
-			<div style="background-color: #FFF1F5; height: 500px; width: 100%;">
+   </div>
+   
+   <div style="background-color: #FFF1F5; height: 500px; width: 100%;">
+			<div> <!-- style="background-color: #FFF1F5; height: 500px; width: 100%;" -->
 				<div class="menus">
 					<div class="card1">
 						<div class="mainimage1">
