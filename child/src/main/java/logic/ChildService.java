@@ -329,6 +329,11 @@ public class ChildService {
 		messageDao.updateBnum(bnum);
 	}
 
+	public List<Board> myBoardLists(Integer mnum, int limit, Integer pageNum) {
+		// TODO Auto-generated method stub
+		return boardDao.myBoardLists(mnum,pageNum,limit);
+	}
+
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
 	 * commentDao.commentSelect(bnum); }

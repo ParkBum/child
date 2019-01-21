@@ -19,6 +19,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import logic.Board;
 import logic.ChildService;
+import logic.Comment;
 import logic.Login;
 import logic.User;
 import util.NaverLoginBO;
@@ -303,18 +304,34 @@ public class UserController {
 	 */
 
 	@RequestMapping(value = "user/myBoardList")
-	public ModelAndView myBoardList(Integer mnum) {
+	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		String nick = service.getNickName(mnum);
-		List<Board> myboard = service.myBoardList(mnum);
-
-		for (Board board : myboard) { // 댓글 수 추가아아아
+		if (pageNum == null || pageNum.toString().equals("")) {
+			pageNum = 1;
+		}
+		int limit = 10;
+		int myBoardCnt = service.myBoardCount(mnum); //myboard 갯수
+		System.out.println(myBoardCnt);
+		List<Board> myboard = service.myBoardLists(mnum,limit,pageNum);
+		int maxpage = (int) ((double) myBoardCnt / limit + 0.95); // 전체 페이지 수
+		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
+		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
+		if (endpage > maxpage)
+			endpage = maxpage;
+		int myCnt = myBoardCnt - (pageNum - 1) * limit; // 화면에 보여지는 myboard 순서
+		for (Board board : myboard) { // 제목에 댓글 수 추가아아아
 			board.setCommentcnt(service.commentCount(board.getBnum()));
 			if (board.getbType() == 3) {
 				board.setBoarddeal(service.getBoardDeal(board.getBnum()));
 			}
 		}
-
+		mav.addObject("pageNum", pageNum);
+		mav.addObject("maxpage", maxpage);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("myBoardCnt", myBoardCnt);
+		mav.addObject("myCnt", myCnt);
 		mav.addObject("nickname", nick);
 		mav.addObject("myboard", myboard);
 		mav.setViewName("user/myBoard");
