@@ -261,6 +261,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
+	public ModelAndView confirm(@Valid User user, BindingResult bindingResult ,Integer mnum, HttpSession session, String password) {
+		ModelAndView mav = new ModelAndView();
+		User dbUser = (User) session.getAttribute("loginUser");
+		if (bindingResult.hasErrors()) {
+			mav.getModel().putAll(bindingResult.getModel());
+			mav.setViewName("user/list");
+			return mav;
+		}
+		if (service.getHashValue(password).equals(dbUser.getPassword())) {
+			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
+			mav.addObject("user",user);
+		} else {
+			mav.setViewName("redirect:../user/list.child?mnum=" + user.getMnum());
+		}
+		return mav;
+	}
+/*
+	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
 	public ModelAndView confirm(Integer mnum, HttpSession session, String password) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
@@ -272,6 +290,7 @@ public class UserController {
 		return mav;
 	}
 
+	*/
 	@RequestMapping(value = "user/myBoardList")
 	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
