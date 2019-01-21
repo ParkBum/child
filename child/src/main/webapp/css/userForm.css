@@ -1,0 +1,111 @@
+@charset "UTF-8";
+.joinForm {
+	border-radius: 5px;
+	margin: 5% auto;
+	width: 402.594px;
+	text-align: left;
+	border: 1.5px #F6A5BC solid;
+    margin-top: 0px;
+    margin-bottom: 0px;
+	
+	}
+
+.inner {
+	display:
+}
+
+.inin {
+	border-radius: 20px;
+	margin: 10px 0;
+	padding: 20px;
+	padding-top: 0px;
+}
+.formfont{
+	color: gray;
+}
+
+input[type=text], input[type=password] {
+	border:solid 0.5px silver;
+	width:100%;
+	text-align: left;
+	padding: 10px;
+	margin-bottom: 8px;
+	margin-top: 4px;
+}
+
+/* input[type=reset] {
+	background-color: #666666;
+	color: white;
+	padding: 10px;
+	margin: 8px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=reset]:hover {
+	background-color: #333333;
+}
+ */
+#checkMsg {
+	font-size: 12px;
+}
+
+#checkPwd {
+	color: red;
+	font-size: 12px;
+}
+
+.error{
+	text-align: center;
+}
+
+button{
+  background:pink;
+  color:#fff;
+  border:none;
+  position:relative;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+
+input[type=submit],input[type=reset]{
+  background:pink;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+input[type=submit]:hover,input[type=reset]:hover{
+  background:#fff;
+  /* color:#1AAB8A; */
+  color:pink;
+}
+
+input[type=submit]:before,input[type=submit]:after,input[type=reset]:before,input[type=reset]:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: pink;
+  transition:400ms ease all;
+}
+input[type=submit]:after,input[type=reset]:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+input[type=submit]:hover:before,input[type=submit]:hover:after, input[type=reset]:fover:before,input[type=reset]:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

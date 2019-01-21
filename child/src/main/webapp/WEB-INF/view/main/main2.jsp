@@ -385,25 +385,29 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
       .attr("id",function(d){
         return d.properties.SIG_CD
       })
-      .style("fill","#8CD790")
+      
+      .style("fill","#72BD1F")
+//      .style("opacity","0.7")
       .on("mouseover",function(d){
-    	 d3.select(this).style("fill","#30A9DE");
+    	 d3.select(this).style("fill","#87B5FF");
        //d3.select(this).style("마우스 포인터 변경");
+       //87B5FF - 푸른색
+       //8FD892 녹색보다 흐리게
       })
       .on("click",function(d){
     	 makepiechart(d.properties.SIG_CD, d.properties.SIG_KOR_NM);
     	 $( '#maplink' ).hide();
       })
       .on("mouseout",function(){
-    	  d3.select(this).style("fill","#8CD790");
+    	  d3.select(this).style("fill","#87B5FF");
       });
-      
   map.selectAll("text")	//글자넣는 구간
       .data(features)
       .enter().append("text")
       .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .attr("class", "municipality-label")
+      .style("stroke", "white")
       .text(function(d) { return d.properties.SIG_KOR_NM; })
 });
 
