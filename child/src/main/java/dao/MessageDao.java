@@ -61,4 +61,16 @@ public class MessageDao {
 		return sqlSession.getMapper(MessageMapper.class).MaxDeal(bnum);
 	}
 
+	public void updateBuynum(Integer mnum) {
+		sqlSession.getMapper(MessageMapper.class).updateBuynum(mnum);		
+	}
+
+	public void updateBnum(Integer bnum) {
+		sqlSession.getMapper(MessageMapper.class).updateBnum(bnum);		
+	}
+
+	public void cancelDeal(Integer bnum) {
+		sqlSession.getMapper(MessageMapper.class).cancelDeal(bnum);				
+	}
+
 }

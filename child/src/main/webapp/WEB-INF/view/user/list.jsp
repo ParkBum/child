@@ -25,7 +25,7 @@ th {
 }
 </style>
 <script type="text/javascript">
-function delcheck(){
+/* function delcheck(){
 	var check = confirm("탈퇴하시겠습니까?");
 	if(check){
 		if(fdel.pass.value != ${user.password}){
@@ -36,7 +36,7 @@ function delcheck(){
 			return true;
 		}
 	}
-	return false;
+	return false; 
 }
 
 function check(){
@@ -44,7 +44,7 @@ function check(){
 		alert("비밀번호가 틀립니다.");
 		return false;
 	} else return true;
-}
+} */
 
 	function allchkbox(chk) {
 		var chks = document.getElementsByName("idchks");
@@ -112,7 +112,7 @@ function check(){
 		<!-- 회원정보 -->
 		<div class="btns2">
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}&pageNum=1">
 				[내 게시글 목록]</a> 
 			<a href="javascript:void(0)" align="right"
 				onclick="document.getElementById('id02').style.display='block'">
@@ -123,8 +123,7 @@ function check(){
 			</c:if>
 		</div>
 		<!-- 회원탈퇴 모달창 -->
-		<form action="userdelete.child" method="Post"
-			onsubmit="return delcheck()" name="fdel">
+		<form action="userdelete.child" method="Post" name="fdel">
 			<input type="hidden" name="mnum" value="${user.mnum}"> 
 			<input type="hidden" name="password" value="${user.password}">
 			<div id="id01" class="w3-modal"
@@ -149,8 +148,15 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form action="passConfirm.child?mnum=${user.mnum}"
-			method="Post" onsubmit="return check()" name="f">
+		<form:form action="passConfirm.child?mnum=${user.mnum}"
+			method="Post" name="f">
+			<spring:hasBindErrors name="user">
+				<font color="red"> <c:forEach items="${errors.globalErrors}"
+						var="error">
+						<spring:message code="${error.code}" />
+					</c:forEach>
+				</font>
+			</spring:hasBindErrors>
 			<input type="hidden" name="password" value="${user.password}">
 			<div id="id02" class="w3-modal"
 				style="z-index: 4; padding-top: 280px;">
@@ -172,10 +178,11 @@ function check(){
 					</div>
 				</div>
 			</div>
-		</form>
+		</form:form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
+			<input type="hidden" name="pageNum" value="1">
 				<table border="1" style="border-collapse: collapse; width: 100%"
 					class="w3-table w3-border w3-bordered">
 					<tr>

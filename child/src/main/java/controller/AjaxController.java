@@ -103,6 +103,7 @@ public class AjaxController {
 	public ModelAndView reviews(Integer code,Integer bType) {
 		ModelAndView mav = new ModelAndView();
 		List<Board> fourlists = null;
+/*		String dcname = service.dcname(code);*/
 		fourlists = service.fourlists(code);
 		mav.addObject("bType",bType);
 		mav.addObject("fourlists",fourlists);

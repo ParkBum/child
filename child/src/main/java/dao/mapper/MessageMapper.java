@@ -25,4 +25,13 @@ public interface MessageMapper {
 	@Select("select ifnull(max(deal), 0) from message where bnum = #{bnum} and deal < 3")
 	int MaxDeal(Integer bnum);
 
+	@Update("update message set buynum = 0 where buynum = #{mnum}")
+	void updateBuynum(Integer mnum);
+
+	@Update("update message set bnum = 0 where bnum = #{bnum}")
+	void updateBnum(Integer bnum);
+
+	@Update("update message set deal = 3 where bnum = #{bnum} and deal < 2")
+	void cancelDeal(Integer bnum);
+
 }

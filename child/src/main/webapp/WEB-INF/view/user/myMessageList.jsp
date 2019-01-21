@@ -84,9 +84,9 @@ $(document).ready(function() {
 				<c:if test="${msg.board.mkinds == 1}">[완구]</c:if>
 				<c:if test="${msg.board.mkinds == 2}">[도서]</c:if>
 				<c:if test="${msg.board.mkinds == 3}">[의류]</c:if>
-				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>	
-				${msg.board.subject}</a></td>
-				<td>${msg.user.nickname}&nbsp;&nbsp;<c:if test="${msg.deal == 1}"><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px; color:gray;">phone_iphone</i>${msg.phone}</c:if></td>
+				<c:if test="${msg.board.mkinds == 4}">[기타]</c:if>
+				${(empty msg.board.subject)?"삭제한 게시물입니다.":msg.board.subject}</a></td>
+				<td>${(empty msg.user.nickname)?"&nbsp;&nbsp;탈퇴한 회원입니다.":msg.user.nickname}<c:if test="${msg.deal == 1}"><br><i class="material-icons" style="vertical-align: middle; font-size: 18px; width:16px; color:gray;">phone_iphone</i>${msg.phone}</c:if></td>
 				<td>
 				<c:if test="${msg.deal == 0}">
 					<c:if test="${msg.board.boarddeal == 0}">
