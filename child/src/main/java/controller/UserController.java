@@ -19,7 +19,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import logic.Board;
 import logic.ChildService;
-import logic.Comment;
 import logic.Login;
 import logic.User;
 import util.NaverLoginBO;
@@ -55,14 +54,13 @@ public class UserController {
 				return mav;
 			}
 			// 존재
-			if (login.getLogin_password().equals(dbuser.getPassword())) {
+			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {
 				session.setAttribute("loginUser", dbuser);
 			} else {
 				bindResult.reject("error.login.password");
 				mav.getModel().putAll(bindResult.getModel());
 				return mav;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			bindResult.reject("error.user.login");
@@ -198,24 +196,15 @@ public class UserController {
 
 	@RequestMapping("user/update")
 	public ModelAndView update(@Valid User user, HttpSession session, Integer mnum, BindingResult bindResult) {
-		User user2 = service.userSelect(user.getEmail()); // 비밀번호 검증하기위해서 기존정보조회
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-		// service.changePass(user);
-		// 비밀번호 검증
-		// 비밀번호 일치
 		try {
-			// 변경할 비밀번호를 기존비밀번호에 넣기
-			// user.setPassword(user.getPassword1());
 			service.userUpdate(user);
 			session.invalidate();
 			mav.addObject("user", user);
-			// mav.addObject("msg","수정했습니다. 다시 로그인하세요.");
-			// mav.addObject("url","../user/loginForm.child");
-			// mav.setViewName("alert");
 			mav.setViewName("redirect:../main/main2.child");
 		} catch (Exception e) {
 			bindResult.reject("error.login.password");
@@ -249,7 +238,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		List<Board> myboard = service.myBoardList(mnum);
-		if (password.equals(dbUser.getPassword())) {
+		if (service.getHashValue(password).equals(dbUser.getPassword())) {
 			try {
 				service.userMessageDelete(mnum);
 				service.userCommentDelete(mnum);
@@ -275,33 +264,13 @@ public class UserController {
 	public ModelAndView confirm(Integer mnum, HttpSession session, String password) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
-		if (password.equals(dbUser.getPassword())) {
+		if (service.getHashValue(password).equals(dbUser.getPassword())) {
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + mnum);
 		} else {
 			mav.setViewName("redirect:../user/list.child?mnum=" + mnum);
 		}
 		return mav;
 	}
-	/*
-	 * @RequestMapping(value = "user/myBoardList") public ModelAndView
-	 * myBoardList(Integer mnum, Integer pageNum) { ModelAndView mav = new
-	 * ModelAndView(); String nick = service.getNickName(mnum); List<Board> myboard
-	 * = service.myBoardList(mnum); List<Board> myboard = service.myBoardList(mnum,
-	 * pageNum, limit); int myBoardCnt = service.myBoardCount(mnum); //내가 작성한 총 게시글
-	 * 수 if (pageNum == null || pageNum.toString().equals("")) { pageNum = 1; } int
-	 * limit = 10; // 한 페이지에 출력할 게시물 수 int maxpage = (int) ((double) myBoardCnt /
-	 * limit + 0.95); // 전체 페이지 수 int startpage = (int) ((pageNum / 10.0 + 0.9) - 1)
-	 * * 10 + 1; // 화면에 표시될 시작 페이지 수 int endpage = startpage + 9; // 화면에 표시될 마지막 페이지
-	 * 수 if (endpage > maxpage) endpage = maxpage; int boardCnt = myBoardCnt -
-	 * (pageNum - 1) * limit;
-	 * 
-	 * mav.addObject("pageNum", pageNum); mav.addObject("maxpage", maxpage);
-	 * mav.addObject("startpage", startpage); mav.addObject("endpage", endpage);
-	 * mav.addObject("myBoardCnt", myBoardCnt); mav.addObject("boardCnt", boardCnt);
-	 * 
-	 * mav.addObject("nickname",nick); mav.addObject("myboard",myboard); //
-	 * mav.setViewName("user/myBoard"); return mav; }
-	 */
 
 	@RequestMapping(value = "user/myBoardList")
 	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {

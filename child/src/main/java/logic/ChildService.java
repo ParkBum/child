@@ -113,6 +113,7 @@ public class ChildService {
 	}
 
 	public void userCreate(User user) {
+		user.setPassword(getHashValue(user.getPassword()));
 		userDao.createuser(user);
 	}
 
@@ -320,9 +321,6 @@ public class ChildService {
 	public void userMessageDelete(Integer mnum) {
 		messageDao.updateBuynum(mnum);
 	}
-	/*
-	 * public int getBoardBnum(Integer mnum) { return boardDao.getBoardBnum(mnum); }
-	 */
 
 	public void boardMessageDelete(Integer bnum) {
 		messageDao.cancelDeal(bnum);
@@ -330,17 +328,23 @@ public class ChildService {
 	}
 
 	public List<Board> myBoardLists(Integer mnum, int limit, Integer pageNum) {
-		// TODO Auto-generated method stub
-		return boardDao.myBoardLists(mnum,pageNum,limit);
+		return boardDao.myBoardLists(mnum, pageNum, limit);
 	}
 
-	/*
-	 * public Comment commentSelect(Integer bnum) { return
-	 * commentDao.commentSelect(bnum); }
-	 */
-}
+	public String getHashValue(String password) { 
+		MessageDigest md;
+		String hashvalue = "";
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			byte[] plain = password.getBytes();
+			byte[] hash = md.digest(plain);
+			for (byte b : hash) {
+				hashvalue += String.format("%02X", b);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return hashvalue;
+	}
 
-/*
- * public List<Comment> commentlist(Integer bnum) { return
- * commentDao.commentwrite(bnum); }
- */
+}
