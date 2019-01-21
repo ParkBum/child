@@ -13,7 +13,7 @@
 <script>
 function passcheck(){
 	if(f.newpass1.value.length <= 4 || f.newpass1.value.length <= 4){
-		alert("4자 이상만 설정 가능합니다.");
+		alert("5자 이상만 설정 가능합니다.");
 		f.newpass1.focus();
 		return false;
 	} else if(f.newpass1.value != f.newpass2.value){
@@ -29,7 +29,7 @@ $(function(){
 		var pass2 = $("#newpass2").val();
 		var msg="";
 		if(pass1.length <= 4){
-			msg = "비밀번호는 4자 이상만 설정가능합니다.";
+			msg = "비밀번호는 5자 이상만 설정가능합니다.";
 			
 		} else if(pass1 == pass2) {
 			msg = "비밀번호 일치";

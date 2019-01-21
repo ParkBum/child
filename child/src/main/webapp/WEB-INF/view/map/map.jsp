@@ -548,8 +548,6 @@ function loadReviews() {
 		}
 	})
 }
-loadPieGraph_max();
-loadPieGraph_now();
 function loadPieGraph_max(){
 	 d3.selectAll(".svg3 > *").remove(); 
 	 var tooltip = d3.select(".tooltip3");
@@ -759,7 +757,6 @@ function loadPieGraph_now(){
 <script>
 //첫번재 차트(클릭시)
 function graph(a){
-	$('#text1').remove();
 	var code = a;
 	var data = {
 		"code" : code
