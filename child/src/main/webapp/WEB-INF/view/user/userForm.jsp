@@ -178,7 +178,7 @@ function execPostCode() {/* 주소 검색 부분 */
 				<div class="form-group">
 				<div class="formfont" style="text-align: left;">주소 입력</div>
 					<form:input path="addr1" class="form-control" style="width: 40%; display: inline; margin-bottom: 0px;" placeholder="우편번호"
-						name="addr1" id="addr1" type="text" readonly />
+						name="addr1" id="addr1" type="text" readonly="readonly" />
 					<button type="button" onclick="execPostCode()" style="height: 45.453px;"> 
 					주소 검색
 					</button>
@@ -186,7 +186,7 @@ function execPostCode() {/* 주소 검색 부분 */
 				<div class="form-group">
 					<form:input path="addr2" class="form-control" style="top: 5px; margin-bottom: 0px;"
 						placeholder="도로명 주소" name="addr2" id="addr2" type="text"
-						readonly />
+						readonly="readonly" />
 					<br> <font color="red" class="error"><form:errors path="addr1" /></font>
 				</div>
 				<div class="form-group">

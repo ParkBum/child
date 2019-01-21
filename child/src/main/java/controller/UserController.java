@@ -44,7 +44,6 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-
 		try {
 			User dbuser = service.userSelect(login.getLogin_email()); // 회원정보 저장
 			if (dbuser == null) {
@@ -224,13 +223,13 @@ public class UserController {
 		String newpass2 = request.getParameter("newpass2");
 		if (newpass1.length() <= 4 || newpass2.length() <= 4) {
 			mav.setViewName("redirect:../user/chgPass.child");
-		}
-		if (newpass1.equals(newpass2)) {
-			service.changePass(newpass1, mnum);
+		}// 비밀번호 글자가 작으면 다시 
+		if (newpass1.equals(newpass2)) {//입력되는 비밀번호가 같으면 바꾼다.
+			String hashpw = service.getHashValue(newpass1);service.changePass(hashpw, mnum);
 			session.invalidate();
 			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
-			mav.setViewName("user/updateForm");
+			mav.setViewName("user/updateForm");//틀렸을때는 다시 되돌아간다.
 		} 
 		return mav;
 	}
