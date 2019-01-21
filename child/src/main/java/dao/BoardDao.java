@@ -102,11 +102,6 @@ public class BoardDao {
 		return sqlSession.getMapper(BoardMapper.class).myBoardCnt(mnum);
 	}
 
-	public int getBoardBnum(Integer mnum) {
-		Map<String,Integer> map = new HashMap<String,Integer>();
-		map.put("mnum", mnum);
-		return sqlSession.getMapper(BoardMapper.class).getBoardBnum(mnum);
-	}
 }
 
 
