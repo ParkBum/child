@@ -82,7 +82,7 @@ public class ChildService {
 
 	public Board getBoard(Integer bnum) {
 		Board board = boardDao.getBoard(bnum);
-		board.setNickname(getNickName(board.getMnum()));
+			board.setNickname(getNickName(board.getMnum()));
 		return board;
 	}
 
@@ -182,7 +182,8 @@ public class ChildService {
 	public void commentDeleteList(Integer bnum) {
 		commentDao.deleteList(bnum);
 	}
-
+	
+	
 	// 회원탈퇴하려고 다 삭제
 	public void userCommentDelete(Integer mnum) {
 		commentDao.userCommentDelete(mnum);
@@ -316,6 +317,15 @@ public class ChildService {
 	public int getBoardDeal(Integer bnum) {
 	      return messageDao.MaxDeal(bnum);
 	}
+
+	public void userMessageDelete(Integer mnum) {
+		messageDao.updateBuynum(mnum);
+	}
+/*
+	public int getBoardBnum(Integer mnum) {
+		return boardDao.getBoardBnum(mnum);
+	}
+*/
 
 	/*
 	 * public Comment commentSelect(Integer bnum) { return

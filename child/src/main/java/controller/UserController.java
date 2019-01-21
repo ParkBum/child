@@ -81,15 +81,21 @@ public class UserController {
 		mav.addObject("userlist", userList);
 		return mav;
 	}
-	
+
 //관리자가 강제탈퇴
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
-			service.userCommentDelete(mnum);
-			service.userBoardDelete(mnum);
-			service.userDelete(mnum);
-			mav.setViewName("redirect:../user/list.child");
+		List<Board> myboard = service.myBoardList(mnum);
+		service.userMessageDelete(mnum);
+		service.userCommentDelete(mnum);
+		for(Board board : myboard) {
+			int bnum = board.getBnum();
+			service.commentDeleteList(bnum);			
+		}
+		service.userBoardDelete(mnum);
+		service.userDelete(mnum);
+		mav.setViewName("redirect:../user/list.child");
 		return mav;
 	}
 
@@ -108,13 +114,15 @@ public class UserController {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
-		//System.out.println("여기 안나와??");
+		// System.out.println("여기 안나와??");
 		String email = "";
-		String id ="";
-		for(int i=0;i<18; i++) {
-			//System.out.println(apiResult.split("\"")[i]);
-			if(i==13) 	id =apiResult.split("\"")[i];
-			if(i==17) 	email =apiResult.split("\"")[i];
+		String id = "";
+		for (int i = 0; i < 18; i++) {
+			// System.out.println(apiResult.split("\"")[i]);
+			if (i == 13)
+				id = apiResult.split("\"")[i];
+			if (i == 17)
+				email = apiResult.split("\"")[i];
 		}
 		// .toString() 했을때[L 로 되어있어서 배열형태인 것을 알게 되었다.
 
@@ -154,7 +162,7 @@ public class UserController {
 		if (br.hasErrors()) {
 			mav.getModel().putAll(br.getModel());
 			mav.setViewName("user/userForm");
-			//alert창 띄우고 유효성 검증은 그대로....
+			// alert창 띄우고 유효성 검증은 그대로....
 			return mav;
 		}
 		try {
@@ -231,7 +239,7 @@ public class UserController {
 			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
 			mav.setViewName("user/updateForm");
-		}
+		} 
 		return mav;
 	}
 
@@ -239,9 +247,15 @@ public class UserController {
 	public ModelAndView userdelete(Integer mnum, HttpSession session, String password) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
+		List<Board> myboard = service.myBoardList(mnum);
 		if (password.equals(dbUser.getPassword())) {
 			try {
+				service.userMessageDelete(mnum);
 				service.userCommentDelete(mnum);
+				for(Board board : myboard) {
+					int bnum = board.getBnum();
+					service.commentDeleteList(bnum);			
+				}
 				service.userBoardDelete(mnum);
 				service.userDelete(mnum);
 				session.invalidate();
@@ -293,7 +307,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		String nick = service.getNickName(mnum);
 		List<Board> myboard = service.myBoardList(mnum);
-		
+
 		for (Board board : myboard) { // 댓글 수 추가아아아
 			board.setCommentcnt(service.commentCount(board.getBnum()));
 			if (board.getbType() == 3) {

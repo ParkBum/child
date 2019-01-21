@@ -101,6 +101,7 @@ public class BoardDao {
 		map.put("mnum", mnum);
 		return sqlSession.getMapper(BoardMapper.class).myBoardCnt(mnum);
 	}
+
 }
 
 

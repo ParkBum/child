@@ -353,7 +353,7 @@ $(function() {
 								</c:if>
 							</c:forEach>
 							<c:if test="${flag > 0}">
-								<input type="button" value="요청중" class="w3-disabled">
+								<input type="button" value="요청중" class="w3-disabled" title="이미 거래요청 중입니다.">
 							</c:if>
 							<c:if test="${flag == 0}">
 							<input type="button" value="구매요청" name="buy"
@@ -361,10 +361,10 @@ $(function() {
 							</c:if>
 							</c:if>
 							<c:if test="${board.boarddeal == 1}">
-								<input type="button" value="거래중" class="w3-disabled">
+								<input type="button" value="거래중" class="w3-disabled" title="거래중인 게시글입니다.">
 							</c:if>
 							<c:if test="${board.boarddeal == 2}">
-								<input type="button" value="거래완료" class="w3-disabled">
+								<input type="button" value="거래완료" class="w3-disabled" title="거래완료된 게시글입니다.">
 							</c:if>
 							<form action="buyItem.child" method="Post" name="mf"
 								onsubmit="return phonecheck()">
