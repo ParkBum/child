@@ -276,7 +276,6 @@ $(document).ready(function() {
         			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
         			        daum.maps.event.addListener(marker, 'click', function() {
         			        	AnotherMarkers();
-        			        	graph();
         			            infowindow.open(map, marker);
         			        });
 
