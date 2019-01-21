@@ -259,10 +259,7 @@ $(document).ready(function() {
     					});
     					marker.setMap(map);
     					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
-/* 							if(data.autoMarkerList[i].bus == '운영'){
-							content += "<img src='../decorator/bus2.png' style='width:20px; height:20px;'>";	
-							}
- */    					    content += "[<strong>"+data.autoMarkerList[i].type+"</strong>]<strong>"+data.autoMarkerList[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr;
+   					    content += "[<strong>"+data.autoMarkerList[i].type+"</strong>]<strong>"+data.autoMarkerList[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr;
     						if(data.autoMarkerList[i].bus == '운영'){
     							content += "<br><img src='../decorator/bus2.png' style='width:20px; height:20px;'>";	
     							}
@@ -305,6 +302,121 @@ $(document).ready(function() {
 			})   
 	    }; 
 	})   	
+})
+</script>
+</c:if>
+<c:if test="${empty sessionScope.loginUser}"> <!-- 비로그인 : GPS 켠 상태로 들어올 시 어린이집 검색으로 들어올 시 주소 기준 반경 1.5km내 가까운 곳부터 20개 출력 -->
+<script>
+$(document).ready(function() { 
+	if (navigator.geolocation) {//현재 위치가 켜져 있을 시
+	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+	    navigator.geolocation.getCurrentPosition(function(position) {
+
+	        var data ={
+					"lat" : position.coords.latitude,
+					"lon" :position.coords.longitude
+			}
+			$.ajax({
+				url : "autoMarker.child",
+				type : "post",
+				data : data,
+				dataType : "json",
+				success : function(data){
+					if (data.autoMarkerList.length == 0){
+						alert("반경 안에 어린이집이 없습니다.")
+					}
+					hideMarkers();
+					for (var i = 0; i < data.autoMarkerList.length; i++) {
+						var Map = map;
+						var coords = new daum.maps.LatLng(
+            					data.autoMarkerList[i].lat,data.autoMarkerList[i].lon		
+            					);
+							
+						var marker = new daum.maps.Marker({
+    						map:Map,
+    						position:coords
+    					});
+    					marker.setMap(map);
+    					var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
+   					    content += "[<strong>"+data.autoMarkerList[i].type+"</strong>]<strong>"+data.autoMarkerList[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr;
+    						if(data.autoMarkerList[i].bus == '운영'){
+    							content += "<br><img src='../decorator/bus2.png' style='width:20px; height:20px;'>";	
+    							}
+    					    content+='</span></div>';
+						var infowindow = new daum.maps.InfoWindow({
+							    position : coords, 
+							    content : content,
+							    removable:true
+							}); 
+						infos.push(infowindow);
+						markers.push(marker);
+						codes.push(data.autoMarkerList[i].code);
+						is.push(i);
+        				map.setCenter(coords);	 
+        			    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+        			    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다       			
+        			    (function(marker, infowindow, codes,is) { 
+        			        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        			        daum.maps.event.addListener(marker, 'click', function() {
+        			        	AnotherMarkers();
+        			            infowindow.open(map, marker);
+        			        });
+
+        			    })(marker, infowindow);
+						
+					}
+					function makeOverListener( map, marker, infowindow) { 
+						return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+				}
+			})  
+	       
+	        
+	       
+	      })
+	    
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+	    
+	    var locPosition = new daum.maps.LatLng(37.56682, 126.97865),    
+	        message = '현재 GPS가 켜져있지 않습니다.'
+	        
+	    displayMarker(locPosition, message);
+	}
+	  
+
+// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+		    // 마커를 생성합니다
+		    var marker = new daum.maps.Marker({  
+		        map: map, 
+		        position: locPosition
+		    }); 
+		    
+		    var iwContent = message, // 인포윈도우에 표시할 내용
+		        iwRemoveable = true;
+
+		    // 인포윈도우를 생성합니다
+		    var infowindow = new daum.maps.InfoWindow({
+		        content : iwContent,
+		        removable : iwRemoveable
+		    });
+		    
+		    // 인포윈도우를 마커위에 표시합니다 
+		    infowindow.open(map, marker);
+		    
+		    // 지도 중심좌표를 접속위치로 변경합니다
+		    map.setCenter(locPosition);      
+		}    
 })
 </script>
 </c:if>
