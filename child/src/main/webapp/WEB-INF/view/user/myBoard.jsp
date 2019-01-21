@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+<link rel="stylesheet" href="${path}/css/total.css">
 <script type="text/javascript">
-/* function list(pageNum) {
-	location.href = "myBoard.child?mnum="+${user.mnum}+"&pageNum=" + pageNum;
-return true;
-} 
- */
 function allchkbox(chk) {
 	var chks = document.getElementsByName("checkBoard"); 
 	for(var i=0; i<chks.length; i++) {
@@ -31,70 +28,12 @@ function deleteCheck(){
 }
 </script>
 <style type="text/css">
-.cmain {
-	clear: both;
-	width: 1200px;
-	margin: 0 315px 0 315px;
-}
-
-.subMenu {
-	float: left;
-	width: 200px;
-	margin: 0 auto;
-	margin-bottom: 300px;
-	border-bottom: 2px solid #dddddd;
-}
-
-.subMenu ul, li {
-	margin: 0;
-	margin-bottom: 1px;
-	padding: 0;
-	list-style: none;
-}
-
-.subMenu a {
-	text-decoration: none;
-}
-
-.menu1 {
-	height: 100px;
-	background: #F6A5BC;
-	color: white;
-}
-
-.active {
-	display: block;
-	height: 40px;
-	background-color: #CE5B7C;
-	color: white;
-}
-.active a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.menu2 {
-	height: 40px;
-	background: #f7f7f7;
-}
-
-.menu2 a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
 
 .board {
-	float: right;
-	width: 1000px;
-	padding-left: 50px;
 	text-align: left;
 }
 
-.btns {
+.btns2 {
 	margin: 30px 500px 0px 500px;
 }
 
@@ -159,7 +98,7 @@ a {
 					</tr>
 				</c:forEach>
 				</table>
-				<div class="btns">
+				<div class="btns2">
 					<input type="submit" value="»èÁ¦" class="w3-bar" style="width:100px;">
 				</div>
 			</form:form>
