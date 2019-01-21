@@ -130,6 +130,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/writeForm");
 		if (bindingResult.hasErrors()) { // 에러 발생한 경우
 			mav.getModel().putAll(bindingResult.getModel()); // 에러 메세지 전달
+			mav.setViewName("redirect:writeForm.child?bType="+board.getbType());
 			return mav;
 		}
 		try {
