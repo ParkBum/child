@@ -59,9 +59,9 @@ public class ChildService {
 			uploadFileCreate(board.getMulti3(), request, "file"); // file의 내용을 파일로 저장
 			board.setFile3(board.getMulti3().getOriginalFilename()); // db에 파일명을 저장
 		}
-		if(board.getbType() == 2) {
+		if (board.getbType() == 2) {
 			Daycare dc = mapDao.selectOne(board.getCode());
-			board.setDcname(dc.getName());	
+			board.setDcname(dc.getName());
 		}
 		boardDao.insert(board);
 	}
@@ -82,7 +82,7 @@ public class ChildService {
 
 	public Board getBoard(Integer bnum) {
 		Board board = boardDao.getBoard(bnum);
-			board.setNickname(getNickName(board.getMnum()));
+		board.setNickname(getNickName(board.getMnum()));
 		return board;
 	}
 
@@ -182,8 +182,7 @@ public class ChildService {
 	public void commentDeleteList(Integer bnum) {
 		commentDao.deleteList(bnum);
 	}
-	
-	
+
 	// 회원탈퇴하려고 다 삭제
 	public void userCommentDelete(Integer mnum) {
 		commentDao.userCommentDelete(mnum);
@@ -241,7 +240,7 @@ public class ChildService {
 	}
 
 	public List<Board> fourlists(Integer code) {
-		if(code == null) {
+		if (code == null) {
 			code = null;
 		}
 		return mapDao.fourlists(code);
@@ -269,10 +268,10 @@ public class ChildService {
 	public List<Board> myBoardList(Integer mnum) {
 		return boardDao.myBoardList(mnum);
 	}/*
-	public List<Board> myBoardList(Integer mnum, Integer pageNum, int limit) {
-		return boardDao.myBoardList(mnum, pageNum, limit);
-	}
-*/
+		 * public List<Board> myBoardList(Integer mnum, Integer pageNum, int limit) {
+		 * return boardDao.myBoardList(mnum, pageNum, limit); }
+		 */
+
 	public void myBoardDelete(Integer[] checkBoard) {
 		myComDelete(checkBoard);
 		boardDao.myBoardDelete(checkBoard);
@@ -313,27 +312,38 @@ public class ChildService {
 	public int myBoardCount(Integer mnum) {
 		return boardDao.myBoardCnt(mnum);
 	}
-	
+
 	public int getBoardDeal(Integer bnum) {
-	      return messageDao.MaxDeal(bnum);
+		return messageDao.MaxDeal(bnum);
 	}
 
 	public void userMessageDelete(Integer mnum) {
 		messageDao.updateBuynum(mnum);
 	}
-/*
-	public int getBoardBnum(Integer mnum) {
-		return boardDao.getBoardBnum(mnum);
+
+	public void boardMessageDelete(Integer bnum) {
+		messageDao.cancelDeal(bnum);
+		messageDao.updateBnum(bnum);
 	}
-*/
 
-	/*
-	 * public Comment commentSelect(Integer bnum) { return
-	 * commentDao.commentSelect(bnum); }
-	 */
+	public List<Board> myBoardLists(Integer mnum, int limit, Integer pageNum) {
+		return boardDao.myBoardLists(mnum, pageNum, limit);
+	}
+
+	public String getHashValue(String password) {
+		MessageDigest md;
+		String hashvalue = "";
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+			byte[] plain = password.getBytes();
+			byte[] hash = md.digest(plain);
+			for (byte b : hash) {
+				hashvalue += String.format("%02X", b);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return hashvalue;
+	}
+
 }
-
-/*
- * public List<Comment> commentlist(Integer bnum) { return
- * commentDao.commentwrite(bnum); }
- */

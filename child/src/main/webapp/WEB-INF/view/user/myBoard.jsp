@@ -12,6 +12,12 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="${path}/css/total.css">
 <script type="text/javascript">
+function list(pageNum) {
+	var mnum = document.f.mnum.value;
+	location.href = "myBoardList.child?mnum="+mnum+"&pageNum=" + pageNum;
+return true;
+} 
+
 function allchkbox(chk) {
 	var chks = document.getElementsByName("checkBoard"); 
 	for(var i=0; i<chks.length; i++) {
@@ -69,6 +75,7 @@ a {
 			<font size="2">게시글명을 클릭하면 해당 게시글로 이동합니다.</font><br>
 			<font size="2">게시글을 선택한 후 삭제버튼을 누르면 해당 글이 삭제됩니다.</font>
 			<form:form action="../user/myBoardDelete.child" onsubmit="return deleteCheck()" name="f" method="post">
+			<input type="hidden" name="pageNum" value="1">
 			<input type="hidden" name="bnum" value="${board.bnum}">
 			<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
 			<table  border="1" style="border-collapse: collapse;" class="w3-table w3-border w3-bordered">
@@ -101,6 +108,24 @@ a {
 				<div class="btns2">
 					<input type="submit" value="삭제" class="w3-bar" style="width:100px;">
 				</div>
+				<!-- 페이징 -->
+				<div class="btns">
+				<c:if test="${pageNum > 1}">
+					<a href="javascript:list(${pageNum - 1})"><i
+						class="material-icons" style="vertical-align: middle;">arrow_back</i></a>&nbsp;
+					</c:if>
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:if test="${a==pageNum}">
+						<font size="4" class="w3-pale-red">&nbsp; ${a} &nbsp;</font>&nbsp;</c:if>
+					<c:if test="${a!=pageNum}">
+						<a href="javascript:list(${a})"><font size="4">&nbsp;
+								${a} &nbsp;</font></a>&nbsp;</c:if>
+				</c:forEach>
+				<c:if test="${pageNum < maxpage}">
+					&nbsp;<a href="javascript:list(${pageNum + 1})"><i
+						class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
+				</c:if>
+			</div>
 			</form:form>
 		</div>
 	</div> 

@@ -148,6 +148,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/info");
 		service.commentDeleteList(bnum); // 게시글 삭제할때 댓글삭제 한번에 하기
 		Board board = service.getBoard(bnum);
+		service.boardMessageDelete(bnum);
 		service.boardDelete(bnum);
 		mav.setViewName("redirect:/board/list.child?bType=" + board.getbType()); // 이거 btype 수정해야함
 		return mav;
