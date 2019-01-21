@@ -166,16 +166,21 @@ option {
                         <option value="">선택</option>
                         <option>운영</option>
                         <option>미운영</option>
-                     </select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
-
+                     </select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" onclick="javascript:searchs()" id="searchs">조회</button>
+					<script type="text/javascript">
+					function searchs(){
+						if(document.gu.value=='' || document.bus.value=='' || document.type.value=='' ){
+							alert("조건을 모두 선택하셔야합니다.")
+							return false;
+						}else if(){
+							
+						}
+					}
+					</script>
                </div>
-<!--                <div style="width: 100%; height: 40px;">
-               <a>모든 항목을 필수적으로 선택하셔야합니다.</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                  </div> -->
                </div>
             </div>
          </div>
-         <!-- </form> -->
          <div id="map_wrap" align="center" class="map_wrap">
             <div id="map" style="width: 100%; height: 100%; margin: 10px 0"
                align="center"></div>
@@ -422,6 +427,10 @@ function displayMarker(locPosition, message) {
 </c:if>
 <script>//조건 select 후 조회 시
       $("#searchs").click(function() {
+    	  if( $("#gu").val()=='' ||$("#type").val()=='' || $("#bus").val()=='' ){
+				alert("조건을 모두 선택하셔야합니다.")
+				return false;
+			}else{
          var gu = $("#gu").val();
          var type = $("#type").val();
          var bus = $("#bus").val();
@@ -491,6 +500,7 @@ function displayMarker(locPosition, message) {
 
             }
          });
+		}
       })
 //띄운 마커, 인포윈도우 감추기
 function hideMarkers() {
