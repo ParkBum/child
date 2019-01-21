@@ -1258,9 +1258,9 @@ function review(code){
       type : "post",
       data : {"code" : code, "bType":2},
       success : function(data) {
-         $('.bar3').css('border','');
+/*          $('.bar3').css('border','');
          $('#text3').remove();
-         $('#reviews').css('top','0px');
+         $('#reviews').css('top','0px'); */
          $('#reviews').html(data);
       }});
 }
