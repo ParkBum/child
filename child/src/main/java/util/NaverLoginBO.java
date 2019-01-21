@@ -80,7 +80,7 @@ public class NaverLoginBO {
     			.callback(REDIRECT_URI).build(NaverLoginApi.instance());
     	
     		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
-    		System.out.println("NaverLoginBo request: "+request);
+//    		System.out.println("NaverLoginBo request: "+request);
     		oauthService.signRequest(oauthToken, request);
     		Response response = request.send();
 		return response.getBody();

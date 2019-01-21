@@ -178,7 +178,9 @@ public class UserController {
 				session.setAttribute("loginUser", user);
 				return mav;
 			}
-			mav.setViewName("user/loginForm");
+			mav.addObject("msg","가입을 축하드립니다.");
+			mav.addObject("url","../user/loginForm.child");
+			mav.setViewName("alert");
 			Login login = new Login();
 			mav.addObject("login", login);
 		} catch (Exception e) {

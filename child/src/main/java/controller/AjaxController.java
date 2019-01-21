@@ -42,7 +42,7 @@ public class AjaxController {
 	@ResponseBody
 	@RequestMapping("user/emailcheck") //비밀번호 일치 하나요??
 	public Map<Object, Object> emailcheck(String email){
-		System.out.println(email);
+		//System.out.println(email);
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		String msg ="";
 		if(service.userSelect(email)==null) {
