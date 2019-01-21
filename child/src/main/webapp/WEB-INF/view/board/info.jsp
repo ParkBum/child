@@ -13,75 +13,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
+<link rel="stylesheet"  href="${path}/css/total.css">
 <title>게시물 상세 보기</title>
 <style type="text/css">
-.cmain {
-	clear: both;
-	width: 1200px;
-	margin: 0 315px 0 315px;
-}
-
-.subMenu {
-	float: left;
-	width: 200px;
-	margin: 0 auto;
-	margin-bottom: 300px;
-	border-bottom: 2px solid #dddddd;
-}
-
-.subMenu ul, li {
-	margin: 0;
-	margin-bottom: 1px;
-	padding: 0;
-	list-style: none;
-}
-
-.subMenu a {
-	text-decoration: none;
-}
-
-.menu1 {
-	height: 100px;
-	background: #F6A5BC;
-	color: white;
-}
-
-.active {
-	display: block;
-	height: 40px;
-	background-color: #CE5B7C;
-	color: white;
-}
-
-.active a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.menu2 {
-	height: 40px;
-	background: #f7f7f7;
-}
-
-.menu2 a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.board {
-	float: right;
-	width: 1000px;
-	padding-left: 50px;
-}
-
-.btns {
-	margin: 20px;
-}
-
 td {
 	text-align: left;
 }

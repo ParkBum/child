@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"  href="${path}/css/total.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -48,94 +49,6 @@
 </script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script>
-	
-</script>
-<style type="text/css">
-.cmain {
-	clear: both;
-	width: 1200px;
-	margin: 0 315px 0 315px;
-}
-
-.subMenu {
-	float: left;
-	width: 200px;
-	margin: 0 auto;
-	margin-bottom: 300px;
-	border-bottom: 2px solid #dddddd;
-}
-
-.subMenu ul, li {
-	margin: 0;
-	margin-bottom: 1px;
-	padding: 0;
-	list-style: none;
-}
-
-.subMenu a {
-	text-decoration: none;
-}
-
-.menu1 {
-	height: 100px;
-	background: #F6A5BC;
-	color: white;
-}
-
-.active {
-	display: block;
-	height: 40px;
-	background-color: #CE5B7C;
-	color: white;
-}
-.active a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.menu2 {
-	height: 40px;
-	background: #f7f7f7;
-}
-
-.menu2 a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-}
-
-.board {
-	float: right;
-	width: 1000px;
-	padding-left: 50px;
-}
-
-.search {
-	margin-bottom: 50px;
-	padding: 17px 0 17px 0;
-	text-align: center;
-	border: 1px solid #dbdbdb;
-	background: #f7f7f7 80px center;
-	width: 100%;
-}
-
-.filter {
-	text-align: left;
-	margin-bottom: 5px;
-}
-
-.btns {
-	margin: 20px;
-}
-
-.btns a {
-	text-decoration: none;
-}
-</style>
 </head>
 <body>
 	<div class="cmain" align="center">
