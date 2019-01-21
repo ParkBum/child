@@ -85,13 +85,10 @@ public class UserController {
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
-		User dbUser = (User) session.getAttribute("loginUser");
-		if (dbUser.getMnum() == 1) {
 			service.userCommentDelete(mnum);
 			service.userBoardDelete(mnum);
 			service.userDelete(mnum);
 			mav.setViewName("redirect:../user/list.child");
-		}
 		return mav;
 	}
 
