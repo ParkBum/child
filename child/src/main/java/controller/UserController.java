@@ -263,20 +263,21 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(@Valid User user, BindingResult bindingResult ,Integer mnum, HttpSession session, String password) {
+	public ModelAndView confirm(@Valid User user, BindingResult bindingResult ,Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User dbUser = (User) session.getAttribute("loginUser");
+		User dbUser = (User) session.getAttribute("loginUser");//dbuser = 원래 정보
 		if (bindingResult.hasErrors()) {
 			mav.getModel().putAll(bindingResult.getModel());
 			mav.setViewName("user/list");
 			return mav;
 		}
-		if (service.getHashValue(password).equals(dbUser.getPassword())) {
+		if (service.getHashValue(user.getPassword()).equals(dbUser.getPassword())) {
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
-			mav.addObject("user",user);
 		} else {
 			mav.setViewName("redirect:../user/list.child?mnum=" + user.getMnum());
 		}
+		user.setPassword(service.getHashValue(user.getPassword()));
+		mav.addObject("user",user);
 		return mav;
 	}
 /*

@@ -148,16 +148,9 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form:form modelAttribute="user" action="passConfirm.child?mnum=${user.mnum}"
+		<form action="passConfirm.child?mnum=${user.mnum}"
 			method="Post" name="f">
-			<spring:hasBindErrors name="user">
-				<font color="red"> <c:forEach items="${errors.globalErrors}"
-						var="error">
-						<spring:message code="${error.code}" />
-					</c:forEach>
-				</font>
-			</spring:hasBindErrors>
-			<form:hidden path="password" name="password" value="${user.password}"/>
+			<input type="hidden" name="password" value="${user.password}">
 			<div id="id02" class="w3-modal"
 				style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
@@ -166,12 +159,8 @@ function check(){
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 : 
-						<!-- <input type="password" id="password" name="pass" style="width: 72%"> -->
-						<form:password path="password" class="pass"
-							placeholder="비밀번호" id="password" name="password" />
-					<font color="red" class="error"><br> 
-						<form:errors path="password" /></font>
+						비밀번호 입력 : <input type="password" id="password" name="pass"
+							style="width: 72%">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
 								onclick="document.getElementById('id02').style.display='none'">
@@ -182,7 +171,7 @@ function check(){
 					</div>
 				</div>
 			</div>
-		</form:form>
+		</form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
