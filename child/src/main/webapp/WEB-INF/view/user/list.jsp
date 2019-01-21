@@ -148,15 +148,8 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form:form action="passConfirm.child?mnum=${user.mnum}"
+		<form action="passConfirm.child?mnum=${user.mnum}"
 			method="Post" name="f">
-			<spring:hasBindErrors name="user">
-				<font color="red"> <c:forEach items="${errors.globalErrors}"
-						var="error">
-						<spring:message code="${error.code}" />
-					</c:forEach>
-				</font>
-			</spring:hasBindErrors>
 			<input type="hidden" name="password" value="${user.password}">
 			<div id="id02" class="w3-modal"
 				style="z-index: 4; padding-top: 280px;">
@@ -178,7 +171,7 @@ function check(){
 					</div>
 				</div>
 			</div>
-		</form:form>
+		</form>
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
