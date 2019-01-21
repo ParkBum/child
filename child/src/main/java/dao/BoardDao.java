@@ -102,6 +102,16 @@ public class BoardDao {
 		return sqlSession.getMapper(BoardMapper.class).myBoardCnt(mnum);
 	}
 
+	public List<Board> myBoardLists(Integer mnum, Integer pageNum, int limit) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		int startrow = (pageNum - 1) * limit;
+		map.put("mnum", mnum);
+		map.put("limit", limit);
+		map.put("startrow", startrow);
+		return sqlSession.selectList(NS+"mylist",map);
+	}
+
+
 }
 
 

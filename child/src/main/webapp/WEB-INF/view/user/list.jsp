@@ -112,7 +112,7 @@ function check(){
 		<!-- 회원정보 -->
 		<div class="btns2">
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}">
+			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}&pageNum=1">
 				[내 게시글 목록]</a> 
 			<a href="javascript:void(0)" align="right"
 				onclick="document.getElementById('id02').style.display='block'">
