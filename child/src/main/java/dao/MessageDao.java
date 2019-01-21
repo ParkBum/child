@@ -61,4 +61,8 @@ public class MessageDao {
 		return sqlSession.getMapper(MessageMapper.class).MaxDeal(bnum);
 	}
 
+	public void updateBuynum(Integer mnum) {
+		sqlSession.getMapper(MessageMapper.class).updateBuynum(mnum);		
+	}
+
 }

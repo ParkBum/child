@@ -317,6 +317,15 @@ public class ChildService {
 	      return messageDao.MaxDeal(bnum);
 	}
 
+	public void userMessageDelete(Integer mnum) {
+		messageDao.updateBuynum(mnum);
+	}
+
+	public int getBoardBnum(Integer mnum) {
+		return boardDao.getBoardBnum(mnum);
+	}
+
+
 	/*
 	 * public Comment commentSelect(Integer bnum) { return
 	 * commentDao.commentSelect(bnum); }
