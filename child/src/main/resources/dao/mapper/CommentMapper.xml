@@ -6,7 +6,7 @@
 		select * from comment
 		<if test="bnum != null">
 			where bnum = #{bnum} 
-			order by ref desc, refstep 
+			order by ref desc, refstep
 		</if>
 		<if test="startrow != null and limit != null">
 			limit #{startrow},#{limit}
