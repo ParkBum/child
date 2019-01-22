@@ -4,14 +4,14 @@
 	<form action="../board/list.child" method="post">
 		<c:if test="${! empty lists}">
 			<input type="hidden" name="searchType"  value="dcname">
-			<input type="hidden" name="searchContent"  value="${lists[0].dcname}">
+			<input type="hidden" name="searchContent"  value="${dcname}">
 		</c:if>
 		<input type="hidden" name="bType" value="${bType}">
 		<table border='1'
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
 				<tr style="vertical-align: middle;">
-					<td colspan='2' height='41' style="text-align: center;">${lists[0].dcname} 후기 게시물</td> 
+					<td colspan='2' height='41' style="text-align: center;">${dcname} 후기 게시물</td> 
 				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>

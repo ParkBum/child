@@ -347,5 +347,10 @@ public class ChildService {
 		return hashvalue;
 	}
 
+	public String dcname(Integer code) {
+		
+		return mapDao.dcname(code);
+	}
+
 
 }
