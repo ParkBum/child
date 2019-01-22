@@ -84,7 +84,7 @@ function check(){
 						<th colspan="2" style="text-align: center; padding-left:8px;">관리자 정보</th>
 					</c:if>
 					<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
-						<th colspan="2" style="text-align: center;">회원 정보</th>
+						<th colspan="2" style="text-align: center; padding-left:8px;">회원 정보</th>
 					</c:if>
 				</tr>
 				<tr>
