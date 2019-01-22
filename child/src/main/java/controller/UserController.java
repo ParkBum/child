@@ -289,7 +289,7 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping(value = "user/myBoardList")
-	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {
+	public ModelAndView myBoardList(Integer mnum,HttpSession session, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		String nick = service.getNickName(mnum);
 		if (pageNum == null || pageNum.toString().equals("")) {
