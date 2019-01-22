@@ -89,6 +89,10 @@ a {
 					<th width="12%">작성 날짜</th>
 					<th width="15%">비고</th>
 				</tr>
+				<c:if test="${empty myboard}">
+					<td colspan="7">작성한 게시글이 없습니다.</td>
+				</c:if>
+				<c:if test="${!empty myboard}">
 				<c:forEach items="${myboard}" var="myboard">
 					<tr>
 						<td style="padding-left:8px;"><input type="checkbox" name="checkBoard" value="${myboard.bnum}"></td>
@@ -105,6 +109,7 @@ a {
 						<td><c:if test="${myboard.bType == 3}"><a href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">${(myboard.boarddeal == 1)?"거래중":(myboard.boarddeal == 2)?"거래 완료":"거래 대기"}</a></c:if></td>
 					</tr>
 				</c:forEach>
+				</c:if>
 				</table>
 				<!-- 페이징 -->
 				<div class="btns" style="text-align:center;">
