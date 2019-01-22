@@ -21,7 +21,7 @@ public interface CommentMapper {
 	@Select("select ifnull(max(cnum), 0) from comment")
 	int maxBnum();
 
-	@Delete("delete from comment where cnum = #{cnum}")
+	@Delete("delete from comment where ref = #{cnum}")
 	void delete(Integer cnum);
 	
 	@Delete("delete from comment where bnum = #{bnum}")
