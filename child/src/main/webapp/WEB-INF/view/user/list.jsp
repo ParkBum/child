@@ -160,8 +160,6 @@ function check(){
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 : <input type="password" id="password2" name="pass"
-							style="width: 72%">
 						비밀번호 입력 : <input type="password" id="password" name="password" style="width: 72%">
 						<div class="w3-section">
 	<a class="w3-button" style="background-color: #FFF1F5;" onclick="document.getElementById('id02').style.display='none'">	닫기 </a> 
