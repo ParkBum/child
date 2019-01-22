@@ -29,7 +29,7 @@ function deleteCheck(){
 	var chk = confirm("게시글을 삭제하시겠습니까?");
 	if(chk){
 		alert("삭제했습니다.");
-		return true;
+		document.getElementById("f").submit();
 	} else return false;
 }
 </script>
@@ -40,7 +40,8 @@ function deleteCheck(){
 }
 
 .btns2 {
-	margin: 30px 500px 0px 500px;
+	margin-top : 30px;
+	text-align: center;
 }
 
 th {
@@ -74,7 +75,7 @@ a {
 			</div>
 			<font size="2">게시글명을 클릭하면 해당 게시글로 이동합니다.</font><br>
 			<font size="2">게시글을 선택한 후 삭제버튼을 누르면 해당 글이 삭제됩니다.</font>
-			<form:form action="../user/myBoardDelete.child" onsubmit="return deleteCheck()" name="f" method="post">
+			<form:form action="../user/myBoardDelete.child" id="f" method="post">
 			<input type="hidden" name="pageNum" value="1">
 			<input type="hidden" name="bnum" value="${board.bnum}">
 			<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
@@ -105,11 +106,8 @@ a {
 					</tr>
 				</c:forEach>
 				</table>
-				<div class="btns2">
-					<input type="submit" value="삭제" class="w3-bar" style="width:100px;">
-				</div>
 				<!-- 페이징 -->
-				<div class="btns">
+				<div class="btns" style="text-align:center;">
 				<c:if test="${pageNum > 1}">
 					<a href="javascript:list(${pageNum - 1})"><i
 						class="material-icons" style="vertical-align: middle;">arrow_back</i></a>&nbsp;
@@ -125,6 +123,7 @@ a {
 					&nbsp;<a href="javascript:list(${pageNum + 1})"><i
 						class="material-icons" style="vertical-align: middle;">arrow_forward</i></a>
 				</c:if>
+				<a href="javascript:deleteCheck()" style="float: right; padding-left:8px" type="button" class="w3-button"><i class="material-icons" style="vertical-align: middle;">delete_forever</i>삭제</a>
 			</div>
 			</form:form>
 		</div>
