@@ -148,8 +148,8 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form action="passConfirm.child?mnum=${user.mnum}" method="Post" name="f">
-			<input type="hidden" name="password" value="${user.password}">
+		<form:form modelAttribute="user" method="post" name="f" action="passConfirm.child?mnum=${user.mnum}">
+		<%-- <form action="passConfirm.child?mnum=${user.mnum}" method="Post" name="f"> --%>
 			<input type="hidden" name="email" value="${user.email}">
 			<input type="hidden" name="addr1" value="${user.addr1}">
 			<input type="hidden" name="addr3" value="${user.addr3}">
@@ -162,6 +162,7 @@ function check(){
 					<div class="w3-panel">
 						비밀번호 입력 : <input type="password" id="password2" name="pass"
 							style="width: 72%">
+						비밀번호 입력 : <input type="password" id="password" name="password" style="width: 72%">
 						<div class="w3-section">
 	<a class="w3-button" style="background-color: #FFF1F5;" onclick="document.getElementById('id02').style.display='none'">	닫기 </a> 
 	<input type="submit" onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-light-grey w3-right" value="확인">
@@ -169,7 +170,8 @@ function check(){
 					</div>
 				</div>
 			</div>
-		</form>
+			</form:form>
+		<!-- </form> -->
 		&nbsp;
 		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
