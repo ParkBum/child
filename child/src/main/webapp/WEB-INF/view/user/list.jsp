@@ -74,7 +74,7 @@ function check(){
 		</div>
 		<div class="board">
 		<div style="margin-top: 30px; margin-bottom: 30px;">
-		<h3>회원 정보 관리</h3><form action="gohashpw.child" method="post"><input type="submit" value="변환하기"></form>
+		<h3>회원 정보 관리</h3><form action="gohashpw.child" method="post"><input type="submit" value="회원 비밀번호 해쉬값으로 변환하기"></form>
 		</div>
 		<form action="list.child?mnum=${user.mnum}" method="Post">
 			<table border="1" style="border-collapse: collapse; width: 100%;"
