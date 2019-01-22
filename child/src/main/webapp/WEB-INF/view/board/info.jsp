@@ -439,11 +439,11 @@ $(function() {
 					<td colspan="2" style="padding-left:8px;">
 							<div>
 							<!-- ºñ´ñÀÌ¸é ÀÚ¹°¼èÇ¥½Ã -->
-								<c:if test="${c.secret == 1}">
+								<c:if test="${c.refstep != 1 && c.secret == 1}">
 									<i class="fa fa-lock" style="font-size: 24px"></i>
 								</c:if>
 								
-								<c:if test="${c.ref == 1 && c.secret == 1}">
+								<c:if test="${c.refstep == 1 && c.secret == 1}">
 									<i class="fa fa-lock" style="font-size: 24px;"></i>
 								</c:if>
 									<c:if
