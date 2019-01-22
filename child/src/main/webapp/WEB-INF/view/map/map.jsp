@@ -118,8 +118,8 @@ option {
          <div id="search">
             <div style="text-align: center; width: 100%; height: 40px; background: #f7f7f7; border : solid 1px #dbdbdb;">
                <div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
-                  <div style="width: 30%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
-                     <font style="margin-top:1px;">구&nbsp;&nbsp;</font> <select style="margin-top:1px;" name="gu" id="gu">
+                  <div style="width: 29%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
+                     <font style="margin-top:1px;">지역&nbsp;&nbsp;</font> <select style="margin-top:1px; width:90px;" name="gu" id="gu">
                         <option value="">선택</option>
                         <option>강남구</option>
                         <option>강동구</option>
@@ -148,8 +148,8 @@ option {
                         <option>중랑구</option>
                      </select>
                   </div>
-                  <div style="width: 30%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
-                     <font style="margin-top: 1px;">유형&nbsp;&nbsp;</font> <select  style="margin-top: 1px;" name="type" id="type">
+                  <div style="width: 29%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
+                     <font style="margin-top: 1px;">유형&nbsp;&nbsp;</font> <select  style="width:90px; margin-top: 1px;" name="type" id="type">
                         <option value="">선택</option>
                         <option>가정</option>
                         <option>국공립</option>
@@ -160,8 +160,8 @@ option {
                         <option>직장</option>
                      </select>
                   </div>
-                  <div style="width: 39%; height:36px; margin : 2px 0; float: left;">
-                     <font style="margin-top: 4px;">통원 차량&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="bus" id="bus">
+                  <div style="width: 42%; height:36px; margin : 2px 0; float: left;">
+                     <font style="margin-top: 4px;">차량&nbsp;&nbsp;</font> <select style="width:90px; margin-top: 4px;" name="bus" id="bus">
                         <option value="">선택</option>
                         <option>운영</option>
                         <option>미운영</option>
