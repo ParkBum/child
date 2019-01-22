@@ -147,7 +147,9 @@ padding-left:0px;
               <div class="horizontalLine"></div>
             </li>
             </ul>
-				<a href="${url}"><img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px; width: 210px;"></a>
+				<a href="${url}">
+				<img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px; width: 210px;">
+				</a>
 				<br>
 				<br>
 			</div>

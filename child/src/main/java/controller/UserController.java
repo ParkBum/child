@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import logic.Board;
 import logic.ChildService;
@@ -45,7 +46,7 @@ public class UserController {
 			return mav;
 		}
 		try {
-			User dbuser = service.userSelect(login.getLogin_email()); // 회원정보 저장
+			User dbuser = service.userSelect(login.getLogin_email()); // 회원정보 확인
 			if (dbuser == null) {
 				bindResult.reject("error.login.id");
 				mav.getModel().putAll(bindResult.getModel());
@@ -53,7 +54,7 @@ public class UserController {
 				return mav;
 			}
 			// 존재
-			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {
+			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {//비밀번호 같으면...
 				session.setAttribute("loginUser", dbuser);
 			} else {
 				bindResult.reject("error.login.password");
@@ -268,31 +269,23 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			mav.getModel().putAll(bindingResult.getModel());
 			mav.setViewName("user/list");
+			//System.out.println(bindingResult);
 			return mav;
 		}
-		if (service.getHashValue(user.getPassword()).equals(dbUser.getPassword())) {
+		//System.out.println("durlsmsdy?222222");
+		//System.out.println(user.getPassword());
+		if (user.getPassword().equals(dbUser.getPassword())) {
+			//System.out.println("여기 안나와요??33333");
+			//System.out.println(user.getPassword());
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
 		} else {
+			//System.out.println("여기는 도착한아ㅛ");
 			mav.setViewName("redirect:../user/list.child?mnum=" + user.getMnum());
 		}
 		user.setPassword(service.getHashValue(user.getPassword()));
 		mav.addObject("user",user);
 		return mav;
 	}
-/*
-	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(Integer mnum, HttpSession session, String password) {
-		ModelAndView mav = new ModelAndView();
-		User dbUser = (User) session.getAttribute("loginUser");
-		if (service.getHashValue(password).equals(dbUser.getPassword())) {
-			mav.setViewName("redirect:../user/updateForm.child?mnum=" + mnum);
-		} else {
-			mav.setViewName("redirect:../user/list.child?mnum=" + mnum);
-		}
-		return mav;
-	}
-
-	*/
 	@RequestMapping(value = "user/myBoardList")
 	public ModelAndView myBoardList(Integer mnum, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();

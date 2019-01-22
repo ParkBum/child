@@ -167,6 +167,7 @@
    stroke:white;
    stroke-width: 1.3px;
 }
+
 </style>
 </head>
 <body>
@@ -384,20 +385,24 @@ d3.json("../decorator/seoul_municipalities_topo_simple.json", function(error, da
         return d.properties.SIG_CD
       })
       
-      .style("fill","#CCEFD5") // CCEFD5
+      .style("fill","#C8E5F2")
 //      .style("opacity","0.8")
       .on("mouseover",function(d){
-    	 d3.select(this).style("fill","#9AC7A6");
-       //d3.select(this).style("마우스 포인터 변경");
-       //87B5FF - 푸른색
-       //8FD892 녹색보다 흐리게
+      	 d3.select(this).style("fill","#98C9DE");
+    	 d3.select(this).style("cursor","pointer");
+     	 d3.select(this).style("transform","scale(0.99)");
+     	 d3.select(this).style("stroke","#6BA7C1"); 
+     	 d3.select(this).style("stroke-width","3px");
       })
       .on("click",function(d){
     	 makepiechart(d.properties.SIG_CD, d.properties.SIG_KOR_NM);
-    	 $( '#maplink' ).hide();
+    	 $('#maplink' ).hide();
       })
       .on("mouseout",function(){
-    	  d3.select(this).style("fill","#CCEFD5");
+		 d3.select(this).style("fill","#C8E5F2");
+		 d3.select(this).style("transform","scale(1)"); 
+     	 d3.select(this).style("stroke","white");
+     	 d3.select(this).style("stroke-width","1.3px");
       });
   map.selectAll("text")	//글자넣는 구간
       .data(features)
