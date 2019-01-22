@@ -74,7 +74,7 @@ function check(){
 		</div>
 		<div class="board">
 		<div style="margin-top: 30px; margin-bottom: 30px;">
-		<h3>회원 정보 관리</h3>
+		<h3>회원 정보 관리</h3><form action="gohashpw.child" method="post"><input type="submit" value="회원 비밀번호 해쉬값으로 변환하기"></form>
 		</div>
 		<form action="list.child?mnum=${user.mnum}" method="Post">
 			<table border="1" style="border-collapse: collapse; width: 100%;"
@@ -148,11 +148,12 @@ function check(){
 			</div>
 		</form>
 		<!-- 모달 내용 -->
-		<form action="passConfirm.child?mnum=${user.mnum}"
-			method="Post" name="f">
+		<form action="passConfirm.child?mnum=${user.mnum}" method="Post" name="f">
 			<input type="hidden" name="password" value="${user.password}">
-			<div id="id02" class="w3-modal"
-				style="z-index: 4; padding-top: 280px;">
+			<input type="hidden" name="email" value="${user.email}">
+			<input type="hidden" name="addr1" value="${user.addr1}">
+			<input type="hidden" name="addr3" value="${user.addr3}">
+			<div id="id02" class="w3-modal" style="z-index: 4; padding-top: 280px;">
 				<div class="w3-modal-content w3-animate-zoom" style="width: 20%">
 					<div class="w3-container w3-padding"
 						style="background-color: #FFF1F5;">
@@ -162,11 +163,8 @@ function check(){
 						비밀번호 입력 : <input type="password" id="password" name="pass"
 							style="width: 72%">
 						<div class="w3-section">
-							<a class="w3-button" style="background-color: #FFF1F5;"
-								onclick="document.getElementById('id02').style.display='none'">
-								닫기 </a> <input type="submit"
-								onclick="document.getElementById('id02').style.display='none'"
-								class="w3-button w3-light-grey w3-right" value="확인">
+	<a class="w3-button" style="background-color: #FFF1F5;" onclick="document.getElementById('id02').style.display='none'">	닫기 </a> 
+	<input type="submit" onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-light-grey w3-right" value="확인">
 						</div>
 					</div>
 				</div>

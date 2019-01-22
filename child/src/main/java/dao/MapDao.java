@@ -68,6 +68,13 @@ public class MapDao {
 	}
 
 
+	public List<Board> sortlist(String sorts) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("sorts", sorts);
+		return sqlSession.selectList(NS+"sortlist",map);
+	}
+
+
 /*	public double getScore_avg(Integer code) {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("code", code);
