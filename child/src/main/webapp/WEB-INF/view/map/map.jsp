@@ -216,7 +216,7 @@ option {
       // 지도의 우측에 확대 축소 컨트롤을 추가한다
       map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
       var imageSrc = 'https://image.flaticon.com/icons/svg/1397/1397965.svg', // 마커이미지의 주소입니다    
-      imageSize = new daum.maps.Size(30, 50), // 마커이미지의 크기입니다
+      imageSize = new daum.maps.Size(40, 60), // 마커이미지의 크기입니다
       imageOption = {offset: new daum.maps.Point(15, 50)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
         
