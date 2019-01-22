@@ -114,11 +114,11 @@ function check(){
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
 			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}&pageNum=1">
 				[내 게시글 목록]</a> 
-			<a href="javascript:void(0)" align="right"
+			<a href="javascript:void(0)"
 				onclick="document.getElementById('id02').style.display='block'">
 				[회원정보 수정]</a>  
 			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
-				<a href="javascript:void(0)" align="right"
+				<a href="javascript:void(0)"
 					onclick="document.getElementById('id01').style.display='block'">[회원탈퇴]</a>
 			</c:if>
 		</div>

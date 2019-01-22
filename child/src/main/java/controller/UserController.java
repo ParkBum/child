@@ -54,7 +54,7 @@ public class UserController {
 				return mav;
 			}
 			// 존재
-			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {//비밀번호 같으면...
+			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {// 비밀번호 같으면...
 				session.setAttribute("loginUser", dbuser);
 			} else {
 				bindResult.reject("error.login.password");
@@ -81,16 +81,16 @@ public class UserController {
 		return mav;
 	}
 
-//관리자가 강제탈퇴
+	// 관리자가 강제탈퇴
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
 		List<Board> myboard = service.myBoardList(mnum);
 		service.userMessageDelete(mnum);
 		service.userCommentDelete(mnum);
-		for(Board board : myboard) {
+		for (Board board : myboard) {
 			int bnum = board.getBnum();
-			service.commentDeleteList(bnum);			
+			service.commentDeleteList(bnum);
 		}
 		service.userBoardDelete(mnum);
 		service.userDelete(mnum);
@@ -178,8 +178,8 @@ public class UserController {
 				session.setAttribute("loginUser", user);
 				return mav;
 			}
-			mav.addObject("msg","가입을 축하드립니다.");
-			mav.addObject("url","../user/loginForm.child");
+			mav.addObject("msg", "가입을 축하드립니다.");
+			mav.addObject("url", "../user/loginForm.child");
 			mav.setViewName("alert");
 			Login login = new Login();
 			mav.addObject("login", login);
@@ -224,14 +224,15 @@ public class UserController {
 		String newpass2 = request.getParameter("newpass2");
 		if (newpass1.length() <= 4 || newpass2.length() <= 4) {
 			mav.setViewName("redirect:../user/chgPass.child");
-		}// 비밀번호 글자가 작으면 다시 
-		if (newpass1.equals(newpass2)) {//입력되는 비밀번호가 같으면 바꾼다.
-			String hashpw = service.getHashValue(newpass1);service.changePass(hashpw, mnum);
+		} // 비밀번호 글자가 작으면 다시
+		if (newpass1.equals(newpass2)) {// 입력되는 비밀번호가 같으면 바꾼다.
+			String hashpw = service.getHashValue(newpass1);
+			service.changePass(hashpw, mnum);
 			session.invalidate();
 			mav.setViewName("redirect:../user/loginForm.child");
 		} else {
-			mav.setViewName("user/updateForm");//틀렸을때는 다시 되돌아간다.
-		} 
+			mav.setViewName("user/updateForm");// 틀렸을때는 다시 되돌아간다.
+		}
 		return mav;
 	}
 
@@ -243,10 +244,10 @@ public class UserController {
 		if (service.getHashValue(pass).equals(dbUser.getPassword())) {
 			try {
 				service.userMessageDelete(mnum);
-				service.userCommentDelete(mnum); //본인이 작성한 댓글 모두 삭제
-				for(Board board : myboard) {
+				service.userCommentDelete(mnum); // 본인이 작성한 댓글 모두 삭제
+				for (Board board : myboard) {
 					int bnum = board.getBnum();
-					service.commentDeleteList(bnum); //본인이 작성한 게시글의 댓글 모두 삭제
+					service.commentDeleteList(bnum); // 본인이 작성한 게시글의 댓글 모두 삭제
 				}
 				service.userBoardDelete(mnum);
 				service.userDelete(mnum);
@@ -256,18 +257,18 @@ public class UserController {
 				e.printStackTrace();
 				mav.setViewName("user/list");
 			}
-		} else { // 비밀번호 불일치 
-			mav.setViewName("user/list"); 
+		} else { // 비밀번호 불일치
+			mav.setViewName("user/list");
 		}
 		return mav;
 	}
 
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(@Valid User user, BindingResult bindingResult ,Integer mnum, HttpSession session) {
+	public ModelAndView confirm(@Valid User user, BindingResult bindingResult, Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		//System.out.println(bindingResult);
-		//System.out.println(user);
-		User dbUser = (User) session.getAttribute("loginUser");//dbuser = 원래 정보
+		// System.out.println(bindingResult);
+		// System.out.println(user);
+		User dbUser = (User) session.getAttribute("loginUser");// dbuser = 원래 정보
 		if (bindingResult.hasErrors()) {
 			mav.getModel().putAll(bindingResult.getModel());
 			mav.setViewName("user/list");
@@ -275,30 +276,31 @@ public class UserController {
 		}
 		String pass = service.getHashValue(user.getPassword());
 		if (pass.equals(dbUser.getPassword())) {
-			//System.out.println("여기 안나와요??33333");
-			//System.out.println(user.getPassword());
+			// System.out.println("여기 안나와요??33333");
+			// System.out.println(user.getPassword());
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
 		} else {
-			mav.addObject("msg","비밀번호가 틀렸습니다.");
-			mav.addObject("url","list.child?mnum=" + user.getMnum());
+			mav.addObject("msg", "비밀번호가 틀렸습니다.");
+			mav.addObject("url", "list.child?mnum=" + user.getMnum());
 			mav.setViewName("alert");
 			return mav;
 		}
 		user.setPassword(pass);
-		mav.addObject("user",user);
+		mav.addObject("user", user);
 		return mav;
 	}
+
 	@RequestMapping(value = "user/myBoardList")
-	public ModelAndView myBoardList(Integer mnum,HttpSession session, Integer pageNum) {
+	public ModelAndView myBoardList(Integer mnum, HttpSession session, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		String nick = service.getNickName(mnum);
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
 		}
 		int limit = 10;
-		int myBoardCnt = service.myBoardCount(mnum); //myboard 갯수
-		//System.out.println(myBoardCnt);
-		List<Board> myboard = service.myBoardLists(mnum,limit,pageNum);
+		int myBoardCnt = service.myBoardCount(mnum); // myboard 갯수
+		// System.out.println(myBoardCnt);
+		List<Board> myboard = service.myBoardLists(mnum, limit, pageNum);
 		int maxpage = (int) ((double) myBoardCnt / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수
 		int endpage = startpage + 9; // 화면에 표시될 마지막 페이지 수
@@ -326,6 +328,9 @@ public class UserController {
 	@RequestMapping(value = "user/myBoardDelete")
 	public ModelAndView myBoardDelete(Integer[] checkBoard, Integer mnum) {
 		ModelAndView mav = new ModelAndView();
+		for (Integer bnum : checkBoard) {
+			service.boardMessageDelete(bnum);
+		}
 		service.myBoardDelete(checkBoard);
 		mav.setViewName("redirect:../user/myBoardList.child?mnum=" + mnum);
 		return mav;

@@ -12,8 +12,7 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
-<link rel="stylesheet"  href="${path}/css/total.css">
+<link rel="stylesheet" href="${path}/css/total.css">
 <title>게시물 상세 보기</title>
 <style type="text/css">
 td {
@@ -266,7 +265,7 @@ $(function() {
 			<table style="border-collapse: collapse; width: 100%;"
 				class="w3-table w3-border w3-bordered">
 				<tr style="height: 30px;">
-					<td width="15%" style="text-align: center; padding-left:8px;">작성자</td>
+					<td width="15%" style="text-align: center; padding-left: 8px;">작성자</td>
 					<td width="90%">&nbsp;${board.nickname} <c:if
 							test="${board.bType == 3}">
 							<c:set var="flag" value="0" />
@@ -283,7 +282,7 @@ $(function() {
 						</c:if></td>
 				</tr>
 				<tr style="height: 30px;">
-					<td style="text-align: center; padding-left:8px;">제목</td>
+					<td style="text-align: center; padding-left: 8px;">제목</td>
 					<td>&nbsp;[<c:if test="${board.bType == 1}">
                            ${(board.head==1)?"육아꿀팁":"시설추천"}</c:if> <c:if
 							test="${board.bType == 3}">
@@ -297,7 +296,7 @@ $(function() {
 				</tr>
 				<c:if test="${board.bType == 2}">
 					<tr style="height: 30px;">
-						<th style="text-align: center; padding-left:8px;">별점</th>
+						<th style="text-align: center; padding-left: 8px;">별점</th>
 						<td style="padding-left: 5px;">
 							<div class="starRev">
 								<span class="starR1" id="left1">별1_왼쪽</span> <span
@@ -313,16 +312,17 @@ $(function() {
 					</tr>
 				</c:if>
 				<tr>
-					<td style="text-align: center; height: 400px; padding-left:8px;">내용</td>
+					<td style="text-align: center; height: 400px; padding-left: 8px;">내용</td>
 					<td>
 						<table width="100%" height="100%">
 							<tr>
-								<td style="padding-left:8px;">&nbsp;${board.content}</td>
+								<td style="padding-left: 8px;">${board.content}</td>
 							</tr>
 							<c:if
 								test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
 								<tr>
-									<td style="padding-left:8px;">&nbsp; <c:if test="${!empty board.file1}">
+									<td style="padding-left: 8px;">&nbsp; <c:if
+											test="${!empty board.file1}">
 											<img src="${path}/file/${board.file1}"
 												style="width: 150px; height: 150px;">
 										</c:if>&nbsp; <c:if test="${!empty board.file2}">
@@ -346,25 +346,26 @@ $(function() {
 						<td colspan="2"
 							style="text-align: center; border-top: hidden; padding: 30px;">
 							<c:if test="${board.boarddeal == 0}">
-							<c:set var="flag" value="0" />
-							<c:forEach items="${messageList}" var="msg">
-								<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
-									<c:set var="flag" value="${flag + 1}" />
+								<c:set var="flag" value="0" />
+								<c:forEach items="${messageList}" var="msg">
+									<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
+										<c:set var="flag" value="${flag + 1}" />
+									</c:if>
+								</c:forEach>
+								<c:if test="${flag > 0}">
+									<input type="button" value="요청중" class="w3-disabled"
+										title="이미 거래요청 중입니다.">
 								</c:if>
-							</c:forEach>
-							<c:if test="${flag > 0}">
-								<input type="button" value="요청중" class="w3-disabled" title="이미 거래요청 중입니다.">
-							</c:if>
-							<c:if test="${flag == 0}">
-							<input type="button" value="구매요청" name="buy"
-									onclick="document.getElementById('id01').style.display='block'">
-							</c:if>
-							</c:if>
-							<c:if test="${board.boarddeal == 1}">
-								<input type="button" value="거래중" class="w3-disabled" title="거래중인 게시글입니다.">
-							</c:if>
-							<c:if test="${board.boarddeal == 2}">
-								<input type="button" value="거래완료" class="w3-disabled" title="거래완료된 게시글입니다.">
+								<c:if test="${flag == 0}">
+									<input type="button" value="구매요청" name="buy"
+										onclick="document.getElementById('id01').style.display='block'">
+								</c:if>
+							</c:if> <c:if test="${board.boarddeal == 1}">
+								<input type="button" value="거래중" class="w3-disabled"
+									title="거래중인 게시글입니다.">
+							</c:if> <c:if test="${board.boarddeal == 2}">
+								<input type="button" value="거래완료" class="w3-disabled"
+									title="거래완료된 게시글입니다.">
 							</c:if>
 							<form action="buyItem.child" method="Post" name="mf"
 								onsubmit="return phonecheck()">
@@ -408,166 +409,297 @@ $(function() {
 					</tr>
 				</c:if>
 				<tr>
-					<td colspan="2" style="text-align: center; height: 30px; padding-left:8px;"><c:if
+					<td colspan="2"
+						style="text-align: center; height: 30px; padding-left: 8px;"><c:if
 							test="${sessionScope.loginUser.mnum == board.mnum || sessionScope.loginUser.email == 'admin@aaa.bbb'}">
 							<input type="button" id="update" value="수정">
 							<input type="button" id="delete" value="삭제">
 						</c:if> <input type="button" id="list" value="목록"></td>
 				</tr>
-				<!-- 댓글작성 -->
-				<tr style="height: 30px;">
-					<td style="text-align: center; padding-left:8px;">댓글</td>
-					<td><form:form action="commentWrite.child" method="Post"
-							modelAttribute="comment" name="f" onsubmit="return comment()">
-							<input type="hidden" name="bnum" value="${board.bnum}">
-							<input type="hidden" name="mnum" value="${loginUser.mnum}">
-                    	 댓글 작성자 : ${sessionScope.loginUser.nickname}
-               <form:textarea path="recomment" id="com"
-								style="width:100%;height:100px;border:0;resize:none;"
-								placeholder="댓글을 입력하세요."></form:textarea>
-							<div align="right">
-								<input type="checkbox" name="secret" id="secret" value="0"
-									onchange="chkSecret()">비밀댓글&nbsp; 
-									<input type="submit" value="등록">
-							</div>
-						</form:form></td>
-				</tr>
 				<!-- --------------------------------------------------------------------------------------------------------- -->
-				<c:forEach var="c" items="${commentList}"
-							varStatus="stat">
-				<tr>
-					<td colspan="2" style="padding-left:8px;">
+				<c:forEach var="c" items="${commentList}" varStatus="stat">
+					<tr style="background: #f7f7f7;">
+						<td colspan="2" style="padding-left: 8px;">
 							<div>
-							<!-- 비댓이면 자물쇠표시 -->
-								<c:if test="${c.refstep != 1 && c.secret == 1}">
-									<i class="fa fa-lock" style="font-size: 24px"></i>
-								</c:if>
-								
-								<c:if test="${c.refstep == 1 && c.secret == 1}">
-									<i class="fa fa-lock" style="font-size: 24px;"></i>
-								</c:if>
-									<c:if
-									test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
-									<!-- 댓글수정버튼 -->  
-									 <input type="button" id="commentDelete" value="삭제" style="float:right;"
-										onclick="commentDelete(${c.bnum},${c.cnum})"> 
-									<input type="button" id="commentUpdate" value="수정" style="float:right;" 
-										onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
-								</c:if>
-								
-								<c:if test="${c.refstep == 0}">
-									<input type="button" id="recom" value="답글" style="float:right;"
-										onclick="$('#comm${stat.index}').show();">
-								</c:if>  
-								<br>
-								
 								<!-- 대댓글인 경우 닉,날짜 등 간격 줌-->
-						<div id="recontent${stat.index}">
-							<div id="recomment${stat.index}" style="display: block;">
-								<c:if test="${c.refstep > 0}">
-									<div style="margin-left: 2%">
-										└>닉네임 : ${c.nickname} &nbsp;
-										<fmt:formatDate value="${today}" pattern="YYYY-MM-dd" var="t" />
-										<fmt:formatDate value="${c.comdate}" pattern="YYYY-MM-dd"
-											var="r" />
-										<c:choose>
-											<c:when test="${t==r}">
-												<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-											</c:when>
-											<c:otherwise>
-												<f:formatDate value="${c.comdate}"
-													pattern="yy/MM/dd HH:mm:ss" />
-											</c:otherwise>
-										</c:choose><br>&nbsp;
-										<!-- 비밀대댓글인 경우 -->
-										<c:if test="${c.secret == 1}">
-										<c:choose>
-											<c:when test="${c.mnum == sessionScope.loginUser.mnum || 
+								<div id="recontent${stat.index}">
+									<div id="recomment${stat.index}" style="display: block;">
+										<c:if test="${c.refstep > 0}">
+											<div style="margin-left: 18px">
+												└&nbsp; ${c.nickname}&nbsp;
+												<!-- 비댓이면 자물쇠표시 -->
+												<c:if test="${c.secret == 1}">
+													<i class="fa fa-lock" style="font-size: 18px;"></i>
+												</c:if>
+												<!-- 댓글수정버튼 -->
+												<c:if
+													test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+													<input type="button" id="commentDelete" value="삭제"
+														style="float: right;"
+														onclick="commentDelete(${c.bnum},${c.cnum})">
+													<c:if test="${sessionScope.loginUser.mnum == c.mnum}">
+														<input type="button" id="commentUpdate" value="수정"
+															style="float: right;"
+															onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+													</c:if>
+												</c:if>
+
+												<c:if test="${c.refstep == 0}">
+													<input type="button" id="recom" value="답글"
+														style="float: right;"
+														onclick="$('#comm${stat.index}').show();">
+												</c:if>
+												<br>&nbsp;
+												<!-- 비밀대댓글인 경우 -->
+												<c:if test="${c.secret == 1}">
+													<c:choose>
+														<c:when
+															test="${c.mnum == sessionScope.loginUser.mnum || 
+                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
+                           						&nbsp;&nbsp;&nbsp;&nbsp;${c.recomment}
+                           						<div
+																style="color: gray; font-size: 12px;">
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+																	var="t" />
+																<fmt:formatDate value="${c.comdate}"
+																	pattern="YYYY-MM-dd" var="r" />
+																<c:choose>
+																	<c:when test="${t==r}">
+																		<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+																	</c:when>
+																	<c:otherwise>
+																		<f:formatDate value="${c.comdate}"
+																			pattern="yy/MM/dd HH:mm:ss" />
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</c:when>
+														<c:otherwise>
+                           						&nbsp;&nbsp;&nbsp;&nbsp;비밀 댓글입니다.
+                           						<div
+																style="color: gray; font-size: 12px;">
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+																	var="t" />
+																<fmt:formatDate value="${c.comdate}"
+																	pattern="YYYY-MM-dd" var="r" />
+																<c:choose>
+																	<c:when test="${t==r}">
+																		<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+																	</c:when>
+																	<c:otherwise>
+																		<f:formatDate value="${c.comdate}"
+																			pattern="yy/MM/dd HH:mm:ss" />
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+												<!-- 비밀대댓글 아닌경우 -->
+												<c:if test="${c.secret == 0}">
+                           						&nbsp;&nbsp;&nbsp;&nbsp;${c.recomment}
+                           						<div
+														style="color: gray; font-size: 12px;">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+															var="t" />
+														<fmt:formatDate value="${c.comdate}" pattern="YYYY-MM-dd"
+															var="r" />
+														<c:choose>
+															<c:when test="${t==r}">
+																<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+															</c:when>
+															<c:otherwise>
+																<f:formatDate value="${c.comdate}"
+																	pattern="yy/MM/dd HH:mm:ss" />
+															</c:otherwise>
+														</c:choose>
+													</div>
+												</c:if>
+											</div>
+										</c:if>
+
+										<!-- 일반 댓글인 경우 -->
+										<c:if test="${c.refstep == 0}">
+											<div>
+												${c.nickname}&nbsp;
+												<!-- 비댓이면 자물쇠표시 -->
+												<c:if test="${c.secret == 1}">
+													<i class="fa fa-lock" style="font-size: 18px;"></i>
+												</c:if>
+												<c:if
+													test="${sessionScope.loginUser.mnum == c.mnum || sessionScope.loginUser.email=='admin@aaa.bbb'}">
+													<!-- 댓글수정버튼 -->
+													<input type="button" id="commentDelete" value="삭제"
+														style="float: right;"
+														onclick="commentDelete(${c.bnum},${c.cnum})">
+													<c:if test="${sessionScope.loginUser.mnum == c.mnum}">
+														<input type="button" id="commentUpdate" value="수정"
+															style="float: right;"
+															onclick="$('#recomment${stat.index}').hide();$('#recommentupd${stat.index}').show();">
+													</c:if>
+												</c:if>
+
+												<c:if test="${c.refstep == 0}">
+													<input type="button" id="recom" value="답글"
+														style="float: right;"
+														onclick="$('#comm${stat.index}').show();">
+												</c:if>
+												<br>
+												<!-- 일반비밀댓글인 경우 -->
+												<c:if test="${c.secret == 1}">
+													<c:choose>
+														<c:when
+															test="${c.mnum == sessionScope.loginUser.mnum || 
                            		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
                            						${c.recomment}
-                           					</c:when>
-                           					<c:otherwise>※비밀대댓글입니다.</c:otherwise>
-										</c:choose>
+                           						<div
+																style="color: gray; font-size: 12px;">
+																<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+																	var="t" />
+																<fmt:formatDate value="${c.comdate}"
+																	pattern="YYYY-MM-dd" var="r" />
+																<c:choose>
+																	<c:when test="${t==r}">
+																		<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+																	</c:when>
+																	<c:otherwise>
+																		<f:formatDate value="${c.comdate}"
+																			pattern="yy/MM/dd HH:mm:ss" />
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</c:when>
+														<c:otherwise>비밀댓글입니다.
+                           						<div
+																style="color: gray; font-size: 12px;">
+																<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+																	var="t" />
+																<fmt:formatDate value="${c.comdate}"
+																	pattern="YYYY-MM-dd" var="r" />
+																<c:choose>
+																	<c:when test="${t==r}">
+																		<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+																	</c:when>
+																	<c:otherwise>
+																		<f:formatDate value="${c.comdate}"
+																			pattern="yy/MM/dd HH:mm:ss" />
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:if>
+												<!-- 비밀댓글이 아닌경우 -->
+												<c:if test="${c.secret == 0}">${c.recomment}
+                           						<div
+														style="color: gray; font-size: 12px;">
+														<fmt:formatDate value="${today}" pattern="YYYY-MM-dd"
+															var="t" />
+														<fmt:formatDate value="${c.comdate}" pattern="YYYY-MM-dd"
+															var="r" />
+														<c:choose>
+															<c:when test="${t==r}">
+																<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+															</c:when>
+															<c:otherwise>
+																<f:formatDate value="${c.comdate}"
+																	pattern="yy/MM/dd HH:mm:ss" />
+															</c:otherwise>
+														</c:choose>
+													</div>
+												</c:if>
+											</div>
 										</c:if>
-										<!-- 비밀대댓글 아닌경우 -->
-										<c:if test="${c.secret == 0}">${c.recomment}</c:if>
 									</div>
-								</c:if>
-								
-								<!-- 일반 댓글인 경우 -->
-								<c:if test="${c.refstep == 0}">
-									<div>
-										닉네임 : ${c.nickname}&nbsp;
-										<fmt:formatDate value="${today}" pattern="YYYY-MM-dd" var="t" />
-										<fmt:formatDate value="${c.comdate}" pattern="YYYY-MM-dd"
-											var="r" />
-										<c:choose>
-											<c:when test="${t==r}">
-												<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
-											</c:when>
-											<c:otherwise>
-												<f:formatDate value="${c.comdate}"
-													pattern="yy/MM/dd HH:mm:ss" />
-											</c:otherwise>
-										</c:choose><br>
-										<!-- 일반비밀댓글인 경우 -->
-										<c:if test="${c.secret == 1}">
-											<c:choose>
-											<c:when test="${c.mnum == sessionScope.loginUser.mnum || 
-                           		sessionScope.loginUser.email == 'admin@aaa.bbb' || board.mnum == sessionScope.loginUser.mnum}">
-                           						${c.recomment}
-                           					</c:when>
-                           					<c:otherwise>※비밀댓글입니다.</c:otherwise>
-										</c:choose>
-										</c:if>
-										<!-- 비밀댓글이 아닌경우 -->
-										<c:if test="${c.secret == 0}">${c.recomment}</c:if>
-									</div>
-								</c:if>
-							</div>
-							</div>
 								</div>
-							<!-- 수정버튼 눌리고 댓글수정창 나옴-->
+							</div> <!-- 수정버튼 눌리고 댓글수정창 나옴-->
 							<div id="recommentupd${stat.index}" style="display: none">
 								<form:form action="commentUpdate.child" method="Post"
 									modelAttribute="comment">
 									<input type="hidden" name="bnum" value="${c.bnum}">
 									<input type="hidden" name="cnum" value="${c.cnum}">
-									닉네임 : ${c.nickname}<br>
-									<form:input path="recomment" value="${c.recomment}" />
-									<input type="submit" value="수정">
-									<input type="button" id="x" value="수정취소"
-										onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+										<div>
+										<c:if test="${c.refstep > 0}">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└&nbsp;
+										</c:if>
+										${c.nickname}&nbsp;
+										<!-- 비댓이면 자물쇠표시 -->
+										<c:if test="${c.secret == 1}">
+											<i class="fa fa-lock" style="font-size: 18px;"></i>
+										</c:if>
+										<br>
+										<c:if test="${c.refstep > 0}">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:if>
+										<form:input path="recomment" value="${c.recomment}"/>
+										<input type="submit" value="수정"> <input type="button"
+											id="x" value="수정취소"
+											onclick="$('#recomment${stat.index}').show();$('#recommentupd${stat.index}').hide();">
+									<div style="color: gray; font-size: 12px;">
+										<c:if test="${c.refstep > 0}">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:if>
+										<fmt:formatDate value="${today}" pattern="YYYY-MM-dd" var="t" />
+										<fmt:formatDate value="${c.comdate}" pattern="YYYY-MM-dd"
+											var="r" />
+										<c:choose>
+											<c:when test="${t==r}">
+												<f:formatDate value="${c.comdate}" pattern="HH:mm:ss" />
+											</c:when>
+											<c:otherwise>
+												<f:formatDate value="${c.comdate}"
+													pattern="yy/MM/dd HH:mm:ss" />
+											</c:otherwise>
+										</c:choose>
+									</div>
+									</div>
 								</form:form>
 							</div>
-
 							<div id="rere${stat.index}">
 								<!-- 답글버튼 눌리고 대댓글창 나옴-->
-								<div id="comm${stat.index}" style="display: none">
-									<form:form action="recomment.child" method="Post" 
+								<div id="comm${stat.index}" style="display: none; margin-left: 18px;">
+									<form:form action="recomment.child" method="Post"
 										modelAttribute="comment" name="recomf"
-										style="border:1px solid black; background-color:#f7f7f7;">
+										style="background-color:#f7f7f7;" class="w3-table w3-border w3-bordered">
 										<input type="hidden" name="bnum" value="${c.bnum}">
 										<input type="hidden" name="cnum" value="${c.cnum}">
 										<input type="hidden" name="mnum" value="${loginUser.mnum}">
-                           					댓글 작성자 : ${sessionScope.loginUser.nickname}<br>
+										<font style="vertical-align: top; margin: 5px;">└&nbsp;</font>
 										<form:textarea path="recomment"
-											style="width:80%;height:100px;border:0;resize:none;"
+											style="width:90%;height:100px;border:0;resize:none;margin: 10px;"
 											placeholder="댓글을 입력하세요."></form:textarea>
-										<div align="right">
+										<div align="right" style="margin:5px; margin-top: 0px;">
 											<input type="checkbox" name="secret" id="resecret" value="1"
-												onchange="rechkSecret()">비밀댓글&nbsp; 
-												<input type="submit" value="등록"> 
-												<input type="button" id="x" value="취소"
-												onclick="$('#comm${stat.index}').hide();"> 
+												onchange="rechkSecret()">비밀댓글&nbsp; <input
+												type="submit" value="등록"> <input type="button"
+												id="x" value="취소" onclick="$('#comm${stat.index}').hide();">
 										</div>
 									</form:form>
 								</div>
-							</div>
-							<!--대댓글 -->
-							<br>
+							</div> <!--대댓글 --> <br>
 						</td>
-				</tr></c:forEach>
+					</tr>
+				</c:forEach>
+				<!-- 댓글작성 -->
+				<tr style="height: 30px; background: #f7f7f7;">
+					<td style="text-align: center; vertical-align:middle; padding-left: 8px;">댓글</td>
+					<td><form:form action="commentWrite.child" method="Post"
+							modelAttribute="comment" name="f" onsubmit="return comment()">
+							<input type="hidden" name="bnum" value="${board.bnum}">
+							<input type="hidden" name="mnum" value="${loginUser.mnum}">
+							<form:textarea path="recomment" id="com"
+								style="width:100%;height:100px;border:0;resize:none;"
+								placeholder="댓글을 입력하세요."></form:textarea>
+							<div align="right">
+								<input type="checkbox" name="secret" id="secret" value="0"
+									onchange="chkSecret()">비밀댓글&nbsp; <input type="submit"
+									value="등록">
+							</div>
+						</form:form></td>
+				</tr>
 			</table>
 			<div class="btns">
 				<c:if test="${pageNum > 1}">
