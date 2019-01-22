@@ -328,24 +328,4 @@ public class UserController {
 		mav.setViewName("redirect:../user/myBoardList.child?mnum=" + mnum);
 		return mav;
 	}
-	
-	@RequestMapping("user/gohashpw")
-	public ModelAndView gohash() {
-		ModelAndView mav = new ModelAndView();
-		// 정보를 가져온다.
-		int count = service.userList().size();
-		System.out.println(count);
-		
-		for(int i=0; i<count; i++) {
-			if(service.userList().get(i).getPassword().length()<30) {
-				service.changePass(service.userList().get(i).getPassword(), service.userList().get(i).getMnum());
-				System.out.println("("+i+") 번째 비밀번호 변환 완료");
-			}
-			System.out.println("("+i+") 번째 비밀번호 변환 실패");
-		}
-		mav.addObject("msg","변환와료되었습니다.");
-		mav.addObject("url","list.child");
-		mav.setViewName("alert");
-		return mav;
-	}
 }
