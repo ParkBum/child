@@ -257,7 +257,7 @@ public class UserController {
 				mav.setViewName("user/list");
 			}
 		} else { // 비밀번호 불일치 
-			mav.setViewName("board/list"); 
+			mav.setViewName("user/list"); 
 		}
 		return mav;
 	}
