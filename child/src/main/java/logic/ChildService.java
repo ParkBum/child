@@ -352,5 +352,9 @@ public class ChildService {
 		return mapDao.dcname(code);
 	}
 
+	public List<Daycare> gumarkerlist(String guname) {
+		
+		return mapDao.gumarkerlist(guname);
+	}
 
 }

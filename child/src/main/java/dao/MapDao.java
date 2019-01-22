@@ -77,5 +77,11 @@ public class MapDao {
 	}
 
 
+	public List<Daycare> gumarkerlist(String guname) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("guname", guname);
+		return sqlSession.selectList(NS+"gumarkerlist",map);
+	}
+
 	
 }

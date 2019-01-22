@@ -15,7 +15,6 @@
 <script src="http://d3js.org/d3.v4.min.js"></script> 
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
-
 		/** 
 		 * 
 		 	select : 태그 선택
@@ -25,7 +24,9 @@
 		 	svg 안에 요소, g : g는 동일한 속성을 공유하는 요소 집합이다. 
 			 
 		 */
+		
 		function makepiechart(data, selectguname){
+/* 		 		guMarker(selectguname); */
 		 		console.log(data)
 		 		console.log(selectguname)
 			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
@@ -71,7 +72,7 @@
 					{name : '민간', 		value : seoul.seoul[i].privates, 	color : '#00C98F'},//노랑
 					{name : '가정',    	value : seoul.seoul[i].home,     	color : '#1673C7'},//붉은
 					{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#C66B98'},//하늘
-					{name : '직장',      	value : seoul.seoul[i].Job,     color : '#764EE8'}	//핑크색
+					{name : '직장',      value : seoul.seoul[i].Job,     color : '#764EE8'}	//핑크색
 				 ]; 
  /* var piedatas = [
 	 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#3acc85'},//녹색
@@ -144,12 +145,15 @@
 			    		}
 			    	});
 			 
-			    svg.append("text")
-			    	.attr("text-anchor", "middle")
-				 	.attr('font-size', '2.4em')
-				 	.attr('y', 190)
-				 	.text(selectguname);
-				svg.append("text")
+			      svg.append("foreignObject")
+			      	.attr("width", 200+"px")
+			      	.attr("height", 80+"px")
+			      	.attr("x",-90)
+			      	.attr("y",170)
+			    	.append("xhtml:body")
+				 	.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'">'+selectguname+'&nbsp;&nbsp;<button style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;">지도에서 보기</button></form>');
+			  		console.log(selectguname);
+			      svg.append("text")
 					.attr("text-anchor", "middle")
 			 		.attr('font-size', '2em')
 			 		.attr('y', -165)
@@ -175,6 +179,18 @@
 		  }
 		});
 		}
+/* function guMarker(guname){
+		$.ajax({
+            url : "guMarker.child",
+            type : "post",
+            data : {"gu":guname},
+            dataType : "json",
+            success : function(data){
+            alert("하!");
+			location.href ="../map/map.child";
+	}
+ })
+} */
 	$(document).ready(function() {
 		makepiechart('11200','성동구')
 		var main = $('.bxslider').bxSlider({
@@ -218,6 +234,7 @@
 		<div id="mapchart"></div> 
 		<div id="piechart" style="width: 600; height: 460;">
 			<svg class="svg2"></svg>
+			<svg class="svg3"></svg>
 		</div>
 	 </div>
  </div>
