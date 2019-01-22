@@ -88,7 +88,15 @@
 				d6 += seoul.seoul[i].parental;
 				d7 += seoul.seoul[i].Job;
 				var piedata = [d1,d2,d3,d4,d5,d6,d7];
-				var piedatas = [d1,d2,d3,d4,d5,d6,d7];
+				var piedatas = [
+					   { name : '국공립', value : d1,  	color : '#FF4542'},//녹색
+					   { name : '복지법인', value : d2,  	color : '#FF9175'},//주황
+					   { name : '법인단체', value : d3,	color : '#6F90A2'},//파랑
+					   { name : '민간', value : d4, 	color : '#00C98F'},//노랑
+					   { name : '가정', value : d5,     	color : '#1673C7'},//붉은
+					   { name : '부모협동', value : d6, 	color : '#C66B98'},//하늘
+					   { name : '직장', value : d7,     color : '#764EE8'}	//핑크색
+					];
 			}
 			/* console.log(piedatas[0].value) //국공립 데이터*/ 
 			 var legendItemSize = 18
