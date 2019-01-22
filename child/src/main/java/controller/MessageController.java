@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "user/myMessageList")
-	public ModelAndView myMessageList(Integer mnum) {
+	public ModelAndView myMessageList(Integer mnum,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<Message> messageList = service.getMyMessageList(mnum);
 
