@@ -14,7 +14,8 @@
 <script src="http://d3js.org/d3.v3.min.js"></script><!-- 지도 -->
 <script src="http://d3js.org/d3.v4.min.js"></script> 
 <script src="http://d3js.org/topojson.v1.min.js"></script>
-		<script>
+<script>
+
 		/** 
 		 * 
 		 	select : 태그 선택
@@ -25,6 +26,8 @@
 			 
 		 */
 		function makepiechart(data, selectguname){
+		 		console.log(data)
+		 		console.log(selectguname)
 			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
 			d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
 		        if (error) {
@@ -172,9 +175,8 @@
 		  }
 		});
 		}
-		 	
 	$(document).ready(function() {
-		console.log(makepiechart('10000','Seoul'))
+		makepiechart('11200','성동구')
 		var main = $('.bxslider').bxSlider({
 			mode : 'horizontal',
 			auto : true, //자동으로 슬라이드  
@@ -206,6 +208,7 @@
 		$(".bx-start").hide(); //onload시 시작버튼 숨김.
 		 
 	});
+
 </script>
 </head>
 
