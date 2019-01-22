@@ -135,17 +135,17 @@
 			      	.attr("width", 200+"px")
 			      	.attr("height", 80+"px")
 			      	.attr("x",-90)
-			      	.attr("y",170)
+			      	.attr("y",180)
 			    	.append("xhtml:body")
-					.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:20px;">'+selectguname+'</font></form>');
+					.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:17px;">'+selectguname+'</font></form>');
 			 }else{
 				 svg.append("foreignObject")
 			      	.attr("width", 200+"px")
 			      	.attr("height", 80+"px")
 			      	.attr("x",-90)
-			      	.attr("y",170)
+			      	.attr("y",180)
 			    	.append("xhtml:body")
-			    	.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:20px;">'+selectguname+'&nbsp;&nbsp;<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;">어린이집 검색</button></font></form>');
+			    	.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:17px;">'+selectguname+'&nbsp;&nbsp;<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;">어린이집 검색</button></font></form>');
 			 }
 			      
 			      svg.append("text")
@@ -158,8 +158,8 @@
 			 	 g.append("text")	//텍스트 테그 부름
 			    	.attr("transform", function(d) {
 			        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
-			        _d[0] *= 1;	//multiply by a constant factor
-			        _d[1] *= 1;	//multiply by a constant factor	.. 글자 위치 나타냄
+			        _d[0] *= 1.3;	//multiply by a constant factor
+			        _d[1] *= 1.3;	//multiply by a constant factor	.. 글자 위치 나타냄
 			        return "translate(" + _d + ")";
 			      })
 			      .attr("dy", ".70em")	//글자 크기
