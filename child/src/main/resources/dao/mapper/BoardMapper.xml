@@ -54,6 +54,7 @@
 		<if test="mnum != null">
 			where mnum = #{mnum}
 		</if>
+		order by regdate desc
 		<if test="startrow != null and limit != null">
 			limit #{startrow},#{limit}
 		</if>
