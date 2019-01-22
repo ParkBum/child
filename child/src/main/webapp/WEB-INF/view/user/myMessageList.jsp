@@ -60,6 +60,12 @@ $(document).ready(function() {
 				<th width="20%">요청 회원 정보</th> <!-- 연락처 여기에 포함 -->
 				<th width="20%">수락 여부</th>
 			</tr>
+			<c:if test="${empty messageList}">
+			<tr>
+				<td colspan="5">구매 요청이 없습니다.</td>
+			</tr>
+			</c:if>
+			<c:if test="${!empty messageList}">
 			<c:forEach items="${messageList}" var="msg">
 			<tr>
 				<td style="padding-left:8px;"><fmt:formatNumber value="${msg.bnum}" pattern="000-" /><fmt:formatNumber value="${msg.msgnum}" pattern="000" /></td>
@@ -104,6 +110,7 @@ $(document).ready(function() {
 				</td>
 			</tr>
 			</c:forEach>
+			</c:if>
 			</table>
 		</div>
 	</div>
