@@ -134,7 +134,7 @@ function check(){
 						<h2>회원탈퇴 비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 : <input type="password" id="password1" name="pass"
+						비밀번호 입력 : <input type="password" id="password" name="pass"
 							style="width: 72%">
 						<div class="w3-section">
 							<a class="w3-button" style="background-color: #FFF1F5;"
@@ -149,7 +149,6 @@ function check(){
 		</form>
 		<!-- 모달 내용 -->
 		<form:form modelAttribute="user" method="post" name="f" action="passConfirm.child?mnum=${user.mnum}">
-		<%-- <form action="passConfirm.child?mnum=${user.mnum}" method="Post" name="f"> --%>
 			<input type="hidden" name="email" value="${user.email}">
 			<input type="hidden" name="addr1" value="${user.addr1}">
 			<input type="hidden" name="addr3" value="${user.addr3}">
@@ -160,9 +159,7 @@ function check(){
 						<h2>비밀번호 확인</h2>
 					</div>
 					<div class="w3-panel">
-						비밀번호 입력 : <input type="password" id="password2" name="pass"
-							style="width: 72%">
-						비밀번호 입력 : <input type="password" id="password" name="password" style="width: 72%">
+						비밀번호 입력 : <input type="password" id="password1" name="password" style="width: 72%">
 						<div class="w3-section">
 	<a class="w3-button" style="background-color: #FFF1F5;" onclick="document.getElementById('id02').style.display='none'">	닫기 </a> 
 	<input type="submit" onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-light-grey w3-right" value="확인">

@@ -236,17 +236,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/userdelete")
-	public ModelAndView userdelete(Integer mnum, HttpSession session, String password) {
+	public ModelAndView userdelete(Integer mnum, HttpSession session, String pass) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		List<Board> myboard = service.myBoardList(mnum);
-		if (service.getHashValue(password).equals(dbUser.getPassword())) {
+		if (service.getHashValue(pass).equals(dbUser.getPassword())) {
 			try {
 				service.userMessageDelete(mnum);
-				service.userCommentDelete(mnum);
+				service.userCommentDelete(mnum); //본인이 작성한 댓글 모두 삭제
 				for(Board board : myboard) {
 					int bnum = board.getBnum();
-					service.commentDeleteList(bnum);			
+					service.commentDeleteList(bnum); //본인이 작성한 게시글의 댓글 모두 삭제
 				}
 				service.userBoardDelete(mnum);
 				service.userDelete(mnum);
@@ -256,8 +256,8 @@ public class UserController {
 				e.printStackTrace();
 				mav.setViewName("user/list");
 			}
-		} else { // 비밀번호 불일치
-			mav.setViewName("user/list");
+		} else { // 비밀번호 불일치 
+			mav.setViewName("board/market"); 
 		}
 		return mav;
 	}
