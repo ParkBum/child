@@ -15,180 +15,8 @@
 <script src="http://d3js.org/d3.v4.min.js"></script> 
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
-		/** 
-		 * 
-		 	select : 태그 선택
-		 	append() : 문서요소정의
-		 	data() : 데이터 불러옴
-		 	enter() : 데이터와 문서연동
-		 	svg 안에 요소, g : g는 동일한 속성을 공유하는 요소 집합이다. 
-			 
-		 */
-		function makepiechart(data, selectguname){
-			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
-			d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
-		        if (error) {
-		            console.log(error);
-		            throw error;}
-		     // topojson의 properties.SIG_CD
-			var width = 600, height = 400, radius = Math.min(width, height) /2.5 ;
-			var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
-		     .attr("width", width)
-		     .attr("height", height) 
-		     .attr("radius",Math.min(width, height) / 2)
-		     .style("margin-left",-100)
-		     //.style("margin-top",50)
-		     .append("g") //svg2안에 g태그 선택
-		     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-			//body에 있는 svg2 선택함
-			 var pie = d3.pie();
-			 var arc = d3.arc()	//호
-		                .outerRadius(radius - 10)
-			 			.innerRadius(100);
-			 // 각 호의 크기를 정함.
-			 var label = d3.arc()
-			 			.outerRadius(radius)
-			 			.innerRadius(radius - 80);
-			//Generate groups
-			for(var i=0; i<seoul.seoul.length; i++){
-				if(data == seoul.seoul[i].code || data =='10000'){
-/* 				 FF0000//빨 FF4542 
-				 FF7F00//주 FF9175 
-				 FFFF00//노 E8DB6D 
-				 00FF00//초 52F3AC 
-				 0000FF//파 534EE8 
-				 000080//남 232B85 
-				 8000FF//보 764EE8 
- */	
- 				var piedatas = [
-				 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#FF4542'},//녹색
-					{name : '복지법인',  	value : seoul.seoul[i].welfare,  	color : '#FF9175'},//주황
-					{name : '법인단체',	value : seoul.seoul[i].corporate,	color : '#6F90A2'},//파랑
-					{name : '민간', 		value : seoul.seoul[i].privates, 	color : '#00C98F'},//노랑
-					{name : '가정',    	value : seoul.seoul[i].home,     	color : '#1673C7'},//붉은
-					{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#C66B98'},//하늘
-					{name : '직장',      value : seoul.seoul[i].Job,     color : '#764EE8'}	//핑크색
-				 ];
-				if(data=='10000'){
- 					var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
-					var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
-					var piedata='';
- 				}else{
-					var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
-					var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
-					var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
- 				}
-			var d1,d2,d3,d4,d5,d6,d7 ='';
-			if(data=='10000'){
-				d1 += seoul.seoul[i].publics; 
-				d2 += seoul.seoul[i].welfare;
-				d3 += seoul.seoul[i].corporate;
-				d4 += seoul.seoul[i].privates;
-				d5 += seoul.seoul[i].home;
-				d6 += seoul.seoul[i].parental;
-				d7 += seoul.seoul[i].Job;
-				var piedata = [d1,d2,d3,d4,d5,d6,d7];
-				var piedatas = [
-					   { name : '국공립', value : d1,  	color : '#FF4542'},//녹색
-					   { name : '복지법인', value : d2,  	color : '#FF9175'},//주황
-					   { name : '법인단체', value : d3,	color : '#6F90A2'},//파랑
-					   { name : '민간', value : d4, 	color : '#00C98F'},//노랑
-					   { name : '가정', value : d5,     	color : '#1673C7'},//붉은
-					   { name : '부모협동', value : d6, 	color : '#C66B98'},//하늘
-					   { name : '직장', value : d7,     color : '#764EE8'}	//핑크색
-					];
-			}
-			/* console.log(piedatas[0].value) //국공립 데이터*/ 
-			 var legendItemSize = 18
-			 var legendSpacing = 4
-			 var legend = svg
-			  .selectAll('.legend')
-			  .data(piedatas)
-			  .enter()
-			  .append('g')
-			  .attr('class', 'legend')
-			  .attr("transform", function(d, i) {
-			    var height = legendItemSize + legendSpacing
-			    var offset = height * piedatas.length / 2
-			    var x = legendItemSize * -2;
-			    var y = (i * height) - offset
-			    return "translate("+x+","+y+")";
-			  })
-			  
-			legend
-			  .append('rect')
-			  .attr('width', legendItemSize)
-			  .attr('height', legendItemSize)
-			  .style('fill', function(d,i) {return color(i)});
-			
-			legend
-			  .append('text')
-			  .attr('x', legendItemSize + legendSpacing)
-			  .attr('y', legendItemSize - legendSpacing)
-			  .text(function(d,i) {return kind[i]})
-			 
-			 //실제 데이터를 넣고 파이그래프를 만드는 부분
-			 var g = svg.selectAll(".arc")		//호들을 집합시킴
-		             .attr("class", "arc")		//arcs의 class : arc임
-		             .data(pie(piedata))		//data들은 piedata를 넣어 줌
-		             .enter().append("g");		//g라는 것을 대입함.
-			    //Draw arc paths
-			   	 g.append("path")	//호 하나하나를 만듦
-			   	 	.attr("class","arcdata")
-			        .attr("d", arc)		//d는 호라고 생각하자.
-			        .attr("fill", 
-			        function(d, i) {	//호 별로 i 순서대로 color 데이터를 넣어 줍니다
-			        	console.log(color(i))
-			        	return color(i);
-			        })
-			        .transition()	//에니메이션
-			    	.duration(1000)
-			    	.delay(function(d, i) {
-			    		return i * 10;
-			    	})
-			    	.attrTween("d", function(d, i) {
-			    		var interpolate = d3.interpolate(
-			    			{startAngle : d.startAngle, endAngle : d.startAngle},
-			    			{startAngle : d.startAngle, endAngle : d.endAngle}
-			    		);
-			    		return function(t){
-			    			return arc(interpolate(t));
-			    		}
-			    	});
-			 
-			    svg.append("text")
-			    	.attr("text-anchor", "middle")
-				 	.attr('font-size', '2.4em')
-				 	.attr('y', 190)
-				 	.text(selectguname);
-				svg.append("text")
-					.attr("text-anchor", "middle")
-			 		.attr('font-size', '2em')
-			 		.attr('y', -165)
-		    		.text(selectguname+" 어린이집 시설수");
-				
-				// text 정 중앙에 텍스트 넣기
-			 	 g.append("text")	//텍스트 테그 부름
-			    	.attr("transform", function(d) {
-			        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
-			        _d[0] *= 1;	//multiply by a constant factor
-			        _d[1] *= 1;	//multiply by a constant factor	.. 글자 위치 나타냄
-			        return "translate(" + _d + ")";
-			      })
-			      .attr("dy", ".70em")	//글자 크기
-			      .style("text-anchor", "middle")
-			      .text(function(d,i) {
-			    	if(piedatas[i].value==0){
-			    		piedatas[i].value = "";
-			    	}
-			        return piedatas[i].value;
-			      });
-			 	}
-		  }
-		});
-		}
 	$(document).ready(function() {
-		makepiechart('10000','서울시')
+		makepiechart('10000','서울시') 
 		var main = $('.bxslider').bxSlider({
 			mode : 'horizontal',
 			auto : true, //자동으로 슬라이드  
@@ -281,5 +109,180 @@
 		</div>
 		<input type="hidden" value="${result}">
 		<script language="javascript" src="../js/main2_map.js" charset="EUC-KR"></script>
+		<script>
+		function makepiechart(data, selectguname){
+			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
+			d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
+		        if (error) {
+		            console.log(error);
+		            throw error;}
+			var width = 600, height = 400, radius = Math.min(width, height) /2.5 ;
+			var svg = d3.select("#piechart").select('.svg2')// piechart의 svg2를 선택
+		     .attr("width", width)
+		     .attr("height", height) 
+		     .attr("radius",Math.min(width, height) / 2)
+		     .style("margin-left",-100)
+		     .append("g") //svg2안에 g태그 선택
+		     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+			//body에 있는 svg2 선택함
+			 var pie = d3.pie();
+			 var arc = d3.arc().outerRadius(radius - 10).innerRadius(100);
+			 // 각 호의 크기를 정함.
+			 var label = d3.arc().outerRadius(radius).innerRadius(radius - 80);
+			 var d1,d2,d3,d4,d5,d6,d7 ='';
+			 for(var k=0; k<26; k++){
+			 	d1 += seoul.seoul[k].publics; 
+				d2 += seoul.seoul[k].welfare;
+				d3 += seoul.seoul[k].corporate;
+				d4 += seoul.seoul[k].privates;
+				d5 += seoul.seoul[k].home;
+				d6 += seoul.seoul[k].parental;
+				d7 += seoul.seoul[k].Job; 
+			 }
+				console.log(d1);
+			 
+			 for(var i=0; i<seoul.seoul.length; i++){
+				if(data == seoul.seoul[i].code  || data =='10000'){
+ 				var piedatas = [
+				 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#FF4542'},//녹색
+					{name : '복지법인',  	value : seoul.seoul[i].welfare,  	color : '#FF9175'},//주황
+					{name : '법인단체',	value : seoul.seoul[i].corporate,	color : '#6F90A2'},//파랑
+					{name : '민간', 		value : seoul.seoul[i].privates, 	color : '#00C98F'},//노랑
+					{name : '가정',    	value : seoul.seoul[i].home,     	color : '#1673C7'},//붉은
+					{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#C66B98'},//하늘
+					{name : '직장',      value : seoul.seoul[i].Job,     	color : '#764EE8'}	//핑크색
+				 ];
+				if(data=='10000'){
+ 					var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
+					var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
+					var piedata='';
+ 				}else{ 
+					var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
+					var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
+					var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
+				}
+			/* var d1,d2,d3,d4,d5,d6,d7 ='';
+			if(data=='10000'){
+				d1 += seoul.seoul[i].publics; 
+				d2 += seoul.seoul[i].welfare;
+				d3 += seoul.seoul[i].corporate;
+				d4 += seoul.seoul[i].privates;
+				d5 += seoul.seoul[i].home;
+				d6 += seoul.seoul[i].parental;
+				d7 += seoul.seoul[i].Job;
+				var piedata = [d1,d2,d3,d4,d5,d6,d7];
+				var piedatas = [
+					   { name : '국공립', value : d1,  	color : '#FF4542'},//녹색
+					   { name : '복지법인', value : d2,  	color : '#FF9175'},//주황
+					   { name : '법인단체', value : d3,	color : '#6F90A2'},//파랑
+					   { name : '민간', value : d4, 	color : '#00C98F'},//노랑
+					   { name : '가정', value : d5,     	color : '#1673C7'},//붉은
+					   { name : '부모협동', value : d6, 	color : '#C66B98'},//하늘
+					   { name : '직장', value : d7,     color : '#764EE8'}	//핑크색
+					];
+			}  */
+			/* console.log(piedatas[0].value) //국공립 데이터*/ 
+			 var legendItemSize = 18
+			 var legendSpacing = 4
+			 
+			 var legend = svg
+			  .selectAll('.legend')
+			  .data(piedatas)
+			  .enter()
+			  .append('g')
+			  .attr('class', 'legend')
+			  .attr("transform", function(d, i) {
+			    var height = legendItemSize + legendSpacing
+			    var offset = height * piedatas.length / 2
+			    var x = legendItemSize * -2;
+			    var y = (i * height) - offset
+			    return "translate("+x+","+y+")";
+			  });
+			  
+			legend
+			  .append('rect')
+			  .attr('width', legendItemSize)
+			  .attr('height', legendItemSize)
+			  .style('fill', function(d,i) {return color(i)});
+			
+			legend
+			  .append('text')
+			  .attr('x', legendItemSize + legendSpacing)
+			  .attr('y', legendItemSize - legendSpacing)
+			  .text(function(d,i) {return kind[i]});
+			  
+			 ///////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<
+			 //실제 데이터를 넣고 파이그래프를 만드는 부분
+			 var g = svg.selectAll(".arc")		//호들을 집합시킴
+		             .attr("class", "arc")		//arcs의 class : arc임
+		             .data(pie(piedata))		//data들은 piedata를 넣어 줌
+		             .enter().append("g");		//g라는 것을 대입함.
+			    //Draw arc paths
+			   	 g.append("path")	//호 하나하나를 만듦
+			   	 	.attr("class","arcdata")
+			        .attr("d", arc)		//d는 호라고 생각하자.
+			        .attr("fill", 
+			        function(d, i) {	//호 별로 i 순서대로 color 데이터를 넣어 줍니다
+			        	/* console.log(color(i)) */
+			        	return color(i);
+			        })
+			        .transition()	//에니메이션
+			    	.duration(1000)
+			    	.delay(function(d, i) {
+			    		return i * 10;
+			    	})
+			    	.attrTween("d", function(d, i) {
+			    		var interpolate = d3.interpolate(
+			    			{startAngle : d.startAngle, endAngle : d.startAngle},
+			    			{startAngle : d.startAngle, endAngle : d.endAngle}
+			    		);
+			    		return function(t){
+			    			return arc(interpolate(t));
+			    		}
+			    	});
+				///////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<
+			    svg.append("text")
+			    	.attr("text-anchor", "middle")
+				 	.attr('font-size', '2.4em')
+				 	.attr('y', 190)
+				 	.text(selectguname);
+				svg.append("text")
+					.attr("text-anchor", "middle")
+			 		.attr('font-size', '2em')
+			 		.attr('y', -165)
+		    		.text(selectguname+" 어린이집 시설수");
+				////////<<<<<<<<<<<
+				// text 정 중앙에 텍스트 넣기
+			 	 g.append("text")	//텍스트 테그 부름
+			    	.attr("transform", function(d) {
+			        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
+			        _d[0] *= 1;	//multiply by a constant factor
+			        _d[1] *= 1;	//multiply by a constant factor	.. 글자 위치 나타냄
+			        return "translate(" + _d + ")";
+			      })
+			      .attr("dy", ".70em")	//글자 크기
+			      .style("text-anchor", "middle")
+			      .text(function(d,i) {
+			    	if(piedatas[i].value==0){
+			    		piedatas[i].value = "";
+			    	}
+			        return piedatas[i].value;
+			      });
+				////>>>>>>>>>>>>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			 	}
+		  }
+		});//20
+		}//18
+		</script>
 </body>
 </html>
