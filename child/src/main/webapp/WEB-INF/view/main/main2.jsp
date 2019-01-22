@@ -15,7 +15,6 @@
 <script src="http://d3js.org/d3.v4.min.js"></script> 
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
-
 		/** 
 		 * 
 		 	select : 태그 선택
@@ -26,8 +25,6 @@
 			 
 		 */
 		function makepiechart(data, selectguname){
-		 		console.log(data)
-		 		console.log(selectguname)
 			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
 			d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
 		        if (error) {
@@ -85,7 +82,7 @@
 			var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
 			var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
 			var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
-			 
+			
 			/* console.log(piedatas[0].value) //국공립 데이터*/ 
 			 var legendItemSize = 18
 			 var legendSpacing = 4
@@ -176,7 +173,7 @@
 		});
 		}
 	$(document).ready(function() {
-		makepiechart('11200','성동구')
+		makepiechart('10000','서울시')
 		var main = $('.bxslider').bxSlider({
 			mode : 'horizontal',
 			auto : true, //자동으로 슬라이드  
