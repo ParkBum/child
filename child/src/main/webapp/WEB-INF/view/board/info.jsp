@@ -660,17 +660,18 @@ $(function() {
 							</div>
 							<div id="rere${stat.index}">
 								<!-- ´ä±Û¹öÆ° ´­¸®°í ´ë´ñ±ÛÃ¢ ³ª¿È-->
-								<div id="comm${stat.index}" style="display: none">
+								<div id="comm${stat.index}" style="display: none; margin-left: 18px;">
 									<form:form action="recomment.child" method="Post"
 										modelAttribute="comment" name="recomf"
-										style="border:1px solid black; background-color:#f7f7f7;">
+										style="background-color:#f7f7f7;" class="w3-table w3-border w3-bordered">
 										<input type="hidden" name="bnum" value="${c.bnum}">
 										<input type="hidden" name="cnum" value="${c.cnum}">
 										<input type="hidden" name="mnum" value="${loginUser.mnum}">
+										<font style="vertical-align: top; margin: 5px;">¦¦&nbsp;</font>
 										<form:textarea path="recomment"
-											style="width:80%;height:100px;border:0;resize:none;"
+											style="width:90%;height:100px;border:0;resize:none;margin: 10px;"
 											placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä."></form:textarea>
-										<div align="right">
+										<div align="right" style="margin:5px; margin-top: 0px;">
 											<input type="checkbox" name="secret" id="resecret" value="1"
 												onchange="rechkSecret()">ºñ¹Ð´ñ±Û&nbsp; <input
 												type="submit" value="µî·Ï"> <input type="button"
@@ -684,7 +685,7 @@ $(function() {
 				</c:forEach>
 				<!-- ´ñ±ÛÀÛ¼º -->
 				<tr style="height: 30px; background: #f7f7f7;">
-					<td style="text-align: center; padding-left: 8px;">´ñ±Û</td>
+					<td style="text-align: center; vertical-align:middle; padding-left: 8px;">´ñ±Û</td>
 					<td><form:form action="commentWrite.child" method="Post"
 							modelAttribute="comment" name="f" onsubmit="return comment()">
 							<input type="hidden" name="bnum" value="${board.bnum}">
