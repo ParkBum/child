@@ -316,7 +316,7 @@ $(function() {
 					<td>
 						<table width="100%" height="100%">
 							<tr>
-								<td style="padding-left: 8px;">&nbsp;${board.content}</td>
+								<td style="padding-left: 8px;">${board.content}</td>
 							</tr>
 							<c:if
 								test="${!empty board.file1 || !empty board.file2 || !empty board.file3}">
