@@ -265,24 +265,26 @@ public class UserController {
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
 	public ModelAndView confirm(@Valid User user, BindingResult bindingResult ,Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		//System.out.println(bindingResult);
+		//System.out.println(user);
 		User dbUser = (User) session.getAttribute("loginUser");//dbuser = 원래 정보
 		if (bindingResult.hasErrors()) {
 			mav.getModel().putAll(bindingResult.getModel());
 			mav.setViewName("user/list");
-			//System.out.println(bindingResult);
 			return mav;
 		}
-		//System.out.println("durlsmsdy?222222");
-		//System.out.println(user.getPassword());
-		if (user.getPassword().equals(dbUser.getPassword())) {
+		String pass = service.getHashValue(user.getPassword());
+		if (pass.equals(dbUser.getPassword())) {
 			//System.out.println("여기 안나와요??33333");
 			//System.out.println(user.getPassword());
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
 		} else {
-			//System.out.println("여기는 도착한아ㅛ");
-			mav.setViewName("redirect:../user/list.child?mnum=" + user.getMnum());
+			mav.addObject("msg","비밀번호가 틀렸습니다.");
+			mav.addObject("url","list.child?mnum=" + user.getMnum());
+			mav.setViewName("alert");
+			return mav;
 		}
-		user.setPassword(service.getHashValue(user.getPassword()));
+		user.setPassword(pass);
 		mav.addObject("user",user);
 		return mav;
 	}
@@ -295,7 +297,7 @@ public class UserController {
 		}
 		int limit = 10;
 		int myBoardCnt = service.myBoardCount(mnum); //myboard 갯수
-		System.out.println(myBoardCnt);
+		//System.out.println(myBoardCnt);
 		List<Board> myboard = service.myBoardLists(mnum,limit,pageNum);
 		int maxpage = (int) ((double) myBoardCnt / limit + 0.95); // 전체 페이지 수
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 화면에 표시될 시작 페이지 수

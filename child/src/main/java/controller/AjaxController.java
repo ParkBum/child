@@ -73,7 +73,7 @@ public class AjaxController {
 	@RequestMapping("map/graph")
 	public Object graph(Integer code) {
 		Daycare daycare = service.selectOne(code);
-			System.out.println(daycare.getTeachercnt());
+			//System.out.println(daycare.getTeachercnt());
 			int teachcnt = 0;
 			if(daycare.getTeachercnt() == 0) {
 				teachcnt = 1;

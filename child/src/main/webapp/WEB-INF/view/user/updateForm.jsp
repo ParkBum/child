@@ -12,8 +12,8 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 function passcheck(){
-	if(f.newpass1.value.length <= 4 || f.newpass1.value.length <= 4){
-		alert("5자 이상만 설정 가능합니다.");
+	if(f.newpass1.value.length <= 3 || f.newpass1.value.length <= 3){
+		alert("4자 이상만 설정 가능합니다.");
 		f.newpass1.focus();
 		return false;
 	} else if(f.newpass1.value != f.newpass2.value){
@@ -22,15 +22,13 @@ function passcheck(){
 		return false;
 	} else return true;
 }
-
 $(function(){
 	$(".pass").keyup(function(){
 		var pass1 = $("#newpass1").val();
 		var pass2 = $("#newpass2").val();
 		var msg="";
-		if(pass1.length <= 4){
-			msg = "비밀번호는 5자 이상만 설정가능합니다.";
-			
+		if(pass1.length <= 3){
+			msg = "비밀번호는 4자 이상만 설정가능합니다.";
 		} else if(pass1 == pass2) {
 			msg = "비밀번호 일치";
 			$("#check").css("color","green");
@@ -88,8 +86,7 @@ $(function(){
 </head>
 <body>
 	<h2 align="center">사용자 수정</h2>
-	<form:form modelAttribute="user" method="post"
-		action="update.child?mnum=${sessionScope.loginUser.mnum}">
+	<form:form modelAttribute="user" method="post" action="update.child?mnum=${sessionScope.loginUser.mnum}">
 		<%--입력정보 문제 에러메세지 여기서 찍음. --%>
 		<spring:hasBindErrors name="user">
 			<font color="red"> <c:forEach items="${errors.globalErrors}"

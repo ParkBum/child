@@ -1,0 +1,118 @@
+@charset "EUC-KR";
+#wrap{
+	height: 550px;
+}
+#chartarea {
+	width: 1200px;
+	height: 550px;
+	margin: 0 360px 0 360px;
+	background-image: url('../decorator/seoul3.png');
+}
+#mapchart {
+	height: 550px;
+	}
+.menus {
+	margin: 40px;
+	margin: 0px 360px 0px 360px;
+	width: 1200px;
+	height: 350px;
+}
+
+.mainimage1 {
+	float: left;
+	padding: 30px 30px 0 30px;
+	width: 800px;
+}
+
+.mainimage2 {
+	float: right;
+	padding: 15px;
+	padding-left: 25px;
+	width: 400px;
+	list-style: none;
+}
+
+.mainimage3 {
+	float: right;
+	padding: 10px 10px 10px 25px;
+	width: 400px;
+	text-align: left;
+}
+
+.tit {
+	margin-left: 40px;
+}
+
+.a1 {
+	background:
+		url(http://iseoul.seoul.go.kr/images/portal/main/bg-mainInfo-link-img11.png)
+		no-repeat;
+	color: #7c5348;
+	display: table-cell;
+	width: 350px;
+	height: 63px;
+	vertical-align: middle;
+	text-align: left;
+	text-decoration: none;
+}
+
+.a2 {
+	background:
+		url(http://iseoul.seoul.go.kr/images/portal/main/bg-mainInfo-link-img13.png)
+		no-repeat;
+	color: #7c5348;
+	display: table-cell;
+	width: 350px;
+	height: 63px;
+	vertical-align: middle;
+	text-align: left;
+	text-decoration: none;
+}
+
+.a3 {
+	background:
+		url(http://iseoul.seoul.go.kr/images/portal/main/bg-mainInfo-link-img12.png)
+		no-repeat;
+	color: #7c5348;
+	display: table-cell;
+	width: 350px;
+	height: 63px;
+	vertical-align: middle;
+	text-align: left;
+	text-decoration: none;
+}
+</style>
+<style>
+.svg1{
+    margin-left: 100px;
+}
+
+.path{
+/* border:solid 1px black; */
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.svg1 .municipality {
+  pointer-events: none;
+}
+
+.svg1 .municipality {
+  /* stroke: black;  */
+  
+}
+.svg1 .municipality-label {
+  fill: #bbb;
+  font-size: 12px;
+  font-weight: 300;
+  text-anchor: middle;
+}
+.svg1 .municipality-label{
+  stroke: #333; 
+}
+.svg2{
+    margin-top: 20px;
+}
+#map path{
+   stroke:white;
+   stroke-width: 1.3px;
+}
