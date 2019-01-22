@@ -75,7 +75,7 @@ a {
 			</div>
 			<font size="2">게시글명을 클릭하면 해당 게시글로 이동합니다.</font><br>
 			<font size="2">게시글을 선택한 후 삭제버튼을 누르면 해당 글이 삭제됩니다.</font>
-			<form:form action="../user/myBoardDelete.child" id="f" method="post">
+			<form:form action="../user/myBoardDelete.child" name="f" id="f" method="post">
 			<input type="hidden" name="pageNum" value="1">
 			<input type="hidden" name="bnum" value="${board.bnum}">
 			<input type="hidden" name="mnum" value="${sessionScope.loginUser.mnum}">
