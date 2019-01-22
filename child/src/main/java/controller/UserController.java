@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import logic.Board;
 import logic.ChildService;
@@ -45,7 +46,7 @@ public class UserController {
 			return mav;
 		}
 		try {
-			User dbuser = service.userSelect(login.getLogin_email()); // 회원정보 저장
+			User dbuser = service.userSelect(login.getLogin_email()); // 회원정보 확인
 			if (dbuser == null) {
 				bindResult.reject("error.login.id");
 				mav.getModel().putAll(bindResult.getModel());
@@ -53,7 +54,7 @@ public class UserController {
 				return mav;
 			}
 			// 존재
-			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {
+			if (service.getHashValue(login.getLogin_password()).equals(dbuser.getPassword())) {//비밀번호 같으면...
 				session.setAttribute("loginUser", dbuser);
 			} else {
 				bindResult.reject("error.login.password");
@@ -325,6 +326,26 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		service.myBoardDelete(checkBoard);
 		mav.setViewName("redirect:../user/myBoardList.child?mnum=" + mnum);
+		return mav;
+	}
+	
+	@RequestMapping("user/gohashpw")
+	public ModelAndView gohash() {
+		ModelAndView mav = new ModelAndView();
+		// 정보를 가져온다.
+		int count = service.userList().size();
+		System.out.println(count);
+		
+		for(int i=0; i<count; i++) {
+			if(service.userList().get(i).getPassword().length()<30) {
+				service.changePass(service.userList().get(i).getPassword(), service.userList().get(i).getMnum());
+				System.out.println("("+i+") 번째 비밀번호 변환 완료");
+			}
+			System.out.println("("+i+") 번째 비밀번호 변환 실패");
+		}
+		mav.addObject("msg","변환와료되었습니다.");
+		mav.addObject("url","list.child");
+		mav.setViewName("alert");
 		return mav;
 	}
 }
