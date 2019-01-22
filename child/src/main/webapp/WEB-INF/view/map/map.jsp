@@ -20,8 +20,7 @@
 #main {
    max-width: 1200px;
    margin-left :350px ;
-} 
-
+}
 #SearchAndMap {
    width: 1200px;
    height: 900px;
@@ -541,66 +540,6 @@ $(document).ready(function(){
 </script>
 </c:if>
 </c:if>
-<%-- <c:if test="${!empty guname}">
-<script>
-$(document).ready(function(){ 
-	               hideMarkers();
-	               for (var i = 0; i < guMarkerlist.length; i++) {
-	                  var Map = map;
-	                  var coords = new daum.maps.LatLng(
-	                		  guMarkerlist[i].lat,guMarkerlist[i].lon      
-	                           );
-	                     
-	                  var marker = new daum.maps.Marker({
-	                      map:Map,
-	                      position:coords,
-	                      image : markerImage
-	                   });
-	                   marker.setMap(map);
-	                   var content = '<div class="labelWish" style="border-radius:5px; width:450px;">';
-	                   content += '<div style="text-align:center; margin-top:15px;";>['+guMarkerlist[i].type+']<strong>'+guMarkerlist[i].name+'</strong>';
-	                   if(data.autoMarkerList[i].bus == '운영'){
-	                       content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;"></div>';   
-	                       }
-	                   content += '<div style="margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left;">전화번호: '+guMarkerlist[i].tel+'</div>';
-	                   content += '<div style=" margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;"  title="'+data.autoMarkerList[i].addr+'">주소:'+data.autoMarkerList[i].addr+'</div>';
-	                   content += '<div style="margin-top:8px;"><button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button></div><br></div>';
-	                   var infowindow = new daum.maps.InfoWindow({
-	                         position : coords, 
-	                         content : content,
-	                         removable:true
-	                     }); 
-	                  infos.push(infowindow);
-	                  markers.push(marker);
-	                  map.setCenter(coords);    
-	                     // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-	                     // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
-	                     (function(marker, infowindow, codes,is) { 
-	                         // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-	                         daum.maps.event.addListener(marker, 'click', function() {
-	                            AnotherMarkers();
-	                            infowindow.open(map, marker);
-	                         });
-
-	                     })(marker, infowindow);
-	                  
-	               }
-	               function makeOverListener( map, marker, infowindow) { 
-	                  return function() {
-	                       infowindow.open(map, marker);
-	                   };
-	               }
-	               
-	               // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	               function makeOutListener(infowindow) {
-	                   return function() {
-	                       infowindow.close();
-	                   };
-	               }
-	            }
-	}) 
-</script>
-</c:if> --%>
 <script>//조건 select 후 조회 시
       $("#searchs").click(function() {
     	  if( $("#gu").val()=='' ||$("#type").val()=='' || $("#bus").val()=='' ){
