@@ -328,10 +328,10 @@ public class UserController {
 	@RequestMapping(value = "user/myBoardDelete")
 	public ModelAndView myBoardDelete(Integer[] checkBoard, Integer mnum) {
 		ModelAndView mav = new ModelAndView();
-		service.myBoardDelete(checkBoard);
 		for (Integer bnum : checkBoard) {
 			service.boardMessageDelete(bnum);
 		}
+		service.myBoardDelete(checkBoard);
 		mav.setViewName("redirect:../user/myBoardList.child?mnum=" + mnum);
 		return mav;
 	}
