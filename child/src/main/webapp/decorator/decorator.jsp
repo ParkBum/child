@@ -179,10 +179,10 @@ body {
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
 										onmouseout="this.style.color='#AAAAAA'" title="내정보">내정보</a>
-									<a href="${path}/user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}<!-- &pageNum=1 -->"
+									<a href="${path}/user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}"
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
-										onmouseout="this.style.color='#AAAAAA'" title="내게시글목록">작성글목록</a>
+										onmouseout="this.style.color='#AAAAAA'" title="내게시글목록">작성글목록</a><!-- &pageNum=1 -->
 									<a href="${path}/user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}"
 										style="background: white; color: #AAAAAA;"
 										onmouseover="this.style.color='#CE5B7C'"
