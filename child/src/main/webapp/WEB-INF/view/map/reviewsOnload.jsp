@@ -8,7 +8,7 @@
 			style='border-collapse: collapse; width: 100%; margin: 10px auto;'
 			class='w3-table w3-border w3-bordered'>
 				<tr style="vertical-align: middle;">
-					<td height='41' style="text-align: center;">후기 게시물</td> 
+					<td colspan='2' height='41' style="text-align: center;">후기 게시물</td> 
 				</tr>
 			<tr>
 				<th width='80%' height='26' style='text-align: center'>제목</th>

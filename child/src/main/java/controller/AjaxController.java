@@ -117,18 +117,7 @@ public class AjaxController {
 		map.put("autoMarkerList",autoMarkerList);
 		return map;
 	}
-	@ResponseBody
-	@RequestMapping("map/sorts*")
-	public ModelAndView sorts(String sorts,Integer bType) {
-		ModelAndView mav = new ModelAndView();
-		List<Board> lists = null;
-/*		String dcname = service.dcname(code);*/
-		lists = service.sortlist(sorts);
-		mav.addObject("bType",bType);
-		mav.addObject("lists",lists);
-		mav.setViewName("map/reviews*");
-		return mav;
-	}
+
 }
 	
 	

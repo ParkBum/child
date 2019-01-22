@@ -347,9 +347,5 @@ public class ChildService {
 		return hashvalue;
 	}
 
-	public List<Board> sortlist(String sorts) {
-		
-		return mapDao.sortlist(sorts);
-	}
 
 }

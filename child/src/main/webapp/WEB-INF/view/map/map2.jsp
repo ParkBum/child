@@ -78,7 +78,7 @@ option {
     border-radius: 8px 8px 8px 8px;
     box-shadow: -3px 3px 15px #888888;
     color: black;
-    font: 12px;
+    font: 12px sans-serif;
     padding: 5px;
     text-align: center;
   } 
@@ -92,6 +92,7 @@ option {
 }
 /* .textmiddle{
     text-shadow: -3px 3px 15px #888888;
+    font: sans-serif;
 } */
 
 .tooltip2,.tooltip3 {
@@ -104,7 +105,7 @@ option {
     border-radius: 8px 8px 8px 8px;
     box-shadow: -3px 3px 15px #888888;
     color: black;
-    font: 12px;
+    font: 12px sans-serif;
     padding: 5px;
     text-align: center;
 } 
@@ -118,8 +119,8 @@ option {
          <div id="search">
             <div style="text-align: center; width: 100%; height: 40px; background: #f7f7f7; border : solid 1px #dbdbdb;">
                <div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
-                  <div style="width: 30%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
-                     <font style="margin-top:1px;">구&nbsp;&nbsp;</font> <select style="margin-top:1px;" name="gu" id="gu">
+                  <div style="width: 30%; height:36px; margin : 2px 0; float: left;">
+                     <font style="margin-top: 4px;">구&nbsp;&nbsp;</font> <select style="margin-top: 4px;" name="gu" id="gu">
                         <option value="">선택</option>
                         <option>강남구</option>
                         <option>강동구</option>
@@ -148,8 +149,8 @@ option {
                         <option>중랑구</option>
                      </select>
                   </div>
-                  <div style="width: 30%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
-                     <font style="margin-top: 1px;">유형&nbsp;&nbsp;</font> <select  style="margin-top: 1px;" name="type" id="type">
+                  <div style="width: 30%; height:36px; margin : 2px 0; float: left;">
+                     <font style="margin-top: 4px;">유형&nbsp;&nbsp;</font> <select  style="margin-top: 4px;" name="type" id="type">
                         <option value="">선택</option>
                         <option>가정</option>
                         <option>국공립</option>
@@ -251,30 +252,29 @@ $(document).ready(function() {
                    });
                    marker.setMap(map);
                    var content = '<div class="labelWish" style="border-radius:5px; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
-                   content += '[<strong>'+data.autoMarkerList[i].type+'</strong>]<strong>'+data.autoMarkerList[i].name+'</strong>';
-                   if(data.autoMarkerList[i].bus == '운영'){
-                       content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;">';   
-                       }
-                   content += '&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button>';
-                   content += '<br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span></div>';
-                   var infowindow = new daum.maps.InfoWindow({
+                      content += "[<strong>"+data.autoMarkerList[i].type+"</strong>]<strong>"+data.autoMarkerList[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr;
+                      if(data.autoMarkerList[i].bus == '운영'){
+                         content += "<br><img src='../decorator/bus2.png' style='width:20px; height:20px;'>";   
+                         }
+                       content+='</span></div>';
+                  var overlay = new daum.maps.Overlay({
                          position : coords, 
                          content : content,
                          removable:true
                      }); 
-                  infos.push(infowindow);
+                  infos.push(overlay);
                   markers.push(marker);
                   map.setCenter(coords);    
                      // 이벤트 리스너로는 클로저를 만들어 등록합니다 
                      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
-                     (function(marker, infowindow, codes,is) { 
+                     (function(marker, overlay) { 
                          // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
                          daum.maps.event.addListener(marker, 'click', function() {
                             AnotherMarkers();
-                            infowindow.open(map, marker);
+                            overlay.setMap(map);
                          });
 
-                     })(marker, infowindow);
+                     })(marker, overlay);
                   
                }
                function makeOverListener( map, marker, infowindow) { 
@@ -328,13 +328,12 @@ $(document).ready(function() {
                       position:coords
                    });
                    marker.setMap(map);
-                   var content = '<div class="labelWish" style="border-radius:5px; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
-                   content += '[<strong>'+data.autoMarkerList[i].type+'</strong>]<strong>'+data.autoMarkerList[i].name+'</strong>';
-                   if(data.autoMarkerList[i].bus == '운영'){
-                       content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;">';   
-                       }
-                   content += '&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button>';
-                   content += '<br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span></div>';
+                   var content = '<div class="labelWish" style="opacity:0.5; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
+                      content += "[<strong>"+data.autoMarkerList[i].type+"</strong>]<strong>"+data.autoMarkerList[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button><br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr;
+                      if(data.autoMarkerList[i].bus == '운영'){
+                         content += "<br><img src='../decorator/bus2.png' style='width:20px; height:20px;'>";   
+                         }
+                       content+='</span></div>';
                   var infowindow = new daum.maps.InfoWindow({
                          position : coords, 
                          content : content,
@@ -447,14 +446,9 @@ function displayMarker(locPosition, message) {
                    });
                    marker.setMap(map);
                    
-                   var content = '<div class="labelWish" style="border-radius:5px; width:500px; height:100px;margin-top : 15px;"><span class="centerWish">';
-                   content += '[<strong>'+data.autoMarkerList[i].type+'</strong>]<strong>'+data.autoMarkerList[i].name+'</strong>';
-                   if(data.autoMarkerList[i].bus == '운영'){
-                       content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;">';   
-                       }
-                   content += '&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.autoMarkerList[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.autoMarkerList[i].code+')">후기</button>';
-                   content += '<br>전화번호: '+data.autoMarkerList[i].tel+'<br>주소:'+data.autoMarkerList[i].addr+'</span></div>';
-                 var infowindow = new daum.maps.InfoWindow({
+                   var content = '<div class="labelWish" style="opacity:0.5; width:400px; height:100px;margin-top : 15px;"><span class="centerWish">'
+                     +"<font >"+data.daycarelist[i].name+'</strong>&nbsp;&nbsp;<button id="compare" style="border:0; outline: 0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(76, 103, 140,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button><br>'+data.daycarelist[i].tel+'<br>'+data.daycarelist[i].addr+'</span></div>';
+                  var infowindow = new daum.maps.InfoWindow({
                          position : coords, 
                          content : content,
                          removable:true
