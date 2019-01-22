@@ -76,6 +76,7 @@
  				}else{
 					var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
 					var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
+					var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
  				}
 			var d1,d2,d3,d4,d5,d6,d7 ='';
 			if(data=='10000'){
@@ -87,7 +88,7 @@
 				d6 += seoul.seoul[i].parental;
 				d7 += seoul.seoul[i].Job;
 				var piedata = [d1,d2,d3,d4,d5,d6,d7];
-				var piedatas
+				var piedatas = [d1,d2,d3,d4,d5,d6,d7];
 			}
 			/* console.log(piedatas[0].value) //국공립 데이터*/ 
 			 var legendItemSize = 18
