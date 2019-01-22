@@ -126,7 +126,6 @@ public class AjaxController {
 		map.put("autoMarkerList",autoMarkerList);
 		return map;
 	}
-
 }
 	
 	

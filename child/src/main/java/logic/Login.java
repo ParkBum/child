@@ -9,7 +9,7 @@ public class Login {
 	@NotEmpty(message="email을 입력해 주세요")
 	@Email(message="이메일 형식이 아닙니다.")
 	private String login_email;
-	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
+	@Size(min=4, message="패스워드는 5자 이상이어야 합니다.")
 	private String login_password;
 	public String getLogin_email() {
 		return login_email;

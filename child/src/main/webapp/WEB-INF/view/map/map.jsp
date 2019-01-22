@@ -20,8 +20,7 @@
 #main {
    max-width: 1200px;
    margin-left :350px ;
-} 
-
+}
 #SearchAndMap {
    width: 1200px;
    height: 900px;
@@ -227,6 +226,7 @@ option {
       var infos = [];
 </script>
 <c:if test="${!empty sessionScope.loginUser}"> <!-- 로그인 하여 어린이집 검색으로 들어올 시 주소 기준 반경 1km내 가까운 곳부터 10개 출력 -->
+<c:if test="${empty gu}">
 <script>
 $(document).ready(function() { 
    var geocoder = new daum.maps.services.Geocoder();
@@ -305,7 +305,67 @@ $(document).ready(function() {
 })
 </script>
 </c:if>
+<c:if test="${!empty gu}">
+<script>
+$(document).ready(function(){ 
+    hideMarkers();
+    <c:forEach items="${guMarkerlist}" var="lists">
+       var Map = map;
+       var coords = new daum.maps.LatLng(
+     		  ${lists.lat},${lists.lon}      
+                );
+          
+       var marker = new daum.maps.Marker({
+           map:Map,
+           position:coords,
+           image : markerImage
+        });
+        marker.setMap(map);
+        var content = '<div class="labelWish" style="border-radius:5px; width:450px;">';
+        content += '<div style="text-align:center; margin-top:15px;";>['+'${lists.type}'+']<strong>'+'${lists.name}'+'</strong>';
+        if('${lists.bus}' == '운영'){
+            content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;"></div>';   
+            }
+        content += '<div style="margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left;">전화번호: '+'${lists.tel}'+'</div>';
+        content += '<div style=" margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;"  title="'+ '${lists.addr}'+'">주소:'+ '${lists.addr}' +'</div>';
+        content += '<div style="margin-top:8px;"><button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+'${lists.code}'+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+'${lists.code}'+')">후기</button></div><br></div>';
+        var infowindow = new daum.maps.InfoWindow({
+              position : coords, 
+              content : content,
+              removable:true
+          }); 
+       infos.push(infowindow);
+       markers.push(marker);
+       map.setCenter(coords);    
+          // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+          // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
+          (function(marker, infowindow, codes,is) { 
+              // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+              daum.maps.event.addListener(marker, 'click', function() {
+                 AnotherMarkers();
+                 infowindow.open(map, marker);
+              });
+
+          })(marker, infowindow);  
+    </c:forEach>
+    function makeOverListener( map, marker, infowindow) { 
+       return function() {
+            infowindow.open(map, marker);
+        };
+    }
+    
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+    function makeOutListener(infowindow) {
+        return function() {
+            infowindow.close();
+        };
+    }
+}) 
+</script>
+</c:if>
+</c:if>
 <c:if test="${empty sessionScope.loginUser}"> <!-- 비로그인 : GPS 켠 상태로 들어올 시 어린이집 검색으로 들어올 시 주소 기준 반경 1.5km내 가까운 곳부터 20개 출력 -->
+<c:if test="${empty gu}">
 <script>
 $(document).ready(function() { 
    if (navigator.geolocation) {//현재 위치가 켜져 있을 시
@@ -420,6 +480,65 @@ function displayMarker(locPosition, message) {
       }    
 })
 </script>
+</c:if>
+<c:if test="${!empty gu}">
+<script>
+$(document).ready(function(){ 
+	               hideMarkers();
+	               <c:forEach items="${guMarkerlist}" var="lists">
+	                  var Map = map;
+	                  var coords = new daum.maps.LatLng(
+	                		  ${lists.lat},${lists.lon}      
+	                           );
+	                     
+	                  var marker = new daum.maps.Marker({
+	                      map:Map,
+	                      position:coords,
+	                      image : markerImage
+	                   });
+	                   marker.setMap(map);
+	                   var content = '<div class="labelWish" style="border-radius:5px; width:450px;">';
+	                   content += '<div style="text-align:center; margin-top:15px;";>['+'${lists.type}'+']<strong>'+'${lists.name}'+'</strong>';
+	                   if('${lists.bus}' == '운영'){
+	                       content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;"></div>';   
+	                       }
+	                   content += '<div style="margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left;">전화번호: '+'${lists.tel}'+'</div>';
+	                   content += '<div style=" margin-top:8px; margin-left: 15px; margin-right:15px; text-align:left; text-overflow: ellipsis; overflow:hidden; white-space:nowrap;"  title="'+ '${lists.addr}'+'">주소:'+ '${lists.addr}' +'</div>';
+	                   content += '<div style="margin-top:8px;"><button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+'${lists.code}'+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+'${lists.code}'+')">후기</button></div><br></div>';
+	                   var infowindow = new daum.maps.InfoWindow({
+	                         position : coords, 
+	                         content : content,
+	                         removable:true
+	                     }); 
+	                  infos.push(infowindow);
+	                  markers.push(marker);
+	                  map.setCenter(coords);    
+	                     // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+	                     // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
+	                     (function(marker, infowindow, codes,is) { 
+	                         // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+	                         daum.maps.event.addListener(marker, 'click', function() {
+	                            AnotherMarkers();
+	                            infowindow.open(map, marker);
+	                         });
+
+	                     })(marker, infowindow);  
+	               </c:forEach>
+	               function makeOverListener( map, marker, infowindow) { 
+	                  return function() {
+	                       infowindow.open(map, marker);
+	                   };
+	               }
+	               
+	               // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	               function makeOutListener(infowindow) {
+	                   return function() {
+	                       infowindow.close();
+	                   };
+	               }
+	}) 
+</script>
+</c:if>
 </c:if>
 <script>//조건 select 후 조회 시
       $("#searchs").click(function() {
@@ -878,6 +997,7 @@ function loadPieGraph_now(){
    });   
 }
 </script>
+
 <script>
 //첫번재 차트(클릭시)
 function graph(a){

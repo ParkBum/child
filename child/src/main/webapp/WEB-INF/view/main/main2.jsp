@@ -130,13 +130,16 @@
 			    			return arc(interpolate(t));
 			    		}
 			    	});
-				///////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<
-			    svg.append("text")
-			    	.attr("text-anchor", "middle")
-				 	.attr('font-size', '2.4em')
-				 	.attr('y', 190)
-				 	.text(selectguname);
-				svg.append("text")
+			 
+			      svg.append("foreignObject")
+			      	.attr("width", 200+"px")
+			      	.attr("height", 80+"px")
+			      	.attr("x",-90)
+			      	.attr("y",170)
+			    	.append("xhtml:body")
+				 	.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:20px;">'+selectguname+'&nbsp;&nbsp;<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;">어린이집 검색</button></font></form>');
+
+			      svg.append("text")
 					.attr("text-anchor", "middle")
 			 		.attr('font-size', '2em')
 			 		.attr('y', -165)
@@ -158,16 +161,8 @@
 			    	}
 			        return piedatas[i].value;
 			      });
-				////>>>>>>>>>>>>
-				
-				
-				
-			 	
-		});//20
-		}//18
-		
-		
-		
+		});
+		}
 		
 	$(document).ready(function() {
 		makepiechart('10000','서울시') 
@@ -212,6 +207,7 @@
 		<div id="mapchart"></div> 
 		<div id="piechart" style="width: 600; height: 460;">
 			<svg class="svg2"></svg>
+			<svg class="svg3"></svg>
 		</div>
 	 </div>
  </div>

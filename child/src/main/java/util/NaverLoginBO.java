@@ -18,7 +18,7 @@ public class NaverLoginBO {
 
 	private final static String CLIENT_ID = "c2lgrvoieKRPOBcL8fD_";	//API 사용시 ID
 	private final static String CLIENT_SECRET = "a7657XOHSA";		//API 사용시 비밀번호
-	private final static String REDIRECT_URI = "http://localhost:8080/child/user/callback.child";	//정보가 가는 곳.
+	private final static String REDIRECT_URI = "http://192.168.0.89:8080/child/user/callback.child";	//정보가 가는 곳.
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 

@@ -17,8 +17,8 @@ $(function() {
 		var pwd = $("#password").val();
 		var pwd1 = $("#password1").val();
 		var msg = "";
-		if (pwd.length <= 3) {
-			msg = "비밀번호는 4자 이상으로 설정해야 합니다.";
+		if (pwd.length <= 4) {
+			msg = "비밀번호는 5자 이상으로 설정해야 합니다.";
 		} else if (pwd == "" && pwd1 == "") {
 			msg = "";
 		} else if (pwd == pwd1) {
