@@ -63,6 +63,11 @@ public class AjaxController {
 	@RequestMapping("map/search")
 	public Object search(String gu, String type, String bus/*, String word*/){
 		List<Daycare> daycarelist = service.search(gu,type,bus);
+		
+		for(Daycare d : daycarelist) {
+			String addr_substr = d.getAddr().substring(d.getAddr().indexOf("특별시")+3, d.getAddr().length());
+			d.setAddr(addr_substr);
+		}
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("daycarelist",daycarelist);
 /*		return map.get("daycarelist");*/
@@ -80,8 +85,6 @@ public class AjaxController {
 			}else {
 				teachcnt = daycare.getTeachercnt();
 			}
-/*			double score_avg = service.getScore_avg(code);*/
-/*			daycare.setScore_avg(score_avg);*/
 			daycare.setChild_per_teacher(Math.round(daycare.getNowchild()/teachcnt));
 			Daycare_total daytotal = service.getTotal();
 			Map<Object, Object> map = new HashMap<Object, Object>();
@@ -103,8 +106,9 @@ public class AjaxController {
 	public ModelAndView reviews(Integer code,Integer bType) {
 		ModelAndView mav = new ModelAndView();
 		List<Board> lists = null;
-/*		String dcname = service.dcname(code);*/
+		String dcname = service.dcname(code);
 		lists = service.fourlists(code);
+		mav.addObject("dcname",dcname);
 		mav.addObject("bType",bType);
 		mav.addObject("lists",lists);
 		return mav;
@@ -113,6 +117,11 @@ public class AjaxController {
 	@RequestMapping("map/autoMarker")
 	public Object autoMarker(Double lat, Double lon) {
 		List<Daycare> autoMarkerList = service.autoMarkerlist(lat,lon);	
+		for(Daycare d : autoMarkerList) {
+			String addr_substr = d.getAddr().substring(d.getAddr().indexOf("특별시")+3, d.getAddr().length());
+			d.setAddr(addr_substr);
+		}
+		
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("autoMarkerList",autoMarkerList);
 		return map;
