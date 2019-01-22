@@ -1,16 +1,5 @@
 {
   "seoul": [{
-  	  "code": 10000,
-      "total": 6226,
-      "publics": 1274,
-      "welfare": 32,
-      "corporate": 116,
-      "privates": 1939,
-      "home": 2592,
-      "parental": 29,
-      "Job": 244,
-      "gu": "Seoul"
-	},{
       "code": 11740,
       "total": 284,
       "publics": 53,
