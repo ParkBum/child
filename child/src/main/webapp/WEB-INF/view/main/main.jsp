@@ -144,7 +144,6 @@
 			    	.append("xhtml:body")
 					.html('<form action="../map/map.child" method="post">'+
 							'<input type="hidden" name="gu" value="'+selectguname+'">'+
-							
 							'<font style="font-size:17px;">'+selectguname+'</font>'+
 							'</form>');
 			 }else{
