@@ -135,28 +135,25 @@
 			    			return arc(interpolate(t));
 			    		}
 			    	});
+		             	
 			 if(data=='10000'){
 				 svg.append("foreignObject")
 			      	.attr("width", 200+"px")
 			      	.attr("height", 80+"px")
 			      	.attr("x",-100)
-			      	.attr("y",160)
+			      	.attr("y",170)
 			    	.append("xhtml:body")
-					.html('<form action="../map/map.child" method="post">'+
-							'<input type="hidden" name="gu" value="'+selectguname+'">'+
-							
-							'<font style="font-size:17px;">'+selectguname+'</font>'+
-							'</form>');
+					.html('<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+'</button>');
 			 }else{
 				 svg.append("foreignObject")
 			      	.attr("width", 300+"px")
 			      	.attr("height", 80+"px")
 			      	.attr("x",-150)
-			      	.attr("y",160)
+			      	.attr("y",170)
 			    	.append("xhtml:body")
 			    	.html('<form action="../map/map.child" method="post">'+
 			    			'<input type="hidden" name="gu" value="'+selectguname+'">'+
-			    			'<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+' 어린이집 검색'+'</button>'+
+			    			'<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+' 어린이집 검색 바로가기 '+'<img src="../decorator/arrow.png" style="height: 23px;"></button>'+
 			    			'</form>');
 			 }
 			 
@@ -164,7 +161,8 @@
 					.attr("text-anchor", "middle")
 			 		.attr('font-size', '2em')
 			 		.attr('y', -165)
-		    		.text(selectguname+" 어린이집 시설수");
+		    		.text(selectguname+" 어린이집 시설수")
+		    		.style('font-weight','bold');
 				////////<<<<<<<<<<<
 			 	/*
 			 		text 정 중앙에 텍스트 넣기
@@ -187,10 +185,11 @@
 			          tooltip.style("left", d3.event.pageX+10+"px");
 			          tooltip.style("top", d3.event.pageY-25+"px");
 			          tooltip.style("display", "inline-block");
-			          tooltip.html((piedatas[i].name)+":"+(d.value)+"명");
+			          tooltip.html((piedatas[i].name)+" : "+(d.value)+"곳");
 			          d3.select(this)
                       	.style("fill", d3.rgb(color(i)).brighter(1))
-                     	.style("opacity", "0.7");
+                     	.style("opacity", "0.7")
+                     	.style("cursor",'pointer');
 			    })
 			     d3.select(".svg2").selectAll("path").on("mouseout", function(d,i){
        				tooltip.style("display", "none");

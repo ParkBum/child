@@ -11,11 +11,14 @@ public class User {
 	@NotEmpty(message="email을 입력해 주세요")
 	@Email(message="이메일 형식이 아닙니다.")
 	private String email;
+	@NotEmpty(message="닉네임을 입력해 주세요")
 	@Size(min=3, message="닉네임은 3자 이상이어야 합니다.")
 	private String nickname;
-	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
+	@NotEmpty(message="패스워드를 입력해 주세요")
+	@Size(min=4, message="패스워드는 5자 이상 16자 이하 합니다.", max=15)
 	private String password;
-	@Size(min=3, message="패스워드는 4자 이상이어야 합니다.")
+	@NotEmpty(message="패스워드를 입력해 주세요")
+	@Size(min=4, message="패스워드는 5자 이상 16자 이하 합니다.", max=15)
 	private String password1;
 	@NotEmpty(message="주소를 입력해주세요")
 	private String addr1;
