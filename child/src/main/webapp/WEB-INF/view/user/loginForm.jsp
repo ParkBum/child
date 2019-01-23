@@ -141,16 +141,15 @@ padding-left:0px;
 				<div class="inin">
 				<input type="submit" value="로그인" >
 				</div>
-				<ul>
+			<ul>
 			<li class="Row horizontalRow">
               <div class="horizontalText">또는</div>
-              <div class="horizontalLine"></div>
+              <!-- <div class="horizontalLine"></div> -->
             </li>
             </ul>
-				<a href="${url}">
+				<a href="${url}" style="color: white;">
 				<img src="../decorator/naverlogin.png" width="100%" height="100%" style="padding: 3px; width: 210px;">
-				</a>
-				<br>
+				</a><br>
 				<br>
 			</div>
 		</div><!-- 로그인 명시 위에 부분 -->
