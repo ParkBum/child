@@ -149,7 +149,8 @@ public class UserController {
 	}
 
 	@RequestMapping("user/userForm")
-	public ModelAndView userForm() {
+	public ModelAndView userForm(HttpSession session) {
+		session.invalidate();
 		ModelAndView mav = new ModelAndView("user/userForm");
 		mav.addObject(new User());
 		return mav;
