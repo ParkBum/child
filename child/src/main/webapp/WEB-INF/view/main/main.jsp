@@ -163,7 +163,8 @@
 					.attr("text-anchor", "middle")
 			 		.attr('font-size', '2em')
 			 		.attr('y', -165)
-		    		.text(selectguname+" 어린이집 시설수");
+		    		.text(selectguname+" 어린이집 시설수")
+		    		.style('font-weight','bold');
 				////////<<<<<<<<<<<
 			 	/*
 			 		text 정 중앙에 텍스트 넣기
