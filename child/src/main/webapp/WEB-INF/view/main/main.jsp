@@ -142,19 +142,19 @@
 			      	.attr("height", 80+"px")
 			      	.attr("x",-100)
 			      	.attr("y",170)
-			    	.append("xhtml:body")
-					.html('<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+'</button>');
+			    	/* .append("xhtml:body") */
+					.html('<button id="maibtn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+'</button>');
 			 }else{
 				 svg.append("foreignObject")
 			      	.attr("width", 300+"px")
 			      	.attr("height", 80+"px")
 			      	.attr("x",-150)
 			      	.attr("y",170)
-			    	.append("xhtml:body")
+			    	//.append("xhtml:body")
 			    	.html('<form action="../map/map.child" method="post">'+
 			    			'<input type="hidden" name="gu" value="'+selectguname+'">'+
-			    			'<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px;">'+selectguname+' 어린이집 검색 바로가기 '+'<img src="../decorator/arrow.png" style="height: 23px;"></button>'+
-			    			'</form>');
+			    			'<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white; font-size:18px; ">'+selectguname+' 어린이집 검색 바로가기 '+'<img src="../decorator/arrow.png" style="height: 23px;"></button>'+
+			    			'</form>')
 			 }
 			 
 			      svg.append("text")
@@ -188,8 +188,8 @@
 			          tooltip.html((piedatas[i].name)+" : "+(d.value)+"곳");
 			          d3.select(this)
                       	.style("fill", d3.rgb(color(i)).brighter(1))
-                     	.style("opacity", "0.7")
-                     	.style("cursor",'pointer');
+                     	.style("opacity", "0.7");
+                     	
 			    })
 			     d3.select(".svg2").selectAll("path").on("mouseout", function(d,i){
        				tooltip.style("display", "none");
@@ -211,8 +211,7 @@
 			pause : 5000,
 			slideWidth : 1200,
 			speed : 2000,
-			infiniteLoop : false,
-			hideControlOnEnd : true,
+			infiniteLoop : true,
 			stopAutoOnclick : true
 		});
 
@@ -244,7 +243,6 @@
 		<div id="piechart" style="width: 600; height: 460;">
 		<div class="tooltip1"  style=" z-index:3;"></div>
 			<svg class="svg2"></svg>
-			<svg class="svg3"></svg>
 		</div>
 	 </div>
  </div>

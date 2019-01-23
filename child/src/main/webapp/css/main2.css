@@ -131,3 +131,6 @@
    stroke:white;
    stroke-width: 1.3px;
 }
+#main2btn:hover{
+	cursor: pointer;
+}
