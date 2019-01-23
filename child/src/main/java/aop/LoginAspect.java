@@ -14,7 +14,7 @@ import logic.User;
 @Component
 @Aspect
 public class LoginAspect {
-	@Around("execution(* controller.User*.*(..)) && args(mnum,session,..)")
+	@Around("execution(* controller.User*.*(..)) && args(mnum,session,..) && !execution(* controller.User*.delete(..))") 
 	public Object userLoginCheck(ProceedingJoinPoint joinPoint,Integer mnum, HttpSession session) throws Throwable {
 		User loginUser = (User) session.getAttribute("loginUser");
 		//1. 로그인이 안된 경우
@@ -29,7 +29,6 @@ public class LoginAspect {
 		Object ret = joinPoint.proceed();
 		return ret;
 	}
-	
 /*	@Around("execution(* controller.User*.update(..)) && args(user, session,..)")
 	public Object userUpdateCheck(ProceedingJoinPoint joinPoint,User user,HttpSession session) throws Throwable{
 		User loginUser = (User) session.getAttribute("loginUser");
