@@ -15,7 +15,6 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-
 <style type="text/css">
 #main {
    max-width: 1200px;
