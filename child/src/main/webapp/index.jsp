@@ -1,3 +1,3 @@
 <script>
-location.href="./main/main2.child"
+location.href="./main/main.child"
 </script>
