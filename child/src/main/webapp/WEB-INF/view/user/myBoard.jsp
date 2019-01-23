@@ -106,7 +106,7 @@ a {
 						${myboard.subject}</a></td>
 						<td>${myboard.commentcnt}</td>
 						<td><fmt:formatDate value="${myboard.regdate}" pattern="YYYY-MM-dd" /></td>
-						<td><c:if test="${myboard.bType == 3}"><a href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">${(myboard.boarddeal == 1)?"거래중":(myboard.boarddeal == 2)?"거래 완료":"거래 대기"}</a></c:if></td>
+						<td><c:if test="${myboard.bType == 3 && myboard.head == 2}"><a href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">${(myboard.boarddeal == 1)?"거래중":(myboard.boarddeal == 2)?"거래 완료":"거래 대기"}</a></c:if></td>
 					</tr>
 				</c:forEach>
 				</c:if>
