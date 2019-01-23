@@ -48,7 +48,7 @@ $(document).ready(function() {
 		</div>
 		<div class="board">
 			<div style="margin-top: 30px; margin-bottom: 30px;">
-			<h3>거래 요청 목록</h3>
+			<h3>거래 요청 목록(판매자용)</h3>
 			</div>
 			<font size="2">거래 수락시에만 요청 회원 정보에 연락처가 표기되며, 거래완료 후에는 연락처가 표기되지않습니다.</font><br>
 			<font size="2">거래 수락 후 7일이 지난 거래는 완료로 자동 전환됩니다.</font>
