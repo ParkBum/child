@@ -185,7 +185,7 @@
 			          tooltip.style("left", d3.event.pageX+10+"px");
 			          tooltip.style("top", d3.event.pageY-25+"px");
 			          tooltip.style("display", "inline-block");
-			          tooltip.html((piedatas[i].name)+":"+(d.value)+"Έν");
+			          tooltip.html((piedatas[i].name)+" : "+(d.value)+"°χ");
 			          d3.select(this)
                       	.style("fill", d3.rgb(color(i)).brighter(1))
                      	.style("opacity", "0.7")
