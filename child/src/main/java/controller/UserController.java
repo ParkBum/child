@@ -191,13 +191,13 @@ public class UserController {
 	}
 
 	@RequestMapping("user/*")
-	public ModelAndView userAll(User user) {
+	public ModelAndView userAll(Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
 
 	@RequestMapping("user/update")
-	public ModelAndView update(@Valid User user, HttpSession session, Integer mnum, BindingResult bindResult) {
+	public ModelAndView update(Integer mnum, HttpSession session, @Valid User user, BindingResult bindResult) {
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) {
 			mav.getModel().putAll(bindResult.getModel());
@@ -264,7 +264,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
-	public ModelAndView confirm(@Valid User user, BindingResult bindingResult, Integer mnum, HttpSession session) {
+	public ModelAndView confirm(Integer mnum, HttpSession session,@Valid User user, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
 		// System.out.println(bindingResult);
 		// System.out.println(user);
@@ -326,7 +326,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/myBoardDelete")
-	public ModelAndView myBoardDelete(Integer[] checkBoard, Integer mnum) {
+	public ModelAndView myBoardDelete(Integer mnum, HttpSession session,Integer[] checkBoard) {
 		ModelAndView mav = new ModelAndView();
 		for (Integer bnum : checkBoard) {
 			service.boardMessageDelete(bnum);
