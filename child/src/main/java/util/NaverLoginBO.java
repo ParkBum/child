@@ -15,7 +15,6 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 public class NaverLoginBO {
-
 	private final static String CLIENT_ID = "c2lgrvoieKRPOBcL8fD_";	//API 사용시 ID
 	private final static String CLIENT_SECRET = "a7657XOHSA";		//API 사용시 비밀번호
 	private final static String REDIRECT_URI = "http://192.168.0.89:8080/child/user/callback.child";	//정보가 가는 곳.

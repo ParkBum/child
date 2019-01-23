@@ -58,4 +58,7 @@
 	<select id="gumarkerlist" resultType="Daycare" parameterType="map">
 		select * from seoul2 where gu = #{guname}
 	</select>
+	<select id="wordlist" resultType="Daycare" parameterType="map">
+		select * from seoul2 where  name like '%${word}%' or addr like '%${word}%'
+	</select>
 </mapper>
