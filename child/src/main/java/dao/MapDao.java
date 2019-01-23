@@ -83,5 +83,12 @@ public class MapDao {
 		return sqlSession.selectList(NS+"gumarkerlist",map);
 	}
 
+
+	public List<Daycare> wordDaycarelist(String word) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("word", word);
+		return sqlSession.selectList(NS+"wordlist",map);
+	}
+
 	
 }

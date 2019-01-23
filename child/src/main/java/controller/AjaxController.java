@@ -61,8 +61,13 @@ public class AjaxController {
 	
 	@ResponseBody
 	@RequestMapping("map/search")
-	public Object search(String gu, String type, String bus/*, String word*/){
-		List<Daycare> daycarelist = service.search(gu,type,bus);
+	public Object search(String gu, String type, String bus, String word){
+		List<Daycare> daycarelist = null;
+		if(gu != null && type != null && bus != null) {
+		daycarelist = service.search(gu,type,bus);
+		}else if(word != null) {
+		daycarelist = service.wordsearch(word);
+		}
 		
 		for(Daycare d : daycarelist) {
 			String addr_substr = d.getAddr().substring(d.getAddr().indexOf("특별시")+3, d.getAddr().length());

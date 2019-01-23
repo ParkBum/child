@@ -9,9 +9,9 @@
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>어린이집 검색</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script type="text/javascript"
    src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ea2633155fc8b442f8cc095a5798ccf&libraries=services"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -19,7 +19,7 @@
 <style type="text/css">
 #main {
    max-width: 1200px;
-   margin-left :350px ;
+   margin-left :360px ;
 }
 #SearchAndMap {
    width: 1200px;
@@ -28,13 +28,13 @@
  
 #search {
    width: 570px;
-   height: 40px;
+   height: 80px;
    vertical-align: middle;
 }
 
 #map_wrap {
    width: 570px;
-   height: 540px;
+   height: 500px;
 }
 
 .buttons {
@@ -115,7 +115,7 @@ option {
       <div id="SearchAndMap">
          <div class="half1">
          <div id="search">
-            <div style="text-align: center; width: 100%; height: 40px; background: #f7f7f7; border : solid 1px #dbdbdb;">
+            <div style="text-align: center; width: 100%; height: 80px; background: #f7f7f7; border : solid 1px #dbdbdb;">
                <div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
                   <div style="width: 29%; height:30px; margin : 5px 0; float: left; border-right: silver 1px solid;">
                      <font style="margin-top:1px;">지역&nbsp;&nbsp;</font> <select style="margin-top:1px; width:90px;" name="gu" id="gu">
@@ -167,6 +167,9 @@ option {
                      </select> &nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="searchs">조회</button>
                </div>
                </div>
+               <div style="width: 100%; height: 40px; margin:auto 0; display: inline-block;">
+               <input type="text" name="word" id="word" placeholder="단어를 입력해 주세요">&nbsp;&nbsp;&nbsp;&nbsp;<button class="buttons" id="wordsearchs">검색</button>
+               </div>
             </div>
          </div>
          <div id="map_wrap" align="center" class="map_wrap">
@@ -202,7 +205,7 @@ option {
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = {
          center : new daum.maps.LatLng(37.56682, 126.97865), // 지도의 중심좌표
-         level : 2, // 지도의 확대 레벨
+         level : 5, // 지도의 확대 레벨
          mapTypeId : daum.maps.MapTypeId.ROADMAP
       // 지도종류
       };
@@ -868,7 +871,7 @@ function loadPieGraph_max(){
           tooltip.style("left", d3.event.pageX+10+"px");
           tooltip.style("top", d3.event.pageY-25+"px");
           tooltip.style("display", "inline-block");
-          tooltip.html((d.data.type)+" 정원 수:"+(d.data.value)+"명");
+          tooltip.html((d.data.type)+":"+(d.data.value)+"명");
     });
          
     d3.select(".svg3").selectAll("path").on("mouseout", function(d){
@@ -983,7 +986,7 @@ function loadPieGraph_now(){
           tooltip.style("left", d3.event.pageX+10+"px");
           tooltip.style("top", d3.event.pageY-25+"px");
           tooltip.style("display", "inline-block");
-          tooltip.html((d.data.type)+" 현원 수:"+(d.data.value)+"명");
+          tooltip.html((d.data.type)+":"+(d.data.value)+"명");
     });
          
     d3.select(".svg2").selectAll("path").on("mouseout", function(d){
@@ -1241,7 +1244,7 @@ function NowChildPieChart(guname){//guname이 실려있음
           tooltip.style("left", d3.event.pageX+10+"px");
           tooltip.style("top", d3.event.pageY-25+"px");
           tooltip.style("display", "inline-block");
-          tooltip.html((d.data.type)+" 현원 수:"+(d.data.value)+"명");
+          tooltip.html((d.data.type)+":"+(d.data.value)+"명");
     });
          
     d3.select(".svg2").selectAll("path").on("mouseout", function(d){
@@ -1340,7 +1343,7 @@ function MaxChildPieChart(guname){//guname이 실려있음
           tooltip.style("left", d3.event.pageX+10+"px");
           tooltip.style("top", d3.event.pageY-25+"px");
           tooltip.style("display", "inline-block");
-          tooltip.html((d.data.type)+" 정원 수:"+(d.data.value)+"명");
+          tooltip.html((d.data.type)+":"+(d.data.value)+"명");
     });
          
     d3.select(".svg3").selectAll("path").on("mouseout", function(d){
@@ -1393,6 +1396,71 @@ function review(code){
          $('#reviews').html(data);
       }});
 }
+</script>
+<script type="text/javascript">//단어 검색
+$('#wordsearchs').click(function(){
+	$.ajax({
+        url : "search.child",
+        type : "post",
+        data : {"word" : $('#word').val()},
+        dataType : "json",
+        success : function(data){
+           hideMarkers();
+           for (var i = 0; i < data.daycarelist.length; i++) {
+              var Map = map;
+              var coords = new daum.maps.LatLng(
+                       data.daycarelist[i].lat,data.daycarelist[i].lon      
+                       );
+                 
+              var marker = new daum.maps.Marker({
+                  map:Map,
+                  position:coords,
+                  image : markerImage
+               });
+               marker.setMap(map);
+               var content = '<div class="labelWish" style="border-radius:5px; width:450px;">';
+               content += '<div style="text-align:center; margin-top:15px;";>['+data.daycarelist[i].type+']<strong>'+data.daycarelist[i].name+'</strong>';
+               if(data.daycarelist[i].bus == '운영'){
+                   content += '&nbsp;&nbsp;<img src="../decorator/bus2.png" style="width:22px; height:22px; margin-top:-4px;"></div>';   
+                   }
+               content += '<div style="margin-top:8px; margin-left: 15px; margin-right:15px;text-align:left; text-overflow: ellipsis;">전화번호: '+data.daycarelist[i].tel+'</div>';
+               content += '<div style="margin-top:8px; margin-left: 15px;margin-right:15px; text-align:left; text-overflow: ellipsis;overflow:hidden;white-space:nowrap;" title="'+data.daycarelist[i].addr+'">주소:'+data.daycarelist[i].addr+'</div>';
+               content += '<div style="margin-top:8px;"><button id="compare" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:graph('+data.daycarelist[i].code+')">차트 보기</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="review" style="border:0; outline:0; background:rgba(148, 193, 96,1); color:white;" onclick="javascript:review('+data.daycarelist[i].code+')">후기</button></div><br><div>';
+              var infowindow = new daum.maps.InfoWindow({
+                     position : coords, 
+                     content : content,
+                     removable:true
+                 }); 
+              infos.push(infowindow);
+              markers.push(marker);
+                map.setCenter(coords);    
+                 // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+                 // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
+                 (function(marker, infowindow, codes,is) { 
+                     // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+                     daum.maps.event.addListener(marker, 'click', function() {
+                        AnotherMarkers();
+                         infowindow.open(map, marker);
+                     });
+
+                 })(marker, infowindow);
+              
+           }
+           function makeOverListener( map, marker, infowindow) { 
+              return function() {
+                   infowindow.open(map, marker);
+               };
+           }
+           
+           // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+           function makeOutListener(infowindow) {
+               return function() {
+                   infowindow.close();
+               };
+           }
+        }
+     })  
+})
 </script>
 </body>
 </html>

@@ -357,4 +357,9 @@ public class ChildService {
 		return mapDao.gumarkerlist(guname);
 	}
 
+	public List<Daycare> wordsearch(String word) {
+		
+		return mapDao.wordDaycarelist(word);
+	}
+
 }
