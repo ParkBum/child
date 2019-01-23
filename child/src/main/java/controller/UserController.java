@@ -258,7 +258,10 @@ public class UserController {
 				mav.setViewName("user/list");
 			}
 		} else { // 비밀번호 불일치
-			mav.setViewName("user/list");
+			mav.addObject("msg", "비밀번호가 틀렸습니다.");
+			mav.addObject("url", "list.child?mnum=" + mnum);
+			mav.setViewName("alert");
+			return mav;
 		}
 		return mav;
 	}
