@@ -132,7 +132,7 @@ body {
 		<div class='menu-bar'>
 			<div style="height: 40px;">
 				<ul class="menu">
-					<li class="left"><a href="${path}/main/main2.child"
+					<li class="left"><a href="${path}/main/main.child"
 						style="background-color: white;"><img
 							src="../decorator/logo.png"
 							style="width: 130px; height: 100px; margin: 0 0 4px 20px;" title="홈바로가기"></a></li>
