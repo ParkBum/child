@@ -151,9 +151,9 @@ th {
                </tr>
                <tr>
                   <th style="text-align: center; padding-left:8px;">´Ð³×ÀÓ</th>
-                  <td><form:input path="nickname"
-                        value="${sessionScope.loginUser.nickname}" readonly="true"
-                        style="width:80%" /> <font color="red"> <form:errors
+                  <td> 
+                  <input type="hidden" name="password" value="${sessionScope.loginUser.password}">
+                  <form:input path="nickname" value="${sessionScope.loginUser.nickname}" readonly="true"  style="width:80%" /> <font color="red"> <form:errors
                            path="nickname" /></font></td>
                </tr>
                <tr>

@@ -204,6 +204,8 @@ public class UserController {
 	public ModelAndView update(Integer mnum, HttpSession session, @Valid User user, BindingResult bindResult) {
 		ModelAndView mav = new ModelAndView("user/updateForm");
 		if (bindResult.hasErrors()) {
+		 System.out.println(bindResult);
+		 System.out.println(user);
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}

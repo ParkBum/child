@@ -5,7 +5,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
 public class User {
 	private int mnum;
 	@NotEmpty(message="email을 입력해 주세요")
@@ -14,9 +13,9 @@ public class User {
 	@Size(min=3, message="닉네임은 3자 이상이어야 합니다.")
 	private String nickname;
 	@NotEmpty(message="패스워드를 입력해 주세요")
-	@Size(min=4, message="패스워드는 5자 이상 16자 이하 합니다.", max=15)
+	@Size(min=4, message="패스워드는 5자 이상입니다.")
 	private String password;
-	@Size(min=4, message="패스워드는 5자 이상 16자 이하 합니다.", max=15)
+	@Size(min=4, message="패스워드는 5자 이상입니다.")
 	private String password1;
 	@NotEmpty(message="주소를 입력해주세요")
 	private String addr1;
