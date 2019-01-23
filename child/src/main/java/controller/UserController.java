@@ -273,8 +273,8 @@ public class UserController {
 	@RequestMapping(value = "user/passConfirm", method = RequestMethod.POST)
 	public ModelAndView confirm(Integer mnum, HttpSession session,@Valid User user, BindingResult bindingResult) {
 		ModelAndView mav = new ModelAndView();
-		// System.out.println(bindingResult);
-		// System.out.println(user);
+//		 System.out.println(bindingResult);
+//		 System.out.println(user);
 		User dbUser = (User) session.getAttribute("loginUser");// dbuser = 원래 정보
 		if (bindingResult.hasErrors()) {
 			mav.getModel().putAll(bindingResult.getModel());
@@ -283,8 +283,8 @@ public class UserController {
 		}
 		String pass = service.getHashValue(user.getPassword());
 		if (pass.equals(dbUser.getPassword())) {
-			// System.out.println("여기 안나와요??33333");
-			// System.out.println(user.getPassword());
+//			 System.out.println("여기 안나와요??33333");
+//			 System.out.println(user.getPassword());
 			mav.setViewName("redirect:../user/updateForm.child?mnum=" + user.getMnum());
 		} else {
 			mav.addObject("msg", "비밀번호가 틀렸습니다.");
