@@ -37,6 +37,11 @@
 			 var label = d3.arc().outerRadius(radius).innerRadius(radius - 80);
 			  var seould1=0, seould2=0, seould3=0, seould4=0, seould5=0, seould6=0, seould7=0;
 			  
+			  //tooltip
+			  var divTooltip = d3.select(".tooltip1");
+			  ///
+			  
+			  var x1 = d3.scale.ordinal();
 			 for(var i=0; i<seoul.seoul.length; i++){
 				if(data == seoul.seoul[i].code||data=='10000'){
  				var piedatas = [
@@ -130,6 +135,32 @@
 			    			return arc(interpolate(t));
 			    		}
 			    	});
+		             
+			   	g.selectAll("rect")
+			      .data(function(d) { return d.value; })	//data값들을 넣어줌 .
+			  	  .enter().append("rect")
+			      .attr("width", x1.rangeBand())
+			      .attr("x", function(d) { return x1(d.value); })
+			      .style("fill", function(d) { return color(i) })
+			      .attr("y", function(d) { return y(0); })
+			      .attr("height", function(d) { return height - y(0); })
+			      .on("mousemove", function(d) {  //마우스 오버 이벤트 시 해당 범례의 수 조회.
+			           divTooltip.style("left", d3.event.pageX + 10 + "px")
+			            divTooltip.style("top", d3.event.pageY - 25 + "px")
+			            divTooltip.style("display", "inline-block")
+			            divTooltip.style("opacity", "0.9")
+			            divTooltip.html(d.column + "<br>" + d.value);
+			            d3.select(this)
+			                .style("fill", d3.rgb(color(d.column)).brighter(1))
+			                .style("opacity", "0.7");
+			      })
+			      .on("mouseout", function(d) {
+			         divTooltip.style("display", "none")
+			            d3.select(this).transition().duration(250)
+			                .style("fill", color(d.column))
+			                .style("opacity", "1");
+			      });
+			   	
 			 if(data=='10000'){
 				 svg.append("foreignObject")
 			      	.attr("width", 200+"px")
@@ -155,7 +186,7 @@
 		    		.text(selectguname+" 어린이집 시설수");
 				////////<<<<<<<<<<<
 				// text 정 중앙에 텍스트 넣기
-			 	 g.append("text")	//텍스트 테그 부름
+			 	/*  g.append("text")	//텍스트 테그 부름
 			    	.attr("transform", function(d) {
 			        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
 			        _d[0] *= 1.3;	//multiply by a constant factor
@@ -169,7 +200,7 @@
 			    		piedatas[i].value = "";
 			    	}
 			        return piedatas[i].value;
-			      });
+			      }); */
 		});
 		}
 		
@@ -215,6 +246,7 @@
 	<div id="chartarea" style="display: inline-flex;" align="center">
 		<div id="mapchart"></div> 
 		<div id="piechart" style="width: 600; height: 460;">
+		<div class="tooltip1"  style=" z-index:3;"></div>
 			<svg class="svg2"></svg>
 			<svg class="svg3"></svg>
 		</div>
