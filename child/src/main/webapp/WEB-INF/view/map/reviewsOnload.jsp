@@ -28,7 +28,7 @@
 						<td height='23' style='text-align: center'><a
 							href='../board/info.child?bnum=${list.bnum}&bType=2'
 							style='text-decoration: none;'>[${list.dcname}]${list.subject}</a></td>
-						<td height='23' style='text-align: center'>${list.score}</td>
+						<td height='23' style='text-align: center'>¡Ú${list.score}</td>
 					</tr>
 				</c:forEach>
 			</c:if>
