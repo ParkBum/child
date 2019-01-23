@@ -1,244 +1,272 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script type="text/javascript">
-
-$(function() {
-	$(document).ready(function(){
-		// 사용 가능한 차트
-/* 		// create the svg
-		var svg = d3.select("svg"),
-		    margin = {top: 20, right: 20, bottom: 30, left: 40},
-		    width = +svg.attr("width") - margin.left - margin.right,
-		    height = +svg.attr("height") - margin.top - margin.bottom,
-		    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		// set x scale
-		var x = d3.scaleBand()
-		    .rangeRound([0, width])
-		    .paddingInner(0.05)
-		    .align(0.1);
-
-		// set y scale
-		var y = d3.scaleLinear()
-		    .rangeRound([height, 0]);
-
-		// set the colors
-		var z = d3.scaleOrdinal()
-		    .range(["#495228", "#6C7C33", "#90A73A", "#B0D03C", "#C0E730", "#CDEE55", "#D5F561"]);
-
-		// load the csv and create the chart
-		d3.csv("../decorator/dcc_total.csv", function(d, i, columns) {
-		  for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
-		  d.total = t;
-		  return d;
-		}, function(error, data) {
-		  if (error) throw error;
-
-		  var keys = data.columns.slice(1);
-
-		  data.sort(function(a, b) { return b.total - a.total; });
-		  x.domain(data.map(function(d) { return d.gu; }));
-		  y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
-		  z.domain(keys);
-
-		  g.append("g")
-		    .selectAll("g")
-		    .data(d3.stack().keys(keys)(data))
-		    .enter().append("g")
-		      .attr("fill", function(d) { return z(d.key); })
-		    .selectAll("rect")
-		    .data(function(d) { return d; })
-		    .enter().append("rect")
-		      .attr("x", function(d) { return x(d.data.gu); })
-		      .attr("y", function(d) { return y(d[1]); })
-		      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-		      .attr("width", x.bandwidth())
-		    .on("mouseover", function() { tooltip.style("display", null); })
-		    .on("mouseout", function() { tooltip.style("display", "none"); })
-		    .on("mousemove", function(d) {
-		      console.log(d);
-		      var xPosition = d3.mouse(this)[0] - 5;
-		      var yPosition = d3.mouse(this)[1] - 5;
-		      tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-		      tooltip.select("text").text(d[1]-d[0]);
-		    });
-
-		  g.append("g")
-		      .attr("class", "axis")
-		      .attr("transform", "translate(0," + height+ ")")
-		      .call(d3.axisBottom(x))
-		      	 .selectAll("text")
-		      	 .attr("x",-25)
-		      	 .attr("y",10)
-			     .attr("transform", "rotate(-45)");
-
-		  g.append("g")
-		      .attr("class", "axis")
-		      .call(d3.axisLeft(y).ticks(null, "s"))
-		    .append("text")
-		      .attr("x", 2)
-		      .attr("y", y(y.ticks().pop()) + 1) // y:9
-		      .attr("dy", "0.32em")
-		      .attr("fill", "#000")
-		      .attr("font-weight", "bold")
-		      .attr("text-anchor", "start");
-
-		  var legend = g.append("g")
-		      .attr("font-family", "sans-serif")
-		      .attr("font-size", 10)
-		      .attr("text-anchor", "end")
-		    .selectAll("g")
-		    .data(keys.slice().reverse())
-		    .enter().append("g")
-		      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-		  legend.append("rect")
-		      .attr("x", width - 19)
-		      .attr("width", 19)
-		      .attr("height", 19)
-		      .attr("fill", z);
-
-		  legend.append("text")
-		      .attr("x", width - 24)
-		      .attr("y", 9.5)
-		      .attr("dy", "0.32em")
-		      .text(function(d) { return d; });
+<title>HOME</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="../css/main2.css">
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script><!-- 지도 -->
+<script src="http://d3js.org/d3.v4.min.js"></script> 
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+		function makepiechart(data, selectguname){
+			d3.selectAll(".svg2 > *").remove(); 	//svg 안에 있는 모든 요소들을 제거한다.
+			d3.json("../decorator/dcc_total_2.json", function(error, seoul) {
+		        if (error) {
+		            console.log(error);
+		            throw error;}
+			var width = 600, height = 400, radius = Math.min(width, height) /2.5 ;
+			// piechart의 svg2를 선택
+			var svg = d3.select("#piechart").select('.svg2')
+		     .attr("width", width)
+		     .attr("height", height) 
+		     .attr("radius",Math.min(width, height) / 2)
+		     .style("margin-left",-100)
+		     .append("g") //svg2안에 g태그 선택
+		     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+			//body에 있는 svg2 선택함
+			 var pie = d3.pie();
+			 var arc = d3.arc().outerRadius(radius - 10).innerRadius(100);
+			 // 각 호의 크기를 정함.
+			 var label = d3.arc().outerRadius(radius).innerRadius(radius - 80);
+			  var seould1=0, seould2=0, seould3=0, seould4=0, seould5=0, seould6=0, seould7=0;
+			  
+			 for(var i=0; i<seoul.seoul.length; i++){
+				if(data == seoul.seoul[i].code||data=='10000'){
+ 				var piedatas = [
+				 	{name : '국공립',  	value : seoul.seoul[i].publics,  	color : '#FF4542'},//녹색
+					{name : '복지법인',  	value : seoul.seoul[i].welfare,  	color : '#FF9175'},//주황
+					{name : '법인단체',	value : seoul.seoul[i].corporate,	color : '#6F90A2'},//파랑
+					{name : '민간', 		value : seoul.seoul[i].privates, 	color : '#00C98F'},//노랑
+					{name : '가정',    	value : seoul.seoul[i].home,     	color : '#1673C7'},//붉은
+					{name : '부모협동', 	value : seoul.seoul[i].parental, 	color : '#C66B98'},//하늘
+					{name : '직장',      value : seoul.seoul[i].Job,     	color : '#764EE8'}	//핑크색
+				 ];
+ 				var kind = [piedatas[0].name,piedatas[1].name,piedatas[2].name,piedatas[3].name,piedatas[4].name,piedatas[5].name,piedatas[6].name];
+ 				var color = d3.scale.ordinal().range([piedatas[0].color,piedatas[1].color,piedatas[2].color,piedatas[3].color,piedatas[4].color,piedatas[5].color,piedatas[6].color]);
+ 				var piedata = [piedatas[0].value,piedatas[1].value,piedatas[2].value,piedatas[3].value,piedatas[4].value,piedatas[5].value,piedatas[6].value];
+ 				 if(data=='10000'){
+					 seould1 = seould1 + seoul.seoul[i].publics; 
+					 seould2 = seould2 + seoul.seoul[i].welfare;
+					 seould3 = seould3 + seoul.seoul[i].corporate;
+					 seould4 = seould4 + seoul.seoul[i].privates;
+					 seould5 = seould5 + seoul.seoul[i].home;
+					 seould6 = seould6 + seoul.seoul[i].parental;
+					 seould7 = seould7 + seoul.seoul[i].Job;
+				piedata = [seould1,seould2,seould3,seould4,seould5,seould6,seould7];
+				piedatas = [
+				    { name : '국공립', value : seould1,  	color : '#FF4542'},//녹색
+				    { name : '복지법인', value : seould2,  	color : '#FF9175'},//주황
+				    { name : '법인단체', value : seould3,	color : '#6F90A2'},//파랑
+				    { name : '민간', value : seould4, 	color : '#00C98F'},//노랑
+				    { name : '가정', value : seould5,     	color : '#1673C7'},//붉은
+				    { name : '부모협동', value : seould6, 	color : '#C66B98'},//하늘
+				    { name : '직장', value : seould7,     color : '#764EE8'}	//핑크색
+				];
+ 				} 
+				}
+			  }
+			 var legendItemSize = 18
+			 var legendSpacing = 4
+			 
+			 var legend = svg
+			  .selectAll('.legend')
+			  .data(piedatas)
+			  .enter()
+			  .append('g')
+			  .attr('class', 'legend')
+			  .attr("transform", function(d, i) {
+			    var height = legendItemSize + legendSpacing
+			    var offset = height * piedatas.length / 2
+			    var x = legendItemSize * -2;
+			    var y = (i * height) - offset
+			    return "translate("+x+","+y+")";
+			  });
+			  
+			legend
+			  .append('rect')
+			  .attr('width', legendItemSize)
+			  .attr('height', legendItemSize)
+			  .style('fill', function(d,i) {return color(i)});
+			
+			legend
+			  .append('text')
+			  .attr('x', legendItemSize + legendSpacing)
+			  .attr('y', legendItemSize - legendSpacing)
+			  .text(function(d,i) {return kind[i]});
+			  
+			 ///////////////////////////////////////////////////<<<<<<<<<<<<<<<<<<<<<
+			 //실제 데이터를 넣고 파이그래프를 만드는 부분
+			 var g = svg.selectAll(".arc")		//호들을 집합시킴
+		             .attr("class", "arc")		//arcs의 class : arc임
+		             .data(pie(piedata))		//data들은 piedata를 넣어 줌
+		             .enter().append("g");		//g라는 것을 대입함.
+			    //Draw arc paths
+			   	 g.append("path")	//호 하나하나를 만듦
+			   	 	.attr("class","arcdata")
+			        .attr("d", arc)		//d는 호라고 생각하자.
+			        .attr("fill", 
+			        function(d, i) {	//호 별로 i 순서대로 color 데이터를 넣어 줍니다
+			        	/* console.log(color(i)) */
+			        	return color(i);
+			        })
+			        .transition()	//에니메이션
+			    	.duration(1000)
+			    	.delay(function(d, i) {
+			    		return i * 10;
+			    	})
+			    	.attrTween("d", function(d, i) {
+			    		var interpolate = d3.interpolate(
+			    			{startAngle : d.startAngle, endAngle : d.startAngle},
+			    			{startAngle : d.startAngle, endAngle : d.endAngle}
+			    		);
+			    		return function(t){
+			    			return arc(interpolate(t));
+			    		}
+			    	});
+			 if(data=='10000'){
+				 svg.append("foreignObject")
+			      	.attr("width", 200+"px")
+			      	.attr("height", 80+"px")
+			      	.attr("x",-90)
+			      	.attr("y",180)
+			    	.append("xhtml:body")
+					.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:17px;">'+selectguname+'</font></form>');
+			 }else{
+				 svg.append("foreignObject")
+			      	.attr("width", 200+"px")
+			      	.attr("height", 80+"px")
+			      	.attr("x",-90)
+			      	.attr("y",180)
+			    	.append("xhtml:body")
+			    	.html('<form action="../map/map.child" method="post"><input type="hidden" name="gu" value="'+selectguname+'"><font style="font-size:17px;">'+selectguname+'&nbsp;&nbsp;<button id="main2btn" style="border:0; outline: 0; background:rgba(148, 193, 96,1); color:white;">어린이집 검색</button></font></form>');
+			 }
+			      
+			      svg.append("text")
+					.attr("text-anchor", "middle")
+			 		.attr('font-size', '2em')
+			 		.attr('y', -165)
+		    		.text(selectguname+" 어린이집 시설수");
+				////////<<<<<<<<<<<
+				// text 정 중앙에 텍스트 넣기
+			 	 g.append("text")	//텍스트 테그 부름
+			    	.attr("transform", function(d) {
+			        var _d = arc.centroid(d);	//arc는 호 하나하나를 말하는 거임 ..
+			        _d[0] *= 1.3;	//multiply by a constant factor
+			        _d[1] *= 1.3;	//multiply by a constant factor	.. 글자 위치 나타냄
+			        return "translate(" + _d + ")";
+			      })
+			      .attr("dy", ".70em")	//글자 크기
+			      .style("text-anchor", "middle")
+			      .text(function(d,i) {
+			    	if(piedatas[i].value==0){
+			    		piedatas[i].value = "";
+			    	}
+			        return piedatas[i].value;
+			      });
+		});
+		}
+		
+	$(document).ready(function() {
+		makepiechart('10000','서울시') 
+		var main = $('.bxslider').bxSlider({
+			mode : 'horizontal',
+			auto : true, //자동으로 슬라이드  
+			controls : true, //좌우 화살표     
+			autoControls : true, //stop,play  
+			pager : true, //페이징  
+			pause : 5000,
+			slideWidth : 1200,
+			speed : 2000,
+			infiniteLoop : false,
+			hideControlOnEnd : true,
+			stopAutoOnclick : true
 		});
 
-		  // Prep the tooltip bits, initial display is hidden
-		  var tooltip = svg.append("g")
-		    .attr("class", "tooltip")
-		    .style("display", "none");
-		      
-		  tooltip.append("rect")
-		    .attr("width", 60)
-		    .attr("height", 20)
-		    .attr("fill", "white")
-		    .style("opacity", 0.5);
+		$(".bx-stop").click(function() { // 중지버튼 눌렀을때  
+			main.stopAuto();
+			$(".bx-stop").hide();
+			$(".bx-start").show();
+			return false;
+		});
 
-		  tooltip.append("text")
-		    .attr("x", 30)
-		    .attr("dy", "1.2em")
-		    .style("text-anchor", "middle")
-		    .attr("font-size", "15px")
-		    .attr("font-weight", "bold");
-	}) */
+		$(".bx-start").click(function() { //시작버튼 눌렀을때  
+			main.startAuto();
+			$(".bx-start").hide();
+			$(".bx-stop").show();
+			return false;
+		});
 
-})
+		$(".bx-start").hide(); //onload시 시작버튼 숨김.
+		 
+	});
+
 </script>
-<style type="text/css">
-
-svg{
-	font : 10px;
-	width: 1200px;
-	height: 550px;
- 	border : solid 2px silver;
- 	}
- 	
-body{
-	text-align: center;
-
-}
-/* #wrap{
-	text-align: center;
-} */
-/*차트영역*/
-svg{
-	font : 10px;
-	width: 1200px;
-	height: 550px;
- 	border : solid 2px silver;
-}
-  .axis .domain {
-    display: none;
-  }
-
-.menus {
-	text-align:center;
-	margin-top: 50px;
-	margin : 0 auto;
-	width: 1200px;
-	height: 150px;
-}
-.card1 {
-
-	margin: 25px 0;
-	width: 100%;
-	height: 150px;
-}
-
-
-
-.image1-1,.image1-2,.image1-3 {
-	display: inline-block;
-	height: 230px;
-	position : relative;
-	border-radius: 20px;
-	margin: 2% 5%;
-	width: 20%;
-}
-.image1-1:hover{
-	background-color: #F5ECCE; 
-}
-.image1-2:hover{
-	background-color: #A9F5D0; 
-}
-.image1-3:hover{
-	background-color: #A9D0F5; 
-}
-
-
-.main-a {
-	text-decoration: none;
-	font-size: xx-large;
-	color : black; 
-
-}
-.main-b {
-	text-decoration: none;
-	marign:2px 0;
-}
-.axis .domain {
-  display: none;
-}
-
-</style>
 </head>
+
 <body>
-	<div id="wrap">
-
-	<div>
-
-	<svg width="1200" height="500">
-
-	</svg>
-
-	</div>
-<div class="menus">
-		<div class="card1">
-			<div class="image1-1"> <%-- mouseover 시 색 변경 --%>
-				  <a class="main-a" href="../map/map.child"><img src="../decorator/locations.png" width="150px" height="150px"
-					style="margin:10px 0;"><br>어린이집 검색&nbsp;<i class="fa fa-arrow-right"></i></a>  
-			</div>
-			<div class="image1-2">
-				  <a class="main-a" href="../board/list.child?bType=1"><img src="../decorator/customer-review.png" width="150px"
-					height="150px" style="margin: 10px 0;"><font><br>커뮤니티&nbsp;<i class="fa fa-arrow-right"></i></font></a>
-			</div>
-			<div class="image1-3">
-				  <a class="main-a" href="../board/list.child?bType=3"><img src="../decorator/pay-per-click.png" width="150px"
-					height="150px" style="margin: 10px 0;"><br>중고거래&nbsp;<i class="fa fa-arrow-right"></i></a>
+<div id="wrap" style="height: 550;">
+	<div id="chartarea" style="display: inline-flex;" align="center">
+		<div id="mapchart"></div> 
+		<div id="piechart" style="width: 600; height: 460;">
+			<svg class="svg2"></svg>
+			<svg class="svg3"></svg>
+		</div>
+	 </div>
+ </div>
+   <div style="background-color: #FFF1F5; height: 500px; width: 100%;">
+			<div> <!-- style="background-color: #FFF1F5; height: 500px; width: 100%;" -->
+				<div class="menus">
+					<div class="card1">
+						<div class="mainimage1">
+							<div class="bxslider">
+								<div>
+									<a href="http://iseoul.seoul.go.kr/portal/mainCall.do"
+										target="_blank"> <img
+										src="${path}/decorator/new-img_visual01.png" alt="보육특별시서울"
+										title="보육특별시서울" style="width: 800px; height: 400px;"></a>
+								</div>
+								<div>
+									<a href="https://seoul.childcare.go.kr/ccef/main.jsp"
+										target="_blank"> <img
+										src="${path}/decorator/new-img_visual03.png" alt="육아도움지원센터"
+										title="육아도움지원센터" style="width: 800px; height: 400px;"></a>
+								</div>
+								<div>
+									<a href="http://info.childcare.go.kr/info/main.jsp"
+										target="_blank"> <img
+										src="http://img.childcare.go.kr/info/unityPblntf/main/main_visual.jpg"
+										alt="통합정보공시" title="통합정보공시" style="width: 800px; height: 400px;"></a>
+								</div>
+							</div>
+						</div>
+						
+						<ul class="mainimage2">
+							<li><a class="a1" href="../board/list.child?bType=1">
+							<span class="tit" style="font-size: 16px;">자유게시판</span></a></li>
+							<li><a class="a2" href="../board/list.child?bType=2"><span
+									class="tit" style="font-size: 16px;">후기게시판</span></a></li>
+							<li><a class="a3" href="../board/list.child?bType=3"><span
+									class="tit" style="font-size: 16px;">거래게시판</span></a></li>
+						</ul>
+						<div class="mainimage3">
+							<iframe style="height: 200px;"
+								src="https://www.youtube.com/embed/SY6zhxH4UEo?autohide=1&loop=1&vq=hd720&controls=2&showinfo=0&rel=0&volume=1"
+								frameborder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	<input type="hidden" value="${result}">
+		<input type="hidden" value="${result}">
+		<script language="javascript" src="../js/main2_map.js" charset="EUC-KR"></script>
 </body>
 </html>

@@ -67,7 +67,7 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			return mav;
 		}
-		mav.setViewName("redirect:../main/main2.child");
+		mav.setViewName("redirect:../main/main.child");
 		return mav;
 	}
 
@@ -135,7 +135,7 @@ public class UserController {
 			return mav;/* new ModelAndView("user/callback","result", apiResult); */
 		}
 		session.setAttribute("loginUser", service.userSelect(email));
-		mav.setViewName("redirect:../main/main2.child");
+		mav.setViewName("redirect:../main/main.child");
 		return mav; // new ModelAndView("user/callback"/*,"result", apiResult*/);
 		// 회원 관리를 해야하는 부분.
 	}
@@ -144,7 +144,7 @@ public class UserController {
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		session.invalidate();
-		mav.setViewName("redirect:../main/main2.child");
+		mav.setViewName("redirect:../main/main.child");
 		return mav;
 	}
 
@@ -175,7 +175,7 @@ public class UserController {
 			user.setMnum(mnum);
 			service.userCreate(user);
 			if (user.getId() != null) {
-				mav.setViewName("main/main2");
+				mav.setViewName("main/main");
 				session.setAttribute("loginUser", user);
 				return mav;
 			}
@@ -208,7 +208,7 @@ public class UserController {
 			service.userUpdate(user);
 			session.invalidate();
 			mav.addObject("user", user);
-			mav.setViewName("redirect:../main/main2.child");
+			mav.setViewName("redirect:../main/main.child");
 		} catch (Exception e) {
 			bindResult.reject("error.login.password");
 			mav.getModel().putAll(bindResult.getModel());
@@ -253,7 +253,7 @@ public class UserController {
 				service.userBoardDelete(mnum);
 				service.userDelete(mnum);
 				session.invalidate();
-				mav.setViewName("redirect:../main/main2.child");
+				mav.setViewName("redirect:../main/main.child");
 			} catch (Exception e) {
 				e.printStackTrace();
 				mav.setViewName("user/list");
