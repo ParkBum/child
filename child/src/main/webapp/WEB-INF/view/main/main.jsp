@@ -184,8 +184,8 @@
 			      d3.select(".svg2").selectAll("path").on("mousemove", function(d,i) {
 			          tooltip.style("left", d3.event.pageX+10+"px");
 			          tooltip.style("top", d3.event.pageY-25+"px");
-			          tooltip.style("display", "inline-block");
-			          tooltip.html((piedatas[i].name)+" : "+(d.value)+"°÷");
+			          tooltip.style("display", "inline-block"); 
+			          tooltip.text((piedatas[i].name)+" : "+(d.value)+"°÷");
 			          d3.select(this)
                       	.style("fill", d3.rgb(color(i)).brighter(1))
                      	.style("opacity", "0.7");
@@ -241,7 +241,7 @@
 	<div id="chartarea" style="display: inline-flex;" align="center">
 		<div id="mapchart"></div> 
 		<div id="piechart" style="width: 600; height: 460;">
-		<div class="tooltip1"  style=" z-index:3;"></div>
+		<div class="tooltip1" ></div>
 			<svg class="svg2"></svg>
 		</div>
 	 </div>

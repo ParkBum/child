@@ -382,7 +382,7 @@ $(function() {
 							<c:if test="${board.boarddeal == 0}">
 								<c:set var="flag" value="0" />
 								<c:forEach items="${messageList}" var="msg">
-									<c:if test="${msg.buynum == sessionScope.loginUser.mnum}">
+									<c:if test="${msg.buynum == sessionScope.loginUser.mnum && msg.deal == 0}">
 										<c:set var="flag" value="${flag + 1}" />
 									</c:if>
 								</c:forEach>

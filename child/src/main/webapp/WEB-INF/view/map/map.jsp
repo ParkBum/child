@@ -275,7 +275,7 @@ $(document).ready(function() {
                      }); 
                   infos.push(infowindow);
                   markers.push(marker);
-                  map.setCenter(coords);    
+                  map.setCenter(coords);  
                      // 이벤트 리스너로는 클로저를 만들어 등록합니다 
                      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다                
                      (function(marker, infowindow, codes,is) { 
@@ -1405,6 +1405,9 @@ $('#wordsearchs').click(function(){
         dataType : "json",
         success : function(data){
            hideMarkers();
+           if(data.daycarelist.length == 0){
+        	   alert('검색하신 단어에 맞는 결과가 없습니다.');
+           }
            for (var i = 0; i < data.daycarelist.length; i++) {
               var Map = map;
               var coords = new daum.maps.LatLng(

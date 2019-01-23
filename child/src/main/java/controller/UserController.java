@@ -85,6 +85,7 @@ public class UserController {
 	@RequestMapping("user/delete")
 	public ModelAndView delete(Integer mnum, HttpSession session, User user) {
 		ModelAndView mav = new ModelAndView();
+		User loginUser = (User) session.getAttribute("loginUser");
 		List<Board> myboard = service.myBoardList(mnum);
 		service.userMessageDelete(mnum);
 		service.userCommentDelete(mnum);
@@ -94,7 +95,7 @@ public class UserController {
 		}
 		service.userBoardDelete(mnum);
 		service.userDelete(mnum);
-		mav.setViewName("redirect:../user/list.child");
+		mav.setViewName("redirect:../user/list.child?mnum="+loginUser.getMnum());
 		return mav;
 	}
 
@@ -240,7 +241,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "user/userdelete")
-	public ModelAndView userdelete(Integer mnum, HttpSession session, String pass) {
+	public ModelAndView userdelete(String pass,HttpSession session,Integer mnum ) {
 		ModelAndView mav = new ModelAndView();
 		User dbUser = (User) session.getAttribute("loginUser");
 		List<Board> myboard = service.myBoardList(mnum);
