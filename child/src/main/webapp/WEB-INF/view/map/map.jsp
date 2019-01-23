@@ -1405,6 +1405,9 @@ $('#wordsearchs').click(function(){
         dataType : "json",
         success : function(data){
            hideMarkers();
+           if(data.daycarelist.length == 0){
+        	   alert('검색하신 단어에 맞는 결과가 없습니다.');
+           }
            for (var i = 0; i < data.daycarelist.length; i++) {
               var Map = map;
               var coords = new daum.maps.LatLng(
