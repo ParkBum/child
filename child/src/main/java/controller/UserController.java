@@ -194,6 +194,8 @@ public class UserController {
 	@RequestMapping("user/*")
 	public ModelAndView userAll(Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		User user = service.userInfo(mnum);
+		mav.addObject(user);
 		return mav;
 	}
 
