@@ -198,7 +198,7 @@ function execPostCode() {/* 주소 검색 부분 */
 				<div class="formfont" style="text-align: left;">닉네임</div>
 				<form:input path="nickname" placeholder="닉네임" name="nickname"
 					id="nickname" />
-				<br> <font class="error" name="msg" id="msg" size="3" color="red"></font>
+				<br> <font class="error" id="msg" size="3" color="red"><form:errors path="nickname" /></font>
 				<!-- ajax사용 부분 DB요청 해야 함.  -->
 				<br>
 				<div align="center">

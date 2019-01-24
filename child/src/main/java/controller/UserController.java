@@ -196,7 +196,7 @@ public class UserController {
 	public ModelAndView userAll(Integer mnum, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.userInfo(mnum);
-		mav.addObject(user);
+		mav.addObject("user",user);
 		return mav;
 	}
 
@@ -211,9 +211,9 @@ public class UserController {
 		}
 		try {
 			service.userUpdate(user);
-			session.invalidate();
+/*			session.invalidate();*/
 			mav.addObject("user", user);
-			mav.setViewName("redirect:../main/main.child");
+			mav.setViewName("redirect:../user/list.child?mnum="+user.getMnum());
 		} catch (Exception e) {
 			bindResult.reject("error.login.password");
 			mav.getModel().putAll(bindResult.getModel());

@@ -67,9 +67,9 @@ function check(){
 		<div class="subMenu">
 			<ul>
 				<li class="menu1"><font style="line-height:100px;" size="5">회원 관리</font></li>
-				<li class="active"><a href="../user/list.child?mnum=${sessionScope.loginUser.mnum}">회원 정보</a></li>
-				<li class="menu2"><a href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">작성글 목록</a></li>
-				<li class="menu2"><a href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">거래요청 목록</a></li>
+				<li class="active"><a href="../user/list.child?mnum=${user.mnum}">회원 정보</a></li>
+				<li class="menu2"><a href="../user/myBoardList.child?mnum=${user.mnum}">작성글 목록</a></li>
+				<li class="menu2"><a href="../user/myMessageList.child?mnum=${user.mnum}">거래요청 목록</a></li>
 			</ul>
 		</div>
 		<div class="board">
@@ -80,30 +80,30 @@ function check(){
 			<table border="1" style="border-collapse: collapse; width: 100%;"
 				class="w3-table w3-border w3-bordered">
 				<tr>
-					<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+					<c:if test="${user.email == 'admin@aaa.bbb'}">
 						<th colspan="2" style="text-align: center; padding-left:8px;">관리자 정보</th>
 					</c:if>
-					<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
+					<c:if test="${user.email != 'admin@aaa.bbb'}">
 						<th colspan="2" style="text-align: center; padding-left:8px;">회원 정보</th>
 					</c:if>
 				</tr>
 				<tr>
 					<th style="text-align: center; padding-left:8px;">닉네임</th>
-					<td>${sessionScope.loginUser.nickname}</td>
+					<td>${user.nickname}</td>
 				</tr>
 				<tr>
 					<th style="text-align: center; padding-left:8px;">아이디(이메일)</th>
-					<td>${sessionScope.loginUser.email}</td>
+					<td>${user.email}</td>
 				</tr>
 				<tr>
 					<th style="text-align: center; padding-left:8px;">우편번호</th>
-					<td>${sessionScope.loginUser.addr1}</td>
+					<td>${user.addr1}</td>
 				</tr>
 				<tr>
 					<th style="text-align: center; padding-left:8px;">주소</th>
-					<td>${sessionScope.loginUser.addr2}<c:if
-							test="${!empty sessionScope.loginUser.addr2}">, </c:if>
-						${sessionScope.loginUser.addr3}
+					<td>${user.addr2}<c:if
+							test="${!empty user.addr2}">, </c:if>
+						${user.addr3}
 					</td>
 				</tr>
 			</table>
@@ -112,12 +112,12 @@ function check(){
 		<!-- 회원정보 -->
 		<div class="btns2">
 			<!--  <a href="../user/updateForm.child">회원정보수정</a>&nbsp; -->
-			<a href="myBoardList.child?mnum=${sessionScope.loginUser.mnum}&pageNum=1">
+			<a href="myBoardList.child?mnum=${user.mnum}&pageNum=1">
 				[내 게시글 목록]</a> 
 			<a href="javascript:void(0)"
 				onclick="document.getElementById('id02').style.display='block'">
 				[회원정보 수정]</a>  
-			<c:if test="${sessionScope.loginUser.email != 'admin@aaa.bbb'}">
+			<c:if test="${user.email != 'admin@aaa.bbb'}">
 				<a href="javascript:void(0)"
 					onclick="document.getElementById('id01').style.display='block'">[회원탈퇴]</a>
 			</c:if>
@@ -172,7 +172,7 @@ function check(){
 			</form:form>
 		<!-- </form> -->
 		&nbsp;
-		<c:if test="${sessionScope.loginUser.email == 'admin@aaa.bbb'}">
+		<c:if test="${user.email == 'admin@aaa.bbb'}">
 			<form action="list.child" method="Post">
 			<input type="hidden" name="pageNum" value="1">
 				<table border="1" style="border-collapse: collapse; width: 100%"
