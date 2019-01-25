@@ -112,13 +112,13 @@ th {
             <li class="menu1"><font style="line-height: 100px;" size="5">회원
                   관리</font></li>
             <li class="active"><a
-               href="../user/list.child?mnum=${sessionScope.loginUser.mnum}">회원
+               href="../user/list.child?mnum=${user.mnum}">회원
                   정보</a></li>
             <li class="menu2"><a
-               href="../user/myBoardList.child?mnum=${sessionScope.loginUser.mnum}">작성글
+               href="../user/myBoardList.child?mnum=${user.mnum}">작성글
                   목록</a></li>
             <li class="menu2"><a
-               href="../user/myMessageList.child?mnum=${sessionScope.loginUser.mnum}">거래요청
+               href="../user/myMessageList.child?mnum=${user.mnum}">거래요청
                   목록</a></li>
          </ul>
       </div>
@@ -127,7 +127,7 @@ th {
             <h3>회원 정보 수정</h3>
          </div>
          <form:form modelAttribute="user" method="post"
-            action="update.child?mnum=${sessionScope.loginUser.mnum}">
+            action="update.child?mnum=${user.mnum}">
             <%--입력정보 문제 에러메세지 여기서 찍음. --%>
             <spring:hasBindErrors name="user">
                <font color="red"> <c:forEach items="${errors.globalErrors}"
@@ -145,21 +145,21 @@ th {
                <tr>
                   <th style="text-align: center; padding-left:8px;">아이디(이메일)</th>
                   <td><form:input path="email"
-                        value="${sessionScope.loginUser.email}" readonly="true"
+                        value="${user.email}" readonly="true"
                         style="width:80%" /> <font color="red"> <form:errors
                            path="email" /></font></td>
                </tr>
                <tr>
                   <th style="text-align: center; padding-left:8px;">닉네임</th>
                   <td> 
-                  <input type="hidden" name="password" value="${sessionScope.loginUser.password}">
-                  <form:input path="nickname" value="${sessionScope.loginUser.nickname}" readonly="true"  style="width:80%" /> <font color="red"> <form:errors
+                  <input type="hidden" name="password" value="${user.password}">
+                  <form:input path="nickname" value="${user.nickname}" readonly="true"  style="width:80%" /> <font color="red"> <form:errors
                            path="nickname" /></font></td>
                </tr>
                <tr>
                   <th style="text-align: center; padding-left:8px;">우편번호</th>
                   <td><form:input path="addr1"
-                        value="${sessionScope.loginUser.addr1}" readonly="true"
+                        value="${user.addr1}" readonly="true"
                         style="width:30%" /> <font color="red"> <form:errors
                            path="addr1" /></font>&nbsp;&nbsp;<button type="button" class="btn btn-default"
                         onclick="execPostCode()">
@@ -169,14 +169,14 @@ th {
                <tr>
                   <th style="text-align: center; padding-left:8px;">주소</th>
                   <td><form:input path="addr2"
-                        value="${sessionScope.loginUser.addr2}" readonly="true"
+                        value="${user.addr2}" readonly="true"
                         style="width:80%" /> <font color="red"> <form:errors
                            path="addr2" /></font></td>
                </tr>
                <tr>
                   <th style="text-align: center; padding-left:8px;">상세주소</th>
                   <td><form:input path="addr3"
-                        value="${sessionScope.loginUser.addr3}" style="width:80%" /> <font
+                        value="${user.addr3}" style="width:80%" /> <font
                      color="red"> <form:errors path="addr3" /></font></td>
                </tr>
                <tr>
