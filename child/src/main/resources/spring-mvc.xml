@@ -50,7 +50,7 @@
 		  p:maxInMemorySize="10485760" />
 		  
 	<!-- 예외 처리 관련 설정 
-		exception.CartEmptyException 예외 발생시 /WEB-INF/view/exception.jsp 페이지가 예외페이지로 설정-->
+		exception 예외 발생시 /WEB-INF/view/exception.jsp 페이지가 예외페이지로 설정-->
 	<bean id="exceptionHandler"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 			<property name="exceptionMappings">

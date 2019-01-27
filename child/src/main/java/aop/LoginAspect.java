@@ -21,7 +21,7 @@ public class LoginAspect {
 		if(loginUser == null) {
 			throw new LoginException("로그인 후 이용하세요","../user/loginForm.child");
 		}
-		//2. admin이 아니면서 id와 로그인 정보가 다른 경우
+		//2. admin이 아니면서 id와 로그인 정보가 다른 경우(관리자 강제 탈퇴는 예외)
 		if(!mnum.equals(loginUser.getMnum()) /*&& !loginUser.getEmail().equals("admin@aaa.bbb")*/) {
 			throw new LoginException("본인만 가능합니다","../user/list.child?mnum="+loginUser.getMnum());
 		}
