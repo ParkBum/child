@@ -219,7 +219,6 @@ public class UserController {
 			mav.getModel().putAll(bindResult.getModel());
 			mav.setViewName("user/updateForm");
 		}
-
 		return mav;
 	}
 
